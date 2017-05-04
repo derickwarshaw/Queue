@@ -1,0 +1,31 @@
+{
+  "name": "Queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "queue.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^4.0.0",
+    "gulp-less": "^3.3.0",
+    "gulp-sqlite3": "0.0.1",
+    "gulp-wrap": "^0.13.0",
+    "socket.io": "^1.7.3",
+    "webpack": "^2.5.0"
+  },
+  "dependencies": {
+    "socket.io": "^1.7.3",
+    "sqlite3": "^3.1.8"
+  }
+}
