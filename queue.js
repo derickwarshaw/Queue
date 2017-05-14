@@ -8,20 +8,15 @@ require('babel-polyfill');
 // ------- Babel Transforms Below Here -------------- //
 
 const Utility = Setup.setDependency('Utility');
-
 const FileConstructor = Setup.setDependency('File', [Setup.getCore().coreFileSystem, Utility]);
 const File = new FileConstructor(Setup.getDirectory());
-
 const ConfigConstructor = Setup.setDependency('Config', [File]);
 const Config = new ConfigConstructor();
-
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
-var Sockets = null;
-
 const SequenceConstructor = Setup.setDependency('Sequence');
-
 const DatabaseConstructor = Setup.setDependency('Database', [Setup.getThird().thirdSequel, SequenceConstructor]);
-var Database = null;
+
+var Sockets = null, Database = null;
 
 
 Setup.createExpress()
