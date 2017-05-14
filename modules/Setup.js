@@ -59,7 +59,7 @@ module.exports = dependencyInjection => {
    }
 
    Setup.prototype.getStatic = function (staticDirectory) {
-      return this.setupDependency.dependencyThird.thirdExpress.static(`${this.setupDirectory}\${staticDirectory}`);
+      return (this.getThird().thirdExpress).static(`${this.setupDirectory}\${staticDirectory}`);
    }
 
 

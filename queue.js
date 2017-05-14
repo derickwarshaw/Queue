@@ -10,7 +10,7 @@ require('babel-polyfill');
 const Utility = Setup.setDependency('Utility');
 
 const FileConstructor = Setup.setDependency('File', [Setup.getCore().coreFileSystem, Utility]);
-const File = new FileConstructor();
+const File = new FileConstructor(Setup.getDirectory());
 
 const ConfigConstructor = Setup.setDependency('Config', [File]);
 const Config = new ConfigConstructor();
@@ -29,7 +29,9 @@ Setup.createExpress()
 
    expressServer.use(Setup.getStatic('public'));
    expressServer.get('/', (getRequest, getResolve) => {
-      getResolve.sendFile(File.getIndexPath());
+      File.getIndexPath().then((indexPath) => {
+         getResolve.sendFile(indexPath);
+      });
    });
    console.log("Set default routes.");
 
