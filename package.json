@@ -24,8 +24,9 @@
   "dependencies": {
     "express": "^4.15.2",
     "fs-extra": "^3.0.1",
+    "promise-queue": "^2.2.3",
     "socket.io": "^2.0.1",
-    "sqlite3": "^3.1.8"
+    "sqlite-async": "^1.0.10"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

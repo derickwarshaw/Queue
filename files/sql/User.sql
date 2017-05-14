@@ -1,9 +1,10 @@
 CREATE TABLE IF NOT EXISTS User (
-   UserId   INTEGER AUTONUMBER,
+   UserId   INTEGER AUTONUMBER PRIMARY KEY,
    UserName TEXT NOT NULL,
    UserLocation TEXT NOT NULL,
    UserDate DATE NOT NULL,
+   ClientId INTEGER NOT NULL,
 
-   CONSTRAINT UserId_PrimaryKey PRIMARY KEY (UserId),
    CONSTRAINT UserName_Unique UNIQUE (Username)
+   FOREIGN KEY (ClientId) REFERENCES Client(ClientId)
 );

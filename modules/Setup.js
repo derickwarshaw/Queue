@@ -21,7 +21,8 @@ module.exports = dependencyInjection => {
       this.setupDependency.dependencyCore.coreFileSystem = require('fs');
       this.setupDependency.dependencyThird.thirdExpress = require('express');
       this.setupDependency.dependencyThird.thirdSocket = require('socket.io');
-      this.setupDependency.dependencyThird.thirdSequel = require('sqlite3');
+      this.setupDependency.dependencyThird.thirdSequel = require('sqlite-async');
+      this.setupDependency.dependencyThird.thirdQueue = require('promise-queue');
    }
 
    Setup.prototype.setDependency = function (dependencyName, dependencyDepencies) {
@@ -88,12 +89,14 @@ module.exports = dependencyInjection => {
    }
    Setup.prototype.createDatabase = function () {
       const setupInstance = this;
+      let setupCount = [];
 
       function createDatabaseGetFile (fileName) {
          return new Promise((fileResolve, fileReject) => {
             const filePath = `${setupInstance.getDirectory()}\\files\\sql\\${fileName}.sql`;
             setupInstance.getCore().coreFileSystem.readFile(filePath, 'utf8', (fileError, fileData) => {
                 console.log("Got " + fileName + ".sql");
+                setupCount.push(`${fileName}.sql`);
 
                fileResolve(fileData.split(' ').map((currentElement) => {
                   return currentElement.trim();
@@ -102,32 +105,30 @@ module.exports = dependencyInjection => {
          })
       }
 
-      function createDatabaseRunFile (fileRun, fileDatabase) {
-         return new Promise((fileResolve, fileReject) => {
-            fileDatabase.all(fileRun, (runError, runResponse) => {
-                console.log("Finished running " + fileRun.substring(1, fileRun.indexOf("TABLE") + "TABLE".length));
-
-               runError ? fileReject(runError) : fileResolve(fileDatabase);
-            })
-         })
-      }
-
       return new Promise((databaseResolve, databaseReject) => {
-         let db = new (setupInstance.getThird().thirdSequel).Database(`${setupInstance.getDirectory()}\\queue.db`);
+         Promise.all([createDatabaseGetFile('Client'), createDatabaseGetFile('User')])
+         .then((databaseFiles) => {
+            (setupInstance.getThird().thirdSequel)
+            .open(`${setupInstance.getDirectory()}\\queue.db`)
 
-         createDatabaseGetFile('Client')
-         .then((clientFile) => {
-            return createDatabaseRunFile(clientFile, db);
-         })
-         .then((unlockedDatabase) => {
-            db = unlockedDatabase;
+            .then((databaseInstance) => {
+               return databaseInstance.transaction(databaseInstance => {
+                  return new Promise((trResolve, trReject) => {
+                     databaseFiles.forEach((dbQuery, dbIndex) => {
+                        databaseInstance.run(dbQuery);
 
-            return createDatabaseGetFile('User');
-         })
-         .then((userFile) => {
-            return createDatabaseRunFile(userFile, db);
-         })
-         .then(databaseResolve);
+                        console.log(`Ran ${setupCount[dbIndex]}`);
+                     });
+
+                     trResolve();
+                  });
+               });
+            })
+            .then(function () {
+               databaseResolve();
+            })
+            .catch(databaseReject);
+         });
       });
    }
 
