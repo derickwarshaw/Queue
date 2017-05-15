@@ -2,6 +2,7 @@ module.exports = dependencyInjection => {
 
    const Sequence = dependencyInjection[0];
    const Queue = new dependencyInjection[1];
+   const Guid = dependencyInjection[2];
 
    function Database (databaseServer) {
       this.databaseServer = databaseServer;
@@ -13,19 +14,9 @@ module.exports = dependencyInjection => {
       };
    }
    Database.prototype.signUser = function (userObject) {
-     const currentInstance = this;
+     userObject.userId = Guid.create();
 
-     return new Promise((resolveUser, rejectUser) => {
-       var newNumber = 2831;
-
-       while (currentInstance.userSigns.includes(newNumber)) {
-         newNumber = Math.round(Math.random() * (9999 - 1000) + 1000);
-       }
-
-       userObject.userId = newNumber;
-
-       resolveUser(userObject);
-     });
+     return userObject;
    }
 
    Database.prototype.readUser = async function (userObject) {

@@ -15,7 +15,7 @@
     "socket.io",
     "server"
   ],
-  "author": "Apprentice Web & Database Developer",
+  "author": "Josh Crowe, Apprentice Web & Database Developer",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kioska/Queue/issues"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Kioska/Queue#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "fs-extra": "^3.0.1",
+    "guid": "0.0.12",
     "promise-queue": "^2.2.3",
     "socket.io": "^2.0.1",
     "sqlite-async": "^1.0.10"

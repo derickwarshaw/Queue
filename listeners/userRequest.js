@@ -4,16 +4,24 @@ module.exports = dependencyInjection => {
    const Database = dependencyInjection[0];
 
    async function clientRequest(requestSocket, requestUser) {
-      const foundUser = await Database.readUser(requestUser);
 
-      if (foundUser) {
-        await Database.alterUser(foundUser);
+      // Locate a user with this userId
+      if (await Database.readUser(requestUser)) {
+
+        // If there is one, update the coluns.
+        await Database.alterUser(requestUser);
+
       } else {
-        requestUser = await Database.signUser(requestUser);
 
+        // Sign the object with an Id.
+        requestUser = Database.signUser(requestUser);
+
+        // Write the user to the database.
         await Database.writeUser(requestUser);
+
       }
 
+      // Read the new entry, make sure it can be resolved.
       return await Database.readUser(requestUser);
    }
 

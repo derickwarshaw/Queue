@@ -23,6 +23,7 @@ module.exports = dependencyInjection => {
       this.setupDependency.dependencyThird.thirdSocket = require('socket.io');
       this.setupDependency.dependencyThird.thirdSequel = require('sqlite-async');
       this.setupDependency.dependencyThird.thirdQueue = require('promise-queue');
+      this.setupDependency.dependencyThird.thirdGuid = require('guid');
    }
 
    Setup.prototype.setDependency = function (dependencyName, dependencyDepencies) {

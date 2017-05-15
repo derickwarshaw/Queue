@@ -19,7 +19,9 @@ const Config = new ConfigConstructor();
 
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
 const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
-const DatabaseConstructor = Setup.setDependency('Database', [SequenceConstructor, Setup.getThird().thirdQueue]);
+const DatabaseConstructor = Setup.setDependency('Database', [
+  SequenceConstructor, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid
+]);
 
 var Sockets = null, Database = null;
 
