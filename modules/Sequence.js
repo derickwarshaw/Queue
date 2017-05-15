@@ -1,6 +1,7 @@
 module.exports = dependencyInjection => {
 
   const Utility = dependencyInjection[0];
+  const Guid = dependencyInjection[1];
 
    function Sequence (sequenceQuery) {
       this.sequenceStatement = sequenceQuery;
@@ -42,10 +43,12 @@ module.exports = dependencyInjection => {
       for (let i = 0; i < valuesArray.length; i++) {
          const currentValue = valuesObject[Utility.to.ImproperCase(valuesArray[i])];
 
-         if (isNaN(parseInt(currentValue, 10))) {
-          this.sequenceStatement += `'${currentValue}', `;
+         if (Guid.isGuid(currentValue)) {
+           this.sequenceStatement += `'${currentValue.toString()}', `;
+         } else if (isNaN(parseInt(currentValue, 10))) {
+            this.sequenceStatement += `'${currentValue}', `;
          } else {
-           this.sequenceStatement += `${currentValue}, `;
+          this.sequenceStatement += `${currentValue}, `;
          }
       }
 

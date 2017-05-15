@@ -54,12 +54,6 @@ module.exports = dependencyInjection => {
    Setup.prototype.getCustom = function () {
       return this.setupDependency.dependencyCustom;
    }
-
-
-   Setup.prototype.getConfig = function () {
-      return this.setupDependency.dependencyCustom.customConfig;
-   }
-
    Setup.prototype.getStatic = function (staticDirectory) {
       return (this.getThird().thirdExpress).static(`${this.setupDirectory}\${staticDirectory}`);
    }
@@ -82,22 +76,23 @@ module.exports = dependencyInjection => {
       });
    }
    Setup.prototype.createSockets = function (socketsServer) {
-      const setupInstance = this;
+      const createdSockets = this.getThird().thirdSocket.listen(socketsServer);
+      this.setupSockets = createdSockets;
 
       return new Promise((socketsResolve, socketsReject) => {
-          socketsResolve(setupInstance.getThird().thirdSocket.listen(socketsServer));
+          socketsResolve(createdSockets);
       });
    }
    Setup.prototype.createDatabase = function () {
       const setupInstance = this;
-      let setupCount = [];
+      setupInstance.setupQueries = [];
 
       function createDatabaseGetFile (fileName) {
          return new Promise((fileResolve, fileReject) => {
             const filePath = `${setupInstance.getDirectory()}\\files\\sql\\${fileName}.sql`;
             setupInstance.getCore().coreFileSystem.readFile(filePath, 'utf8', (fileError, fileData) => {
                 console.log("Got " + fileName + ".sql");
-                setupCount.push(`${fileName}.sql`);
+                setupInstance.setupQueries.push(fileName);
 
                fileResolve(fileData.split(' ').map((currentElement) => {
                   return currentElement.trim();
@@ -118,12 +113,15 @@ module.exports = dependencyInjection => {
             .open(`${setupInstance.getDirectory()}\\queue.db`)
 
             .then((databaseInstance) => {
+              setupInstance.setupDatabase = databaseInstance;
+
                return databaseInstance.transaction(databaseInstance => {
                   return new Promise((trResolve, trReject) => {
                      databaseFiles.forEach((dbQuery, dbIndex) => {
-                        databaseInstance.run(dbQuery);
+                        databaseInstance.run(dbQuery)
+                        .catch(databaseReject);
 
-                        console.log(`Ran ${setupCount[dbIndex]}`);
+                        console.log(`Ran ${setupInstance.setupQueries[dbIndex]}.sql`);
                      });
 
                      trResolve(databaseInstance);
@@ -136,7 +134,33 @@ module.exports = dependencyInjection => {
       });
    }
 
+   Setup.prototype.removeServer = function () {
+     const setupInstance = this;
 
+     return new Promise((serverResolve, serverReject) => {
+       serverResolve(this.setupServer.close());
+     });
+   }
+   Setup.prototype.removeSockets = function () {
+     const setupInstance = this;
+
+     return new Promise((socketsResolve, socketsReject) => {
+       socketsResolve(setupInstance.setupSockets.close());
+     })
+   }
+   Setup.prototype.removeDatabase = function () {
+     const setupInstance = this;
+
+     return setupInstance.setupDatabase.transaction((databaseInstance) => {
+       return new Promise((databaseResolve, databaseReject) => {
+         setupInstance.setupQueries.forEach((databaseQuery) => {
+           databaseInstance.run(`DROP TABLE ${databaseQuery}`);
+         })
+
+         databaseResolve();
+       })
+     })
+   }
 
    return Setup;
 

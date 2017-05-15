@@ -3,7 +3,7 @@ require('../queue.js');
 module.exports = dependencyInjection => {
    const Database = dependencyInjection[0];
 
-   async function clientRequest(requestSocket, requestUser) {
+   async function clientRequest(requestUser) {
 
       // Locate a user with this userId
       if (await Database.readUser(requestUser)) {

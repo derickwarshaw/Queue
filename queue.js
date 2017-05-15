@@ -18,7 +18,7 @@ const ConfigConstructor = Setup.setDependency('Config', [File]);
 const Config = new ConfigConstructor();
 
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
-const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
+const SequenceConstructor = Setup.setDependency('Sequence', [Utility, Setup.getThird().thirdGuid]);
 const DatabaseConstructor = Setup.setDependency('Database', [
   SequenceConstructor, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid
 ]);
@@ -54,6 +54,7 @@ Setup.createExpress()
 })
 .then((databaseServer) => {
    Database = new DatabaseConstructor(databaseServer);
+
    console.log("Created database.");
 
    console.log(`The server is ready on ${Setup.getHost()}`);
@@ -64,21 +65,53 @@ Setup.createExpress()
 
       // --------- User Establishment ----- */
       connectedSocket.on('user.request', (requestData) => {
-         console.log("New client requesting authentication");
+         console.log(`User "${requestData.userName}" requesting signing.`);
 
-         Sockets.listen('userRequest')([Database])(connectedSocket, requestData)
+         Sockets.listen('userRequest')([Database])(requestData)
          .then((authenticatedUser) => {
            connectedSocket.emit('user.established', updatedUser);
+           console.log(`User "${requestData.userName}" was signed.`);
          })
          .catch((authenticationFailed) => {
            // This is unlikely to ever happen.
-           requestSocket.emit('user.failure');
+           connectedSocket.emit('user.failure');
+           console.log(`User "${requestData.userName}" failed signing: ${authenticationFailed.message}`);
          });
-
-
-
-
       });
 
    })
 })
+
+
+
+
+
+/* ---- Process Handling ---- */
+
+// Received when server is performing standard exit
+process.on('exit', function () {
+   console.log("Server is Exiting"); // a.k.a intentional
+});
+
+// Received when CTRL + C is pressed in terminal
+process.on('SIGINT', function () {
+   console.log("CTRL + C was pressed."); // a.k.a intentional
+
+  Setup.removeSockets()
+  .then(function () {
+    return Setup.removeServer();
+  })
+  .then(function () {
+    return Setup.removeDatabase();
+  })
+  .then(function () {
+    console.log("Server finished exiting. Bye bye.");
+    process.exit();
+  });
+});
+
+// Received when the server crashes due to error
+process.on('uncaughtException', function (e) {
+   console.log("Server crashed."); // a.k.a unintentional
+   console.log(e.stack);
+});
