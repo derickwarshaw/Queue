@@ -1,6 +1,6 @@
 module.exports = dependencyInjection => {
 
-   const Config = dependencyInjection[0];
+  const Utility = dependencyInjection[0];
 
    function Sequence (sequenceQuery) {
       this.sequenceStatement = sequenceQuery;
@@ -37,7 +37,7 @@ module.exports = dependencyInjection => {
       this.sequenceStatement += ` VALUES (`;
 
       for (let i = 0; i < valuesArray; i++) {
-         this.sequenceStatement += ` ${valuesObject[valuesArray[i]]}, `;
+         this.sequenceStatement += ` ${valuesObject[Utility.to.ImproperCase(valuesArray[i])]}, `;
       }
 
       this.sequenceStatement += `)`;

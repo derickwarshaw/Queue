@@ -106,7 +106,12 @@ module.exports = dependencyInjection => {
       }
 
       return new Promise((databaseResolve, databaseReject) => {
-         Promise.all([createDatabaseGetFile('Client'), createDatabaseGetFile('User')])
+         Promise.all([
+           createDatabaseGetFile('Client'),
+           createDatabaseGetFile('User'),
+           createDatabaseGetFile('Dashboard'),
+           createDatabaseGetFile('Admin')
+         ])
          .then((databaseFiles) => {
             (setupInstance.getThird().thirdSequel)
             .open(`${setupInstance.getDirectory()}\\queue.db`)

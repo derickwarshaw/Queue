@@ -5,11 +5,16 @@ module.exports = dependencyInjection => {
       const utilityTo = (function () {
 
          function toProperCase (caseWord) {
-            return caseWord.charAt(0) + caseWord.substring(1);
+            return caseWord.charAt(0).toUpperCase() + caseWord.substring(1).toLowerCase();
+         }
+
+         function toImproperCase (caseWord) {
+           return caseWord.charAt(1).toLowerCase() + caseWord.substring(1);
          }
 
          return {
-            ProperCase: toProperCase
+            ProperCase: toProperCase,
+            ImproperCase: toImproperCase
          };
 
       }());

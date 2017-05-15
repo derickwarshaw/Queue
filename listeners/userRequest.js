@@ -12,9 +12,6 @@ module.exports = dependencyInjection => {
       });
 
 
-      // Step 2a: Check there is no client with the user found.
-      // Step 2b: Check there is no client with the Id passed.
-
       const foundUser = await Database.readUser(requestUser);
 
       // Step 1: Check there is no user with this Id.

@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS Dashboard (
+   DashboardId INTEGER NOT NULL,
+);
