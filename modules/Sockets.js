@@ -23,7 +23,7 @@ module.exports = dependencyInjection => {
       const authenticateSocket = authenticateParameters.socket;
 
       // Assign ID as handshake.
-      authenticateClient.computerUser.userId = authenticateSocket.handshake.issued;
+      authenticateClient = authenticateSocket.handshake.issued;
 
       return authenticateClient;
    }

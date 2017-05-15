@@ -125,13 +125,11 @@ module.exports = dependencyInjection => {
                         console.log(`Ran ${setupCount[dbIndex]}`);
                      });
 
-                     trResolve();
+                     trResolve(databaseInstance);
                   });
                });
             })
-            .then(function () {
-               databaseResolve();
-            })
+            .then(databaseResolve)
             .catch(databaseReject);
          });
       });

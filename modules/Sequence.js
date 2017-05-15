@@ -5,11 +5,14 @@ module.exports = dependencyInjection => {
    function Sequence (sequenceQuery) {
       this.sequenceStatement = sequenceQuery;
    }
+   Sequence.prototype.getSequence = function () {
+     return this.sequenceStatement;
+   }
 
    Sequence.prototype.into = function (intoTable, intoColumns) {
       this.sequenceStatement += ` INTO ${intoTable} (`;
 
-      for (let i = 0; i < intoColumns; i++) {
+      for (let i = 0; i < intoColumns.length; i++) {
          this.sequenceStatement += `${intoColumns[i]}, `;
       }
 
@@ -36,11 +39,18 @@ module.exports = dependencyInjection => {
    Sequence.prototype.values = function (valuesObject, valuesArray) {
       this.sequenceStatement += ` VALUES (`;
 
-      for (let i = 0; i < valuesArray; i++) {
-         this.sequenceStatement += ` ${valuesObject[Utility.to.ImproperCase(valuesArray[i])]}, `;
+      for (let i = 0; i < valuesArray.length; i++) {
+         const currentValue = valuesObject[Utility.to.ImproperCase(valuesArray[i])];
+
+         if (isNaN(parseInt(currentValue, 10))) {
+          this.sequenceStatement += `'${currentValue}', `;
+         } else {
+           this.sequenceStatement += `${currentValue}, `;
+         }
       }
 
       this.sequenceStatement += `)`;
+      this.sequenceStatement = this.sequenceStatement.replace(', )', ')');
 
       return this;
    }
@@ -55,7 +65,19 @@ module.exports = dependencyInjection => {
       return this;
    }
    Sequence.prototype.equals = function (equalsCondition) {
-      this.sequenceStatement += ` = ${equalsCondition}`;
+      if (equalsCondition) {
+        if (this.sequenceStatement.includes("SET")) {
+          this.sequenceStatement += `= ${equalsCondition}, `;
+        } else {
+          this.sequenceStatement += ` = ${equalsCondition}`;
+        }
+      } else {
+        this.sequenceStatement += ` IS NULL`;
+      }
+
+      if (this.sequenceStatement.includes("SET")) {
+        this.sequenceStatement = this.sequenceStatement.replace(', )', ')');
+      }
 
       return this;
    }

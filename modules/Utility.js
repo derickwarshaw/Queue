@@ -9,7 +9,7 @@ module.exports = dependencyInjection => {
          }
 
          function toImproperCase (caseWord) {
-           return caseWord.charAt(1).toLowerCase() + caseWord.substring(1);
+           return caseWord.charAt(0).toLowerCase() + caseWord.substring(1);
          }
 
          return {
