@@ -101,36 +101,31 @@ module.exports = dependencyInjection => {
          })
       }
 
-      return new Promise((databaseResolve, databaseReject) => {
-         Promise.all([
-           createDatabaseGetFile('Client'),
-           createDatabaseGetFile('User'),
-           createDatabaseGetFile('Dashboard'),
-           createDatabaseGetFile('Admin')
-         ])
-         .then((databaseFiles) => {
-            (setupInstance.getThird().thirdSequel)
-            .open(`${setupInstance.getDirectory()}\\queue.db`)
+      return (setupInstance.getThird().thirdSequel)
+      .open(`${setupInstance.getDirectory()}\\queue.db`)
 
-            .then((databaseInstance) => {
-              setupInstance.setupDatabase = databaseInstance;
+      .then(openDatabase => {
+        setupInstance.setupDatabase = openDatabase;
+        
+        return Promise.all([
+          createDatabaseGetFile('Client'),
+          createDatabaseGetFile('User'),
+          createDatabaseGetFile('Dashboard'),
+          createDatabaseGetFile('Admin')
+        ])
+        .then(databaseFiles => {
+          return openDatabase.transaction(databaseInstance => {
+            return new Promise((trResolve, trReject) => {
+              databaseFiles.forEach((dbFile, dbIndex) => {
+                databaseInstance.run(dbFile);
 
-               return databaseInstance.transaction(databaseInstance => {
-                  return new Promise((trResolve, trReject) => {
-                     databaseFiles.forEach((dbQuery, dbIndex) => {
-                        databaseInstance.run(dbQuery)
-                        .catch(databaseReject);
+                console.log(`Ran ${setupInstance.setupQueries[dbIndex]}.sql`);
+              });
 
-                        console.log(`Ran ${setupInstance.setupQueries[dbIndex]}.sql`);
-                     });
-
-                     trResolve(databaseInstance);
-                  });
-               });
-            })
-            .then(databaseResolve)
-            .catch(databaseReject);
-         });
+              trResolve(databaseInstance);
+            });
+          });
+        });
       });
    }
 
@@ -154,7 +149,10 @@ module.exports = dependencyInjection => {
      return setupInstance.setupDatabase.transaction((databaseInstance) => {
        return new Promise((databaseResolve, databaseReject) => {
          setupInstance.setupQueries.forEach((databaseQuery) => {
-           databaseInstance.run(`DROP TABLE ${databaseQuery}`);
+           databaseInstance.run(`DROP TABLE ${databaseQuery}`)
+           .then(function () { 
+             console.log("Dropped " + databaseQuery)
+            })
          })
 
          databaseResolve();
