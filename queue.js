@@ -18,9 +18,9 @@ const ConfigConstructor = Setup.setDependency('Config', [File]);
 const Config = new ConfigConstructor();
 
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
-const SequenceConstructor = Setup.setDependency('Sequence', [Utility, Setup.getThird().thirdGuid]);
+const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
 const DatabaseConstructor = Setup.setDependency('Database', [
-  SequenceConstructor, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid
+  SequenceConstructor, Setup.getThird().thirdQueue
 ]);
 
 var Sockets = null, Database = null;
@@ -68,13 +68,13 @@ Setup.createExpress()
          console.log(`User "${requestData.userName}" requesting signing.`);
 
          Sockets.listen('userRequest')([Database])(requestData)
-         .then((authenticatedUser) => {
-           connectedSocket.emit('user.established', updatedUser);
+         .then((signedUser) => {
+           connectedSocket.emit('user.established', signedUser);
            console.log(`User "${requestData.userName}" was signed.`);
          })
          .catch((authenticationFailed) => {
            // This is unlikely to ever happen.
-           connectedSocket.emit('user.failure');
+           connectedSocket.emit('user.failure', authenticationFailed.message);
            console.log(`User "${requestData.userName}" failed signing: ${authenticationFailed.message}`);
          });
       });

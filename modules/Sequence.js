@@ -1,7 +1,6 @@
 module.exports = dependencyInjection => {
 
   const Utility = dependencyInjection[0];
-  const Guid = dependencyInjection[1];
 
    function Sequence (sequenceQuery) {
       this.sequenceStatement = sequenceQuery;
@@ -11,7 +10,7 @@ module.exports = dependencyInjection => {
    }
 
    Sequence.prototype.into = function (intoTable, intoColumns) {
-      this.sequenceStatement += ` INTO ${intoTable} (`;
+      this.sequenceStatement += ` INTO ${intoTable}(`;
 
       for (let i = 0; i < intoColumns.length; i++) {
          this.sequenceStatement += `${intoColumns[i]}, `;
@@ -37,19 +36,11 @@ module.exports = dependencyInjection => {
 
       return this;
    }
-   Sequence.prototype.values = function (valuesObject, valuesArray) {
-      this.sequenceStatement += ` VALUES (`;
+   Sequence.prototype.values = function (valuesArrayLength) {
+      this.sequenceStatement += ` VALUES(`;
 
-      for (let i = 0; i < valuesArray.length; i++) {
-         const currentValue = valuesObject[Utility.to.ImproperCase(valuesArray[i])];
-
-         if (Guid.isGuid(currentValue)) {
-           this.sequenceStatement += `'${currentValue.toString()}', `;
-         } else if (isNaN(parseInt(currentValue, 10))) {
-            this.sequenceStatement += `'${currentValue}', `;
-         } else {
-          this.sequenceStatement += `${currentValue}, `;
-         }
+      for (let i = 0; i < valuesArrayLength; i++) {
+          this.sequenceStatement += `?, `;
       }
 
       this.sequenceStatement += `)`;
@@ -67,19 +58,12 @@ module.exports = dependencyInjection => {
 
       return this;
    }
-   Sequence.prototype.equals = function (equalsCondition) {
-      if (equalsCondition) {
-        if (this.sequenceStatement.includes("SET")) {
-          this.sequenceStatement += `= ${equalsCondition}, `;
-        } else {
-          this.sequenceStatement += ` = ${equalsCondition}`;
-        }
-      } else {
-        this.sequenceStatement += ` IS NULL`;
-      }
-
+   Sequence.prototype.equals = function () {
       if (this.sequenceStatement.includes("SET")) {
+        this.sequenceStatement += `= ?, `;
         this.sequenceStatement = this.sequenceStatement.replace(', )', ')');
+      } else {
+        this.sequenceStatement += ` = ?`;
       }
 
       return this;
