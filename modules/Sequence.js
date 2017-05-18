@@ -2,126 +2,189 @@ module.exports = dependencyInjection => {
 
   const Utility = dependencyInjection[0];
 
-  function Sequence (sequenceIdentifier, sequenceOperand, sequenceMarker) {
-    this.sequenceSettings = {
-      availableMarkers: ['?'],
-      availableIdentifiers: ['SELECT', 'UPDATE', 'DELETE'],
-      availableOperands: ['*', 'TOP']
-    }
+  function Sequence (sequenceIdentifier) {
+     this.sequenceSettings = {
+        availableMarker: "?",
+        availableIdentifiers: ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
+        availableOperands: ['*', 'TOP', 'INTO'],
+        availableOperations: ['FROM', 'VALUES', 'SET'],
+        availableFilters: ['WHERE', 'ORDER BY']
+     }
+     this.sequenceParticles = [];
+     this.sequenceMembers = {};
 
-    // "?" - Used to Mark Input Placeholder
-    if (this.sequenceSettings.availableMarkers.includes(sequenceMarker)) {
-      this.sequenceMarker = sequenceMarker;
-    }
-
-    // SELECT, UPDATE, DELETE,
-    if (this.sequenceSettings.availableIdentifiers.includes(sequenceIdentifier)) {
-      this.sequenceIdentifier = sequenceIdentifier;
-    }
+     if (this.sequenceSettings.availableIdentifiers.includes(sequenceIdentifier.toUpperCase())) {
+        this.sequenceParticles.push(sequenceIdentifier);
+        this.sequenceMembers.memberIdentifier = sequenceIdentifier;
+     } else {
+       throw new Error(this.sequenceWarnings.inst);
+     }
   }
   Sequence.prototype.getSequence = function () {
-    let sequenceParticles = [];
+    if (this.validateSequence()) {
+      this.sequenceResult = this.sequenceParticles.map((particlesContained) => {
+        if (Array.isArray(particlesContained) && Array.isArray(particlesContained[0])) {
+          return particlesContained.map((particleValue) => {
+            return `${particleValue[0]} = ${particleValue[1]}`;
+          }).join(', ');
+        } else if (Array.isArray(particlesContained)) {
+          return `(${particlesContained.join(', ')})`
+        } else {
+          return particlesContained;
+        }
+      });
 
-    for (sequenceParticle in this) {
-      sequenceParticles.push(this);
+      return this.sequenceResult;
     }
+  }
+  Sequence.prototype.buildSequence = function () {
+    return this.getSequence().join(' ');
+  }
+  Sequence.prototype.alterSequence = function (alterBy, alterWith) {
+   if (this.sequenceParticles.includes(alterBy)) {
+     this.sequenceParticles[this.sequenceParticles.indexOf(alterBy)] = alterWith;
+   } else {
+     this.sequenceParticles.push(alterWith);
+   }
+  }
+  Sequence.prototype.validateSequence = function () {
+    const sequenceDebug = this.sequenceDebug;
 
-    return sequenceParticles.join(' ');
+     for (let sequenceMember in this.sequenceMembers) {
+       if (!this.sequenceParticles.includes(this.sequenceMembers[sequenceMember])) {
+         throw new Error(this.sequenceWarnings.validateSequence(sequenceMember));
+       }
+     }
+     return true;
   }
 
+  /* ------------- Operands (*, TOP)---------------------- */
+  Sequence.prototype.all = function () {
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
+       this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[0]);
+       this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[0];
+     }
 
-
-  /* ------------- Operans --------------------------- */
-
-  Sequence.prototpe.all = function () {
-    this.sequenceOperand = "*";
-    return this;
+     return this;
   }
   Sequence.prototype.top = function (topNumber) {
-    this.sequenceOperand = `TOP (${topNumber})`;
-    return this;
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
+        this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[1]);
+        this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[1];
+
+        this.alterSequence(this.sequenceMembers.memberOperandValue, topNumber);
+        this.sequenceMembers.memberOperandValue = topNumber;
+     }
+
+     return this;
   }
   Sequence.prototype.only = function (onlyColumns) {
-    this.sequenceOperand = onlyColumns.join(', ');
-    return this;
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
+        this.alterSequence(this.sequenceMembers.memberOperandValue, intoColumns);
+        this.sequenceMembers.memberOperandValue = intoColumns;
+     }
   }
   Sequence.prototype.into = function (intoTable, intoColumns) {
-    this.sequenceTable = `INTO ${intoTable}`;
-    this.sequenceColumns = `(${intoColumns.join(', ')})`;
-    return this;
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[1])) {
+        this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[2]);
+        this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[2];
+        this.alterSequence(this.sequenceMembers.memberTable, intoTable);
+        this.sequenceMembers.memberTable = intoTable;
+        this.alterSequence(this.sequenceMembers.memberColumns, intoColumns);
+        this.sequenceMembers.memberColumns = intoColumns;
+     }
+
+     return this;
+  }
+  Sequence.prototype.update = function (updateTable) {
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[2])) {
+        this.alterSequence(this.sequenceMembers.memberTable, updateTable);
+        this.sequenceMembers.memberTable = updateTable;
+     }
+
+     return this;
   }
 
+  /* -------------- Operation (FROM) -------------- */
+  Sequence.prototype.from = function (fromTable) {
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableOperands[0])) {
+        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[0]);
+        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[0];
 
+        this.alterSequence(this.sequenceMembers.memberTable, fromTable);
+        this.sequenceMembers.memberTable = fromTable;
+     }
 
-
-  /* -------------- Operation -------------- */
-
-  Sequenece.prototype.from = function (fromTable) {
-    this.sequenceOperation = "FROM";
-    this.sequenceTable = fromTable;
+     return this;
   }
-
-  // .set([[Column1, Value1], [Column2, Value2]])
+  Sequence.prototype.values = function (valuesValues) {
+     let valuesMarkers = [];
+     if (this.sequenceMembers.memberColumns) {
+        for (let i = 0; i < this.sequenceMembers.memberColumns.length; i++) {
+           valueMarkers.push(this.sequenceSettings.availableMarker);
+        }
+        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[1]);
+        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[1];
+        this.alterSequence(this.sequenceMembers.memberValues, valueMarkers);
+        this.sequenceMembers.memberValues = valueMarkers;
+     }
+  }
   Sequence.prototype.set = function (setColumns) {
-    this.sequenceOperation = "SET";
-    this.sequenceSets = new Map();
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[2])) {
+        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[2]);
+        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[2];
 
-    for (let i = 0; i < setColumns.length; i++) {
-      this.sequenceSets.set(setColumns[i][0], setColumns[i][1]);
-    }
+        this.alterSequence(this.sequenceMembers.memberOperationValue, setColumns);
+        this.sequenceMembers.memberOperationValue = setColumns;
+     }
+
+     return this;
+  }
+
+  /* -------------- Filter (WHERE, ORDER BY) -------------- */
+  Sequence.prototype.where = function (whereThis) {
+    const whereRequirements = this.sequenceSettings.availableIdentifiers;
+
+     if (this.sequenceParticles.filter((sequenceParticles) => { return whereRequirements.includes(sequenceParticles); })) {
+        if (this.sequenceParticles.slice(this.sequenceParticles.length - 3, this.sequenceParticles.length)
+                                   .includes(this.sequenceSettings.availableFilters[0])) {
+          this.alterSequence(null, `AND ${this.sequenceSettings.availableFilters[0]}`);
+        } else {
+          this.alterSequence(null, this.sequenceSettings.availableFilters[0]);
+        }
+        this.alterSequence(null, whereThis);
+        if (this.sequenceDebug) {
+          console.warn(this.sequenceNotices.whereNotCached);
+        }
+     }
+
+     return this;
+  }
+  Sequence.prototype.equals = function (equalsThis) {
+     this.sequenceParticles.push(`= ?`);
+     return this;
+  }
+  Sequence.prototype.order = function (orderBy) {
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableFilters[0])) {
+        this.alterSequence(this.sequenceMembers.memberOrder, this.sequenceSettings.availableFilters[1]);
+        this.sequenceMembers.memberOrder = this.sequenceSettings.availableFilters[1];
+        this.alterSequence(this.sequenceMembers.memberOrderClause, orderBy);
+        this.sequenceMembers.memberOrderClause = orderBy;
+     }
+
+     return this;
+  }
+  Sequence.prototype.orient = function (orientBy) {
+     if (this.sequenceParticles.includes(this.sequenceSettings.availableFilters[1])) {
+        if (this.sequenceSettings.availableOrients.includes(orientBy)) {
+           this.alterSequence(this.sequenceMembers.memberOrient, orientBy);
+           this.sequenceMembers.memberOrient = orientBy;
+        }
+     }
+
+     return this;
   }
 
 
-
-  //  Sequence.prototype.set = function (setColumn) {
-  //     if (this.seuqenceStatement.includes("SET")) {
-  //        this.sequenceStatement += ` ${setColumn}`;
-  //     } else {
-  //        this.sequenceStatement += ` SET ${setColumn}`;
-  //     }
-   //
-  //     return this;
-  //  }
-   //
-   //
-  //  Sequence.prototype.from = function (fromTable) {
-  //     this.sequenceStatement += ` FROM ${fromTable}`;
-   //
-  //     return this;
-  //  }
-  //  Sequence.prototype.values = function (valuesArrayLength) {
-  //     this.sequenceStatement += ` VALUES(`;
-   //
-  //     for (let i = 0; i < valuesArrayLength; i++) {
-  //         this.sequenceStatement += `?, `;
-  //     }
-   //
-  //     this.sequenceStatement += `)`;
-  //     this.sequenceStatement = this.sequenceStatement.replace(', )', ')');
-   //
-  //     return this;
-  //  }
-   //
-  //  Sequence.prototype.where = function (whereCondition) {
-  //     if (this.sequenceStatement.match(/WHERE/g || []) > 0) {
-  //        this.sequenceStatement += ` AND WHERE ${whereCondition};`
-  //     } else {
-  //        this.sequenceStatement += ` WHERE ${whereCondition}`;
-  //     }
-   //
-  //     return this;
-  //  }
-  //  Sequence.prototype.equals = function () {
-  //     if (this.sequenceStatement.includes("SET")) {
-  //       this.sequenceStatement += `= ?, `;
-  //       this.sequenceStatement = this.sequenceStatement.replace(', )', ')');
-  //     } else {
-  //       this.sequenceStatement += ` = ?`;
-  //     }
-   //
-  //     return this;
-  //  }
-
-
-   return Sequence;
+  return Sequence;
 }
