@@ -10,6 +10,7 @@ require('babel-polyfill');
 
 
 const Utility = Setup.setDependency('Utility');
+const Translation = Setup.setDependency('Translation');
 
 const FileConstructor = Setup.setDependency('File', [Setup.getCore().coreFileSystem, Utility]);
 const File = new FileConstructor(Setup.getDirectory());
@@ -20,10 +21,13 @@ const Config = new ConfigConstructor();
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
 const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
 const DatabaseConstructor = Setup.setDependency('Database', [
-  SequenceConstructor, Setup.getThird().thirdQueue
+  SequenceConstructor,
+  Setup.getThird().thirdQueue,
+  Setup.getThird().thirdGuid
 ]);
 
-var Sockets = null, Database = null;
+
+var Sockets = null, Database = null, Handler = null;
 
 
 Setup.createExpress()
@@ -54,32 +58,12 @@ Setup.createExpress()
 })
 .then((databaseServer) => {
    Database = new DatabaseConstructor(databaseServer);
+   Handler = Setup.setDependency('Handler', [Database, Translation]);
 
    console.log("Created database.");
-
    console.log(`The server is ready on ${Setup.getHost()}`);
-   Sockets.connected((connectedSocket) => {
 
-      console.log("Emitted a connection notice.")
-      connectedSocket.emit('user.connected');
-
-      // --------- User Establishment ----- */
-      connectedSocket.on('user.request', (requestData) => {
-         console.log(`User "${requestData.userName}" requesting signing.`);
-
-         Sockets.listen('userRequest')([Database])(requestData)
-         .then((signedUser) => {
-           connectedSocket.emit('user.established', signedUser);
-           console.log(`User "${requestData.userName}" was signed.`);
-         })
-         .catch((authenticationFailed) => {
-           // This is unlikely to ever happen.
-           connectedSocket.emit('user.failure', authenticationFailed.message);
-           console.log(`User "${requestData.userName}" failed signing: ${authenticationFailed.message}`);
-         });
-      });
-
-   })
+   Sockets.connected(Handler);
 })
 
 
@@ -87,11 +71,6 @@ Setup.createExpress()
 
 
 /* ---- Process Handling ---- */
-
-// Received when server is performing standard exit
-process.on('exit', function () {
-   console.log("Server is Exiting"); // a.k.a intentional
-});
 
 // Received when CTRL + C is pressed in terminal
 process.on('SIGINT', function () {
@@ -115,3 +94,6 @@ process.on('uncaughtException', function (e) {
    console.log("Server crashed."); // a.k.a unintentional
    console.log(e.stack);
 });
+
+
+global.deleteDatabase = Setup.removeDatabase;
