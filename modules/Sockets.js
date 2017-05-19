@@ -38,13 +38,13 @@ module.exports = dependencyInjection => {
             errorObject: errorObject,
             errorLocation: errorLocation
         });
+
+        console.log("-------------------------");
+        console.log(`Error at ${errorTime}`);
+        console.log(errorLocation);
+        console.log(errorObject.stack);
+        console.log("-------------------------");
    };
-   Sockets.prototype.errors = function () {
-       for ([errorTime, errorObject] of this.socketErrors) {
-           console.log(`Error at ${errorTime}`);
-           console.log(errorObject);
-       }
-   }
    Sockets.prototype.disconnected = function (disconnectedSocket) {
        const socketInstance = this;
 

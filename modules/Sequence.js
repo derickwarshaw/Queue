@@ -128,6 +128,8 @@ module.exports = dependencyInjection => {
         this.alterSequence(this.sequenceMembers.memberValues, valueMarkers);
         this.sequenceMembers.memberValues = valueMarkers;
      }
+
+     return this;
   }
   Sequence.prototype.set = function (setColumns) {
      if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[2])) {

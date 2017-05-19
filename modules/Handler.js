@@ -5,19 +5,21 @@
 module.exports = dependencyInjection => {
 
     const Database = dependencyInjection[0];
+    const Translation = dependencyInjection[1];
 
     const Handler = function (handlingSocket, Sockets) {
         handlingSocket.emit('user.connected');
 
 
         handlingSocket.on('user.request', requestData => {
-            Sockets.listen('userRequest')([Database])(requestData)
+            Sockets.listen('userRequest')([Database, Translation])(requestData)
+
                 .then(signedUser => {
                     handlingSocket.emit('user.established', signedUser);
                 })
-                .catch(unsignedValues => {
-                    handlingSocket.emit('user.failure', unsignedValues[0]);
-                    Sockets.error(new Date(), `User Request for ${requestData.userName}`, unsignedValues[1]);
+                .catch(unsignedValue => {
+                    handlingSocket.emit('user.failure');
+                    Sockets.error(new Date(), `User Request for ${requestData.userName}`, unsignedValue);
                 })
         });
 

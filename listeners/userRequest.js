@@ -2,6 +2,7 @@ require('../queue.js');
 
 module.exports = dependencyInjection => {
    const Database = dependencyInjection[0];
+   const Translation = dependencyInjection[1];
 
    async function clientRequest(requestUser) {
 
@@ -22,7 +23,7 @@ module.exports = dependencyInjection => {
       }
 
       // Read the new entry, make sure it can be resolved.
-      return await Database.readUser(requestUser);
+      return await Translation.user(await Database.readUser(requestUser));
    }
 
    return clientRequest;

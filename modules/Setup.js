@@ -27,8 +27,11 @@ module.exports = dependencyInjection => {
    }
 
    Setup.prototype.setDependency = function (dependencyName, dependencyDepencies) {
+       this.setupDependency[`custom${dependencyName}`] = require(`${this.getDirectory()}\\modules\\${dependencyName}`);
+
+    const injected = this.setupDependency[`custom${dependencyName}`](dependencyDepencies);
       // Injects dependencies into custom modules and caches them.
-      return (this.setupDependency.dependencyCustom[`custom${dependencyName}`] = require(`${this.getDirectory()}\\modules\\${dependencyName}`)(dependencyDepencies));
+      return injected;
    }
 
    Setup.prototype.getDirectory = function () {

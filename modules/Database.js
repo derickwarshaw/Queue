@@ -2,28 +2,22 @@ module.exports = dependencyInjection => {
 
    const Sequence = dependencyInjection[0];
    const Queue = new dependencyInjection[1];
+   const Guid = dependencyInjection[2];
 
    function Database (databaseServer) {
       this.databaseServer = databaseServer;
 
-      this.userSigns = [];
+      this.userSigns = new Map();
       this.databaseStatistics = {
          statisticsRequests: 0,
          statisticsHandled: 0
       };
    }
    Database.prototype.signUser = function (userObject) {
-     let userSignature = Math.random().toString(36).substr(2, 5);
+    userObject.userId = (Guid.create()).value;
 
-     while (this.userSigns.includes(userSignature)) {
-       userSignature = Math.random().toString(36).substr(2, 5);
-
-       if (this.userSigns.includes(userSignature)) {
-         this.userSigns.push(userSignature);
-       }
-     }
-
-     userObject.userId = userSignature;
+     this.userSigns.set(userObject.userId, userObject);
+     
      return userObject;
    }
 
