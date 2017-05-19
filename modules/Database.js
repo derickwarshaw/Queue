@@ -29,12 +29,13 @@ module.exports = dependencyInjection => {
 
    Database.prototype.readUser = async function (userObject) {
       const databaseServer = this.databaseServer;
-      const databaseQuery = new Sequence("SELECT *").from("User")
-                                                    .where("UserId")
-                                                    .equals();
+      const databaseQuery = new Sequence("SELECT").all()
+                                                  .from("User")
+                                                  .where("UserId")
+                                                  .equals();
 
       return await Queue.add(() => {
-         return databaseServer.get(databaseQuery.getSequence(), [
+         return databaseServer.get(databaseQuery.buildSequence(), [
            userObject.userId
          ]);
       });
@@ -43,11 +44,10 @@ module.exports = dependencyInjection => {
      const databaseServer = this.databaseServer;
      const databaseColumns = ["UserId", "UserName", "UserNumber", "UserLocation", "UserDate"];
      const databaseQuery = new Sequence("INSERT").into("User", databaseColumns)
-                                                 .values(databaseColumns.length);
+                                                 .values();
 
       return await Queue.add(() => {
-        console.log(databaseQuery.getSequence());
-        return databaseServer.all(databaseQuery.getSequence(), [
+        return databaseServer.run(databaseQuery.buildSequence(), [
           userObject.userId,
           userObject.userName,
           userObject.userNumber,
@@ -58,17 +58,14 @@ module.exports = dependencyInjection => {
    }
    Database.prototype.alterUser = async function (userObject) {
      const databaseServer = this.databaseServer;
-     const databaseQuery = new Sequence("UPDATE User").set("UserName")
-                                                      .equals(userObject.userName)
-                                                      .set("UserNumber")
-                                                      .equals(userObject.userNumber)
-                                                      .set("UserLocation")
-                                                      .equals(userObject.userLocation)
-                                                      .set("ClientId")
-                                                      .equals(userObject.userClient.ClientId);
+     const databaseQuery = new Sequence("UPDATE").update("User")
+                                                 .set("UserName").equals()
+                                                 .set("UserNumber").equals()
+                                                 .set("UserLocation").equals()
+                                                 .set("ClientId").equals();
 
       return await Queue.add(() => {
-        return databaseServer.run(databaseQuery.getSequence(), [
+        return databaseServer.run(databaseQuery.buildSequence(), [
           userObject.userName,
           userObject.userNumber,
           userObject.userLocation,

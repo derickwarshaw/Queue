@@ -23,7 +23,8 @@ const DatabaseConstructor = Setup.setDependency('Database', [
   SequenceConstructor, Setup.getThird().thirdQueue
 ]);
 
-var Sockets = null, Database = null;
+
+var Sockets = null, Database = null, Handler = null;
 
 
 Setup.createExpress()
@@ -54,32 +55,12 @@ Setup.createExpress()
 })
 .then((databaseServer) => {
    Database = new DatabaseConstructor(databaseServer);
+   Handler = Setup.setDependency('Handler', [Database]);
 
    console.log("Created database.");
-
    console.log(`The server is ready on ${Setup.getHost()}`);
-   Sockets.connected((connectedSocket) => {
 
-      console.log("Emitted a connection notice.")
-      connectedSocket.emit('user.connected');
-
-      // --------- User Establishment ----- */
-      connectedSocket.on('user.request', (requestData) => {
-         console.log(`User "${requestData.userName}" requesting signing.`);
-
-         Sockets.listen('userRequest')([Database])(requestData)
-         .then((signedUser) => {
-           connectedSocket.emit('user.established', signedUser);
-           console.log(`User "${requestData.userName}" was signed.`);
-         })
-         .catch((authenticationFailed) => {
-           // This is unlikely to ever happen.
-           connectedSocket.emit('user.failure', authenticationFailed.message);
-           console.log(`User "${requestData.userName}" failed signing: ${authenticationFailed.message}`);
-         });
-      });
-
-   })
+   Sockets.connected(Handler);
 })
 
 
@@ -105,6 +86,7 @@ process.on('SIGINT', function () {
     return Setup.removeDatabase();
   })
   .then(function () {
+      Sockets.errors();
     console.log("Server finished exiting. Bye bye.");
     process.exit();
   });

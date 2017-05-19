@@ -118,7 +118,7 @@ module.exports = dependencyInjection => {
      return this;
   }
   Sequence.prototype.values = function (valuesValues) {
-     let valuesMarkers = [];
+     let valueMarkers = [];
      if (this.sequenceMembers.memberColumns) {
         for (let i = 0; i < this.sequenceMembers.memberColumns.length; i++) {
            valueMarkers.push(this.sequenceSettings.availableMarker);
