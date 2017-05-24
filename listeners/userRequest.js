@@ -5,25 +5,25 @@ module.exports = dependencyInjection => {
    const Translation = dependencyInjection[1];
 
    async function clientRequest(requestUser) {
-
-      // Locate a user with this userId
-      if (await Database.readUser(requestUser)) {
-
-        // If there is one, update the coluns.
-        await Database.alterUser(requestUser);
-
-      } else {
-
-        // Sign the object with an Id.
-        requestUser = Database.signUser(requestUser);
-
-        // Write the user to the database.
-        await Database.writeUser(requestUser);
-
-      }
-
-      // Read the new entry, make sure it can be resolved.
-      return await Translation.user(await Database.readUser(requestUser));
+      //
+      // // Locate a user with this userId
+      // if (await Database.readUser(requestUser)) {
+      //
+      //   // If there is one, update the coluns.
+      //   await Database.alterUser(requestUser);
+      //
+      // } else {
+      //
+      //   // Sign the object with an Id.
+      //   requestUser = Database.signUser(requestUser);
+      //
+      //   // Write the user to the database.
+      //   await Database.writeUser(requestUser);
+      //
+      // }
+      //
+      // // Read the new entry, make sure it can be resolved.
+      // return await Translation.user(await Database.readUser(requestUser));
    }
 
    return clientRequest;

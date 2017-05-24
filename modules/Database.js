@@ -38,7 +38,7 @@ module.exports = dependencyInjection => {
      const databaseServer = this.databaseServer;
      const databaseColumns = ["UserId", "UserName", "UserNumber", "UserLocation", "UserDate"];
      const databaseQuery = new Sequence("INSERT").into("User", databaseColumns)
-                                                 .values();
+                                                 .values("User");
 
       return await Queue.add(() => {
         return databaseServer.run(databaseQuery.buildSequence(), [
