@@ -18,12 +18,19 @@ const File = new FileConstructor(Setup.getDirectory());
 const ConfigConstructor = Setup.setDependency('Config', [File]);
 const Config = new ConfigConstructor();
 
-const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
 const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
+const Sequence = SequenceConstructor({
+   marker: "?",
+   identifiers: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+   operands: ["*", "TOP", "INTO", "COUNT"],
+   operations: ["FROM", "VALUES", "SET"],
+   filters: ["WHERE", "ORDER BY"],
+   orients: ["ASC", "ASCENDING", "DESC", "DESCENDING"]
+});
+
+const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
 const DatabaseConstructor = Setup.setDependency('Database', [
-  SequenceConstructor,
-  Setup.getThird().thirdQueue,
-  Setup.getThird().thirdGuid
+  Sequence, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid, Utility
 ]);
 
 

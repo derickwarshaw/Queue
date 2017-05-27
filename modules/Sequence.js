@@ -2,191 +2,189 @@ module.exports = dependencyInjection => {
 
   const Utility = dependencyInjection[0];
 
-  function Sequence (sequenceIdentifier) {
-     this.sequenceSettings = {
-        availableMarker: "?",
-        availableIdentifiers: ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
-        availableOperands: ['*', 'TOP', 'INTO'],
-        availableOperations: ['FROM', 'VALUES', 'SET'],
-        availableFilters: ['WHERE', 'ORDER BY']
-     }
-     this.sequenceParticles = [];
-     this.sequenceMembers = {};
+  function SequenceConstructor (constructorSettings) {
 
-     if (this.sequenceSettings.availableIdentifiers.includes(sequenceIdentifier.toUpperCase())) {
-        this.sequenceParticles.push(sequenceIdentifier);
-        this.sequenceMembers.memberIdentifier = sequenceIdentifier;
-     } else {
-       throw new Error(this.sequenceWarnings.inst);
+     function Sequence(sequenceIdentifier, sequenceDebug) {
+        this.sequenceSettings = constructorSettings;
+        this.sequenceParticles = new Map();
+        this.sequenceMembers = {};
+
+        if (this.sequenceSettings.identifiers.includes(sequenceIdentifier)) {
+           const identifierParticleId = Math.random().toString(36).slice(-8);
+
+           this.sequenceParticles.set(identifierParticleId, sequenceIdentifier);
+           this.sequenceMembers.memberIdentifier = identifierParticleId;
+        }
      }
-  }
-  Sequence.prototype.getSequence = function () {
-    if (this.validateSequence()) {
-      this.sequenceResult = this.sequenceParticles.map((particlesContained) => {
-        if (Array.isArray(particlesContained) && Array.isArray(particlesContained[0])) {
-          return particlesContained.map((particleValue) => {
-            return `${particleValue[0]} = ${particleValue[1]}`;
-          }).join(', ');
-        } else if (Array.isArray(particlesContained)) {
-          return `(${particlesContained.join(', ')})`
+
+     // Turns the sequence into a primitive array,
+     // derived from the map.
+     Sequence.prototype.getSequence = function () {
+        return Array.from(this.sequenceParticles.values());
+     }
+     Sequence.prototype.getSequenceWithKeys = function () {
+        const sequenceParticles = this.sequenceParticles;
+
+        return new Promise(function (sequenceResolve, sequenceReject) {
+           let sequenceParticlesCollection = [];
+
+           for (let [sequenceKey, sequenceValue] of sequenceParticles) {
+              sequenceParticlesCollection.push(`${sequenceValue} {${sequenceKey}}`);
+           }
+
+           sequenceResolve(sequenceParticlesCollection);
+        })
+     }
+     Sequence.prototype.buildSequence = function () {
+        return this.getSequence().join(' ');
+     }
+
+     Sequence.prototype.alterSequence = function (particleName, particleValue) {
+        const foundMember = this.sequenceMembers[particleName];
+
+        if (foundMember) {
+           this.sequenceParticles.set(foundMember, particleValue);
         } else {
-          return particlesContained;
-        }
-      });
-
-      return this.sequenceResult;
-    }
-  }
-  Sequence.prototype.buildSequence = function () {
-    return this.getSequence().join(' ');
-  }
-  Sequence.prototype.alterSequence = function (alterBy, alterWith) {
-   if (this.sequenceParticles.includes(alterBy)) {
-     this.sequenceParticles[this.sequenceParticles.indexOf(alterBy)] = alterWith;
-   } else {
-     this.sequenceParticles.push(alterWith);
-   }
-  }
-  Sequence.prototype.validateSequence = function () {
-    const sequenceDebug = this.sequenceDebug;
-
-     for (let sequenceMember in this.sequenceMembers) {
-       if (!this.sequenceParticles.includes(this.sequenceMembers[sequenceMember])) {
-         throw new Error(this.sequenceWarnings.validateSequence(sequenceMember));
-       }
-     }
-     return true;
-  }
-
-  /* ------------- Operands (*, TOP)---------------------- */
-  Sequence.prototype.all = function () {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
-       this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[0]);
-       this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[0];
-     }
-
-     return this;
-  }
-  Sequence.prototype.top = function (topNumber) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
-        this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[1]);
-        this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[1];
-
-        this.alterSequence(this.sequenceMembers.memberOperandValue, topNumber);
-        this.sequenceMembers.memberOperandValue = topNumber;
-     }
-
-     return this;
-  }
-  Sequence.prototype.only = function (onlyColumns) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[0])) {
-        this.alterSequence(this.sequenceMembers.memberOperandValue, intoColumns);
-        this.sequenceMembers.memberOperandValue = intoColumns;
-     }
-  }
-  Sequence.prototype.into = function (intoTable, intoColumns) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[1])) {
-        this.alterSequence(this.sequenceMembers.memberOperand, this.sequenceSettings.availableOperands[2]);
-        this.sequenceMembers.memberOperand = this.sequenceSettings.availableOperands[2];
-        this.alterSequence(this.sequenceMembers.memberTable, intoTable);
-        this.sequenceMembers.memberTable = intoTable;
-        this.alterSequence(this.sequenceMembers.memberColumns, intoColumns);
-        this.sequenceMembers.memberColumns = intoColumns;
-     }
-
-     return this;
-  }
-  Sequence.prototype.update = function (updateTable) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[2])) {
-        this.alterSequence(this.sequenceMembers.memberTable, updateTable);
-        this.sequenceMembers.memberTable = updateTable;
-     }
-
-     return this;
-  }
-
-  /* -------------- Operation (FROM) -------------- */
-  Sequence.prototype.from = function (fromTable) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableOperands[0])) {
-        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[0]);
-        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[0];
-
-        this.alterSequence(this.sequenceMembers.memberTable, fromTable);
-        this.sequenceMembers.memberTable = fromTable;
-     }
-
-     return this;
-  }
-  Sequence.prototype.values = function (valuesValues) {
-     let valueMarkers = [];
-     if (this.sequenceMembers.memberColumns) {
-        for (let i = 0; i < this.sequenceMembers.memberColumns.length; i++) {
-           valueMarkers.push(this.sequenceSettings.availableMarker);
-        }
-        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[1]);
-        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[1];
-        this.alterSequence(this.sequenceMembers.memberValues, valueMarkers);
-        this.sequenceMembers.memberValues = valueMarkers;
-     }
-
-     return this;
-  }
-  Sequence.prototype.set = function (setColumns) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableIdentifiers[2])) {
-        this.alterSequence(this.sequenceMembers.memberOperation, this.sequenceSettings.availableOperations[2]);
-        this.sequenceMembers.memberOperation = this.sequenceSettings.availableOperations[2];
-
-        this.alterSequence(this.sequenceMembers.memberOperationValue, setColumns);
-        this.sequenceMembers.memberOperationValue = setColumns;
-     }
-
-     return this;
-  }
-
-  /* -------------- Filter (WHERE, ORDER BY) -------------- */
-  Sequence.prototype.where = function (whereThis) {
-    const whereRequirements = this.sequenceSettings.availableIdentifiers;
-
-     if (this.sequenceParticles.filter((sequenceParticles) => { return whereRequirements.includes(sequenceParticles); })) {
-        if (this.sequenceParticles.slice(this.sequenceParticles.length - 3, this.sequenceParticles.length)
-                                   .includes(this.sequenceSettings.availableFilters[0])) {
-          this.alterSequence(null, `AND ${this.sequenceSettings.availableFilters[0]}`);
-        } else {
-          this.alterSequence(null, this.sequenceSettings.availableFilters[0]);
-        }
-        this.alterSequence(null, whereThis);
-        if (this.sequenceDebug) {
-          console.warn(this.sequenceNotices.whereNotCached);
+           this.sequenceMembers[particleName] = Math.random().toString(36).slice(-8);
+           this.sequenceParticles.set(this.sequenceMembers[particleName], particleValue);
         }
      }
 
-     return this;
-  }
-  Sequence.prototype.equals = function (equalsThis) {
-     this.sequenceParticles.push(`= ?`);
-     return this;
-  }
-  Sequence.prototype.order = function (orderBy) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableFilters[0])) {
-        this.alterSequence(this.sequenceMembers.memberOrder, this.sequenceSettings.availableFilters[1]);
-        this.sequenceMembers.memberOrder = this.sequenceSettings.availableFilters[1];
-        this.alterSequence(this.sequenceMembers.memberOrderClause, orderBy);
-        this.sequenceMembers.memberOrderClause = orderBy;
-     }
-
-     return this;
-  }
-  Sequence.prototype.orient = function (orientBy) {
-     if (this.sequenceParticles.includes(this.sequenceSettings.availableFilters[1])) {
-        if (this.sequenceSettings.availableOrients.includes(orientBy)) {
-           this.alterSequence(this.sequenceMembers.memberOrient, orientBy);
-           this.sequenceMembers.memberOrient = orientBy;
+     /* ------------- Operands ----------------- */
+     Sequence.prototype.all = function () {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[0])) {
+           this.alterSequence("memberOperand", this.sequenceSettings.operands[0]);
         }
+
+        return this;
+     }
+     Sequence.prototype.top = function (topNumber) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[0])) {
+           this.alterSequence("memberOperand", `${this.sequenceSettings.operands[1]} (${topNumber})`);
+        }
+
+        return this;
+     }
+     Sequence.prototype.count = function (countColumn) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[0])) {
+           this.alterSequence("memberOperand", `${this.sequenceSettings.operands[3]}(${countColumn})`);
+        }
+
+        return this;
+     }
+     Sequence.prototype.into = function (intoTable, intoColumns) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[1])) {
+           this.alterSequence("memberOperand", this.sequenceSettings.operands[2]);
+           this.alterSequence(`memberIntoTable_${intoTable}`, intoTable);
+           this.alterSequence(`memberIntoColumns_${intoTable}`, `("${intoColumns.join('", "')}")`);
+        }
+
+        return this;
+     }
+     Sequence.prototype.update = function (updateTable) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[2])) {
+           this.alterSequence(`memberUpdateTable_${updateTable}`, updateTable);
+        }
+
+        return this;
      }
 
-     return this;
+
+     /* ------------- Extension ----------------- */
+     Sequence.prototype.only = function (onlyColumns) {
+         const sequenceParticles = this.getSequence();
+
+         if (sequenceParticles.includes(this.sequenceSettings.identifiers[0])
+             && !sequenceParticles.includes(this.sequenceSettings.operands[0])) {
+             this.alterSequence("memberExtension_Only", onlyColumns.join(', '));
+         }
+
+         return this;
+     }
+
+     /* ------------- Operations ----------------- */
+     Sequence.prototype.from = function (fromTable) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[0])) {
+           this.alterSequence("memberOperation", this.sequenceSettings.operations[0]);
+           this.alterSequence(`memberFromTable_${fromTable}`, fromTable);
+        }
+
+        return this;
+     }
+     Sequence.prototype.values = function (valuesTable) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[1])) {
+           this.alterSequence("memberOperation", this.sequenceSettings.operations[1]);
+
+           const foundValues = this.sequenceParticles.get(this.sequenceMembers[`memberIntoColumns_${valuesTable}`]);
+           const generatedValues = foundValues.substring(1, foundValues.length - 1)
+                                              .split(', ')
+                                              .map(column => "?")
+                                              .join(', ');
+
+           this.alterSequence(`memberValuesValues_${valuesTable}`, `(${generatedValues})`);
+        }
+
+        return this;
+     }
+     Sequence.prototype.set = function (setColumns) {
+        if (this.getSequence().includes(this.sequenceSettings.identifiers[2])) {
+           this.alterSequence("memberOperation", this.sequenceSettings.operations[2]);
+
+           this.alterSequence("memberSetValues", `${setColumns.join(' = ?, ')} = ?`);
+        }
+
+        return this;
+     }
+
+
+
+     /* ------------- Filters ----------------- */
+     Sequence.prototype.where = function (whereThis) {
+        const sequenceParticles = this.getSequence();
+
+        if (sequenceParticles.filter(particle => this.sequenceSettings.identifiers.includes(particle))) {
+           if (sequenceParticles.includes(this.sequenceSettings.filters[0])) {
+              this.alterSequence(`membersWhereExtra_${whereThis}`, `AND ${this.sequenceSettings.filters[0]}`);
+           } else {
+              this.alterSequence(`membersWhere_${whereThis}`, this.sequenceSettings.filters[0]);
+           }
+
+           this.alterSequence(`membersWhereValue_${whereThis}`, whereThis);
+        }
+
+        return this;
+     }
+     Sequence.prototype.or = function (orThis) {
+        this.alterSequence(null, `OR ${orThis} = ?`);
+
+        return this;
+     }
+     Sequence.prototype.equals = function () {
+        this.alterSequence(null, "= ?");
+
+        return this;
+     }
+     Sequence.prototype.order = function (orderBy) {
+        this.alterSequence("memberOrder", this.sequenceSettings.filters[1]);
+        this.alterSequence("memberOrderClause", orderBy);
+
+        return this;
+     }
+     Sequence.prototype.orient = function (orientBy) {
+        if (this.getSequence().includes(this.sequenceSettings.filters[1])
+        && this.sequenceSettings.orients.includes(orientBy)) {
+           this.alterSequence("memberOrient", orientBy);
+        }
+
+        return this;
+     }
+
+
+
+
+     return Sequence;
+
   }
 
-
-  return Sequence;
+  return SequenceConstructor;
 }
