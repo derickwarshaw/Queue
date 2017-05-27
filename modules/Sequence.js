@@ -92,14 +92,14 @@ module.exports = dependencyInjection => {
 
      /* ------------- Extension ----------------- */
      Sequence.prototype.only = function (onlyColumns) {
-        const sequenceParticles = this.getSequence();
+         const sequenceParticles = this.getSequence();
 
-        if (sequenceParticles.includes(this.sequenceSettings.identifiers[0])
-        && !sequenceParticles.includes(this.sequenceSettings.operands[0])) {
-           this.alterSequence("memberExtension_Only", onlyColumns.join(', '));
-        }
+         if (sequenceParticles.includes(this.sequenceSettings.identifiers[0])
+             && !sequenceParticles.includes(this.sequenceSettings.operands[0])) {
+             this.alterSequence("memberExtension_Only", onlyColumns.join(', '));
+         }
 
-        return this;
+         return this;
      }
 
      /* ------------- Operations ----------------- */
@@ -151,6 +151,11 @@ module.exports = dependencyInjection => {
 
            this.alterSequence(`membersWhereValue_${whereThis}`, whereThis);
         }
+
+        return this;
+     }
+     Sequence.prototype.or = function (orThis) {
+        this.alterSequence(null, `OR ${orThis} = ?`);
 
         return this;
      }

@@ -3,6 +3,7 @@ module.exports = dependencyInjection => {
    const Sequence = dependencyInjection[0];
    const Queue = new dependencyInjection[1];
    const Guid = dependencyInjection[2];
+   const Utility = dependencyInjection[3];
 
    function Database (databaseServer) {
       this.databaseServer = databaseServer;
@@ -21,16 +22,16 @@ module.exports = dependencyInjection => {
      return userObject;
    }
 
-   Database.prototype.readUser = async function (userObject) {
+   Database.prototype.readUser = async function (userObject, userBy) {
       const databaseServer = this.databaseServer;
       const databaseQuery = new Sequence("SELECT").all()
                                                   .from("User")
-                                                  .where("UserId")
+                                                  .where(`User${userBy}`)
                                                   .equals();
 
       return await Queue.add(() => {
          return databaseServer.get(databaseQuery.buildSequence(), [
-           userObject.userId
+           userObject[`user${userBy}`]
          ]);
       });
    }

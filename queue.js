@@ -30,7 +30,7 @@ const Sequence = SequenceConstructor({
 
 const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
 const DatabaseConstructor = Setup.setDependency('Database', [
-  Sequence, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid
+  Sequence, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid, Utility
 ]);
 
 
