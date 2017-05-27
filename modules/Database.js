@@ -64,7 +64,7 @@ module.exports = dependencyInjection => {
           userObject.userName,
           userObject.userNumber,
           userObject.userLocation,
-          userObject.userClient.ClientId
+          userObject.clientId
         ]);
       })
    }

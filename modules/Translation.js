@@ -7,10 +7,17 @@ module.exports = dependencyInjection => {
          const translateObject = await userObject;
 
          if (translateObject) {
+<<<<<<< HEAD
             translateObject.userId = translateObject.UserId;
             translateObject.userName = translateObject.UserName;
             translateObject.userNumber = translateObject.UserNumber;
             translateObject.userLocation = translateObject.UserLocation;
+=======
+            translateObject.userId = translateObject.UserId,
+            translateObject.userName = translateObject.UserName;
+            translateObject.userNumber = translateObject.UserNumber,
+            translateObject.userLocation = translateObject.userLocation;
+>>>>>>> master
             translateObject.userDate = translateObject.UserDate;
             translateObject.clientId = null;
 
