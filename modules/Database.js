@@ -16,7 +16,7 @@ module.exports = dependencyInjection => {
    }
    Database.prototype.signUser = function (userObject) {
     userObject.userId = (Guid.create()).value;
-
+    userObject.userName = Utility.to.ProperCase(Utility.from.UserName(userObject.userName));
      this.userSigns.set(userObject.userId, userObject);
      
      return userObject;
