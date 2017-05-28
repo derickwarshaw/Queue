@@ -9,8 +9,9 @@ module.exports = dependencyInjection => {
                return caseWord.map((caseWor => {
                   return caseWor.charAt(0).toUpperCase() + caseWor.substring(1).toLowerCase();
                })).join(' ');
+            } else {
+                return caseWord.charAt(0).toUpperCase() + caseWord.substring(1).toLowerCase();
             }
-            return caseWord.charAt(0).toUpperCase() + caseWord.substring(1).toLowerCase();
          }
 
          function toImproperCase (caseWord) {

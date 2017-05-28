@@ -22,6 +22,18 @@ module.exports = dependencyInjection => {
                     Sockets.error(new Date(), `User Request for ${requestData.userName}`, unsignedValue);
                 })
         });
+        handlingSocket.on('socket.request', socketData => {
+            "use strict";
+
+            Sockets.listen('socketRequest')([Database])(socketData, handlingSocket)
+                .then(signedUser => {
+                    handlingSocket.emit('socket.established', establishedSocket);
+                })
+                .catch(unsignedValue => {
+                   handlingSocket.emit('socket.failure');
+                   Sockets.error(new Date(), `Socket request for ${socketData.userName}`, unsignedValue);
+                });
+        })
 
         Sockets.disconnected(handlingSocket);
 
