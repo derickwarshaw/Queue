@@ -1,106 +1,72 @@
-const SetupConstructor = require('./modules/Setup')();
-const Setup = new SetupConstructor("127.0.0.1", "3000", __dirname);
+const Application = require('./components/Application');
+const currentApplication = new Application(__dirname, 8080);
+module.exports.currentApplication = currentApplication;
 
-// Dev require hook.
-require('babel-register');
-require('babel-polyfill');
+const Queue = currentApplication.component('Queue');
+const currentQueue = new Queue();
+module.exports.currentQueue = currentQueue;
 
-// ------- Babel Transforms Below Here -------------- //
+const Database = currentApplication.component('Database');
+const currentDatabase = new Database();
+module.exports.currentDatabase = currentDatabase;
+
+const Translation = currentApplication.component('Translation');
 
 
+// TODO: Do something with this middleware function.
+currentApplication.middle(function (requestInstance) {
+  "use strict";
 
-const Utility = Setup.setDependency('Utility');
-const Translation = Setup.setDependency('Translation');
-
-const FileConstructor = Setup.setDependency('File', [Setup.getCore().coreFileSystem, Utility]);
-const File = new FileConstructor(Setup.getDirectory());
-
-const ConfigConstructor = Setup.setDependency('Config', [File]);
-const Config = new ConfigConstructor();
-
-const SequenceConstructor = Setup.setDependency('Sequence', [Utility]);
-const Sequence = SequenceConstructor({
-   marker: "?",
-   identifiers: ["SELECT", "INSERT", "UPDATE", "DELETE"],
-   operands: ["*", "TOP", "INTO", "COUNT"],
-   operations: ["FROM", "VALUES", "SET"],
-   filters: ["WHERE", "ORDER BY"],
-   orients: ["ASC", "ASCENDING", "DESC", "DESCENDING"]
+  console.log(`[Web Request] ${requestInstance.summary()}`);
 });
 
-const SocketsConstructor = Setup.setDependency('Sockets', [Setup]);
-const DatabaseConstructor = Setup.setDependency('Database', [
-  Sequence, Setup.getThird().thirdQueue, Setup.getThird().thirdGuid, Utility
-]);
-
-
-var Sockets = null, Database = null, Handler = null;
-
-
-Setup.createExpress()
-.then((expressServer) => {
-
-   expressServer.use(Setup.getStatic('public'));
-   expressServer.get('/', (getRequest, getResolve) => {
-      File.getIndexPath().then((indexPath) => {
-         getResolve.sendFile(indexPath);
-         console.log(`Served ${indexPath.substring(indexPath.lastIndexOf('/'))} for '/'`);
-      });
+currentApplication.route('/')
+   .get(function (req, res) {
+     "use strict";
+     res.sendFile('index.html');
    });
-    console.log(`Set route for '/'`);
 
-   return Setup.createServer(expressServer);
-})
-.then((httpServer) => {
-   httpServer.listen(Setup.getPort());
-   console.log("Started server.");
+currentApplication.route('/room/:roomId')
+   .get(function (getRequest, getResolve) {
+     "use strict";
 
-   return Setup.createSockets(httpServer);
-})
-.then((socketsServer) => {
-   Sockets = new SocketsConstructor(socketsServer.sockets);
-   console.log("Set socket listener.");
+     currentQueue.add(function () {
+       const queuedRender = currentApplication.render(getRequest, getResolve);
+       return queuedRender('room', {room: getRequest.params.roomId});
+     })
+        .then(getResult => getResolve.send(getResult))
+        .catch(getError => getResolve.status(404));
+   });
 
-   return Setup.createDatabase();
-})
-.then((databaseServer) => {
-   Database = new DatabaseConstructor(databaseServer);
-   Handler = Setup.setDependency('Handler', [Database, Translation]);
+currentApplication.route('/admin')
+   .get(function (getRequest, getResolve) {
+     "use strict";
 
-   console.log("Created database.");
-   console.log(`The server is ready on ${Setup.getHost()}`);
+     currentQueue.add(function () {
+       const queuedRender = currentApplication.render(getRequest, getResolve);
+       return queuedRender('admin', {});
+     })
+        .then(getResult => getResolve.send(getResult))
+        .catch(getError => getResolve.status(404));
+   });
 
-   Sockets.connected(Handler);
-})
+currentDatabase.open().then(function (openDatabase) {
+  "use strict";
 
+  currentApplication.listen();
+  currentApplication.socket(function (socketOpen) {
+    "use strict";
 
+    Translation.socketRequest(socketOpen).then(requestInstance => {
+      console.log(`[Socket Request] ${requestInstance.summary()}`);
 
-
-
-/* ---- Process Handling ---- */
-
-// Received when CTRL + C is pressed in terminal
-process.on('SIGINT', function () {
-   console.log("CTRL + C was pressed."); // a.k.a intentional
-
-  Setup.removeSockets()
-  .then(function () {
-    return Setup.removeServer();
-  })
-  .then(function () {
-    return Setup.removeDatabase();
-  })
-  .then(function () {
-    console.log("Server finished exiting. Bye bye.");
-    process.exit();
+      requestInstance.userRequest(function (requestName, requestData) {
+        currentApplication.handle(requestName)(requestData)
+           .then(handleData => {
+             requestInstance.userEstablished(handleData);
+           });
+      })
+    });
   });
+
 });
-
-// Received when the server crashes due to error
-process.on('uncaughtException', function (e) {
-   console.log("Server crashed."); // a.k.a unintentional
-   console.log(e.stack);
-});
-
-
-global.deleteDatabase = Setup.removeDatabase;
