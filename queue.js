@@ -50,23 +50,21 @@ currentApplication.route('/admin')
         .catch(getError => getResolve.status(404));
    });
 
-currentDatabase.open().then(function (openDatabase) {
-  "use strict";
 
-  currentApplication.listen();
-  currentApplication.socket(function (socketOpen) {
-    "use strict";
+currentDatabase.open()
+   .then(openDatabase => {
+     "use strict";
 
-    Translation.socketRequest(socketOpen).then(requestInstance => {
-      console.log(`[Socket Request] ${requestInstance.summary()}`);
+     currentApplication.listen();
+     currentApplication.socket(socketOpen => {
+       Translation.socketRequest(socketOpen)
+          .then(requestInstance => {
+            console.log(`[Socket Request] ${requestInstance.summary()}`);
 
-      requestInstance.userRequest(function (requestName, requestData) {
-        currentApplication.handle(requestName)(requestData)
-           .then(handleData => {
-             requestInstance.userEstablished(handleData);
-           });
-      })
-    });
-  });
-
-});
+            requestInstance.userRequest(function (requestName, requestData) {
+              currentApplication.handle(requestName)(requestData)
+                 .then(handleData => requestInstance.userEstablished(handleData));
+            })
+          });
+     });
+   });
