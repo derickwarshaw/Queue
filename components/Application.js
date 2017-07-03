@@ -8,8 +8,14 @@ const Socket = require('socket.io');
 const Mustache = require('express-mustache');
 const Translation = require('../components/Translation');
 
-// TODO: Add JSDOC descriptions @.
 class Application {
+
+  /**
+   * Acts as the root of all server properties.
+   * @param {String} applicationDirectory Root directory of the server.
+   * @param {Number} applicationPort Port the server should run on.
+   * @returns Application instance.
+   */
   constructor (applicationDirectory, applicationPort) {
     this.applicationDirectory = applicationDirectory;
     this.applicationPort = applicationPort;
@@ -27,6 +33,10 @@ class Application {
     this.applicationExpress.set('views', `.\\public\\views`);
   }
 
+  /**
+   * Middleware for express web requests.
+   * @param {String} middleHandler Custom handler function.
+   */
   middle (middleHandler) {
     const currentApplication = this;
 
@@ -39,10 +49,21 @@ class Application {
     });
   }
 
+  /**
+   * Creates a route for the server.
+   * @param {String} routePath Path to accept as route.
+   * @returns {Route} Express route.
+   */
   route (routePath) {
     return this.applicationExpress.route(routePath);
   }
 
+  /**
+   * Middleware for the render process.
+   * @param {Object} renderRequest Request object.
+   * @param {Object} renderResolute Resolve object.
+   * @returns {Function} Renderer.
+   */
   render (renderRequest, renderResolute) {
     return function (renderTemplate, renderContext) {
       return new Promise(function (renderResolve, renderReject) {
@@ -57,14 +78,29 @@ class Application {
     }
   }
 
+  /**
+   * Starts the server request listener.
+   */
   listen () {
     this.applicationHttp.listen(this.applicationPort);
   }
 
+  /**
+   * Middleware for socket requests.
+   * @param socketHandler Custom handler function.
+   */
   socket (socketHandler) {
-    this.applicationSockets.on('connection', socketHandler);
+    // TODO: Put the SocketRequest translation in here.
+    this.applicationSockets.on('connection', connectedSocket => {
+      Translation.socketRequest(connectedSocket).then(socketHandler);
+    });
   }
 
+  /**
+   *
+   * @param handleEvent
+   * @returns {*}
+   */
   handle (handleEvent) {
     return require(this.applicationDirectory + '/events/' + handleEvent);
   }

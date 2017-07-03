@@ -54,24 +54,24 @@ currentApplication.route('/admin')
         .catch(getError => getResolve.status(404));
    });
 
-
 currentDatabase.open()
    .then(openDatabase => {
      "use strict";
 
      currentApplication.listen();
+     currentApplication.socket(socketRequest => {
+       console.log(`[Socket Request] ${socketRequest.summary()}`);
 
-     currentApplication.socket(socketOpen => {
-       Translation.socketRequest(socketOpen)
-          .then(requestInstance => {
-            console.log(`[Socket Request] ${requestInstance.summary()}`);
+       socketRequest.authenticate(function (authName, authData) {
+         currentApplication.handle(authName)(authData)
+            .then(handleData => socketRequest.authenticated(handleData))
+            .catch(handleError => socketRequest.unauthorised(handleError));
+       });
 
-            // TODO: We call "userRequest" differently. "Auth" is for users. "Request" is for Clients. Change the method name.
-            requestInstance.userRequest(function (requestName, requestData) {
-              currentApplication.handle(requestName)(requestData)
-              // TODO: Add a method into requestInstance for the catch statement here. user:fail?
-                 .then(handleData => requestInstance.userEstablished(handleData));
-            })
-          });
-     });
+       socketRequest.request(function (reqName, reqData) {
+         currentApplication.handle(reqName)(reqData)
+            .then(handleData => socketRequest.requested(handleData))
+            .catch(handleError => socketRequest.rejected(handleError));
+       })
+     })
    });

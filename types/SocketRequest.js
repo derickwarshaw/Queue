@@ -15,11 +15,25 @@ class SocketRequest {
     return `${this.socketRequestMethod} -> ${this.socketRequestPath} (${this.socketRequestId})`;
   }
 
-  userRequest (requestHandler) {
-    this.socketObejct.on('user:auth', requestData => requestHandler('userRequest', requestData));
+  authenticate (requestHandler) {
+    this.socketObejct.on('user:auth', requestData => requestHandler('Authenticate', requestData));
   }
-  userEstablished (establishedUser) {
+  authenticated (establishedUser) {
     this.socketObejct.emit('user:est', establishedUser);
+  }
+  unauthorised (unauthorisedReason) {
+    this.socketObejct.emit('user:unauth', unauthorisedReason);
+  }
+
+
+  request (requestHandler) {
+    this.socketObejct.on('client:auth', requestData => requestHandler('Request', requestData));
+  }
+  requested (requestedUser) {
+    this.socketObejct.emit('client:est', requestedUser);
+  }
+  rejected (rejectedReason) {
+    this.socketObejct.emit('client:reject', rejectedReason);
   }
 }
 
