@@ -1,11 +1,11 @@
-/**
- * Created by Joshua Crowe on 01/07/2017.
- */
-
-// TODO: Add JSDOC descriptions @.
 class WebRequest {
-  constructor (requestReq, requestRes) {
 
+  /**
+   * Manage a web request.
+   * @param {Object} requestReq Request object.
+   * @param {Object} requestRes Resolve object.
+   */
+  constructor (requestReq, requestRes) {
     this.webRequestMethod = requestReq.method;
     this.webRequestPath = requestReq.originalUrl;
 
@@ -18,6 +18,10 @@ class WebRequest {
     }
   }
 
+  /**
+   * Generate a summary of the request.
+   * @returns {String} Summary of the request.
+   */
   summary () {
     return `${this.webRequestMethod} -> ${this.webRequestPath} (${this.webRequestHeaders.size} headers)`;
   }

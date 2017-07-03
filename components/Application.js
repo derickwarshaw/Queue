@@ -90,7 +90,6 @@ class Application {
    * @param socketHandler Custom handler function.
    */
   socket (socketHandler) {
-    // TODO: Put the SocketRequest translation in here.
     this.applicationSockets.on('connection', connectedSocket => {
       Translation.socketRequest(connectedSocket).then(socketHandler);
     });

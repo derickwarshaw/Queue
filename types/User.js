@@ -1,18 +1,25 @@
-/**
- * Created by Joshua Crowe on 02/07/2017.
- */
-
-// TODO: Add JSDOC descriptions @.
 class User {
+
+  /**
+   * Manage a user.
+   * @param {Object} userObject Object to retrieve properties from.
+   */
   constructor (userObject) {
-    // TODO: Add type protection/checking.
-    this.userId = userObject.UserId;
-    this.userName = userObject.UserName;
-    this.userNumber = userObject.UserNumber;
-    this.userLocation = userObject.UserLocation;
-    this.userDate = userObject.UserDate;
-    this.clientId = null;
-    this.adminId = null;
+    const userIdCheck = Boolean(typeof userObject.UserId === "string");
+    const userNameCheck = Boolean(typeof userObject.UserName === "string");
+    const userNumberCheck = Boolean(typeof userObject.UserName === "string");
+    const userLocationCheck = Boolean(typeof userObject.UserLocation === "string");
+    const userDateCheck = Boolean(typeof UserObject.userDate === "string");
+
+    if (userIdCheck && userNameCheck && userNumberCheck && userLocationCheck && userDateCheck) {
+      this.userId = userObject.UserId;
+      this.userName = userObject.UserName;
+      this.userNumber = userObject.UserNumber;
+      this.userLocation = userObject.UserLocation;
+      this.userDate = userObject.UserDate;
+      this.clientId = null;
+      this.adminId = null;
+    }
   }
 }
 
