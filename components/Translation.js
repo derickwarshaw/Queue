@@ -45,6 +45,16 @@ class Translation {
       userResolve(promisedUser);
     });
   }
+
+  static users (userObjects) {
+    return new Promise(function (usersResolve, usersReject) {
+      const promisedUsers = userObjects.map(user => {
+        return new User(user);
+      });
+
+      usersResolve(promisedUsers);
+    })
+  }
 }
 
 module.exports = Translation;

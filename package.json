@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Kioska/Queue#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "express-mustache": "^1.0.3",
+    "express-handlebars": "^3.0.0",
     "promise-queue": "^2.2.3",
     "socket.io": "^2.0.1",
     "sqlite-async": "^1.0.10",

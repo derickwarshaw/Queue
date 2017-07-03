@@ -14,7 +14,6 @@ module.exports.currentDatabase = currentDatabase;
 
 const Translation = currentApplication.component('Translation');
 
-
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
@@ -32,13 +31,26 @@ currentApplication.route('/room/:roomId')
    .get(function (getRequest, getResolve) {
      "use strict";
 
-     currentQueue.add(function () {
-       // TODO: Consider how you're going to generate the context for this.
-       const queuedRender = currentApplication.render(getRequest, getResolve);
-       return queuedRender('room', {room: getRequest.params.roomId});
-     })
-        .then(getResult => getResolve.send(getResult))
-        .catch(getError => getResolve.status(404));
+  // TODO: Move this over to clients. They will only be in the database during runtime.
+     //const roomId = getRequest.params["roomId"].toUpperCase();
+     //console.log("ROOM ID IS: " + roomId);
+     // // TODO: Remove this shit above.
+     //
+     //currentDatabase.readUsersByRoom(roomId)
+     //   .then(roomUsers => {
+     //     if (Array.isArray(roomUsers)) {
+     //       return Translation.users(roomUsers);
+     //     } else {
+     //       return Translation.users([roomUsers]);
+     //     }
+     //   })
+     //   .then(translatedUser => {
+     //     return currentQueue.add(function () {
+     //       const queuedRender = currentApplication.render(getRequest, getResolve);
+     //       return queuedRender('room', {room: roomId, users: translatedUser})
+     //     })
+     //   })
+     //   .then(getResult => getResolve.send(getResult));
    });
 
 currentApplication.route('/admin')

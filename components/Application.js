@@ -5,7 +5,7 @@
 const http = require('http');
 const Express = require('express');
 const Socket = require('socket.io');
-const Mustache = require('express-mustache');
+const Handlebars = require('express-handlebars');
 const Translation = require('../components/Translation');
 
 class Application {
@@ -28,9 +28,11 @@ class Application {
     this.applicationExpress.use(Express.static(
        this.applicationDirectory + '/public'
     ));
-    this.applicationExpress.engine('mustache', Mustache.create());
-    this.applicationExpress.set('view engine', 'mustache');
-    this.applicationExpress.set('views', `.\\public\\views`);
+    this.applicationEngine = Handlebars.create({
+      defaultLayout: 'main'
+    });
+    this.applicationExpress.engine('hbs', this.applicationEngine.engine);
+    this.applicationExpress.set('view engine', 'hbs');
   }
 
   /**

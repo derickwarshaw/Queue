@@ -59,6 +59,7 @@ class Database {
     });
   }
 
+
   /**
    * Write a user to the database.
    * @param {Object} userObject User to write.
