@@ -1,7 +1,3 @@
-/**
- * Created by Joshua Crowe on 30/06/2017.
- */
-
 const currentApplication = require('../queue').currentApplication;
 const currentDatabase = require('../queue').currentDatabase;
 

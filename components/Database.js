@@ -59,7 +59,6 @@ class Database {
     });
   }
 
-
   /**
    * Write a user to the database.
    * @param {Object} userObject User to write.
@@ -82,40 +81,68 @@ class Database {
     });
   }
 
+  /**
+   * Alter a user in the database.
+   * @param {Object} userObject Object to reference during alterations.
+   * @returns {*}
+   */
+  async alterUser (userObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("UPDATE")
+       .update("User").set(["UserName", "UserNumber", "UserLocation", "ClientId", "AdminId"])
+       .where("UserId").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+         userObject.userName,
+         userObject.userNumber,
+         userObject.userLocation,
+         userObject.clientId,
+         userObject.adminId,
+         userObject.userId
+      ]);
+    });
+  }
+
+  // TODO: JSDoc this.
+  async readClient (clientUser) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("Client").where("ClientId").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [clientUser]);
+    })
+  }
+
+  // TODO: JSDoc this.
+  async writeClient (clientUser) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("INSERT")
+       .into("Client", ["ClientId", "ClientName", "ClientStatus"])
+       .values();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [
+         Identify(), clientUser, "busy"
+      ]);
+    });
+  }
+
+  // TODO: JSDoc this.
+  async alterClient (clientId, clientStatus) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("UPDATE")
+       .update("Client").set("ClientStatus")
+       .where("ClientId").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [
+         clientStatus, clientId
+      ]);
+    });
+  }
 
 }
 
 module.exports = Database;
-
-
-
-//Sql.open('../queue.db').then(openedDatabase => {
-//  "use strict";
-//
-//  class Database {
-//    static signUser (userObject) {
-//      userObject.userId = Identify();
-//      userObject.userName = Utility.toProperCase(
-//         Utility.fromUserName(userObject.userName)
-//      );
-//
-//      return userObject;
-//    }
-//    static async readUser (userObject, userBy) {
-//      const databaseQuery = new Sequence("SELECT")
-//         .all().from("User").where(`User${userBy}`).equals();
-//
-//      return await currentQueue.add(function () {
-//        return openedDatabase.get(databaseQuery.build(), [
-//          userObject[`user${userBy}`]
-//        ]);
-//      });
-//    }
-//    static async writeUser (userObject) {
-//      const databaseQuery = new Sequence("INSERT")
-//         .into("User", ["UserId", "UserName", "UserNumber"])
-//    }
-//  }
-//
-//  module.exports = Database;
-//});

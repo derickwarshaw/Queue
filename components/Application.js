@@ -2,7 +2,8 @@
  * Created by Joshua Crowe on 30/06/2017.
  */
 
-const http = require('http');
+const HTTP = require('http');
+const Path = require('path');
 const Express = require('express');
 const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
@@ -22,15 +23,13 @@ class Application {
     this.applicationRequests = new Map();
 
     this.applicationExpress = Express();
-    this.applicationHttp = http.createServer(this.applicationExpress);
+    this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
-
-    this.applicationExpress.use(Express.static(
-       this.applicationDirectory + '/public'
-    ));
+    this.applicationExpress.use(Express.static(Path.join(this.applicationDirectory, '/public')));
     this.applicationEngine = Handlebars.create({
       defaultLayout: 'main'
     });
+    // TODO: Find a way to set the root directory of views to files/views.
     this.applicationExpress.engine('hbs', this.applicationEngine.engine);
     this.applicationExpress.set('view engine', 'hbs');
   }

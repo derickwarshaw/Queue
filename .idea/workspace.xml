@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/layouts/main.handlebars" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/room.hbs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/views/room.mustache" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/events/Request.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Application.js" afterPath="$PROJECT_DIR$/components/Application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Database.js" afterPath="$PROJECT_DIR$/components/Database.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Translation.js" afterPath="$PROJECT_DIR$/components/Translation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.js" afterPath="$PROJECT_DIR$/queue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Authenticate.js" afterPath="$PROJECT_DIR$/events/Authenticate.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,65 +40,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="queue.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/queue.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="84">
-                  <caret line="33" column="87" lean-forward="false" selection-start-line="33" selection-start-column="87" selection-end-line="33" selection-end-column="87" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="room.hbs" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/room.hbs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="356">
-                  <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Authenticate.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="189">
-                  <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Translation.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Translation.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="828">
-                  <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="Application.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/Application.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="546">
-                  <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.handlebars" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/layouts/main.handlebars">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+                <state relative-caret-position="-1073">
+                  <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
@@ -111,8 +53,43 @@
           <file leaf-file-name="Database.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/Database.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-75">
-                  <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+                <state relative-caret-position="775">
+                  <caret line="131" column="22" lean-forward="false" selection-start-line="131" selection-start-column="22" selection-end-line="131" selection-end-column="22" />
+                  <folding>
+                    <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Authenticate.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="399">
+                  <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Request.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/events/Request.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="483">
+                  <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
                   <folding />
                 </state>
               </provider>
@@ -182,17 +159,18 @@
         <option value="$PROJECT_DIR$/events/userRequest.js" />
         <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/types/WebRequest.js" />
-        <option value="$PROJECT_DIR$/events/Authenticate.js" />
         <option value="$PROJECT_DIR$/types/User.js" />
         <option value="$PROJECT_DIR$/components/Presentation.js" />
         <option value="$PROJECT_DIR$/public/views/room.mustache" />
         <option value="$PROJECT_DIR$/views/layouts/main.hbs" />
         <option value="$PROJECT_DIR$/views/room.hbs" />
-        <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
         <option value="$PROJECT_DIR$/components/Translation.js" />
-        <option value="$PROJECT_DIR$/components/Database.js" />
         <option value="$PROJECT_DIR$/queue.js" />
+        <option value="$PROJECT_DIR$/components/Application.js" />
+        <option value="$PROJECT_DIR$/events/Authenticate.js" />
+        <option value="$PROJECT_DIR$/events/Request.js" />
+        <option value="$PROJECT_DIR$/components/Database.js" />
       </list>
     </option>
   </component>
@@ -253,7 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -339,6 +316,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -511,11 +489,12 @@
       <workItem from="1499096408245" duration="848000" />
       <workItem from="1499107906803" duration="1131000" />
       <workItem from="1499109095735" duration="9342000" />
+      <workItem from="1499120457935" duration="3142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131354000" />
+    <option name="totallyTimeSpent" value="134496000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,7 +512,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11327714" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4182015" sideWeight="0.51896733" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11327714" sideWeight="0.38449112" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="743" y="301" width="1117" height="433" />
@@ -553,6 +531,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Running Info" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Running Result" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
     </layout>
@@ -599,34 +578,17 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/queue.js</url>
           <line>49</line>
-          <properties />
           <option name="timeStamp" value="198" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="199" />
+      <option name="time" value="204" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/queue.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="78" lean-forward="false" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -639,7 +601,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -695,7 +668,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -759,7 +743,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -800,7 +795,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -824,7 +830,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -912,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -928,34 +937,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Presentation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Presentation.js" />
     <entry file="file://$PROJECT_DIR$/views/room.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="378">
+          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Application.js">
+    <entry file="file://$PROJECT_DIR$/components/Translation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
+        <state relative-caret-position="1134">
+          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/queue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="70" column="18" lean-forward="true" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -968,27 +970,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Translation.js">
+    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state relative-caret-position="609">
+          <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1073">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Database.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queue.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="33" column="87" lean-forward="false" selection-start-line="33" selection-start-column="87" selection-end-line="33" selection-end-column="87" />
-          <folding />
+        <state relative-caret-position="775">
+          <caret line="131" column="22" lean-forward="false" selection-start-line="131" selection-start-column="22" selection-end-line="131" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
