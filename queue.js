@@ -64,14 +64,12 @@ currentDatabase.open()
 
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)
-            .then(handleData => socketRequest.authenticated(handleData))
-            .catch(handleError => socketRequest.unauthorised(handleError));
+            .then(handleData => socketRequest.authenticated(handleData));
        });
 
        socketRequest.request(function (reqName, reqData) {
          currentApplication.handle(reqName)(reqData)
-            .then(handleData => socketRequest.requested(handleData))
-            .catch(handleError => socketRequest.rejected(handleError));
+            .then(handleData => socketRequest.requested(handleData));
        })
      })
    });

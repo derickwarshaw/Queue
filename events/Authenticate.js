@@ -7,18 +7,18 @@ const currentDatabase = require('../queue').currentDatabase;
 
 const Translation = currentApplication.component('Translation');
 
-async function userRequest (requestUser) {
+async function Authenticate (authenticateUser) {
   "use strict";
 
-  const readUser = await currentDatabase.readUser(requestUser, "Name");
+  const readUser = await currentDatabase.readUser(authenticateUser, "Name");
 
   if (readUser) {
     return Translation.user(readUser);
   } else {
-    await currentDatabase.writeUser(currentDatabase.signUser(requestUser));
+    await currentDatabase.writeUser(currentDatabase.signUser(authenticateUser));
   }
 
-  return Translation.user(await currentDatabase.readUser(requestUser, "Id"));
+  return Translation.user(await currentDatabase.readUser(authenticateUser, "Id"));
 }
 
-module.exports = userRequest;
+module.exports = Authenticate;

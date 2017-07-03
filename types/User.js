@@ -9,7 +9,7 @@ class User {
     const userNameCheck = Boolean(typeof userObject.UserName === "string");
     const userNumberCheck = Boolean(typeof userObject.UserName === "string");
     const userLocationCheck = Boolean(typeof userObject.UserLocation === "string");
-    const userDateCheck = Boolean(typeof UserObject.userDate === "string");
+    const userDateCheck = Boolean(typeof userObject.UserDate === "string");
 
     if (userIdCheck && userNameCheck && userNumberCheck && userLocationCheck && userDateCheck) {
       this.userId = userObject.UserId;

@@ -35,7 +35,7 @@ class Application {
 
   /**
    * Middleware for express web requests.
-   * @param {String} middleHandler Custom handler function.
+   * @param {Function} middleHandler Custom handler function.
    */
   middle (middleHandler) {
     const currentApplication = this;
