@@ -2,6 +2,7 @@
  * Created by Joshua Crowe on 02/07/2017.
  */
 
+// TODO: Add JSDOC descriptions @.
 class User {
   constructor (userObject) {
     // TODO: Add type protection/checking.

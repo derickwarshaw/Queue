@@ -2,6 +2,7 @@
  * Created by Joshua Crowe on 01/07/2017.
  */
 
+// TODO: Add JSDOC descriptions @.
 class WebRequest {
   constructor (requestReq, requestRes) {
 

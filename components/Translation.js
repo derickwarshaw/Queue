@@ -6,6 +6,7 @@ const WebRequest = require('../types/WebRequest');
 const SocketRequest = require('../types/SocketRequest');
 const User = require('../types/User');
 
+// TODO: Add JSDOC descriptions @.
 class Translation {
   static webRequest (requestReq, requestRes) {
     return new Promise(function (requestResolve, requestReject) {

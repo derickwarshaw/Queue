@@ -8,6 +8,7 @@ const Socket = require('socket.io');
 const Mustache = require('express-mustache');
 const Translation = require('../components/Translation');
 
+// TODO: Add JSDOC descriptions @.
 class Application {
   constructor (applicationDirectory, applicationPort) {
     this.applicationDirectory = applicationDirectory;

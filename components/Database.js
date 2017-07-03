@@ -9,6 +9,7 @@ const Sequence = currentApplication.component('Sequence');
 const Identify = currentApplication.component('Identify');
 const Sql = currentApplication.component('Sql');
 
+// TODO: Add JSDOC descriptions @.
 class Database {
   constructor () {
     this.databaseServer = null;
