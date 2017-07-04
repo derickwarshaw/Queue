@@ -60,6 +60,7 @@ currentDatabase.open()
        console.log(`[Socket Request] ${socketRequest.summary()}`);
 
        socketRequest.authenticate(function (authName, authData) {
+           // TODO: THink about how you're going to validate the user/client is in a valid room added by an admin!
          currentApplication.handle(authName)(authData)
             .then(handleData => socketRequest.authenticated(handleData));
        });
