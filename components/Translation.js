@@ -5,6 +5,7 @@
 const WebRequest = require('../types/WebRequest');
 const SocketRequest = require('../types/SocketRequest');
 const User = require('../types/User');
+const Client = require('../types/Client');
 
 
 class Translation {
@@ -54,6 +55,13 @@ class Translation {
 
       usersResolve(promisedUsers);
     })
+  }
+
+  static client (clientObject) {
+    return new Promise(function (clientResolve, clientReject) {
+      const promisedClient = new Client(clientObject);
+      clientResolve(promisedClient);
+    });
   }
 }
 

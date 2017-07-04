@@ -12,6 +12,8 @@ const Database = currentApplication.component('Database');
 const currentDatabase = new Database();
 module.exports.currentDatabase = currentDatabase;
 
+const currentPresent = currentApplication.component('Present');
+
 const Translation = currentApplication.component('Translation');
 
 // TODO: Do something with this middleware function.
@@ -31,26 +33,9 @@ currentApplication.route('/room/:roomId')
    .get(function (getRequest, getResolve) {
      "use strict";
 
-  // TODO: Move this over to clients. They will only be in the database during runtime.
-     //const roomId = getRequest.params["roomId"].toUpperCase();
-     //console.log("ROOM ID IS: " + roomId);
-     // // TODO: Remove this shit above.
-     //
-     //currentDatabase.readUsersByRoom(roomId)
-     //   .then(roomUsers => {
-     //     if (Array.isArray(roomUsers)) {
-     //       return Translation.users(roomUsers);
-     //     } else {
-     //       return Translation.users([roomUsers]);
-     //     }
-     //   })
-     //   .then(translatedUser => {
-     //     return currentQueue.add(function () {
-     //       const queuedRender = currentApplication.render(getRequest, getResolve);
-     //       return queuedRender('room', {room: roomId, users: translatedUser})
-     //     })
-     //   })
-     //   .then(getResult => getResolve.send(getResult));
+     const roomId = getRequest.params["roomId"].toUpperCase();
+     currentPresent.rooms(roomId, getRequest, getResolve)
+         .then(renderedRooms => getResolve.send(renderedRooms));
    });
 
 currentApplication.route('/admin')

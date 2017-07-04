@@ -115,12 +115,23 @@ class Database {
     })
   }
 
+  async readClientsByRoom (roomName) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Client").join("INNER", "User")
+        .on([["Client", "ClientId"], ["User", "ClientId"]], "User");
+
+    return currentQueue.add(function () {
+        return databaseServer.get(databaseQuery.build(), []);
+    });
+  }
+
   // TODO: JSDoc this.
   async writeClient (clientUser) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("INSERT")
        .into("Client", ["ClientId", "ClientName", "ClientStatus"])
-       .values();
+       .values("Client");
 
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [

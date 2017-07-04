@@ -18,10 +18,10 @@ async function Request (requestObject) {
 
   // Step 3. Translate the client.
   // TODO: Write a client method in Translate.js
-  const translatedClient = Translate.client(readClient);
+  const translatedClient = Translation.client(readClient);
 
   // Step 4. Alter the user with the Id of the client.
-  requestObject.clientId = readClient.clientId;
+  requestObject.clientId = translatedClient.clientId;
   await currentDatabase.alterUser(requestObject);
 
   // Step 5. Translate the updated user object.
