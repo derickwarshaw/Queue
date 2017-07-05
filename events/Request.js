@@ -10,26 +10,31 @@ const Translation = currentApplication.component('Translation');
 async function Request (requestObject) {
   "use strict";
 
-  // Step 1: Create a client. Db.writeClient.
-  await currentDatabase.writeClient(requestObject.userName);
+  // Step 1: Check if room & user exists.
+    const requestedRoom = await currentDatabase.readRoom(requestObject.userLocation);
+    const readUser = await currentDatabase.readUser(requestObject, "Id");
 
-  // Step 2. Verify the client can be read. Db.readClient.
-  const readClient = currentDatabase.readClient(requestObject.userName);
+    if (requestedRoom && readUser) {
 
-  // Step 3. Translate the client.
-  // TODO: Write a client method in Translate.js
-  const translatedClient = Translation.client(readClient);
+        // Step 2: Create a client.
+        await currentDatabase.writeClient(requestObject.userName, requestedRoom.RoomId);
 
-  // Step 4. Alter the user with the Id of the client.
-  requestObject.clientId = translatedClient.clientId;
-  await currentDatabase.alterUser(requestObject);
+    } else {
+        throw Error(`${requestObject.userLocation} is not a registered room.`);
+    }
 
-  // Step 5. Translate the updated user object.
-  const readUser = await currentDatabase.readUser(requestObject, "Id");
-  const translatedUser = Translation.user(readUser);
+    // Step 3: Verify the client can be found.
+    const readClient = await currentDatabase.readClient(requestObject.userName);
 
-  // Step 6. Return the translated user object.
-  return translatedUser;
+    // Step 4: Translate the client & the user.
+    const translatedClient = await Translation.client(readClient);
+    const translatedUser = await Translation.user(readUser);
+
+    // Step 5: Alter the clientId of the user.
+    translatedUser.clientId = translatedClient.clientId;
+    await currentDatabase.alterUser(translatedUser);
+
+    return translatedUser;
 }
 
 module.exports = Request;

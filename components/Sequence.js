@@ -179,8 +179,8 @@ class Sequence {
      */
     set (setColumns) {
         if (this.sequence.includes(this.sequenceSettings.identifiers[2])) {
-            this.alter("memberOperation", this.sequenceSettings.opertions[2]);
-            this.alter("memberSetValues", `${setColumns.join('=  ?, ')} = ?`);
+            this.alter("memberOperation", this.sequenceSettings.operations[2]);
+            this.alter("memberSetValues", `${setColumns.join(' = ?, ')} = ?`);
         }
 
         return this;

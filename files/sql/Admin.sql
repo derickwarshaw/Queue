@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS Admin (
-   AdminId INTEGER PRIMARY KEY,
-   AdminName TEXT NOT NULL,
-
-   CONSTRAINT AdminName_Unique UNIQUE (AdminName)
-);

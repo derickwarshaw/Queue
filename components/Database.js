@@ -108,7 +108,7 @@ class Database {
   async readClient (clientUser) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
-       .all().from("Client").where("ClientId").equals();
+       .all().from("Client").where("ClientName").equals();
 
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [clientUser]);
@@ -119,23 +119,24 @@ class Database {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
         .all().from("Client").join("INNER", "User")
-        .on([["Client", "ClientId"], ["User", "ClientId"]], "User");
+        .on([["Client", "ClientId"], ["User", "ClientId"]], "User")
+        .where("ClientRoom").equals();
 
     return currentQueue.add(function () {
-        return databaseServer.get(databaseQuery.build(), []);
+        return databaseServer.get(databaseQuery.build(), [roomName]);
     });
   }
 
   // TODO: JSDoc this.
-  async writeClient (clientUser) {
+  async writeClient (clientName, clientRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("INSERT")
-       .into("Client", ["ClientId", "ClientName", "ClientStatus"])
+       .into("Client", ["ClientId", "ClientName", "ClientRoom", "ClientStatus"])
        .values("Client");
 
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [
-         Identify(), clientUser, "busy"
+         Identify(), clientName, clientRoom, "busy"
       ]);
     });
   }
@@ -152,6 +153,18 @@ class Database {
          clientStatus, clientId
       ]);
     });
+  }
+
+  async readRoom (roomNuber) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Room").where("RoomName").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [roomNuber]);
+    })
+
+
   }
 
 }
