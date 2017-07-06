@@ -7,6 +7,8 @@ class Client {
     constructor (clientObject) {
         this.clientId = clientObject.ClientId;
         this.clientName = clientObject.ClientName;
+        this.clientRoom = clientObject.ClientRoom;
+        this.clientHandshake = clientObject.ClientHandshake;
         this.clientStatus = clientObject.ClientStatus;
     }
 }

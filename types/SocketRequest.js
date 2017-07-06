@@ -6,10 +6,11 @@ class SocketRequest {
    * @returns {Object} SocketRequest instance.
    */
   constructor (requestSocket) {
-    this.socketObejct = requestSocket;
+    this.socketObject = requestSocket;
     this.socketRequestId = requestSocket.client.id;
     this.socketRequestPath = requestSocket.client.request.url;
     this.socketRequestMethod = requestSocket.client.request.method;
+    this.socketHandshake = requestSocket.handshake.id;
   }
 
   /**
@@ -25,7 +26,7 @@ class SocketRequest {
    * @param {Function} requestHandler Custom handler function.
    */
   authenticate (requestHandler) {
-    this.socketObejct.on('user:auth', requestData => requestHandler('Authenticate', requestData));
+    this.socketObject.on('user:send', requestData => requestHandler('Authenticate', requestData));
   }
 
   /**
@@ -33,39 +34,15 @@ class SocketRequest {
    * @param {Object} establishedUser Signed user object.
    */
   authenticated (establishedUser) {
-    this.socketObejct.emit('user:est', establishedUser);
+    this.socketObject.emit('user:suc', establishedUser);
   }
 
   /**
-   * Report authorisation failure to a user.
-   * @param {Error} unauthorisedReason Reason for failure.
+   * Report failed authentication.
+   * @param {Error} unauthenticatedReason Reason for failure.
    */
-  unauthorised (unauthorisedReason) {
-    this.socketObejct.emit('user:unauth', unauthorisedReason);
-  }
-
-  /**
-   * Request a client.
-   * @param {Function} requestHandler Custom request handler.
-   */
-  request (requestHandler) {
-    this.socketObejct.on('client:auth', requestData => requestHandler('Request', requestData));
-  }
-
-  /**
-   * Report client retrieval to a user.
-   * @param {Object} requestedClient Client retrieved.
-   */
-  requested (requestedClient) {
-    this.socketObejct.emit('client:est', requestedClient);
-  }
-
-  /**
-   * Report a client rejection to a user.
-   * @param {Error} rejectedReason Reason for rejection.
-   */
-  rejected (rejectedReason) {
-    this.socketObejct.emit('client:reject', rejectedReason);
+  unauthenticated (unauthenticatedReason) {
+    this.socketObject.emit('user:fai', unauthenticatedReason);
   }
 }
 

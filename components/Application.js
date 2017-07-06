@@ -20,7 +20,7 @@ class Application {
   constructor (applicationDirectory, applicationPort) {
     this.applicationDirectory = applicationDirectory;
     this.applicationPort = applicationPort;
-    this.applicationRequests = new Map();
+    this.applicationSockets = new Map();
 
     this.applicationExpress = Express();
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
@@ -43,7 +43,6 @@ class Application {
 
     this.applicationExpress.use(function (req, res, next) {
       Translation.webRequest(req, res).then(requestInstance => {
-        currentApplication.applicationRequests.set((new Date).getTime(), requestInstance);
         middleHandler(requestInstance);
         next();
       });

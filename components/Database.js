@@ -16,7 +16,7 @@ class Database {
    * Manage the database.
    * @returns Database instance.
    */
-  constructor () {
+  constructor() {
     this.databaseServer = null;
     this.databaseSigns = new Map();
   }
@@ -25,148 +25,46 @@ class Database {
    * Open the database.
    * @returns {Promise<String>} Database server.
    */
-  async open () {
+  async open() {
     this.databaseServer = await Sql.open('./queue.db');
     return this.databaseServer;
   }
 
   /**
-   * Sign a user.
-   * @param {Object} userObject Unsigned user object.
-   * @returns {Object} Signed user object.
+   * Read a room from the database.
+   * @param {String} roomBy Property to query room by.
+   * @param {Object} rawRoomObject User as sent by client.
+   * @returns {Promise} Found room.
    */
-  signUser (userObject) {
-    userObject.userId = Identify();
-    this.databaseSigns.set(userObject.userName, userObject.userId);
-    return userObject;
+  async readRoom(roomName) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("Room").where(`Room${roomBy}`).equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [
+        rawRoomObject[roomBy]
+      ]);
+    });
   }
 
   /**
    * Read a user from the database.
-   * @param {Object} userObject User.
+   * @param {Object} userRawObject User as sent by a client.
    * @param {String} userBy Property to query users by.
    * @returns {Promise} Found user.
    */
-  async readUser (userObject, userBy) {
+  async readUser(userBy, userRawObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
        .all().from("User").where(`User${userBy}`).equals();
 
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [
-        userObject[`user${userBy}`]
+        userRawObject[`user${userRawObject}`]
       ]);
     });
   }
-
-  /**
-   * Write a user to the database.
-   * @param {Object} userObject User to write.
-   * @returns {Promise}
-   */
-  async writeUser (userObject) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("INSERT")
-       .into("User", ["UserId", "UserName", "UserNumber", "UserLocation", "UserDate"])
-       .values("User");
-
-    return currentQueue.add(function () {
-      return databaseServer.run(databaseQuery.build(), [
-        userObject.userId,
-        userObject.userName,
-        userObject.userNumber,
-        userObject.userLocation,
-        userObject.userDate
-      ]);
-    });
-  }
-
-  /**
-   * Alter a user in the database.
-   * @param {Object} userObject Object to reference during alterations.
-   * @returns {*}
-   */
-  async alterUser (userObject) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("UPDATE")
-       .update("User").set(["UserName", "UserNumber", "UserLocation", "ClientId", "AdminId"])
-       .where("UserId").equals();
-
-    return currentQueue.add(function () {
-      return databaseServer.run(databaseQuery.build(), [
-         userObject.userName,
-         userObject.userNumber,
-         userObject.userLocation,
-         userObject.clientId,
-         userObject.adminId,
-         userObject.userId
-      ]);
-    });
-  }
-
-  // TODO: JSDoc this.
-  async readClient (clientUser) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-       .all().from("Client").where("ClientName").equals();
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), [clientUser]);
-    })
-  }
-
-  async readClientsByRoom (roomName) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-        .all().from("Client").join("INNER", "User")
-        .on([["Client", "ClientId"], ["User", "ClientId"]], "User")
-        .where("ClientRoom").equals();
-
-    return currentQueue.add(function () {
-        return databaseServer.get(databaseQuery.build(), [roomName]);
-    });
-  }
-
-  // TODO: JSDoc this.
-  async writeClient (clientName, clientRoom) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("INSERT")
-       .into("Client", ["ClientId", "ClientName", "ClientRoom", "ClientStatus"])
-       .values("Client");
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), [
-         Identify(), clientName, clientRoom, "busy"
-      ]);
-    });
-  }
-
-  // TODO: JSDoc this.
-  async alterClient (clientId, clientStatus) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("UPDATE")
-       .update("Client").set("ClientStatus")
-       .where("ClientId").equals();
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), [
-         clientStatus, clientId
-      ]);
-    });
-  }
-
-  async readRoom (roomNuber) {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-        .all().from("Room").where("RoomName").equals();
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), [roomNuber]);
-    })
-
-
-  }
-
 }
 
 module.exports = Database;
