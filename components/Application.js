@@ -39,8 +39,6 @@ class Application {
    * @param {Function} middleHandler Custom handler function.
    */
   middle (middleHandler) {
-    const currentApplication = this;
-
     this.applicationExpress.use(function (req, res, next) {
       Translation.webRequest(req, res).then(requestInstance => {
         middleHandler(requestInstance);
@@ -51,11 +49,15 @@ class Application {
 
   /**
    * Creates a route for the server.
-   * @param {String} routePath Path to accept as route.
-   * @returns {Route} Express route.
+   * @returns {Route} Express router.
    */
-  route (routePath) {
-    return this.applicationExpress.route(routePath);
+  router () {
+    return Express.Router();
+  }
+
+  // TODO: JSdoc.
+  route (routePath, routeRouter) {
+    this.applicationExpress.use(routePath, routeRouter);
   }
 
   /**

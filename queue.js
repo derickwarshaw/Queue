@@ -15,6 +15,7 @@ module.exports.currentDatabase = currentDatabase;
 const currentPresent = currentApplication.component('Present');
 
 const Translation = currentApplication.component('Translation');
+const API = currentApplication.component('API');
 
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
@@ -23,33 +24,26 @@ currentApplication.middle(function (requestInstance) {
   console.log(`[Web Request] ${requestInstance.summary()}`);
 });
 
-currentApplication.route('/')
-   .get(function (req, res) {
-     "use strict";
-     res.sendFile('index.html');
-   });
-
-currentApplication.route('/room/:roomId')
-   .get(function (getRequest, getResolve) {
+const roomRouter = currentApplication.router()
+   .get('/', function (roomReq, roomRes) {
      "use strict";
 
-     const roomId = getRequest.params["roomId"].toUpperCase();
-     currentPresent.rooms(roomId, getRequest, getResolve)
-         .then(renderedRooms => getResolve.send(renderedRooms));
-   });
-
-currentApplication.route('/admin')
-   .get(function (getRequest, getResolve) {
+     API.rooms()
+        .then(rooms => roomRes.json(rooms))
+        .catch(reason => roomRes.send(reason));
+   })
+   .get('/:roomName', function (roomReq, roomRes) {
      "use strict";
 
-     currentQueue.add(function () {
-       // TODO: Consider how you're going to generate the context for this.
-       const queuedRender = currentApplication.render(getRequest, getResolve);
-       return queuedRender('admin', {});
-     })
-        .then(getResult => getResolve.send(getResult))
-        .catch(getError => getResolve.status(404));
-   });
+     API.room(roomReq.params.roomName)
+        .then(room => roomRes.json(room))
+        .catch(reason => roomRes.send(reason));
+   })
+
+currentApplication.route('/api/room', roomRouter);
+
+
+//#
 
 currentDatabase.open()
    .then(openDatabase => {

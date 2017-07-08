@@ -57,6 +57,17 @@ class Database {
         });
     }
 
+    // TODO: JSdoc.
+    readUsers () {
+      const databaseServer = this.databaseServer;
+      const databaseQuery = new Sequence("SELECT")
+         .all().from("User");
+
+      return currentQueue.add(function () {
+        return databaseServer.get(databaseQuery.build(), []);
+      });
+    }
+
     /**
      * Alter a user in the database.
      * @param {Object} userObject User to alter.
@@ -130,6 +141,7 @@ class Database {
         });
     }
 
+    // TODO: JSdoc.
     resolveClient (clientDistinctor) {
         const databaseServer = this.databaseServer;
         const databaseQuery = new Sequence("SELECT")
@@ -140,6 +152,7 @@ class Database {
         })
     }
 
+    // TODO: JSdoc.
     alterClient (clientObject) {
         const databaseServer = this.databaseServer;
         const databaseQuery = new Sequence("UPDATE")
@@ -158,6 +171,7 @@ class Database {
         });
     }
 
+    // TODO: JSdoc
     writeClient (clientObect) {
         const databaseServer = this.databaseServer;
         const databaseQuery = new Sequence("INSERT")
@@ -174,46 +188,29 @@ class Database {
         });
     }
 
-    // SDoc this.
+    // TODO: JSDoc.
     readRoom(roomBy, roomObject) {
-        const databaseSerer = this.databaseServer;
+        const databaseServer = this.databaseServer;
         const databaseQuery = new Sequence("SELECT")
             .all().from("Room").where(`room${roomBy}`).equals();
 
         return currentQueue.add(function () {
-            return databaseSerer.get(databaseQuery.build(), [
+            return databaseServer.get(databaseQuery.build(), [
                 roomObject[`room${roomBy}`]
             ])
         })
     }
 
+    // TODO: JSdoc.
+    readRooms () {
+      const databaseServer = this.databaseServer;
+      const databaseQuery = new Sequence("SELECT")
+         .all().from("Room");
 
-
-//     /**
-//      * Write a client to the database.
-//      * @param {Object} clientObject Client to register.
-//      * @returns {*} ?
-//      */
-//     async writeClient (clientObject) {
-//         const databaseServer = this.databaseServer;
-//         const databaseQuery = new Sequence("INSERT")
-//             .into("Client", [
-//                 "ClientDistinctor",
-//                 "ClientRoomDistinctor",
-//                 "clientHandshake",
-//                 "clientStatus"
-//             ])).values();
-//
-//     return await currentQueue.add(function () {
-//     return currentDatabase.run(databaseQuery.build(), [
-//         Identify(),
-//         clientObject.clientDistinctor,
-//         clientObject.ClientRoomDistinctor,
-//         clientObject.clientHandshake,
-//         "busy"
-//     ]);
-// });
-// }
+      return currentQueue.add(function () {
+        return databaseServer.get(databaseQuery.build(), []);
+      });
+    }
 }
 
 module.exports = Database;
