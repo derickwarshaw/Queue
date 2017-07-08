@@ -52,6 +52,7 @@ class Application {
    * @returns {Route} Express router.
    */
   router () {
+    // TODO: Implement this so the API handlers can be in external files.
     return Express.Router();
   }
 
