@@ -52,7 +52,11 @@ class SocketRequest {
 
   // TODO: JSdoc this.
   registered (registeredUser) {
-    this.socketObject.emit('client:suc', registeredUser);
+    if (!registeredUser) {
+      this.unregistered({message: "registeredUser was null for some reason."});
+    } else {
+      this.socketObject.emit('client:suc', registeredUser);
+    }
   }
 
   // TODO: JSdoc this.
