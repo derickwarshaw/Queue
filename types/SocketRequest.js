@@ -57,7 +57,8 @@ class SocketRequest {
 
   // TODO: JSdoc this.
   unregistered (unregisteredReason) {
-    this.socketObject.emit('client:fai', unregisteredReason.stack);
+    console.log(unregisteredReason);
+    this.socketObject.emit('client:fai', unregisteredReason.message);
   }
 }
 
