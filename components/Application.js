@@ -49,16 +49,10 @@ class Application {
 
   /**
    * Creates a route for the server.
-   * @returns {Route} Express router.
    */
-  router () {
-    // TODO: Implement this so the API handlers can be in external files.
-    return Express.Router();
-  }
-
-  // TODO: JSdoc.
-  route (routePath, routeRouter) {
-    this.applicationExpress.use(routePath, routeRouter);
+  route (routeName) {
+    const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
+    this.applicationExpress.use(`/api/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
 
   /**
