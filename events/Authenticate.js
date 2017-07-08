@@ -10,7 +10,7 @@ async function Authenticate (authenticateUser) {
     if (authenticateUser && authenticateUser.userDistinctor) {
         return await currentDatabase.readUser("Distinctor", authenticateUser);
     } else if (authenticateUser && !authenticateUser.userDistinctor) {
-        const readUser = currentDatabase.readUser("Name", authenticateUser);
+        const readUser = await currentDatabase.readUser("Name", authenticateUser);
 
         if (readUser) {
             return readUser;

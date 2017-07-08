@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/types/Client.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/types/User.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Register.js" afterPath="$PROJECT_DIR$/events/Register.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Translation.js" afterPath="$PROJECT_DIR$/components/Translation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Authenticate.js" afterPath="$PROJECT_DIR$/events/Authenticate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/SocketRequest.js" afterPath="$PROJECT_DIR$/types/SocketRequest.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,6 +22,56 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="Database.js" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/components/Database.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="430">
+                    <caret line="184" column="40" lean-forward="false" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="40" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="Application.js" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/components/Application.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="169">
+                    <caret line="90" column="5" lean-forward="false" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="Present.js" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/components/Present.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="0">
+                    <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="Sequence.js" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/components/Sequence.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="124">
+                    <caret line="188" column="7" lean-forward="true" selection-start-line="188" selection-start-column="7" selection-end-line="188" selection-end-column="7" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -39,8 +92,18 @@
       <file leaf-file-name="queue.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
+            <state relative-caret-position="126">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translation.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Translation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -49,18 +112,18 @@
       <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="59" column="3" lean-forward="true" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
+            <state relative-caret-position="473">
+              <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Database.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Database.js">
+      <file leaf-file-name="Authenticate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="184" column="40" lean-forward="false" selection-start-line="184" selection-start-column="34" selection-end-line="184" selection-end-column="40" />
+            <state relative-caret-position="284">
+              <caret line="19" column="56" lean-forward="true" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -88,6 +151,7 @@
       <find>UserObjec</find>
       <find>UserObject</find>
       <find>{</find>
+      <find>Client</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,17 +197,17 @@
         <option value="$PROJECT_DIR$/views/room.hbs" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
         <option value="$PROJECT_DIR$/components/Present.js" />
-        <option value="$PROJECT_DIR$/components/Translation.js" />
         <option value="$PROJECT_DIR$/components/Sequence.js" />
         <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/types/Client.js" />
         <option value="$PROJECT_DIR$/events/Request.js" />
-        <option value="$PROJECT_DIR$/events/Authenticate.js" />
         <option value="$PROJECT_DIR$/queue.js" />
         <option value="vm:359" />
         <option value="$PROJECT_DIR$/components/Database.js" />
-        <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/events/Register.js" />
+        <option value="$PROJECT_DIR$/components/Translation.js" />
+        <option value="$PROJECT_DIR$/types/SocketRequest.js" />
+        <option value="$PROJECT_DIR$/events/Authenticate.js" />
       </list>
     </option>
   </component>
@@ -204,8 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -290,6 +352,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -473,11 +537,12 @@
       <workItem from="1499506487180" duration="599000" />
       <workItem from="1499510457723" duration="6138000" />
       <workItem from="1499533247710" duration="6577000" />
+      <workItem from="1499541814290" duration="1928000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193146000" />
+    <option name="totallyTimeSpent" value="195074000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -490,6 +555,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112223394" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -500,7 +566,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.48608536" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.48524764" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3726977" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3726977" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -556,252 +622,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/components/Database.js</url>
-          <line>137</line>
-          <properties />
-          <option name="timeStamp" value="350" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/components/Database.js</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="351" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/components/Database.js</url>
-          <line>76</line>
-          <properties />
-          <option name="timeStamp" value="352" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/types/SocketRequest.js</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="379" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="380" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>82</line>
-          <properties />
-          <option name="timeStamp" value="381" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>109</line>
-          <properties />
-          <option name="timeStamp" value="382" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/types/SocketRequest.js</url>
-          <line>49</line>
-          <properties lambdaOrdinal="0" />
-          <option name="timeStamp" value="384" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/queue.js</url>
-          <line>71</line>
-          <properties lambdaOrdinal="0" />
-          <option name="timeStamp" value="386" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/queue.js</url>
-          <line>70</line>
-          <properties lambdaOrdinal="0" />
-          <option name="timeStamp" value="387" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>14</line>
-          <properties />
-          <option name="timeStamp" value="388" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>17</line>
-          <properties />
-          <option name="timeStamp" value="389" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>26</line>
-          <properties />
-          <option name="timeStamp" value="391" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>25</line>
-          <properties />
-          <option name="timeStamp" value="392" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="394" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>37</line>
-          <properties />
-          <option name="timeStamp" value="395" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="396" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="397" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>46</line>
-          <properties />
-          <option name="timeStamp" value="398" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="399" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>52</line>
-          <properties />
-          <option name="timeStamp" value="400" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="401" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="402" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>67</line>
-          <properties />
-          <option name="timeStamp" value="403" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="404" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>73</line>
-          <properties />
-          <option name="timeStamp" value="405" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>76</line>
-          <properties />
-          <option name="timeStamp" value="406" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>79</line>
-          <properties />
-          <option name="timeStamp" value="407" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>94</line>
-          <properties />
-          <option name="timeStamp" value="409" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>97</line>
-          <properties />
-          <option name="timeStamp" value="410" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>100</line>
-          <properties />
-          <option name="timeStamp" value="411" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>103</line>
-          <properties />
-          <option name="timeStamp" value="412" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>106</line>
-          <properties />
-          <option name="timeStamp" value="413" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="414" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>118</line>
-          <properties />
-          <option name="timeStamp" value="415" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/types/SocketRequest.js</url>
-          <line>54</line>
-          <properties />
-          <option name="timeStamp" value="416" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="417" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>120</line>
-          <properties />
-          <option name="timeStamp" value="418" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>122</line>
-          <properties />
-          <option name="timeStamp" value="420" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="421" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="422" />
+      <option name="time" value="437" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1029,22 +853,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Present.js" />
     <entry file="file://$PROJECT_DIR$/files/sql/Client.sql" />
-    <entry file="file://$PROJECT_DIR$/components/Translation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1508">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Sequence.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types/Client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -1053,17 +862,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/events/Request.js" />
-    <entry file="file://$PROJECT_DIR$/components/Application.js">
+    <entry file="file://$PROJECT_DIR$/events/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="90" column="5" lean-forward="false" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="23" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+        <state relative-caret-position="610">
+          <caret line="118" column="6" lean-forward="false" selection-start-line="118" selection-start-column="6" selection-end-line="118" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1076,29 +878,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/queue.js">
+    <entry file="file://$PROJECT_DIR$/components/Application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="71" column="52" lean-forward="false" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
+        <state relative-caret-position="169">
+          <caret line="90" column="5" lean-forward="false" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/events/Register.js">
+    <entry file="file://$PROJECT_DIR$/components/Present.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="118" column="6" lean-forward="false" selection-start-line="118" selection-start-column="6" selection-end-line="118" selection-end-column="6" />
-          <folding>
-            <element signature="e#1651#2765#0" expanded="false" />
-            <element signature="e#2792#3763#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Translation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Sequence.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="188" column="7" lean-forward="true" selection-start-line="188" selection-start-column="7" selection-end-line="188" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/queue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="19" column="56" lean-forward="true" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="59" column="3" lean-forward="true" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
+        <state relative-caret-position="473">
+          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
           <folding />
         </state>
       </provider>

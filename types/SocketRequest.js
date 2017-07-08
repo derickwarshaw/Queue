@@ -42,7 +42,7 @@ class SocketRequest {
    * @param {Error} unauthenticatedReason Reason for failure.
    */
   unauthenticated (unauthenticatedReason) {
-    this.socketObject.emit('user:fai', unauthenticatedReason.stack);
+    this.socketObject.emit('user:fai', unauthenticatedReason);
   }
 
   // TODO: JSDoc this.
@@ -62,7 +62,7 @@ class SocketRequest {
   // TODO: JSdoc this.
   unregistered (unregisteredReason) {
     console.log(unregisteredReason);
-    this.socketObject.emit('client:fai', unregisteredReason.message);
+    this.socketObject.emit('client:fai', unregisteredReason);
   }
 }
 
