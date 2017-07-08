@@ -9,39 +9,40 @@ const currentDatabase = require('../queue').currentDatabase;
  */
 async function Register (registerUser, registerSocket) {
 
-    // Validate the user exists.
-    if (!(await currentDatabase.readUser("Distinctor", registerUser))) {
-        throw Error("User does not exist.");
-    }
+    // Step 1: Validate the user exists.
+    const readUser = await currentDatabase.readUser("Distinctor", registerUser);
+    const readRoom = await currentDatabase.readRoom("Name", registerUser.userClient.clientRoom);
 
-    try {
-        // If user does not have a client distinctor, this should throw an error.
-        return await currentDatabase.readClient("Distinctor", registerUser.userClient);
+    // Step 2: Validate the room.
+    if (readRoom) {
 
-    } catch (registerError) {
-        // There's no client registered.
-        let readRoom;
+        registerUser.userClient.clientRoom.roomDistinctor = readRoom.roomDistinctor;
+        registerUser.userClient.clientHandshake = registerSocket.socketHandshake;
 
-        // Step 1: Validate the room/get the distinctor.
-        try {
-            readRoom = currentDatabase.readRoom("Name", registerUser.userRoom);
-        } catch (roomError) {
-            throw Error("User has not been given a room.")
+        // Step 3: Validate the client exists.
+        if (readUser && readUser.userClientDistinctor) {
+            // Step 3A: Update the existing client.
+            const resolvedClient = await currentDatabase.resolveClient(readUser.userClientDistinctor);
+            registerUser.userClient.clientDistinctor = resolvedClient.clientDistinctor;
+
+            await currentDatabase.alterClient(registerUser.userClient);
+
+            await currentDatabase.alterUser(registerUser);
+            return currentDatabase.readUser("Distinctor", registerUser);
+
+        } else if (readUser && !readUser.userClientDistinctor) {
+            // Step 3B: Create a new client.
+            registerUser.userClient = currentDatabase.signClient(registerUser.userClient);
+
+            await currentDatabase.writeClient(registerUser.userClient);
+            return await currentDatabase.readClient("Distinctor", registerUser.userClient);
+
+        } else if (!readUser) {
+            // Step 3C: Report bad user.
+            throw Error(`User '${registerUser.userName}' does not exist.`);
         }
-
-        if (readRoom) {
-            registerUser.userRoom.roomDistinctor = readRoom.roomDistinctor;
-        } else {
-            throw Error(`${registerUser.userRoom.roomName} is not a registered room.`);
-        }
-
-        // Step 2: Get the handshake.
-        registerUser.userClient.clientHandshake = registerSocket.handshake.id;
-
-        // Step 3: Write the client.
-        await currentDatabase.writeClient(registerUser.userClient);
-
-        // Step 4: Read the client.
-        return await currentDatabase.readClient("Distinctor", registerUser.userClient.clientDistinctor);
     }
 }
+
+
+module.exports = Register;

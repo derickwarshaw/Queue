@@ -61,7 +61,15 @@ currentDatabase.open()
 
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)
-            .then(handleData => socketRequest.authenticated(handleData));
+             .then(handleData => socketRequest.authenticated(handleData))
+             .catch(handleReason => socketRequest.unauthenticated(handleReason));
+
        });
+
+       socketRequest.register(function (regName, regData) {
+           currentApplication.handle(regName)(regData, socketRequest)
+               .then(handleData => socketRequest.registered(handleData))
+               .catch(handleReason => socketRequest.unregistered(handleReason));
+       })
      })
    });

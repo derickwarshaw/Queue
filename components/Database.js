@@ -107,11 +107,16 @@ class Database {
     }
 
 
+    signClient (clientObect) {
+        clientObect.clientDistinctor = Identify();
+        return clientObect;
+    }
+
     /**
      * Read a client from the database.
      * @param clientBy Property to query the user by.
      * @param clientObject User to query against.
-     * @returns {Promise} Read client.
+     * @returns {*} Read client.
      */
     readClient (clientBy, clientObject) {
         const databaseServer = this.databaseServer;
@@ -120,9 +125,66 @@ class Database {
 
         return currentQueue.add(function () {
             return databaseServer.get(databaseQuery.build(), [
-                clientObject[clientBy]
+                clientObject[`client${clientBy}`]
             ]);
         });
+    }
+
+    resolveClient (clientDistinctor) {
+        const databaseServer = this.databaseServer;
+        const databaseQuery = new Sequence("SELECT")
+            .all().from("Client").where("clientDistinctor").equals();
+
+        return currentQueue.add(function () {
+            return databaseServer.get(databaseQuery.build(), [clientDistinctor]);
+        })
+    }
+
+    alterClient (clientObject) {
+        const databaseServer = this.databaseServer;
+        const databaseQuery = new Sequence("UPDATE")
+            .update("Client").set(["clientDistinctor", "clientRoomDistinctor", "clientHandshake", "clientStatus"])
+            .values("Client")
+            .where("clientDistinctor").equals();
+
+        return currentQueue.add(function () {
+            return databaseServer.get(databaseQuery.build(), [
+                clientObject.clientDistinctor,
+                clientObject.clientRoom.roomDistinctor,
+                clientObject.clientHandshake,
+                clientObject.clientStatus,
+                clientObject.clientDistinctor
+            ]);
+        });
+    }
+
+    writeClient (clientObect) {
+        const databaseServer = this.databaseServer;
+        const databaseQuery = new Sequence("INSERT")
+            .into("Client", ["clientDistinctor", "clientRoomDistinctor", "clientHandshake", "clientStatus"])
+            .values("Client");
+
+        return currentQueue.add(function () {
+            return databaseServer.run(databaseQuery.build(), [
+                clientObect.clientDistinctor,
+                clientObect.clientRoom.roomDistinctor,
+                clientObect.clientHandshake,
+                clientObect.clientStatus
+            ]);
+        });
+    }
+
+    // SDoc this.
+    readRoom(roomBy, roomObject) {
+        const databaseSerer = this.databaseServer;
+        const databaseQuery = new Sequence("SELECT")
+            .all().from("Room").where(`room${roomBy}`).equals();
+
+        return currentQueue.add(function () {
+            return databaseSerer.get(databaseQuery.build(), [
+                roomObject[`room${roomBy}`]
+            ])
+        })
     }
 
 

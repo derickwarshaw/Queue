@@ -10,7 +10,7 @@ class SocketRequest {
     this.socketRequestId = requestSocket.client.id;
     this.socketRequestPath = requestSocket.client.request.url;
     this.socketRequestMethod = requestSocket.client.request.method;
-    this.socketHandshake = requestSocket.handshake.id;
+    this.socketHandshake = requestSocket.handshake.issued;
   }
 
   /**
@@ -42,7 +42,22 @@ class SocketRequest {
    * @param {Error} unauthenticatedReason Reason for failure.
    */
   unauthenticated (unauthenticatedReason) {
-    this.socketObject.emit('user:fai', unauthenticatedReason);
+    this.socketObject.emit('user:fai', unauthenticatedReason.stack);
+  }
+
+  // TODO: JSDoc this.
+  register (registerHandler) {
+    this.socketObject.on('client:send', registerData => registerHandler('Register', registerData));
+  }
+
+  // TODO: JSdoc this.
+  registered (registeredUser) {
+    this.socketObject.emit('client:suc', registeredUser);
+  }
+
+  // TODO: JSdoc this.
+  unregistered (unregisteredReason) {
+    this.socketObject.emit('client:fai', unregisteredReason.stack);
   }
 }
 
