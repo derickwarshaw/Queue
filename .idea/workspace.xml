@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/types/Client.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/types/User.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Translation.js" afterPath="$PROJECT_DIR$/components/Translation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Authenticate.js" afterPath="$PROJECT_DIR$/events/Authenticate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/SocketRequest.js" afterPath="$PROJECT_DIR$/types/SocketRequest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Register.js" afterPath="$PROJECT_DIR$/events/Register.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -109,11 +103,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="473">
               <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Register.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/events/Register.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -204,10 +208,10 @@
         <option value="$PROJECT_DIR$/queue.js" />
         <option value="vm:359" />
         <option value="$PROJECT_DIR$/components/Database.js" />
-        <option value="$PROJECT_DIR$/events/Register.js" />
         <option value="$PROJECT_DIR$/components/Translation.js" />
         <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/events/Authenticate.js" />
+        <option value="$PROJECT_DIR$/events/Register.js" />
       </list>
     </option>
   </component>
@@ -537,12 +541,12 @@
       <workItem from="1499506487180" duration="599000" />
       <workItem from="1499510457723" duration="6138000" />
       <workItem from="1499533247710" duration="6577000" />
-      <workItem from="1499541814290" duration="1928000" />
+      <workItem from="1499541814290" duration="2749000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195074000" />
+    <option name="totallyTimeSpent" value="195895000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -555,7 +559,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112223394" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -566,7 +569,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.48608536" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.48524764" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3726977" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3726977" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -862,14 +865,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/events/Request.js" />
-    <entry file="file://$PROJECT_DIR$/events/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="118" column="6" lean-forward="false" selection-start-line="118" selection-start-column="6" selection-end-line="118" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -930,6 +925,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
           <folding />
         </state>
       </provider>
