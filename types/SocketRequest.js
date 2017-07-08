@@ -45,23 +45,27 @@ class SocketRequest {
     this.socketObject.emit('user:fai', unauthenticatedReason);
   }
 
-  // TODO: JSDoc this.
+  /**
+   * Register event listener.
+   * @param {Function} registerHandler Function to handle register requests.
+   */
   register (registerHandler) {
     this.socketObject.on('client:send', registerData => registerHandler('Register', registerData));
   }
 
-  // TODO: JSdoc this.
-  registered (registeredUser) {
-    if (!registeredUser) {
-      this.unregistered({message: "registeredUser was null for some reason."});
-    } else {
-      this.socketObject.emit('client:suc', registeredUser);
-    }
+  /**
+   * Register success emitter.
+   * @param {Object} registeredObject Updated user/client combo.
+   */
+  registered (registeredObject) {
+    this.socketObject.emit('client:suc', registeredObject);
   }
 
-  // TODO: JSdoc this.
+  /**
+   * Register failure emitter.
+   * @param {Error} unregisteredReason Error event.
+   */
   unregistered (unregisteredReason) {
-    console.log(unregisteredReason);
     this.socketObject.emit('client:fai', unregisteredReason);
   }
 }
