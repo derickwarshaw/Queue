@@ -12,8 +12,10 @@ const Database = currentApplication.component('Database');
 const currentDatabase = new Database();
 module.exports.currentDatabase = currentDatabase;
 
-const currentPresent = currentApplication.component('Present');
 
+
+
+const Present = currentApplication.component('Present');
 const Translation = currentApplication.component('Translation');
 const API = currentApplication.component('API');
 
@@ -46,7 +48,13 @@ currentDatabase.open()
            currentApplication.handle(regName)(regData, socketRequest)
                .then(handleData => socketRequest.registered(handleData))
                .catch(handleReason => socketRequest.unregistered(handleReason));
-       })
+       });
+
+       socketRequest.update(function (upName, upData) {
+         currentApplication.handle(upName)(upData)
+            .then(handleData => socketRequest.updated(handleData))
+            .catch(handleReason => socketRequest.stagnated(handleReason));
+       });
 
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)

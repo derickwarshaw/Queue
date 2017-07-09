@@ -69,6 +69,18 @@ class SocketRequest {
     this.socketObject.emit('client:fai', unregisteredReason);
   }
 
+  update (updateHandler) {
+    this.socketObject.on('update:send', updateData => updateHandler('Update', updateData));
+  }
+
+  updated (updatedData) {
+    this.socketObject.emit('update:suc', updatedData);
+  }
+
+  stagnated (stagnatedReason) {
+    this.socketObject.emit('update:fai', stagnatedReason);
+  }
+
   /**
    * Disconnect event listener.
    * @param {Function} avoidHandler Custom handler for the disconnect event.
