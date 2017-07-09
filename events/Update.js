@@ -6,12 +6,16 @@ async function Update (updateUser) {
   const readUser = await currentDatabase.readUser("Distinctor", updateUser);
 
   if (readUser) {
-    const readClient = await currentDatabase.resolveClient(readUser.userClientDistinctor);
+    const readClient = await currentDatabase.readClient("Distinctor", {
+      clientDistinctor: readUser.userClientDistinctor
+    });
 
     if (readClient) {
 
       await currentDatabase.alterClient(updateUser.userClient);
-      return await currentDatabase.resolveClient(readUser.userClientDistinctor);
+      return await currentDatabase.readClient("Distinctor", {
+        clientDistinctor: readUser.userClientDistinctor
+      });
 
     } else {
       throw Error("Client does not exist.");

@@ -152,21 +152,6 @@ class Database {
   }
 
   /**
-   * Resolve a client with a distinctor.
-   * @param {String} clientDistinctor Distinctor of the client.
-   * @returns {*} Client with provided distinctor.
-   */
-  resolveClient (clientDistinctor) {
-      const databaseServer = this.databaseServer;
-      const databaseQuery = new Sequence("SELECT")
-          .all().from("Client").where("clientDistinctor").equals();
-
-      return currentQueue.add(function () {
-          return databaseServer.get(databaseQuery.build(), [clientDistinctor]);
-      })
-  }
-
-  /**
    * Alter a client database record.
    * @param {Object} clientObject Client to reference with alterations.
    * @returns {*} ?

@@ -16,7 +16,9 @@ async function Register (registerUser, registerSocket) {
     registerUser.userClient.clientHandshake = registerSocket.socketHandshake;
 
     if (readUser && readUser.userClientDistinctor) {
-      const resolvedClient = await currentDatabase.resolveClient(readUser.userClientDistinctor);
+      const resolvedClient = await currentDatabase.readClient("Distinctor", {
+        clientDistinctor: readUser.userClientDistinctor
+      });
 
       if (resolvedClient && resolvedClient.clientDistinctor) {
         registerUser.userClient.clientDistinctor = resolvedClient.clientDistinctor;
