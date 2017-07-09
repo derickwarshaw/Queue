@@ -69,8 +69,10 @@ class SocketRequest {
     this.socketObject.emit('client:fai', unregisteredReason);
   }
 
-
-
+  /**
+   * Disconnect event listener.
+   * @param {Function} avoidHandler Custom handler for the disconnect event.
+   */
   avoid (avoidHandler) {
     this.socketObject.on('disconnect', disconnectData => avoidHandler('Avoid', disconnectData));
   }

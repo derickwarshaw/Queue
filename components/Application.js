@@ -49,6 +49,7 @@ class Application {
 
   /**
    * Creates a route for the server.
+   * @param {String} routeName Name of the route to establish.
    */
   route (routeName) {
     const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
@@ -93,14 +94,19 @@ class Application {
   }
 
   /**
-   *
-   * @param handleEvent
-   * @returns {*}
+   * Query a socket event handler.
+   * @param {String} handleEvent Event name.
+   * @returns {*} Event handler.
    */
   handle (handleEvent) {
     return require(this.applicationDirectory + '/events/' + handleEvent);
   }
 
+  /**
+   * Retreive a server custom component.
+   * @param {String} componentName Name of the custom component.
+   * @returns {*} ?
+   */
   component (componentName) {
     switch (componentName) {
       case "Identify":
@@ -113,6 +119,7 @@ class Application {
         return require(this.applicationDirectory + '/components/' + componentName);
     }
   }
+
 }
 
 module.exports = Application;

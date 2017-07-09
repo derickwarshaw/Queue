@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/events/Avoid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/API.js" afterPath="$PROJECT_DIR$/components/API.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Application.js" afterPath="$PROJECT_DIR$/components/Application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Database.js" afterPath="$PROJECT_DIR$/components/Database.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Sequence.js" afterPath="$PROJECT_DIR$/components/Sequence.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.js" afterPath="$PROJECT_DIR$/queue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Present.js" afterPath="$PROJECT_DIR$/components/Present.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/events/Avoid.js" afterPath="$PROJECT_DIR$/events/Avoid.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/SocketRequest.js" afterPath="$PROJECT_DIR$/types/SocketRequest.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,26 +22,6 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="Database.js" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/components/Database.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="371">
-                    <caret line="139" column="15" lean-forward="true" selection-start-line="139" selection-start-column="15" selection-end-line="139" selection-end-column="15" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -58,80 +38,7 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="queue.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/queue.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="712">
-                  <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Sequence.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Sequence.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="263">
-                  <caret line="263" column="48" lean-forward="true" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="48" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Application.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Application.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="334">
-                  <caret line="53" column="43" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="326">
-                  <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
-                  <folding>
-                    <element signature="n#!!doc;n#summary#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#summary#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#authenticate#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#authenticate#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#authenticated#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#authenticated#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#register#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#registered#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#registered#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!doc;n#unregistered#0;n#SocketRequest#0" expanded="false" />
-                    <element signature="n#!!block;n#unregistered#0;n#SocketRequest#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Avoid.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/events/Avoid.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -198,22 +105,22 @@
         <option value="$PROJECT_DIR$/views/layouts/main.hbs" />
         <option value="$PROJECT_DIR$/views/room.hbs" />
         <option value="$PROJECT_DIR$/views/layouts/main.handlebars" />
-        <option value="$PROJECT_DIR$/components/Present.js" />
         <option value="$PROJECT_DIR$/types/Client.js" />
         <option value="$PROJECT_DIR$/events/Request.js" />
         <option value="vm:359" />
         <option value="$PROJECT_DIR$/components/Translation.js" />
         <option value="$PROJECT_DIR$/events/Authenticate.js" />
         <option value="$PROJECT_DIR$/events/Register.js" />
-        <option value="$PROJECT_DIR$/components/API.js" />
         <option value="$PROJECT_DIR$/routes/User.js" />
-        <option value="$PROJECT_DIR$/routes/Room.js" />
-        <option value="$PROJECT_DIR$/components/Application.js" />
-        <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/queue.js" />
-        <option value="$PROJECT_DIR$/components/Database.js" />
         <option value="$PROJECT_DIR$/components/Sequence.js" />
+        <option value="$PROJECT_DIR$/types/SocketRequest.js" />
+        <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/events/Avoid.js" />
+        <option value="$PROJECT_DIR$/components/Database.js" />
+        <option value="$PROJECT_DIR$/components/Present.js" />
+        <option value="$PROJECT_DIR$/components/API.js" />
+        <option value="$PROJECT_DIR$/routes/Room.js" />
       </list>
     </option>
   </component>
@@ -562,11 +469,12 @@
       <workItem from="1499551337746" duration="5078000" />
       <workItem from="1499556533138" duration="561000" />
       <workItem from="1499557738684" duration="1516000" />
+      <workItem from="1499559566247" duration="1216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203819000" />
+    <option name="totallyTimeSpent" value="205035000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -579,9 +487,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112223394" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112223394" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4182015" sideWeight="0.51896733" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="115" y="301" width="1745" height="433" />
@@ -649,7 +556,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="451" />
+      <option name="time" value="453" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -659,6 +566,8 @@
         <state relative-caret-position="357">
           <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
           <folding>
+            <element signature="n#!!doc;n#constructor#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#authenticate#0;n#SocketRequest#0" expanded="false" />
@@ -668,10 +577,13 @@
             <element signature="n#!!doc;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#register#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#register#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#unregistered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unregistered#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!doc;n#avoid#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#avoid#0;n#SocketRequest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -680,7 +592,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -721,6 +664,8 @@
         <state relative-caret-position="357">
           <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
           <folding>
+            <element signature="n#!!doc;n#constructor#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#authenticate#0;n#SocketRequest#0" expanded="false" />
@@ -730,10 +675,13 @@
             <element signature="n#!!doc;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#register#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#register#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#unregistered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unregistered#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!doc;n#avoid#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#avoid#0;n#SocketRequest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,7 +697,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,7 +761,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -806,7 +816,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -827,6 +868,8 @@
         <state relative-caret-position="378">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#constructor#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#authenticate#0;n#SocketRequest#0" expanded="false" />
@@ -836,10 +879,13 @@
             <element signature="n#!!doc;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#register#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#register#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#unregistered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unregistered#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!doc;n#avoid#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#avoid#0;n#SocketRequest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -869,22 +915,6 @@
     <entry file="file://$PROJECT_DIR$/files/sql/Client.sql" />
     <entry file="file://$PROJECT_DIR$/types/Client.js" />
     <entry file="file://$PROJECT_DIR$/events/Request.js" />
-    <entry file="file://$PROJECT_DIR$/components/Present.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Translation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/events/Register.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
@@ -901,30 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/Room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/API.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="53" column="43" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-115">
@@ -935,9 +941,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
+        <state relative-caret-position="462">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#constructor#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#summary#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#authenticate#0;n#SocketRequest#0" expanded="false" />
@@ -947,42 +955,133 @@
             <element signature="n#!!doc;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unauthenticated#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#register#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#register#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#registered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!doc;n#unregistered#0;n#SocketRequest#0" expanded="false" />
             <element signature="n#!!block;n#unregistered#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!doc;n#avoid#0;n#SocketRequest#0" expanded="false" />
+            <element signature="n#!!block;n#avoid#0;n#SocketRequest#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="139" column="15" lean-forward="true" selection-start-line="139" selection-start-column="15" selection-end-line="139" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Sequence.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="263" column="48" lean-forward="true" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/queue.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="712">
-          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <caret line="54" column="9" lean-forward="false" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#resolveClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc;n#constructor#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#middle#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#middle#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#route#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#route#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#render#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#render#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#listen#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#listen#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#socket#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#socket#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#handle#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#handle#0;n#Application#0" expanded="false" />
+            <element signature="n#!!doc;n#component#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#component#0;n#Application#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/events/Avoid.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/Room.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/API.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="89" column="2" lean-forward="false" selection-start-line="89" selection-start-column="2" selection-end-line="89" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Translation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Sequence.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="263" column="48" lean-forward="false" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Present.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding />
         </state>
       </provider>

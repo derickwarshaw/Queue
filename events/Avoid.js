@@ -1,9 +1,17 @@
 const currentDatabase = require('../queue').currentDatabase;
 
+/**
+ * Dispose of unused clients.
+ * @param {Object} avoidData Data sent by the client.
+ * @param {Object} avoidSocket Socket object.
+ * @returns {Promise.<void>}
+ */
 async function Avoid (avoidData, avoidSocket) {
   "use strict";
 
-  await currentDatabase.deleteClient(avoidSocket.socketHandshake);
+  await currentDatabase.deleteClient("Handshake", {
+    clientHandshake: avoidSocket.socketHandshake
+  });
   const readClient = await currentDatabase.readClient("Handshake", {
     clientHandshake: avoidSocket.socketHandshake
   });
