@@ -152,6 +152,20 @@ class Database {
   }
 
   /**
+   * Read all clients.
+   * @returns {*} All client records.
+   */
+  readClients () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("Client");
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), []);
+    });
+  }
+
+  /**
    * Alter a client database record.
    * @param {Object} clientObject Client to reference with alterations.
    * @returns {*} ?

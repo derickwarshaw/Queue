@@ -27,6 +27,7 @@ currentApplication.middle(function (requestInstance) {
 });
 
 currentApplication.route('User');
+currentApplication.route('Client');
 currentApplication.route('Room');
 
 currentDatabase.open()
@@ -58,8 +59,8 @@ currentDatabase.open()
 
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)
-            .then(handleData => console.log("Successully removed a client."))
-            .catch(handleReason => console.log("Failed to remove a client."));
+            .then(handleData => console.log(`[Web Request] Ended for ${socketRequest.requestHandshake}.`))
+            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.requestHandshake}.`));
        })
      })
    });

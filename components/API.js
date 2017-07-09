@@ -56,6 +56,71 @@ class API {
   }
 
   /**
+   * Get all clients.
+   * @returns {Promise.<*>} All clients.
+   */
+  static async getClients () {
+    return await currentDatabase.readClients();
+  }
+
+  /**
+   * Get a client by their ID.
+   * @param {Number} clientId ID of the client.
+   * @returns {Promise.<*>} Found client.
+   */
+  static async getClientById (clientId) {
+    if (typeof clientId === "number" || !isNaN(parseInt(clientId, 10))) {
+      return await currentDatabase.readClient("Id", {
+        clientId: clientId
+      });
+    } else {
+      throw Error(`Client ID '${clientId}' is not a number.`);
+    }
+  }
+
+  /**
+   * Get a client by their distinctor.
+   * @param {String} clientDistinctor Distinctor of the client.
+   * @returns {Promise.<*>} Found client.
+   */
+  static async getClientByDistinctor (clientDistinctor) {
+    if (typeof clientDistinctor === "string") {
+      const foundClient = await currentDatabase.readClient("Distinctor", {
+        clientDistinctor: clientDistinctor
+      });
+
+      if (foundClient !== undefined) {
+        return foundClient;
+      } else {
+        throw Error(`Client Distinctor '${clientDistinctor}' does not relate to a client.`);
+      }
+    } else {
+      throw Error(`Client Distinctor '${clientDistinctor}' is not a string.`);
+    }
+  }
+
+  /**
+   * Get a client by their handshake.
+   * @param {Number} clientHandshake Handshake of the client.
+   * @returns {Promise.<*>} Found client.
+   */
+  static async getClientByHandshake (clientHandshake) {
+    if (typeof clientHandshake === "number" || !isNaN(parseInt(clientHandshake, 10))) {
+      const readClient = await currentDatabase.readClient("Handshake", {
+        clientHandshake: clientHandshake
+      });
+
+      if (readClient !== undefined) {
+        return readClient;
+      } else {
+        throw Error(`Client handshake '${clientHandshake}' relates to no client.`);
+      }
+    } else {
+      throw Error(`Client handshake '${clientHandshake}' is not a number.`);
+    }
+  }
+
+  /**
    * Get all rooms.
    * @returns {Promise.<*>} Found rooms.
    */
