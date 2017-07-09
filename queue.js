@@ -26,6 +26,7 @@ currentApplication.middle(function (requestInstance) {
   console.log(`[Web Request] ${requestInstance.summary()}`);
 });
 
+currentApplication.base('/api');
 currentApplication.route('User');
 currentApplication.route('Client');
 currentApplication.route('Room');

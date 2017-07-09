@@ -55,6 +55,8 @@ class Database {
           .all().from("User").where(`user${userBy}`).equals();
 
       return currentQueue.add(function () {
+
+
           return databaseServer.get(databaseQuery.build(), [
               userObject[`user${userBy}`]
           ]);

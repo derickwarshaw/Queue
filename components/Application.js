@@ -20,6 +20,7 @@ class Application {
   constructor (applicationDirectory, applicationPort) {
     this.applicationDirectory = applicationDirectory;
     this.applicationPort = applicationPort;
+    this.applicationApi = '/api';
     this.applicationSockets = new Map();
 
     this.applicationExpress = Express();
@@ -51,12 +52,22 @@ class Application {
   }
 
   /**
+   * Set the base route.
+   * @param baseRoute
+   */
+  base (baseRoute) {
+    this.applicationApi = baseRoute;
+    const routerRoutes = require(this.applicationDirectory + '/routes/Base');
+    this.applicationExpress.use(this.applicationApi, routerRoutes(Express.Router()));
+  }
+
+  /**
    * Creates a route for the server.
    * @param {String} routeName Name of the route to establish.
    */
   route (routeName) {
     const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
-    this.applicationExpress.use(`/api/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
+    this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
 
   /**

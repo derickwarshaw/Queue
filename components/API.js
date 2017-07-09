@@ -1,4 +1,7 @@
+const currentApplication = require('../queue').currentApplication;
 const currentDatabase = require('../queue').currentDatabase;
+
+const Resolve = currentApplication.component('Resolve');
 
 class API {
 
@@ -7,7 +10,7 @@ class API {
    * @returns {Promise.<*>} All users in database.
    */
   static async getUsers () {
-    return await currentDatabase.readUsers();
+    return Resolve.collection(await currentDatabase.readUsers());
   }
 
   /**
@@ -60,7 +63,7 @@ class API {
    * @returns {Promise.<*>} All clients.
    */
   static async getClients () {
-    return await currentDatabase.readClients();
+    return Resolve.collection(await currentDatabase.readClients());
   }
 
   /**
@@ -125,7 +128,7 @@ class API {
    * @returns {Promise.<*>} Found rooms.
    */
   static async getRooms () {
-    return await currentDatabase.readRooms();
+    return Resolve.collection(await currentDatabase.readRooms());
   }
 
   /**
