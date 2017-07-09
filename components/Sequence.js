@@ -1,274 +1,277 @@
 class Sequence {
 
-    /**
-     Construct a sql string.
-     * @param {String} sequenceIdentifier Type of clause. SELECT, UPDATE, etc.
-     * @returns Sequence instrance.
-     */
-    constructor (sequenceIdentifier) {
-        if (typeof sequenceIdentifier === "string") {
-            this.sequenceSettings = {
-                marker: "?",
-                identifiers: ["SELECT", "INSERT", "UPDATE", "DELETE"],
-                operands: ["*", "TOP", "INTO", "COUNT"],
-                operations: ["FROM", "VALUES", "SET"],
-                filters: ["WHERE", "ORDER BY"],
-                joins: ["INNER", "OUTER", "LEFT"],
-                orients: ["ASC", "ASCENDING", "DESC", "DESCENDING"]
-            };
+  /**
+   Construct a sql string.
+   * @param {String} sequenceIdentifier Type of clause. SELECT, UPDATE, etc.
+   * @returns Sequence instrance.
+   */
+  constructor (sequenceIdentifier) {
+    // TODO: Case sentivity. sequenceIdentifer should always be converted to uppercase.
+    if (typeof sequenceIdentifier === "string") {
+      this.sequenceSettings = {
+        marker: "?",
+        identifiers: ["SELECT", "INSERT", "UPDATE", "DELETE"],
+        operands: ["*", "TOP", "INTO", "COUNT"],
+        operations: ["FROM", "VALUES", "SET"],
+        filters: ["WHERE", "ORDER BY"],
+        joins: ["INNER", "OUTER", "LEFT"],
+        orients: ["ASC", "ASCENDING", "DESC", "DESCENDING"]
+      };
 
-            this.sequenceParticles = new Map();
+      this.sequenceParticles = new Map();
 
-            if (this.sequenceSettings.identifiers.includes(sequenceIdentifier)) {
-                this.sequenceParticles.set("memberIdentifier", sequenceIdentifier);
-            }
-        }
+      if (this.sequenceSettings.identifiers.includes(sequenceIdentifier)) {
+        this.sequenceParticles.set("memberIdentifier", sequenceIdentifier);
+      }
+    }
+  }
+
+  /**
+   Current sequence particles.
+   * @returns Current sequence particles.
+   */
+  get sequence () {
+    return Array.from(this.sequenceParticles.values());
+  }
+
+  /**
+   *  Insert raw SQL.
+   * @param {String} rawStatement Raw SQL statement.
+   */
+  raw (rawStatement) {
+    this.sequenceParticles.set(null, rawStatement);
+  }
+
+  /**
+   Alter a sequence particle.
+   * @param {String} alterName Name of the particle to alter.
+   * @param {*} alterValue Value of the particle.
+   */
+  alter (alterName, alterValue) {
+    this.sequenceParticles.set(alterName, alterValue);
+  }
+
+  /**
+   Build all sequence particles.
+   * @returns {String} Constructed sequence.
+   */
+  build () {
+    return this.sequence.join(' ');
+  }
+
+  /**
+   * Selector
+   * @returns {Sequence} Changed sequence instance.
+   */
+  all () {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[0])) {
+      this.alter("memberOperand", this.sequenceSettings.operands[0]);
     }
 
-    /**
-     Current sequence particles.
-     * @returns Current sequence particles.
-     */
-    get sequence () {
-        return Array.from(this.sequenceParticles.values());
+    return this;
+  }
+
+  /**
+   TOP(Number) clause.
+   * @param {String|Number} topNumber Record count to select.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  top (topNumber) {
+    if (this.sequenceSettings.includes(this.sequenceSettings.identifiers[0])) {
+      this.alter("memberOperand", `${this.sequenceSettings.operands[1]}(${topNumber})`);
     }
 
-    /**
-     *  Insert raw SQL.
-     * @param {String} rawStatement Raw SQL statement.
-     */
-    raw (rawStatement) {
-        this.sequenceParticles.set(null, rawStatement);
+    return this;
+  }
+
+  /**
+   COUNT(Number) clause.
+   * @param {String|Number} countColumn Column to sum.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  count (countColumn) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[0])) {
+      this.alter("memberOperand", `${this.sequenceSettings.operands[3]}(${countColumn})`);
     }
 
-    /**
-     Alter a sequence particle.
-     * @param {String} alterName Name of the particle to alter.
-     * @param {*} alterValue Value of the particle.
-     */
-    alter (alterName, alterValue) {
-        this.sequenceParticles.set(alterName, alterValue);
+    return this;
+  }
+
+  /**
+   Column declaration for INSERT clause.
+   * @param {String} intoTable Table to insert into.
+   * @param {Array} intoColumns Columns to recognise.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  into (intoTable, intoColumns) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
+      this.alter("memberOperand", this.sequenceSettings.operands[2]);
+      this.alter(`memberIntoTable_${intoTable}`, intoTable);
+      this.alter(`memberIntoColumns_${intoTable}`, `("${intoColumns.join('", "')}")`);
     }
 
-    /**
-     Build all sequence particles.
-     * @returns {String} Constructed sequence.
-     */
-    build () {
-        return this.sequence.join(' ');
+    return this;
+  }
+
+  /**
+   UPDATE clause.
+   * @param {String} updateTable Table to update.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  update (updateTable) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[2])) {
+      this.alter(`memberUpdateTable_${updateTable}`, updateTable);
     }
 
-    /**
-     * Selector
-     * @returns {Sequence} Changed sequence instance.
-     */
-    all () {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[0])) {
-            this.alter("memberOperand", this.sequenceSettings.operands[0]);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   Column declaration for SELECT clause.
+   * @param {Array} onlyColumns Columns to select.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  only (onlyColumns) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
+      this.alter("memberExtension_Only", onlyColumns.join(', '));
     }
 
-    /**
-     TOP(Number) clause.
-     * @param {String|Number} topNumber Record count to select.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    top (topNumber) {
-        if (this.sequenceSettings.includes(this.sequenceSettings.identifiers[0])) {
-            this.alter("memberOperand", `${this.sequenceSettings.operands[1]}(${topNumber})`);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   FROM clause.
+   * @param {String} fromTable Table to select from.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  from (fromTable) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[0])
+       || this.sequence.includes(this.sequenceSettings.identifiers[3])) {
+      this.alter("memberOperation", this.sequenceSettings.operations[0]);
+      this.alter(`memberFromTable_${fromTable}`, fromTable);
     }
 
-    /**
-     COUNT(Number) clause.
-     * @param {String|Number} countColumn Column to sum.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    count (countColumn) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[0])) {
-            this.alter("memberOperand", `${this.sequenceSettings.operands[3]}(${countColumn})`);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   VALUES clause.
+   * @param {String} valuesTable Table to generate value placeholders for.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  values (valuesTable) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
+      const foundValues = this.sequenceParticles.get(`memberIntoColumns_${valuesTable}`);
+      const generatedValues = foundValues.substring(1, foundValues.length - 1)
+         .split(', ')
+         .map(column => "?")
+         .join(', ');
+
+      this.alter("memberOperation", this.sequenceSettings.operations[1]);
+      this.alter(`memberValuesValues_${valuesTable}`, `(${generatedValues})`);
     }
 
-    /**
-     Column declaration for INSERT clause.
-     * @param {String} intoTable Table to insert into.
-     * @param {Array} intoColumns Columns to recognise.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    into (intoTable, intoColumns) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
-            this.alter("memberOperand", this.sequenceSettings.operands[2]);
-            this.alter(`memberIntoTable_${intoTable}`, intoTable);
-            this.alter(`memberIntoColumns_${intoTable}`, `("${intoColumns.join('", "')}")`);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   SET clause.
+   * @param {Array} setColumns Columns to generate a mark for.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  set (setColumns) {
+    if (this.sequence.includes(this.sequenceSettings.identifiers[2])) {
+      this.alter("memberOperation", this.sequenceSettings.operations[2]);
+      this.alter("memberSetValues", `${setColumns.join(' = ?, ')} = ?`);
     }
 
-    /**
-     UPDATE clause.
-     * @param {String} updateTable Table to update.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    update (updateTable) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[2])) {
-            this.alter(`memberUpdateTable_${updateTable}`, updateTable);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   WHERE clause.
+   * @param {String} whereThis Value to check.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  where (whereThis) {
+    if (this.sequence.filter(particle => this.sequenceSettings.identifiers.includes(particle))) {
+      if (this.sequence.includes(this.sequenceSettings.filters[0])) {
+        this.alter(`memberWhereExtra_${whereThis}`, `AND ${this.sequenceSettings.filters[0]}`);
+      } else  {
+        this.alter(`membersWhere_${whereThis}`, this.sequenceSettings.filters[0]);
+      }
+
+      this.alter(`memberWhereValue_${whereThis}`, whereThis);
     }
 
-    /**
-     Column declaration for SELECT clause.
-     * @param {Array} onlyColumns Columns to select.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    only (onlyColumns) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
-            this.alter("memberExtension_Only", onlyColumns.join(', '));
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   = clause.
+   * @returns Changed sequence instance.
+   */
+  equals () {
+    this.alter(null, "= ?");
+    return this;
+  }
+
+  /**
+   * JOIN clause.
+   * @param {String} joinType Type of join.
+   * @param {String} joinWith Table to join with.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  join (joinType, joinWith) {
+    // TODO: Case sentivity on joinType. Convert it to uppercase always.
+    if (this.sequenceSettings.joins.includes(joinType)) {
+      this.alter(`memberJoinType_${joinWith}`, `${joinType} JOIN`);
+      this.alter(`memberJoinWith_${joinWith}`, joinWith);
     }
 
-    /**
-     FROM clause.
-     * @param {String} fromTable Table to select from.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    from (fromTable) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[0])) {
-            this.alter("memberOperation", this.sequenceSettings.operations[0]);
-            this.alter(`memberFromTable_${fromTable}`, fromTable);
-        }
+    return this;
+  }
 
-        return this;
+  /**
+   ON clause.
+   * @param {Array<Array>} onColumns Table.Column pairs for on clause.
+   * @param {String} onTable Join with table ON clause relates to.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  on (onColumns, onTable) {
+    if (this.sequenceParticles.get(`memberJoinWith_${onTable}`)) {
+      this.alter(`memberJoinOnA_${onTable}`, `ON ${onColumns[0][0]}.${onColumns[0][1]} =`);
+      this.alter(`memberJoinOnB_${onTable}`, `${onColumns[1][0]}.${onColumns[1][1]}`);
     }
 
-    /**
-     VALUES clause.
-     * @param {String} valuesTable Table to generate value placeholders for.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    values (valuesTable) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
-            const foundValues = this.sequenceParticles.get(`memberIntoColumns_${valuesTable}`);
-            const generatedValues = foundValues.substring(1, foundValues.length - 1)
-                .split(', ')
-                .map(column => "?")
-                .join(', ');
+    return this;
+  }
 
-            this.alter("memberOperation", this.sequenceSettings.operations[1]);
-            this.alter(`memberValuesValues_${valuesTable}`, `(${generatedValues})`);
-        }
+  /**
+   ORDER BY clause.
+   * @param {String} orderBy Value to order by.
+   * @returns {Sequene} Changed sequence instance.
+   */
+  order (orderBy) {
+    this.alter("memberOrder", this.sequenceSettings.filters[1]);
+    this.alter("memberOrderClause", orderBy);
 
-        return this;
+    return this;
+  }
+
+  /**
+   ASC/DESC clauses.
+   * @param {String} orientBy Value to order by.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  orient (orientBy) {
+    if (this.sequence.includes(this.sequenceSettings.filters[1])
+       && this.sequenceSettings.orients.includes(orientBy)) {
+      this.alter("memberOrient", orientBy);
     }
 
-    /**
-     SET clause.
-     * @param {Array} setColumns Columns to generate a mark for.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    set (setColumns) {
-        if (this.sequence.includes(this.sequenceSettings.identifiers[2])) {
-            this.alter("memberOperation", this.sequenceSettings.operations[2]);
-            this.alter("memberSetValues", `${setColumns.join(' = ?, ')} = ?`);
-        }
-
-        return this;
-    }
-
-    /**
-     WHERE clause.
-     * @param {String} whereThis Value to check.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    where (whereThis) {
-        if (this.sequence.filter(particle => this.sequenceSettings.identifiers.includes(particle))) {
-            if (this.sequence.includes(this.sequenceSettings.filters[0])) {
-                this.alter(`memberWhereExtra_${whereThis}`, `AND ${this.sequenceSettings.filters[0]}`);
-            } else  {
-                this.alter(`membersWhere_${whereThis}`, this.sequenceSettings.filters[0]);
-            }
-
-            this.alter(`memberWhereValue_${whereThis}`, whereThis);
-        }
-
-        return this;
-    }
-
-    /**
-     = clause.
-     * @returns Changed sequence instance.
-     */
-    equals () {
-        this.alter(null, "= ?");
-        return this;
-    }
-
-    /**
-     * JOIN clause.
-     * @param {String} joinType Type of join.
-     * @param {String} joinWith Table to join with.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    join (joinType, joinWith) {
-        if (this.sequenceSettings.joins.includes(joinType)) {
-            this.alter(`memberJoinType_${joinWith}`, `${joinType} JOIN`);
-            this.alter(`memberJoinWith_${joinWith}`, joinWith);
-        }
-
-        return this;
-    }
-
-    /**
-     ON clause.
-     * @param {Array<Array>} onColumns Table.Column pairs for on clause.
-     * @param {String} onTable Join with table ON clause relates to.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    on (onColumns, onTable) {
-        if (this.sequenceParticles.get(`memberJoinWith_${onTable}`)) {
-            this.alter(`memberJoinOnA_${onTable}`, `ON ${onColumns[0][0]}.${onColumns[0][1]} =`);
-            this.alter(`memberJoinOnB_${onTable}`, `${onColumns[1][0]}.${onColumns[1][1]}`);
-        }
-
-        return this;
-    }
-
-    /**
-     ORDER BY clause.
-     * @param {String} orderBy Value to order by.
-     * @returns {Sequene} Changed sequence instance.
-     */
-    order (orderBy) {
-        this.alter("memberOrder", this.sequenceSettings.filters[1]);
-        this.alter("memberOrderClause", orderBy);
-
-        return this;
-    }
-
-    /**
-     ASC/DESC clauses.
-     * @param {String} orientBy Value to order by.
-     * @returns {Sequence} Changed sequence instance.
-     */
-    orient (orientBy) {
-        if (this.sequence.includes(this.sequenceSettings.filters[1])
-            && this.sequenceSettings.orients.includes(orientBy)) {
-            this.alter("memberOrient", orientBy);
-        }
-
-        return this;
-    }
+    return this;
+  }
 }
 
 module.exports = Sequence;

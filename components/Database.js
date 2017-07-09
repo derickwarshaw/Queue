@@ -188,6 +188,16 @@ class Database {
         });
     }
 
+    deleteClient (clientHandshake) {
+        const databaseServer = this.databaseServer;
+        const databaseQuery = new Sequence("DELETE")
+           .from("Client").where("clientHandshake").equals();
+
+        return currentQueue.add(function () {
+            return databaseServer.run(databaseQuery.build(), [clientHandshake]);
+        });
+    }
+
     // TODO: JSDoc.
     readRoom(roomBy, roomObject) {
         const databaseServer = this.databaseServer;

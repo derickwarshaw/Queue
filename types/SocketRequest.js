@@ -68,6 +68,12 @@ class SocketRequest {
   unregistered (unregisteredReason) {
     this.socketObject.emit('client:fai', unregisteredReason);
   }
+
+
+
+  avoid (avoidHandler) {
+    this.socketObject.on('disconnect', disconnectData => avoidHandler('Avoid', disconnectData));
+  }
 }
 
 module.exports = SocketRequest;

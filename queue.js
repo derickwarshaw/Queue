@@ -47,5 +47,11 @@ currentDatabase.open()
                .then(handleData => socketRequest.registered(handleData))
                .catch(handleReason => socketRequest.unregistered(handleReason));
        })
+
+       socketRequest.avoid(function (avName, avData) {
+         currentApplication.handle(avName)(avData, socketRequest)
+            .then(handleData => console.log("Successully removed a client."))
+            .catch(handleReason => console.log("Failed to remove a client."));
+       })
      })
    });
