@@ -16,7 +16,7 @@ class API {
    * @returns {Promise.<*>} Found user.
    */
   static async getUserById (userId) {
-    if (typeof userId === "number") {
+    if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
       return await currentDatabase.readUser("Id", {
         userId: userId
       });
@@ -69,7 +69,7 @@ class API {
    * @returns {Promise.<*>} Found room.
    */
   static async getRoomById (roomId) {
-    if (typeof roomId === "number") {
+    if (typeof roomId === "number" || !isNaN(parseInt(roomId, 10))) {
       return await currentDatabase.readRoom("Id", {
         roomId: roomId
       });
@@ -85,9 +85,16 @@ class API {
    */
   static async getRoomByDistinctor (roomDistinctor) {
     if (typeof roomDistinctor === "string") {
-      return await currentDatabase.readRoom("Distinctor", {
+      const foundRoom = await currentDatabase.readRoom("Distinctor", {
         roomDistinctor: roomDistinctor
       });
+
+      if (foundRoom !== undefined) {
+        return foundRoom;
+      } else {
+        throw Error(`Room Distinctor '${roomDistinctor}' does not relate to a room.`);
+      }
+
     } else {
       throw Error(`Room Distinctor '${roomDistinctor}' is not a string.`);
     }

@@ -23,8 +23,8 @@ module.exports = routerInstance => {
        "use strict";
 
        API.getRoomByDistinctor(roomReq.params.roomDistinctor)
-          .then(rooms => roomRes.json(rooms))
-          .catch(reason => roomRes.send(reason));
+          .then(room => roomRes.json(room))
+          .catch(reason => roomRes.send(reason.message));
      })
      .get('/name/:roomName', function (roomReq, roomRes) {
        "use strict";

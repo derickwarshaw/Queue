@@ -227,7 +227,7 @@ class Database {
       return currentQueue.add(function () {
           return databaseServer.get(databaseQuery.build(), [
               roomObject[`room${roomBy}`]
-          ])
+          ]);
       })
   }
 
