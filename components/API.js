@@ -16,9 +16,13 @@ class API {
    * @returns {Promise.<*>} Found user.
    */
   static async getUserById (userId) {
-    return await currentDatabase.readUser("Id", {
-      userId: userId
-    });
+    if (typeof userId === "number") {
+      return await currentDatabase.readUser("Id", {
+        userId: userId
+      });
+    } else {
+      throw Error(`User ID '${userId}' is not a number.`);
+    }
   }
 
   /**
@@ -27,9 +31,13 @@ class API {
    * @returns {Promise.<*>} Found user.
    */
   static async getUserByDistinctor (userDistinctor) {
-    return await currentDatabase.readUser("Distinctor", {
-      userDistinctor: userDistinctor
-    });
+    if (typeof userDistinctor === "string") {
+      return await currentDatabase.readUser("Distinctor", {
+        userDistinctor: userDistinctor
+      });
+    } else {
+      throw Error(`User Distinctor '${userDistinctor}' is not a string.`);
+    }
   }
 
   /**
@@ -38,9 +46,13 @@ class API {
    * @returns {Promise.<*>} Found user.
    */
   static async getUserByName (userName) {
-    return await currentDatabase.readUser("Name", {
-      userName: userName
-    });
+    if (typeof userName === "string") {
+      return await currentDatabase.readUser("Name", {
+        userName: userName
+      });
+    } else {
+      throw Error(`User Name '${userName}' is not a string.`);
+    }
   }
 
   /**
@@ -72,9 +84,13 @@ class API {
    * @returns {Promise.<*>} Found room.
    */
   static async getRoomByDistinctor (roomDistinctor) {
-    return await currentDatabase.readRoom("Distinctor", {
-      roomDistinctor: roomDistinctor
-    });
+    if (typeof roomDistinctor === "string") {
+      return await currentDatabase.readRoom("Distinctor", {
+        roomDistinctor: roomDistinctor
+      });
+    } else {
+      throw Error(`Room Distinctor '${roomDistinctor}' is not a string.`);
+    }
   }
 
   /**
@@ -83,9 +99,13 @@ class API {
    * @returns {Promise.<*>} Found room.
    */
   static async getRoomByName (roomName) {
-    return await currentDatabase.readRooms("Name", {
-      roomName: roomName
-    });
+    if (typeof roomName === "string") {
+      return await currentDatabase.readRooms("Name", {
+        roomName: roomName
+      });
+    } else {
+      throw Error(`Room Name '${roomName}' is not a string.`);
+    }
   }
   
 }
