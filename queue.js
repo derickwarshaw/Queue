@@ -29,7 +29,10 @@ currentApplication.middle(function (requestInstance) {
 currentApplication.base('/api');
 currentApplication.route('User');
 currentApplication.route('Client');
+currentApplication.route('System');
 currentApplication.route('Room');
+
+currentApplication.found('/v');
 currentApplication.view('Board');
 
 currentDatabase.open()

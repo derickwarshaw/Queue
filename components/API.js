@@ -20,6 +20,7 @@ class API {
    */
   static async getUserById (userId) {
     if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readUser("Id", {
         userId: userId
       });
@@ -35,6 +36,7 @@ class API {
    */
   static async getUserByDistinctor (userDistinctor) {
     if (typeof userDistinctor === "string") {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readUser("Distinctor", {
         userDistinctor: userDistinctor
       });
@@ -50,6 +52,7 @@ class API {
    */
   static async getUserByName (userName) {
     if (typeof userName === "string") {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readUser("Name", {
         userName: userName
       });
@@ -58,6 +61,8 @@ class API {
     }
   }
 
+  
+  
   /**
    * Get all clients.
    * @returns {Promise.<*>} All clients.
@@ -73,6 +78,7 @@ class API {
    */
   static async getClientById (clientId) {
     if (typeof clientId === "number" || !isNaN(parseInt(clientId, 10))) {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readClient("Id", {
         clientId: clientId
       });
@@ -88,6 +94,7 @@ class API {
    */
   static async getClientByDistinctor (clientDistinctor) {
     if (typeof clientDistinctor === "string") {
+      // TODO: Wrap in Resolve.collection
       const foundClient = await currentDatabase.readClient("Distinctor", {
         clientDistinctor: clientDistinctor
       });
@@ -109,6 +116,7 @@ class API {
    */
   static async getClientByHandshake (clientHandshake) {
     if (typeof clientHandshake === "number" || !isNaN(parseInt(clientHandshake, 10))) {
+      // TODO: Wrap in Resolve.collection
       const readClient = await currentDatabase.readClient("Handshake", {
         clientHandshake: clientHandshake
       });
@@ -122,7 +130,64 @@ class API {
       throw Error(`Client handshake '${clientHandshake}' is not a number.`);
     }
   }
-
+  
+  
+  /**
+   * Get all systems.
+   * @returns {Promise.<Array>}
+   */
+  static async getSystems () {
+    return Resolve.collection(await currentDatabase.readSystems());
+  }
+  
+  /**
+   * Get a system by their ID.
+   * @param {Number} systemId Unique ID of the system.
+   * @returns {Promise.<Object>} Found system.
+   */
+  static async getSystemById (systemId) {
+    if (typeof systemId === "number" || !isNaN(parseInt(systemId, 10))) {
+      // TODO: Wrap in Resolve.collection
+      return await currentDatabase.readSystem("Id", {
+        systemId: systemId
+      });
+    } else {
+      throw Error(`System ID '${systemId}' is not a system.`);
+    }
+  }
+  
+  /**
+   * Get a system by their number.
+   * @param {Number} systemNumber Number of the system.
+   * @returns {Promise.<Object>} Found system.
+   */
+  static async getSystemByNumber (systemNumber) {
+    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
+      // TODO: Wrap in Resolve.collection
+      return await currentDatabase.readSystem("Number", {
+        systemNumber: systemNumber
+      });
+    } else {
+      throw Error(`System number '${systemNumber}' is not a system.`);
+    }
+  }
+  
+  /**
+   * Get a system(s) by the room it is in.
+   * @param {String} systemRoom Room of the system.
+   * @returns {Promise.<Object>} Found system(s).
+   */
+  static async getSystemByRoom (systemRoom) {
+    if (typeof systemRoom === "string") {
+      return Resolve.collection(await currentDatabase.readSystem("RoomDistinctor", {
+        systemRoomDistinctor: systemRoom
+      }));
+    } else {
+      throw Error(`Room '${systemRoom}' is not a room.`);
+    }
+  }
+  
+  
   /**
    * Get all rooms.
    * @returns {Promise.<*>} Found rooms.
@@ -138,6 +203,7 @@ class API {
    */
   static async getRoomById (roomId) {
     if (typeof roomId === "number" || !isNaN(parseInt(roomId, 10))) {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readRoom("Id", {
         roomId: roomId
       });
@@ -153,6 +219,7 @@ class API {
    */
   static async getRoomByDistinctor (roomDistinctor) {
     if (typeof roomDistinctor === "string") {
+      // TODO: Wrap in Resolve.collection
       const foundRoom = await currentDatabase.readRoom("Distinctor", {
         roomDistinctor: roomDistinctor
       });
@@ -175,6 +242,7 @@ class API {
    */
   static async getRoomByName (roomName) {
     if (typeof roomName === "string") {
+      // TODO: Wrap in Resolve.collection
       return await currentDatabase.readRooms("Name", {
         roomName: roomName
       });

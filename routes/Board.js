@@ -10,47 +10,49 @@ module.exports = routerInstance => {
       })
       .get('/:roomName', function (boardReq, boardRes) {
         
-        // Step 1: Get the room from the URL param.
-        const foundRoom = API.getRoomByName(boardReq.params.roomName);
+        API.getRoomByName(boardReq.params.roomName)
+            .then(roomFound => {
+              return Promise.all([
+                  API.getSystemByRoom(roomFound.roomDistinctor),
+                  API.getClients(),
+                  API.getUsers()
+              ]);
+            })
+            .then(promisedResults => {
+              const [foundSystems, foundClients, foundUsers] = promisedResults;
+              
+              const mappedSystems = foundSystems.map(foundSystem => {
+                return foundSystem.systemDistinctor;
+              });
+              
+              let attendedClients = [], unattendedClients = [];
+              for (let i = 0; i < foundClients.length; i++) {
+                const forClient = foundClients[i];
+                
+                if (mappedSystems.includes(forClient.clientSystemDistinctor)) {
+                  attendedClients.push(forClient);
+                } else {
+                  unattendedClients.push(forClient);
+                }
+              }
+              
+              const mappedClients = attendedClients.map(attendedClient => {
+                return attendedClient.clientDistinctor;
+              });
+              
+              const filteredUsers = foundUsers.filter(foundUser => {
+                return mappedClients.includes(foundUser.userClientDistinctor);
+              });
+              
+              boardRes.json(filteredUsers);
+            })
         
-        // Step 2: Get all systems by the room distinctor.
-        const foundSystems = API.getSystemsByRoom(foundRoom.roomDistinctor);
         
-        // Step 3: Get all clients/users.
-        const foundClients = API.getClients();
-        const foundUsers = API.getUsers();
+        //
+        // // Step 8: Create new objects with Name, Number, Status
+        // // Step 9: Create new objects for unattended number.
+        // // Step 10: Render.
         
-        // Step 4: Create an array of all system distinctors.
-        const mappedSystems = foundSystems.map(foundSystem => {
-          return foundSystem.systemDistinctor;
-        });
-        
-        // Step 5: Filter clients by those that are in the system distinctor array.
-        // (they are in the array because the client has an assigned system distinctor)
-        let attendedClients = [], unattendedClients = [];
-        
-        for (let i = 0; i < foundClients.length; i++) {
-          if (mappedSystems.includes(foundClients[i].clientSystemDistinctor)) {
-            attendedClients.push(foundClients[i]);
-          } else {
-            unattendedClients.push(foundClients[i]);
-          }
-        }
-        
-        // Step 6: Get an array of all client distinctors.
-        const mappedClients = attendedClients.map(attendedClient => {
-          return attendedClient.clientDistinctor;
-        });
-        
-        // Step 7: Filter users by those with a distinctor in the list.
-        const filteredUsers = foundUsers.filter(foundUser => {
-          return mappedClients.includes(foundUser.userClientDistinctor);
-        });
-        
-        // Step 8: Create new objects with Name, Number, Status
-        // Step 9: Create new objects for unattended number.
-        // Step 10: Render.
-        
-      })
+      });
   
 };

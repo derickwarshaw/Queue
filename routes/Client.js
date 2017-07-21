@@ -3,7 +3,7 @@ const API = currentApplication.component('API');
 
 module.exports = routerInstance => {
   "use strict";
-
+  
   return routerInstance
      .get('/', function (clientReq, clientRes) {
 
@@ -28,6 +28,12 @@ module.exports = routerInstance => {
        API.getClientByHandshake(clientReq.params.clientHandshake)
           .then(client => clientRes.json(client))
           .catch(reason => clientRes.send(reason.message));
-     });
+     })
+      .get('/system/:clientSystem', function (clientReq, clientRes) {
+        
+        API.getClientByDistinctor(clientReq.params.clientSystem)
+            .then(client => clientRes.json(client))
+            .catch(reason => clientRes.send(reason.message));
+      });
 
 };

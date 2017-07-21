@@ -29,6 +29,8 @@ class Database {
     return this.databaseServer;
   }
 
+  
+  
   /**
    * Sign a user with a unique identifier.
    * @param {Object} userObject User to sign.
@@ -41,6 +43,19 @@ class Database {
       this.databaseSigned.set(userIdentification, userObject);
 
       return userObject;
+  }
+  
+  /**
+   * Read all users.
+   */
+  readUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("User");
+    
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), []);
+    });
   }
 
   /**
@@ -61,19 +76,6 @@ class Database {
               userObject[`user${userBy}`]
           ]);
       });
-  }
-
-  /**
-   * Read all users.
-   */
-  readUsers () {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-       .all().from("User");
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), []);
-    });
   }
 
   /**
@@ -125,6 +127,9 @@ class Database {
       });
   }
 
+  
+  
+  
   /**
    * Sign a client with a distinctor.
    * @param {Object} clientObect Client to be signed.
@@ -133,6 +138,20 @@ class Database {
   signClient (clientObect) {
       clientObect.clientDistinctor = Identify();
       return clientObect;
+  }
+  
+  /**
+   * Read all clients.
+   * @returns {*} All client records.
+   */
+  readClients () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Client");
+    
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), []);
+    });
   }
 
   /**
@@ -151,20 +170,6 @@ class Database {
               clientObject[`client${clientBy}`]
           ]);
       });
-  }
-
-  /**
-   * Read all clients.
-   * @returns {*} All client records.
-   */
-  readClients () {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-       .all().from("Client");
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), []);
-    });
   }
 
   /**
@@ -228,7 +233,23 @@ class Database {
           ]);
       });
   }
-
+  
+  
+  
+  /**
+   * Read all rooms from the database.
+   * @returns {*} All rooms.
+   */
+  readRooms () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Room");
+    
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), []);
+    });
+  }
+  
   /**
    * Read a room from the database.
    * @param {String} roomBy Property to query the room with.
@@ -246,22 +267,28 @@ class Database {
           ]);
       })
   }
-
+  
+  
   /**
-   * Read all rooms from the database.
-   * @returns {*} All rooms.
+   * Read all systems from the database.
+   * @returns {LocalPromise}
    */
-  readRooms () {
+  readSystems () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
-       .all().from("Room");
-
+        .all().from("System");
+    
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), []);
     });
   }
   
-  
+  /**
+   * Read a system from the database.
+   * @param {String} systemBy Property to query the system with.
+   * @param {Object} systemObject Object to place the property against.
+   * @returns {Promise.<Object>} Found system.
+   */
   readSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")

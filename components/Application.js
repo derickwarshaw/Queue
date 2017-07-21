@@ -70,9 +70,16 @@ class Application {
     this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
   
+  
+  found (foundRoute) {
+    this.applicationFound = foundRoute;
+    const routerRoutes = require(this.applicationDirectory + '/routes/Found');
+    this.applicationExpress.use(this.applicationFound, routerRoutes(Express.Router()));
+  }
+  
   view (viewName) {
     const viewRoutes = require(this.applicationDirectory + '/routes/' + viewName);
-    this.applicationExpress.use(`views/${viewName.toLowerCase()}/`, viewRoutes(Express.Router()));
+    this.applicationExpress.use(`${this.applicationFound}/${viewName.toLowerCase()}/`, viewRoutes(Express.Router()));
   }
 
   /**
