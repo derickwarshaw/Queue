@@ -132,8 +132,12 @@ class Sequence {
    * @returns {Sequence} Changed sequence instance.
    */
   only (onlyColumns) {
-    if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
-      this.alter("memberExtension_Only", onlyColumns.join(', '));
+    if (Array.isArray(onlyColumns) && !Array.isArray(onlyColumns[0])) {
+      this.alter(`memberExtension_Only`, onlyColumns.join(', '));
+    } else if (Array.isArray(onlyColumns) && Array.isArray(onlyColumns[0])) {
+      this.alter(`memberExtension_Only`, onlyColumns.map(onlyColumn => {
+        return onlyColumn.join('.');
+      }).join(', '));
     }
 
     return this;
@@ -273,5 +277,6 @@ class Sequence {
     return this;
   }
 }
+
 
 module.exports = Sequence;

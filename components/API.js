@@ -243,12 +243,16 @@ class API {
   static async getRoomByName (roomName) {
     if (typeof roomName === "string") {
       // TODO: Wrap in Resolve.collection
-      return await currentDatabase.readRooms("Name", {
+      return await currentDatabase.readRoom("Name", {
         roomName: roomName
       });
     } else {
       throw Error(`Room Name '${roomName}' is not a string.`);
     }
+  }
+
+  static async getIntegrals (integralRoom) {
+    return Resolve.collection(await currentDatabase.readIntegrals(integralRoom));
   }
   
 }

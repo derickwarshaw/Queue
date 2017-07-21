@@ -1,0 +1,29 @@
+[REQUESTED: {{roomName}}]
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Established</th>
+            <th>Handshake</th>
+            <th>Status</th>
+            <th>Number</th>
+            <th>Room</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each roomPoints}}
+            <tr>
+                <td>{{pointUser}}</td>
+                <td>{{pointEstablished}}</td>
+                <td>{{pointHandshake}}</td>
+                <td>{{pointStatus}}</td>
+                <td>{{pointNumber}}</td>
+                <td>{{pontRoom}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/v/board/r/css" />
+<script src="http://localhost:8080/v/board/r/js"></script>

@@ -301,6 +301,36 @@ class Database {
     });
   }
 
+
+  readIntegrals (intergralsRoom) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .only([
+         ["User", "userName AS pointUser"],
+         ["User", "userDate AS pointEstablished"],
+         ["Client", "clientHandshake AS pointHandshake"],
+         ["Client", "clientStatus AS pointStatus"],
+         ["System", "systemNumber AS pointNumber"],
+         ["Room", "roomName AS pointRoom"]
+       ])
+       .from("User")
+
+       .join("INNER", "Client")
+       .on([["User", "userClientDistinctor"], ["Client", "clientDistinctor"]], "Client")
+
+       .join("INNER", "System")
+       .on([["Client", "clientSystemDistinctor"], ["System", "systemDistinctor"]], "System")
+
+       .join("INNER", "Room")
+       .on([["System", "systemRoomDistinctor"], ["Room", "roomDistinctor"]], "Room")
+
+       .where("Room.roomDistinctor").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [intergralsRoom]);
+    });
+  }
+
 }
 
 module.exports = Database;
