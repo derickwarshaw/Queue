@@ -10,57 +10,65 @@ const currentDatabase = require('../queue').currentDatabase;
 async function Register (registerUser, registerSocket) {
   const readUser = await currentDatabase.readUser("Distinctor", registerUser);
   const readRoom = await currentDatabase.readRoom("Name", registerUser.userClient.clientRoom);
+  const readSystem = await currentDatabase.readSystem("Number", registerUser.userClient.clientSystem);
 
   if (readRoom) {
     registerUser.userClient.clientRoom.roomDistinctor = readRoom.roomDistinctor;
     registerUser.userClient.clientHandshake = `${registerSocket.socketHandshake}`;
 
-    if (readUser && readUser.userClientDistinctor) {
-      const resolvedClient = await currentDatabase.readClient("Distinctor", {
-        clientDistinctor: readUser.userClientDistinctor
-      });
-
-      if (resolvedClient && resolvedClient.clientDistinctor) {
-        registerUser.userClient.clientDistinctor = resolvedClient.clientDistinctor;
-        registerUser.userClient.clientStatus = resolvedClient.clientStatus;
-
-        await currentDatabase.alterClient(registerUser.userClient);
-        registerUser.userClient = await currentDatabase.readClient("Distinctor", registerUser.userClient);;
-        await currentDatabase.alterUser(registerUser);
-
-        return {
-          registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
-          registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
-        };
-
-      } else if (!resolvedClient) {
+    if (readSystem) {
+      registerUser.userClient.clientSystem.systemDistinctor = readSystem.systemDistinctor;
+  
+      if (readUser && readUser.userClientDistinctor) {
+        const resolvedClient = await currentDatabase.readClient("Distinctor", {
+          clientDistinctor: readUser.userClientDistinctor
+        });
+    
+        if (resolvedClient && resolvedClient.clientDistinctor) {
+          registerUser.userClient.clientDistinctor = resolvedClient.clientDistinctor;
+          registerUser.userClient.clientStatus = resolvedClient.clientStatus;
+      
+          await currentDatabase.alterClient(registerUser.userClient);
+          registerUser.userClient = await currentDatabase.readClient("Distinctor", registerUser.userClient);;
+          await currentDatabase.alterUser(registerUser);
+      
+          return {
+            registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
+            registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
+          };
+      
+        } else if (!resolvedClient) {
+          const signedClient = currentDatabase.signClient(registerUser.userClient);
+          await currentDatabase.writeClient(signedClient);
+      
+          registerUser.userClient = await currentDatabase.readClient("Distinctor", signedClient);
+          await currentDatabase.alterUser(registerUser);
+      
+          return {
+            registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
+            registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
+          };
+      
+        }
+    
+      } else if (readUser && !readUser.userClientDistinctor) {
         const signedClient = currentDatabase.signClient(registerUser.userClient);
         await currentDatabase.writeClient(signedClient);
-
+    
         registerUser.userClient = await currentDatabase.readClient("Distinctor", signedClient);
         await currentDatabase.alterUser(registerUser);
-
+    
         return {
           registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
           registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
         };
-
+    
+      } else if (!readUser) {
+        throw Error(`User '${registerUser.userName}' does not exist.`);
       }
-
-    } else if (readUser && !readUser.userClientDistinctor) {
-      const signedClient = currentDatabase.signClient(registerUser.userClient);
-      await currentDatabase.writeClient(signedClient);
-
-      registerUser.userClient = await currentDatabase.readClient("Distinctor", signedClient);
-      await currentDatabase.alterUser(registerUser);
-
-      return {
-        registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
-        registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
-      };
-
-    } else if (!readUser) {
-      throw Error(`User '${registerUser.userName}' does not exist.`);
+      
+    } else {
+      throw Error(`System number '${registerUser.userClient.clientSystem.systemNumber}' is not a system.`);
     }
 
   } else {

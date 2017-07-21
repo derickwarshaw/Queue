@@ -80,6 +80,11 @@ class SocketRequest {
   stagnated (stagnatedReason) {
     this.socketObject.emit('update:fai', stagnatedReason);
   }
+  
+  
+  notify (notificationUser) {
+    this.socketObject.broadcast.emit('update:notif', notificationUser);
+  }
 
   /**
    * Disconnect event listener.

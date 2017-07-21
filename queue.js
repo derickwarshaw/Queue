@@ -54,14 +54,17 @@ currentDatabase.open()
 
        socketRequest.update(function (upName, upData) {
          currentApplication.handle(upName)(upData)
-            .then(handleData => socketRequest.updated(handleData))
+            .then(handleData => {
+              socketRequest.updated(handleData);
+              socketRequest.notify(handleData.userName);
+            })
             .catch(handleReason => socketRequest.stagnated(handleReason));
        });
 
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)
-            .then(handleData => console.log(`[Web Request] Ended for ${socketRequest.requestHandshake}.`))
-            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.requestHandshake}.`));
+            .then(handleData => console.log(`[Web Request] Ended for ${socketRequest.socketHandshake}.`))
+            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`));
        })
      })
    });

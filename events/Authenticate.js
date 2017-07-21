@@ -16,7 +16,7 @@ async function Authenticate (authenticateUser) {
             return readUser;
         } else {
             const signedUser = currentDatabase.signUser(authenticateUser);
-
+          
             await currentDatabase.writeUser(signedUser);
             return await currentDatabase.readUser("Distinctor", signedUser);
         }
