@@ -30,6 +30,7 @@ currentApplication.base('/api');
 currentApplication.route('User');
 currentApplication.route('Client');
 currentApplication.route('Room');
+currentApplication.view('Board');
 
 currentDatabase.open()
    .then(openDatabase => {

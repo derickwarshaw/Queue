@@ -69,6 +69,11 @@ class Application {
     const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
     this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
+  
+  view (viewName) {
+    const viewRoutes = require(this.applicationDirectory + '/routes/' + viewName);
+    this.applicationExpress.use(`views/${viewName.toLowerCase()}/`, viewRoutes(Express.Router()));
+  }
 
   /**
    * Middleware for the render process.

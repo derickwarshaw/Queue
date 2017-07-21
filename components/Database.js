@@ -175,14 +175,13 @@ class Database {
   alterClient (clientObject) {
       const databaseServer = this.databaseServer;
       const databaseQuery = new Sequence("UPDATE")
-          .update("Client").set(["clientDistinctor", "clientRoomDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
+          .update("Client").set(["clientDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
           .values("Client")
           .where("clientDistinctor").equals();
 
       return currentQueue.add(function () {
           return databaseServer.get(databaseQuery.build(), [
               clientObject.clientDistinctor,
-              clientObject.clientRoom.roomDistinctor,
               clientObject.clientSystem.systemDistinctor,
               clientObject.clientHandshake,
               clientObject.clientStatus,
@@ -199,13 +198,12 @@ class Database {
   writeClient (clientObect) {
       const databaseServer = this.databaseServer;
       const databaseQuery = new Sequence("INSERT")
-          .into("Client", ["clientDistinctor", "clientRoomDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
+          .into("Client", ["clientDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
           .values("Client");
 
       return currentQueue.add(function () {
           return databaseServer.run(databaseQuery.build(), [
               clientObect.clientDistinctor,
-              clientObect.clientRoom.roomDistinctor,
               clientObect.clientSystem.systemDistinctor,
               clientObect.clientHandshake,
               clientObect.clientStatus
