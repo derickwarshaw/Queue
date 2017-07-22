@@ -31,6 +31,7 @@ currentApplication.route('User');
 currentApplication.route('Client');
 currentApplication.route('System');
 currentApplication.route('Room');
+currentApplication.route('Tegrals');
 
 currentApplication.found('/v');
 currentApplication.view('Board');
@@ -60,7 +61,7 @@ currentDatabase.open()
          currentApplication.handle(upName)(upData)
             .then(handleData => {
               socketRequest.updated(handleData);
-              socketRequest.notify(handleData.userName);
+              socketRequest.notify(handleData);
             })
             .catch(handleReason => socketRequest.stagnated(handleReason));
        });

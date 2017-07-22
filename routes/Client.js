@@ -31,7 +31,7 @@ module.exports = routerInstance => {
      })
       .get('/system/:clientSystem', function (clientReq, clientRes) {
         
-        API.getClientByDistinctor(clientReq.params.clientSystem)
+        API.getClientBySystem(clientReq.params.clientSystem)
             .then(client => clientRes.json(client))
             .catch(reason => clientRes.send(reason.message));
       });

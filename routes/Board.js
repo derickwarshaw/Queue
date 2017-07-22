@@ -11,15 +11,21 @@ module.exports = routerInstance => {
         // TODO: Send them a, "You did not reqest... here's some options" page.
       })
       .get('/:roomName', function (boardReq, boardRes) {
-        
+
         API.getRoomByName(boardReq.params.roomName)
            .then(roomFound => {
-             return API.getIntegrals(roomFound.roomDistinctor);
+             return Promise.all([
+                API.getIntegrals(roomFound[0].roomDistinctor),
+                API.getUntegrals(roomFound[0].roomDistinctor)
+             ]);
            })
-           .then(users => boardRes.render('RoomAvailable', {
-             roomName: boardReq.params.roomName,
-             roomPoints: users
-           }))
+           .then(apiTegrals => {
+             boardRes.render('RoomAvailable', {
+               roomName: boardReq.params.roomName,
+               roomAttended: apiTegrals[0],
+               roomUnattended: apiTegrals[1]
+             });
+           })
            .catch(reason => {
              boardRes.render('RoomUnavailable', {
                roomName: boardReq.params.roomName
