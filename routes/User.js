@@ -36,8 +36,8 @@ module.exports = routerInstance => {
      .get('/client/:userClient', function (userReq, userRes) {
 
        API.getUserByClient(userReq.params.userClient)
-          .then(users => roomRes.json(users))
-          .catch(reason => roomRes.send(reason));
+          .then(users => userRes.json(users))
+          .catch(reason => userRes.send(reason));
      })
 
 };

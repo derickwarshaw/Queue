@@ -55,7 +55,7 @@ currentDatabase.open()
            currentApplication.handle(regName)(regData, socketRequest)
                .then(handleData => {
                  socketRequest.registered(handleData);
-                 socketRequest.join(handleData);
+                 socketRequest.join(handleData.registeredClient);
                })
                .catch(handleReason => socketRequest.unregistered(handleReason));
        });

@@ -61,7 +61,7 @@ class API {
   // TODO: JSdoc.
   static async getUserByClient (clientDistinctor) {
     if (typeof clientDistinctor === "string") {
-      Resolve.collection(await currentDatabase.readUser("ClientDistinctor", {
+      return Resolve.collection(await currentDatabase.readUser("ClientDistinctor", {
         userClientDistinctor: clientDistinctor
       }));
     } else {
