@@ -1,0 +1,41 @@
+<main>
+    <header>
+        <p><strong>Room: </strong>{{roomName}}</p>
+    </header>
+
+    <section>
+        <h2>Attended</h2>
+        <div id="attended" class="target">
+            {{#each roomAttended}}
+                <div class="point {{pointStatus}}">
+                    <div class="point-left">
+                        <p>{{pointNumber}}</p>
+                    </div>
+                    <div class="point-right">
+                        <p>{{pointStatus}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+    <section>
+        <h2>Unattended</h2>
+        <div id="unattended" class="target">
+            {{#each roomUnattended}}
+                <div class="point {{pointStatus}}">
+                    <div class="point-left">
+                        <p>{{pointNumber}}</p>
+                    </div>
+                    <div class="point-right">
+                        <p>{{pointStatus}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/v/board/r/css" />
+<script src="http://localhost:8080/v/board/r/js"></script>

@@ -29,6 +29,8 @@ class Database {
     return this.databaseServer;
   }
 
+  
+  
   /**
    * Sign a user with a unique identifier.
    * @param {Object} userObject User to sign.
@@ -41,6 +43,19 @@ class Database {
       this.databaseSigned.set(userIdentification, userObject);
 
       return userObject;
+  }
+  
+  /**
+   * Read all users.
+   */
+  readUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("User");
+    
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
   }
 
   /**
@@ -61,19 +76,6 @@ class Database {
               userObject[`user${userBy}`]
           ]);
       });
-  }
-
-  /**
-   * Read all users.
-   */
-  readUsers () {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-       .all().from("User");
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), []);
-    });
   }
 
   /**
@@ -125,6 +127,9 @@ class Database {
       });
   }
 
+  
+  
+  
   /**
    * Sign a client with a distinctor.
    * @param {Object} clientObect Client to be signed.
@@ -133,6 +138,20 @@ class Database {
   signClient (clientObect) {
       clientObect.clientDistinctor = Identify();
       return clientObect;
+  }
+  
+  /**
+   * Read all clients.
+   * @returns {*} All client records.
+   */
+  readClients () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Client");
+    
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
   }
 
   /**
@@ -154,20 +173,6 @@ class Database {
   }
 
   /**
-   * Read all clients.
-   * @returns {*} All client records.
-   */
-  readClients () {
-    const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SELECT")
-       .all().from("Client");
-
-    return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), []);
-    });
-  }
-
-  /**
    * Alter a client database record.
    * @param {Object} clientObject Client to reference with alterations.
    * @returns {*} ?
@@ -175,14 +180,14 @@ class Database {
   alterClient (clientObject) {
       const databaseServer = this.databaseServer;
       const databaseQuery = new Sequence("UPDATE")
-          .update("Client").set(["clientDistinctor", "clientRoomDistinctor", "clientHandshake", "clientStatus"])
+          .update("Client").set(["clientDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
           .values("Client")
           .where("clientDistinctor").equals();
 
       return currentQueue.add(function () {
           return databaseServer.get(databaseQuery.build(), [
               clientObject.clientDistinctor,
-              clientObject.clientRoom.roomDistinctor,
+              clientObject.clientSystem.systemDistinctor,
               clientObject.clientHandshake,
               clientObject.clientStatus,
               clientObject.clientDistinctor
@@ -198,13 +203,13 @@ class Database {
   writeClient (clientObect) {
       const databaseServer = this.databaseServer;
       const databaseQuery = new Sequence("INSERT")
-          .into("Client", ["clientDistinctor", "clientRoomDistinctor", "clientHandshake", "clientStatus"])
+          .into("Client", ["clientDistinctor", "clientSystemDistinctor", "clientHandshake", "clientStatus"])
           .values("Client");
 
       return currentQueue.add(function () {
           return databaseServer.run(databaseQuery.build(), [
               clientObect.clientDistinctor,
-              clientObect.clientRoom.roomDistinctor,
+              clientObect.clientSystem.systemDistinctor,
               clientObect.clientHandshake,
               clientObect.clientStatus
           ]);
@@ -228,7 +233,23 @@ class Database {
           ]);
       });
   }
-
+  
+  
+  
+  /**
+   * Read all rooms from the database.
+   * @returns {*} All rooms.
+   */
+  readRooms () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("Room");
+    
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
+  }
+  
   /**
    * Read a room from the database.
    * @param {String} roomBy Property to query the room with.
@@ -246,18 +267,107 @@ class Database {
           ]);
       })
   }
-
+  
+  
   /**
-   * Read all rooms from the database.
-   * @returns {*} All rooms.
+   * Read all systems from the database.
+   * @returns {LocalPromise}
    */
-  readRooms () {
+  readSystems () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
-       .all().from("Room");
+        .all().from("System");
+    
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
+  }
+  
+  /**
+   * Read a system from the database.
+   * @param {String} systemBy Property to query the system with.
+   * @param {Object} systemObject Object to place the property against.
+   * @returns {Promise.<Object>} Found system.
+   */
+  readSystem (systemBy, systemObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("System").where(`system${systemBy}`).equals();
+    
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [
+          systemObject[`system${systemBy}`]
+      ]);
+    });
+  }
+
+
+  readIntegrals (integralsRoom) {
+    const databaseServer = this.databaseServer;
+    const databaseJoin = 'INNER';
+    const databaseQuery = new Sequence("SELECT")
+       .only([
+          ['User', 'userName AS pointUser'],
+          ['User', 'userDate AS pointEstablished'],
+          ['Client', 'clientHandshake AS pointHandshake'],
+          ['Client', 'clientStatus AS pointStatus'],
+          ['System', 'systemNumber AS pointNumber'],
+          ['Room', 'roomName AS pointRoom']
+       ])
+       .from('User')
+
+       .join(databaseJoin, 'Client')
+       .on([
+          ['User', 'userClientDistinctor'],
+          ['Client', 'clientDistinctor']
+       ], 'Client')
+
+       .join(databaseJoin, 'System')
+       .on([
+          ['Client', 'clientSystemDistinctor'],
+          ['System', 'systemDistinctor']
+       ], 'System')
+
+       .join(databaseJoin, 'Room')
+       .on([
+          ['System', 'systemRoomDistinctor'],
+          ['Room', 'roomDistinctor']
+       ], 'Room')
+
+       .where('roomDistinctor').equals();
 
     return currentQueue.add(function () {
-      return databaseServer.get(databaseQuery.build(), []);
+      console.log(databaseQuery.build());
+      return databaseServer.all(databaseQuery.build(), [integralsRoom]);
+    });
+  }
+
+  readUntegrals (untegralRoom) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .only([
+          [null, "'?' AS pointName"],
+          [null, "'?' AS pointEstablished"],
+          [null, "'?' AS pointHandshake"],
+          [null, "'unavailable' AS pointStatus"],
+          ['System', 'systemNumber AS pointNumber'],
+          ['Room', 'roomName AS pointRoom']
+       ])
+       .from('System')
+
+       .join('INNER', 'Room')
+       .on([
+          ['System', 'systemRoomDistinctor'],
+          ['Room', 'roomDistinctor']
+       ], 'Room')
+
+       .where('systemDistinctor')
+       .notin(new Sequence('SELECT').only(['clientSystemDistinctor']).from('Client'))
+
+       .where('roomDistinctor').equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), [untegralRoom]);
     });
   }
 

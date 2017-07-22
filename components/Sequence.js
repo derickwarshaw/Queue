@@ -13,7 +13,7 @@ class Sequence {
         identifiers: ["SELECT", "INSERT", "UPDATE", "DELETE"],
         operands: ["*", "TOP", "INTO", "COUNT"],
         operations: ["FROM", "VALUES", "SET"],
-        filters: ["WHERE", "ORDER BY"],
+        filters: ["WHERE", "ORDER BY", "NOT", "IN"],
         joins: ["INNER", "OUTER", "LEFT"],
         orients: ["ASC", "ASCENDING", "DESC", "DESCENDING"]
       };
@@ -77,9 +77,7 @@ class Sequence {
    * @returns {Sequence} Changed sequence instance.
    */
   top (topNumber) {
-    if (this.sequenceSettings.includes(this.sequenceSettings.identifiers[0])) {
-      this.alter("memberOperand", `${this.sequenceSettings.operands[1]}(${topNumber})`);
-    }
+    this.alter("memberOperand", `${this.sequenceSettings.operands[1]}(${topNumber})`);
 
     return this;
   }
@@ -132,8 +130,12 @@ class Sequence {
    * @returns {Sequence} Changed sequence instance.
    */
   only (onlyColumns) {
-    if (this.sequence.includes(this.sequenceSettings.identifiers[1])) {
-      this.alter("memberExtension_Only", onlyColumns.join(', '));
+    if (Array.isArray(onlyColumns) && !Array.isArray(onlyColumns[0])) {
+      this.alter(`memberExtension_Only`, onlyColumns.join(', '));
+    } else if (Array.isArray(onlyColumns) && Array.isArray(onlyColumns[0])) {
+      this.alter(`memberExtensionOnly`, onlyColumns.map(onlyColumn => {
+        return onlyColumn[0] ? onlyColumn.join('.') : onlyColumn[1];
+      }));
     }
 
     return this;
@@ -196,7 +198,7 @@ class Sequence {
   where (whereThis) {
     if (this.sequence.filter(particle => this.sequenceSettings.identifiers.includes(particle))) {
       if (this.sequence.includes(this.sequenceSettings.filters[0])) {
-        this.alter(`memberWhereExtra_${whereThis}`, `AND ${this.sequenceSettings.filters[0]}`);
+        this.alter(`memberWhereExtra_${whereThis}`, `AND`);
       } else  {
         this.alter(`membersWhere_${whereThis}`, this.sequenceSettings.filters[0]);
       }
@@ -212,7 +214,8 @@ class Sequence {
    * @returns Changed sequence instance.
    */
   equals () {
-    this.alter(null, "= ?");
+    this.alter(Math.random().toString(36).substring(2, 5), "= ?");
+
     return this;
   }
 
@@ -248,6 +251,34 @@ class Sequence {
   }
 
   /**
+   * IN clause.
+   * @param {Sequence} inSequence Sequence to embed.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  isin (inSequence) {
+    if (inSequence instanceof Sequence) {
+      this.alter(`memberIsIn`, this.sequenceSettings.filters[3]);
+      this.alter("memberIsInSequence", `(${inSequence.build()})`);
+    }
+
+    return this;
+  }
+
+  /**
+   * NOT IN clause.
+   * @param {Sequence} notinSequence Sequence to embed.
+   * @returns {Sequence} Changed sequence instance.
+   */
+  notin (notinSequence) {
+    if (notinSequence instanceof Sequence) {
+      this.alter("memberNotIn", `${this.sequenceSettings.filters[2]} ${this.sequenceSettings.filters[3]}`);
+      this.alter("memberNotInSequence", `(${notinSequence.build()})`);
+    }
+
+    return this;
+  }
+
+  /**
    ORDER BY clause.
    * @param {String} orderBy Value to order by.
    * @returns {Sequene} Changed sequence instance.
@@ -273,5 +304,6 @@ class Sequence {
     return this;
   }
 }
+
 
 module.exports = Sequence;

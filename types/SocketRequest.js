@@ -80,6 +80,21 @@ class SocketRequest {
   stagnated (stagnatedReason) {
     this.socketObject.emit('update:fai', stagnatedReason);
   }
+  
+
+
+  join (joinClient) {
+    this.socketObject.broadcast.emit('notif:join', joinClient);
+  }
+
+  change (changeClient) {
+    this.socketObject.broadcast.emit('notif:change', changeClient);
+  }
+
+  leave (leaveClient) {
+    this.socketObject.broadcast.emit('notif:leave', leaveClient);
+  }
+
 
   /**
    * Disconnect event listener.

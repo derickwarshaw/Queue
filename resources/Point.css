@@ -1,0 +1,102 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 70px #000000;
+}
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+main header {
+    text-align: center;
+    font-family: 'Arial';
+    font-size: 1.2em;
+}
+
+
+section {
+    margin: 3em;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+section h2 {
+    border-bottom: 2px solid grey;
+    padding-bottom: 0.5em;
+    font-family: 'Arial';
+    margin: 1em;
+}
+section .target {
+    border: 2px solid grey;
+    margin: 1.5em;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+section .target > .point {
+    padding: .2em;
+    margin: 1em;
+    
+    font-family: 'Arial';
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 17%;
+    color: white;
+    
+    border-radius: 5px;
+}
+section .target > .point > div {
+    
+    text-align: center;
+    height: 50px;
+}
+section .target > .point > div:first-child {
+    width: 50px;
+    border-right: 5px solid white;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+section .target > .point > div:last-child {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+section .target > .point > div p {
+    margin: 0;
+    font-size: 1.5em;
+    padding: 0.5em;
+}
+
+
+
+
+.point.available {
+    background-color: green;
+}
+.point.away {
+    background-color: orange;
+}
+.point.busy {
+    background-color: red;
+}
+.point.unavailable {
+    background-color: grey;
+}
+
+#block {
+    position: absolute;
+    left:0;
+    top: 0;
+
+    margin: 10em;
+}
+#block p {
+    font-size: 1.5em;
+    font-family: Vendetta, Arial;
+}

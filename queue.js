@@ -29,7 +29,12 @@ currentApplication.middle(function (requestInstance) {
 currentApplication.base('/api');
 currentApplication.route('User');
 currentApplication.route('Client');
+currentApplication.route('System');
 currentApplication.route('Room');
+currentApplication.route('Tegrals');
+
+currentApplication.found('/v');
+currentApplication.view('Board');
 
 currentDatabase.open()
    .then(openDatabase => {
@@ -48,20 +53,29 @@ currentDatabase.open()
 
        socketRequest.register(function (regName, regData) {
            currentApplication.handle(regName)(regData, socketRequest)
-               .then(handleData => socketRequest.registered(handleData))
+               .then(handleData => {
+                 socketRequest.registered(handleData);
+                 socketRequest.join(handleData);
+               })
                .catch(handleReason => socketRequest.unregistered(handleReason));
        });
 
        socketRequest.update(function (upName, upData) {
          currentApplication.handle(upName)(upData)
-            .then(handleData => socketRequest.updated(handleData))
+            .then(handleData => {
+              socketRequest.updated(handleData);
+              socketRequest.change(handleData);
+            })
             .catch(handleReason => socketRequest.stagnated(handleReason));
        });
 
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)
-            .then(handleData => console.log(`[Web Request] Ended for ${socketRequest.requestHandshake}.`))
-            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.requestHandshake}.`));
+            .then(handleData => {
+              console.log(`[Web Request] Ended for ${socketRequest.socketHandshake}.`)
+              socketRequest.leave(handleData);
+            })
+            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`));
        })
      })
    });

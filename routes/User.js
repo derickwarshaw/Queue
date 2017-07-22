@@ -32,6 +32,12 @@ module.exports = routerInstance => {
        API.getUserByName(roomReq.params.userName)
           .then(users => roomRes.json(users))
           .catch(reason => roomRes.send(reason));
-     });
+     })
+     .get('/client/:userClient', function (userReq, userRes) {
+
+       API.getUserByClient(userReq.params.userClient)
+          .then(users => roomRes.json(users))
+          .catch(reason => roomRes.send(reason));
+     })
 
 };
