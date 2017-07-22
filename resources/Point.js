@@ -184,7 +184,7 @@ $('#attended').children('.point').each(function () {
 var socket = io("http://127.0.0.1:8080");
 const http = "http://localhost:8080/api";
 
-socket.on('update:notif', function (notify) {
+socket.on('notif:change', function (notify) {
   "use strict";
 
 
@@ -193,4 +193,17 @@ socket.on('update:notif', function (notify) {
 
        pointAttended.get(promisedSystem[0].systemNumber).update(notify.clientStatus);
      });
+});
+
+socket.on('notif:join', function () {
+  "use strict";
+  console.log("JOINED: ");
+
+  window.location.reload();
+});
+socket.on('notif:leave', function () {
+  "use strict";
+  console.log("JOINED: ");
+
+  window.location.reload();
 });

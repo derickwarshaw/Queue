@@ -7,15 +7,16 @@ const currentDatabase = require('../queue').currentDatabase;
  * @returns {Promise.<void>}
  */
 async function Avoid (avoidData, avoidSocket) {
-  await currentDatabase.deleteClient("Handshake", {
-    clientHandshake: String(avoidSocket.socketHandshake)
-  });
   const readClient = await currentDatabase.readClient("Handshake", {
     clientHandshake: String(avoidSocket.socketHandshake)
   });
 
-  if (readClient !== undefined) {
-    throw Error("Failed to remove client.");
+  if (readClient || readClient !== undefined) {
+    await currentDatabase.deleteClient("Handshake", {
+      clientHandshake: String(avoidSocket.socketHandshake)
+    });
+
+    return readClient;
   }
 }
 
