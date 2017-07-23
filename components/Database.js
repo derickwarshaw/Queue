@@ -335,7 +335,6 @@ class Database {
        .where('roomDistinctor').equals();
 
     return currentQueue.add(function () {
-      console.log(databaseQuery.build());
       return databaseServer.all(databaseQuery.build(), [integralsRoom]);
     });
   }

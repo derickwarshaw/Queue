@@ -107,6 +107,7 @@ class Application {
    */
   listen () {
     this.applicationHttp.listen(this.applicationPort);
+    console.log(`Server is listening on ${this.applicationPort}.`)
   }
 
   /**
