@@ -15,8 +15,8 @@ module.exports = routerInstance => {
         API.getRoomByName(boardReq.params.roomName)
            .then(roomFound => {
              return Promise.all([
-                API.getIntegrals(roomFound[0].roomDistinctor),
-                API.getUntegrals(roomFound[0].roomDistinctor)
+                API.getIntegrals(roomFound.roomDistinctor),
+                API.getUntegrals(roomFound.roomDistinctor)
              ]);
            })
            .then(apiTegrals => {

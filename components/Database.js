@@ -339,6 +339,25 @@ class Database {
     });
   }
 
+  readIntegral (integralsNumber) {
+    const databaseServer = this.databaseServer;
+    const databaseEmbed = new Sequence("SELECT")
+       .only(["clientSystemDistinctor"])
+       .from("Client")
+
+       .join("INNER", "System")
+       .on([["System", "systemDistinctor"], ["Client", "clientSystemDistinctor"]], "System");
+
+    const databaseQuery = new Sequence("SELECT")
+       .only(["systemNumber"]).from("System")
+       .where("systemDistinctor").notin(databaseEmbed)
+       .where("systemNumber").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [integralsNumber])
+    });
+  }
+
   readUntegrals (untegralRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")

@@ -185,20 +185,14 @@ var socket = io("http://127.0.0.1:8080");
 const http = "http://localhost:8080/api";
 
 socket.on('notif:change', function (notify) {
-  "use strict";
-
-
   var notifySystem = new Ajax("GET", `${http}/system/distinctor/${notify.clientSystemDistinctor}`);
   notifySystem.open(false, {}).then(promisedSystem => {
 
-       pointAttended.get(promisedSystem[0].systemNumber).update(notify.clientStatus);
+       pointAttended.get(promisedSystem.systemNumber).update(notify.clientStatus);
      });
 });
 
 socket.on('notif:join', function () {
-  "use strict";
-  console.log("JOINED: ");
-
   window.location.reload();
 });
 socket.on('notif:leave', function () {

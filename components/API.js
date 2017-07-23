@@ -1,275 +1,293 @@
 const currentApplication = require('../queue').currentApplication;
 const currentDatabase = require('../queue').currentDatabase;
 
-const Resolve = currentApplication.component('Resolve');
-
 class API {
 
   /**
    * Get all users from the database.
-   * @returns {Promise.<*>} All users in database.
-   */
+   * @returns {Promise.<Array.<Object>>} Collection of users.
+*/
   static async getUsers () {
-    return Resolve.collection(await currentDatabase.readUsers());
+    return await currentDatabase.readUsers();
   }
 
   /**
-   * Get a user by their ID.
-   * @param {Number} userId Id of the user.
-   * @returns {Promise.<*>} Found user.
+   * Get a user by assigned index.
+   * @param {Number} userId Index of the user.
+   * @returns {Promise.<Object>} Found user.
    */
   static async getUserById (userId) {
     if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
-      return Resolve.collection(await currentDatabase.readUser("Id", {
+      return await currentDatabase.readUser("Id", {
         userId: userId
-      }));
+      });
     } else {
-      throw Error(`User ID '${userId}' is not a number.`);
+      throw Error(`User index '${userId}' is not a number.`);
     }
   }
 
   /**
-   * Get a user by their distinctor.
+   * Get a user by signed distinctor.
    * @param {String} userDistinctor Distinctor of the user.
-   * @returns {Promise.<*>} Found user.
+   * @returns {Promise.<Object>} Found user.
    */
   static async getUserByDistinctor (userDistinctor) {
     if (typeof userDistinctor === "string") {
-      return Resolve.client(await currentDatabase.readUser("Distinctor", {
+      return await currentDatabase.readUser("Distinctor", {
         userDistinctor: userDistinctor
-      }));
+      });
     } else {
-      throw Error(`User Distinctor '${userDistinctor}' is not a string.`);
+      throw Error(`'${userDistinctor}' is not a string.`);
     }
   }
 
   /**
-   * Get a user by their name.
+   * Get a user by given name.
    * @param {String} userName Name of the user.
-   * @returns {Promise.<*>} Found user.
+   * @returns {Promise.<Object>} Found user.
    */
   static async getUserByName (userName) {
     if (typeof userName === "string") {
-      return Resolve.collection(await currentDatabase.readUser("Name", {
+      return await currentDatabase.readUser("Name", {
         userName: userName
-      }));
+      });
     } else {
-      throw Error(`User Name '${userName}' is not a string.`);
+      throw Error(`'${userName}' is not a string.`);
     }
   }
 
-  // TODO: JSdoc.
+  /**
+   * Get a user by signed client distinctor.
+   * @param {String} clientDistinctor Distinctor of the client registered to user.
+   * @returns {Promise.<Object>} User with the client distinctor.
+   */
   static async getUserByClient (clientDistinctor) {
     if (typeof clientDistinctor === "string") {
-      return Resolve.collection(await currentDatabase.readUser("ClientDistinctor", {
+      return await currentDatabase.readUser("ClientDistinctor", {
         userClientDistinctor: clientDistinctor
-      }));
+      });
     } else {
-      throw Error(`Client distinctor '${clientDistinctor}' is not a client.`);
+      throw Error(`'${clientDistinctor}' is not a string.`);
     }
   }
 
   
-  
+
+
   /**
-   * Get all clients.
-   * @returns {Promise.<*>} All clients.
+   * Get all clients from the database.
+   * @returns {Promise.<Array.<Object>>} All clients.
    */
   static async getClients () {
-    return Resolve.collection(await currentDatabase.readClients());
+    return await currentDatabase.readClients();
   }
 
   /**
-   * Get a client by their ID.
-   * @param {Number} clientId ID of the client.
-   * @returns {Promise.<*>} Found client.
+   * Get a client by index.
+   * @param {Number} clientId Index of the client.
+   * @returns {Promise.<Object>} Found client.
    */
   static async getClientById (clientId) {
     if (typeof clientId === "number" || !isNaN(parseInt(clientId, 10))) {
-      return Resolve.collection(await currentDatabase.readClient("Id", {
+      return await currentDatabase.readClient("Id", {
         clientId: clientId
-      }));
+      });
     } else {
-      throw Error(`Client ID '${clientId}' is not a number.`);
+      throw Error(`'${clientId}' is not a parseable number.`);
     }
   }
 
   /**
-   * Get a client by their distinctor.
+   * Get a client by signed distinctor.
    * @param {String} clientDistinctor Distinctor of the client.
-   * @returns {Promise.<*>} Found client.
+   * @returns {Promise.<Object>} Found client.
    */
   static async getClientByDistinctor (clientDistinctor) {
     if (typeof clientDistinctor === "string") {
-      return Resolve.client(await currentDatabase.readClient("Distinctor", {
+      return await currentDatabase.readClient("Distinctor", {
         clientDistinctor: clientDistinctor
-      }));
+      });
     } else {
-      throw Error(`Client Distinctor '${clientDistinctor}' is not a string.`);
+      throw Error(`'${clientDistinctor}' is not a string.`);
     }
   }
 
   /**
-   * Get a client by their handshake.
+   * Get a client by socket handshake.
    * @param {Number} clientHandshake Handshake of the client.
-   * @returns {Promise.<*>} Found client.
+   * @returns {Promise.<Object>} Found client.
    */
   static async getClientByHandshake (clientHandshake) {
     if (typeof clientHandshake === "number" || !isNaN(parseInt(clientHandshake, 10))) {
-      return Resolve.collection(await currentDatabase.readClient("Handshake", {
+      return await currentDatabase.readClient("Handshake", {
         clientHandshake: clientHandshake
-      }));
+      });
     } else {
-      throw Error(`Client handshake '${clientHandshake}' is not a number.`);
+      throw Error(`'${clientHandshake}' is not a parseable number.`);
     }
   }
 
   /**
-   * Get a client by their system.
+   * Get a client by signed system distinctor.
    * @param {String} systemClient Distinctor of client.
    * @returns {Promise.<Object>} Found client.
    */
   static async getClientBySystem (systemClient) {
     if (typeof systemClient === "string") {
-      return Resolve.collection(await currentDatabase.readClient("SystemDistinctor", {
+      return await currentDatabase.readClient("SystemDistinctor", {
         clientSystemDistinctor: systemClient
-      }));
+      });
     } else {
-      throw Error(`Client system '${systemClient}' is not a system.`);
+      throw Error(`'${systemClient}' is not a system.`);
     }
   }
   
-  
+
+
+
   /**
    * Get all systems.
-   * @returns {Promise.<Array>}
+   * @returns {Promise.<Array.<Object>>} Collection of systems.
    */
   static async getSystems () {
-    const readSystems = await currentDatabase.readSystems();
-
-    return readSystems;
+    return await currentDatabase.readSystems();
   }
   
   /**
-   * Get a system by their ID.
-   * @param {Number} systemId Unique ID of the system.
+   * Get a system by index.
+   * @param {Number} systemId Index of the system.
    * @returns {Promise.<Object>} Found system.
    */
   static async getSystemById (systemId) {
     if (typeof systemId === "number" || !isNaN(parseInt(systemId, 10))) {
-      return Resolve.collection(await currentDatabase.readSystem("Id", {
+      return await currentDatabase.readSystem("Id", {
         systemId: systemId
-      }));
+      });
     } else {
-      throw Error(`System ID '${systemId}' is not a system.`);
+      throw Error(`'${systemId}' is not a system.`);
     }
   }
 
   /**
-   * Get a system by their distinctor.
+   * Get a system by distinctor.
    * @param {String} systemDistinctor Distinctor of the system.
-   * @returns {Promise.<Array<Object>>} Collection of systems.
+   * @returns {Promise.<Object>} Collection of systems.
    */
   static async getSystemByDistinctor (systemDistinctor) {
     if (typeof systemDistinctor === "string") {
-      return Resolve.collection(await currentDatabase.readSystem("Distinctor", {
+      return await currentDatabase.readSystem("Distinctor", {
         systemDistinctor: systemDistinctor
-      }));
+      });
     } else {
-      throw Error(`Client distinctor '${systemDistinctor}' is not a system.`);
+      throw Error(`'${systemDistinctor}' is not a system.`);
     }
   }
   
   /**
-   * Get a system by their number.
+   * Get a system by number.
    * @param {Number} systemNumber Number of the system.
    * @returns {Promise.<Object>} Found system.
    */
   static async getSystemByNumber (systemNumber) {
     if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
-      Resolve.collection(await currentDatabase.readSystem("Number", {
+      return await currentDatabase.readSystem("Number", {
         systemNumber: systemNumber
-      }));
+      });
     } else {
-      throw Error(`System number '${systemNumber}' is not a system.`);
+      throw Error(`'${systemNumber}' is not a system.`);
     }
   }
   
   /**
-   * Get a system(s) by the room it is in.
+   * Get a systems by the room.
    * @param {String} systemRoom Room of the system.
-   * @returns {Promise.<Object>} Found system(s).
+   * @returns {Promise.<Object>} Found systems.
    */
   static async getSystemByRoom (systemRoom) {
     if (typeof systemRoom === "string") {
-      return Resolve.collection(await currentDatabase.readSystem("RoomDistinctor", {
+      return await currentDatabase.readSystem("RoomDistinctor", {
         systemRoomDistinctor: systemRoom
-      }));
+      });
     } else {
-      throw Error(`Room '${systemRoom}' is not a room.`);
+      throw Error(`'${systemRoom}' is not a string.`);
     }
   }
   
-  
+
+
+
   /**
    * Get all rooms.
-   * @returns {Promise.<*>} Found rooms.
+   * @returns {Promise.<Array.<Object>>} Found rooms.
    */
   static async getRooms () {
-    return Resolve.collection(await currentDatabase.readRooms());
+    return await currentDatabase.readRooms();
   }
 
   /**
-   * Get a room by the ID.
-   * @param {Number} roomId Id of the room.
-   * @returns {Promise.<*>} Found room.
+   * Get a room by index.
+   * @param {Number} roomId Index of the room.
+   * @returns {Promise.<Object>} Found room.
    */
   static async getRoomById (roomId) {
     if (typeof roomId === "number" || !isNaN(parseInt(roomId, 10))) {
-      return Resolve.collection(await currentDatabase.readRoom("Id", {
+      return await currentDatabase.readRoom("Id", {
         roomId: roomId
-      }));
+      });
     } else {
-      throw Error(`Room ID '${roomId}' is not a number.`);
+      throw Error(`'${roomId}' is not a parseable number.`);
     }
   }
 
   /**
-   * Get a room by the distinctor.
+   * Get a room by distinctor.
    * @param {String} roomDistinctor Distinctor of the room.
-   * @returns {Promise.<*>} Found room.
+   * @returns {Promise.<Object>} Found room.
    */
   static async getRoomByDistinctor (roomDistinctor) {
     if (typeof roomDistinctor === "string") {
-      return Resolve.collection(await currentDatabase.readRoom("Distinctor", {
+      return await currentDatabase.readRoom("Distinctor", {
         roomDistinctor: roomDistinctor
-      }));
+      });
     } else {
-      throw Error(`Room Distinctor '${roomDistinctor}' is not a string.`);
+      throw Error(`'${roomDistinctor}' is not a string.`);
     }
   }
 
   /**
-   * Get a room by the name.
+   * Get a room by name.
    * @param {String} roomName Name of the room.
-   * @returns {Promise.<*>} Found room.
+   * @returns {Promise.<Object>} Found room.
    */
   static async getRoomByName (roomName) {
     if (typeof roomName === "string") {
-      return Resolve.collection(await currentDatabase.readRoom("Name", {
+      return await currentDatabase.readRoom("Name", {
         roomName: roomName
-      }));
+      });
     } else {
-      throw Error(`Room Name '${roomName}' is not a string.`);
+      throw Error(`'${roomName}' is not a string.`);
     }
   }
 
+
+
+
+  /**
+   * Get all clients in a room.
+   * @param {String} integralRoom Distinctor of the room.
+   * @returns {Promise.<Array.<Object>>} Clients in the room.
+   */
   static async getIntegrals (integralRoom) {
-    return Resolve.collection(await currentDatabase.readIntegrals(integralRoom));
+    return await currentDatabase.readIntegrals(integralRoom);
   }
 
+  /**
+   * Get all clients not in a room.
+   * @param {String} untegralRoom Distinctor of the room.
+   * @returns {Promise.<Array.<Object>>} Clients not in the room.
+   */
   static async getUntegrals (untegralRoom) {
-    return Resolve.collection(await currentDatabase.readUntegrals(untegralRoom));
+    return await currentDatabase.readUntegrals(untegralRoom);
   }
   
 }

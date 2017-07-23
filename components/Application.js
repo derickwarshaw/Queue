@@ -1,7 +1,3 @@
-/**
- * Created by Joshua Crowe on 30/06/2017.
- */
-
 const HTTP = require('http');
 const Path = require('path');
 const Express = require('express');
@@ -69,14 +65,21 @@ class Application {
     const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
     this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
-  
-  
+
+  /**
+   * Set the foundation for view routes.
+   * @param {String} foundRoute Base route for the views.
+   */
   found (foundRoute) {
     this.applicationFound = foundRoute;
     const routerRoutes = require(this.applicationDirectory + '/routes/Found');
     this.applicationExpress.use(this.applicationFound, routerRoutes(Express.Router()));
   }
-  
+
+  /**
+   * Add a set of views routes.
+   * @param {String} viewName Name to query.
+   */
   view (viewName) {
     const viewRoutes = require(this.applicationDirectory + '/routes/' + viewName);
     this.applicationExpress.use(`${this.applicationFound}/${viewName.toLowerCase()}/`, viewRoutes(Express.Router()));
