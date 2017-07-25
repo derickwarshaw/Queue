@@ -18,19 +18,21 @@ class Application {
     this.applicationPort = applicationPort;
     this.applicationApi = '/api';
     this.applicationSockets = new Map();
-
+  
     this.applicationExpress = Express();
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
     this.applicationExpress.use(Express.static(Path.join(this.applicationDirectory, '/public')));
     this.applicationEngine = Handlebars.create({
-      defaultLayout: 'main'
+      defaultLayout: 'main',
+      extname: '.hbs',
+      layoutsDir: Path.join(__dirname + '/../public/views/layouts')
     });
-    // TODO: Find a way to set the root directory of views to files/views.
     this.applicationExpress.engine('hbs', this.applicationEngine.engine);
     this.applicationExpress.set('view engine', 'hbs');
+    this.applicationExpress.set('views', Path.join(__dirname, '/../public/views'));
   }
-
+  
   /**
    * Middleware for express web requests.
    * @param {Function} middleHandler Custom handler function.
