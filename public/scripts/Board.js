@@ -1,15 +1,52 @@
 class Board {
-    constructor () {
-      this.boardAttended = new Map();
-      this.boardUnattended = new Map();
+  constructor(boardAddress) {
+    this.boardAttended = new Map();
+    this.boardUnattended = new Map();
 
-      this.boardUsers = new Map();
-    }
+    this.boardAddress = boardAddress;
+    this.boardSocket = io(boardAddress);
+    this.boardUsers = new Map();
+  }
 
-    async bind (attendedTarget) {
-      $('#attended')
+  async bind(attendedTarget) {
+    const $bindTargets = attendedTarget.query('.point');
+
+    for (let i = 0; i < $bindTargets.length; i++) {
+      const bindInstance = new Point($bindTargets[i]);
+
+      await bindInstance.bind();
+
+      this.boardAttended.set(bindInstance.number, bindInstance);
     }
+  }
+
+
+  readAttended (attendingNumber) {
+    return this.boardAttended.get(attendingNumber);
+  }
+
+
+  join(joinHandler) {
+    this.boardSocket.on('notif:join', joinHandler);
+  }
+
+  change(changeHandler) {
+    const changePath = `${this.boardAddress}/api/system/distinctor/`;
+
+    this.boardSocket.on('notif:change', changeData => {
+      changeHandler(changeData, changePath);
+    });
+  }
+
+  leave(leaveHandler) {
+    // TODO: Put the path here.
+
+    this.boardSocket.on('notif:leave', leaveData => {
+      leaveHandler(leaveData);
+    });
+  }
 }
+
 
 class Point {
     constructor (pointTarget) {
@@ -54,39 +91,3 @@ class Point {
       this.pointData.set("RightHeader", updateStatus);
     }
 }
-
-
-
-let pointAttended = new Map(), pointsUnattended = new Map();
-
-window.pointAttended = pointAttended;
-window.pointsUnattended = pointsUnattended;
-
-// Think of this like a bind function.
-$('#attended').children('.point').each(function () {
-   const pointInstance = new Point($(this));
-    
-    pointInstance.bind().then(a => pointAttended.set(pointInstance.number, pointInstance));
-});
-
-
-var socket = io("http://127.0.0.1:8080");
-const http = "http://localhost:8080/api";
-
-socket.on('notif:change', function (notify) {
-  var notifySystem = new Ajax("GET", `${http}/system/distinctor/${notify.clientSystemDistinctor}`);
-  notifySystem.open(false, {}).then(promisedSystem => {
-
-       pointAttended.get(promisedSystem.systemNumber).update(notify.clientStatus);
-     });
-});
-
-socket.on('notif:join', function () {
-  window.location.reload();
-});
-socket.on('notif:leave', function () {
-  "use strict";
-  console.log("JOINED: ");
-
-  window.location.reload();
-});

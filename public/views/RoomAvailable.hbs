@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/cdn/stylesheets/Board.css" />
+
 <main>
     <header>
         <p><strong>Room: </strong>{{roomName}}</p>
@@ -35,8 +37,30 @@
     </section>
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://localhost:8080/socket.io/socket.io.js"></script>
 
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/v/board/Board.css" />
-<script src="http://localhost:8080/v/board/Board.js"></script>
+<script src="http://localhost:8080/cdn/scripts/Ajax.js"></script>
+<script src="http://localhost:8080/cdn/scripts/Selector.js"></script>
+<script src="http://localhost:8080/cdn/scripts/Board.js"></script>
+
+<script type="text/javascript">
+    const currentBoard = new Board("127.0.0.1:8080");
+
+    currentBoard.bind(Selector.validate('#attended')).then(a => {
+      
+        currentBoard.join(function (joinData, joinPath) {
+            window.location.reload();
+        });
+        
+        currentBoard.change(function (changeData, changePath) {
+            (new Ajax("GET", changePath)).open(false, {}).then(changeData => {
+                (currentBoard.readAttended(changeData.systemNumber)).update(joinData.clientStatus);
+            });
+        });
+
+        currentBoard.leave(function (leaveData) {
+          window.location.reload();
+        });
+
+    });
+</script>
