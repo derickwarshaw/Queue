@@ -32,11 +32,19 @@ module.exports = routerInstance => {
              });
            });
       })
-     .get('/r/:resource', function (boardReq, boardRes) {
+      
+      
+     .get('/Board.js', function (boardReq, boardRes) {
 
-       File.readFile('./resources/Point.' + boardReq.params.resource.toLowerCase())
+       File.readFile(`./public/scripts/Board.js`)
           .then(file => boardRes.send(file))
           .catch(reason => boardRes.send(reason.message));
      })
+      .get('/Board.css', function (boardReq, boardRes) {
+        
+        File.readFile('./public/stylesheets/Board.css')
+            .then(file => boardRes.send(file))
+            .catch(reason => boardRes.send(reason.message));
+      });
   
 };

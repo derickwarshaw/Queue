@@ -21,9 +21,8 @@ async function Register (registerUser, registerSocket) {
 
       registerUser.userClient.clientSystem.systemRoom.roomDistinctor = readRoom.roomDistinctor;
       registerUser.userClient.clientHandshake = `${registerSocket.socketHandshake}`;
-
-      // TODO: Implement system checking if a client has already claimed it.
-      if  (readSystem) {
+      
+      if  (readSystem && readContained) {
 
         registerUser.userClient.clientSystem.systemDistinctor = readSystem.systemDistinctor;
 

@@ -22,19 +22,25 @@ const API = currentApplication.component('API');
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
+  // TODO: Consider detecting for /cdn/ links and setting a mime type.
 
   console.log(`[Web Request] ${requestInstance.summary()}`);
 });
 
 currentApplication.base('/api');
-currentApplication.route('User');
-currentApplication.route('Client');
-currentApplication.route('System');
-currentApplication.route('Room');
-currentApplication.route('Tegrals');
+currentApplication.api('User');
+currentApplication.api('Client');
+currentApplication.api('System');
+currentApplication.api('Room');
+currentApplication.api('Tegrals');
 
-currentApplication.found('/v');
+// TODO: Is it worth just setting the base routes in Application.js?
+currentApplication.display('/v');
 currentApplication.view('Board');
+
+currentApplication.resources('/cdn');
+currentApplication.cdn('Scripts');
+currentApplication.cdn('Stylesheets');
 
 currentDatabase.open()
    .then(openDatabase => {

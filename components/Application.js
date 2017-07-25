@@ -49,12 +49,16 @@ class Application {
     });
   }
 
+  
+  
   /**
    * Set the base route.
    * @param baseRoute
    */
   base (baseRoute) {
+    // TODO: Turn this into a map of Routes?
     this.applicationApi = baseRoute;
+    // TODO: Path.join this.
     const routerRoutes = require(this.applicationDirectory + '/routes/Base');
     this.applicationExpress.use(this.applicationApi, routerRoutes(Express.Router()));
   }
@@ -63,18 +67,23 @@ class Application {
    * Creates a route for the server.
    * @param {String} routeName Name of the route to establish.
    */
-  route (routeName) {
+  api (routeName) {
+    // TODO: Path.join this.
     const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
     this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
 
+  
+  
   /**
    * Set the foundation for view routes.
    * @param {String} foundRoute Base route for the views.
    */
-  found (foundRoute) {
+  display (foundRoute) {
+    // TODO: Turn this into a map of Routes?
     this.applicationFound = foundRoute;
-    const routerRoutes = require(this.applicationDirectory + '/routes/Found');
+    // TODO: Path.join this.
+    const routerRoutes = require(this.applicationDirectory + '/routes/Display');
     this.applicationExpress.use(this.applicationFound, routerRoutes(Express.Router()));
   }
 
@@ -83,10 +92,35 @@ class Application {
    * @param {String} viewName Name to query.
    */
   view (viewName) {
-    const viewRoutes = require(this.applicationDirectory + '/routes/' + viewName);
-    this.applicationExpress.use(`${this.applicationFound}/${viewName.toLowerCase()}/`, viewRoutes(Express.Router()));
+    const viewRoutes = require(Path.join(this.applicationDirectory, '/routes/', viewName));
+    this.applicationExpress.use(`${this.applicationFound}/${viewName.toLowerCase()}`, viewRoutes(Express.Router()));
+  }
+  
+
+  
+  resources (resRoute) {
+    // TODO: Turn this into a map of Routes?
+    this.applicationResources = resRoute;
+    const resRoutes = require(Path.join(this.applicationDirectory, '/routes/Resources'));
+    this.applicationExpress.use(this.applicationResources, resRoutes(Express.Router()), function (apiReq, apiRes, apiNext) {
+      if (apiReq.originalUrl.includes("scripts")) {
+        apiRes.contentType("text/javascript");
+      } else if (apiReq.originalUrl.includes("stylesheets")) {
+        apiRes.contentType("text/css");
+      }
+      
+      apiNext();
+    });
+  }
+  
+  cdn (cdnRoute) {
+    const cdnRoutes = require(Path.join(this.applicationDirectory, '/routes/', cdnRoute));
+    this.applicationExpress.use(`${this.applicationResources}/${cdnRoute.toLowerCase()}`, cdnRoutes(Express.Router()));
   }
 
+  
+  
+  
   /**
    * Middleware for the render process.
    * @param {Object} renderRequest Request object.
