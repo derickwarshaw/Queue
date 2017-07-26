@@ -24,6 +24,7 @@ class Application {
     this.applicationRoutes = {};
   
     this.applicationExpress = Express();
+    this.applicationExpressListener = null;
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
     
@@ -137,8 +138,9 @@ class Application {
    * Starts the server request listener.
    */
   listen () {
-    this.applicationHttp.listen(this.applicationPort);
-    console.log(`Server is listening on ${this.applicationPort}.`)
+    const listenInstance = this.applicationHttp.listen(process.env.PORT || this.applicationPort, function () {
+      console.log(`Server listening on ${listenInstance.address().port}.`);
+    });
   }
 
   /**
