@@ -5,9 +5,11 @@ const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
 const Translation = require('../components/Translation');
 
+const WebRequest = require('../types/WebRequest');
 const ApiRequest = require('../types/ApiRequest');
 const ViewRequest = require('../types/ViewRequest');
 const CdnRequest = require('../types/CdnRequest');
+const SocketRequest = require('../types/SocketRequest');
 
 class Application {
 
@@ -43,23 +45,15 @@ class Application {
    * @param {Function} middleHandler Custom handler function.
    */
   middle (middleHandler) {
-    this.applicationExpress.use(function (req, res, next) {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-      Translation.webRequest(req, res).then(requestInstance => {
-        middleHandler(requestInstance);
-        next();
-      });
+    this.applicationExpress.use(function (middleReq, middleRes, middleNext) {
+      middleHandler(new WebRequest(middleReq, middleRes));
+      middleNext();
     });
   }
 
   
   
-  /**
-   * Set the apiBase route.
-   * @param baseRoute
-   */
+  // TODO: JSdoc.
   apiBase (baseRoute, baseHandler) {
       this.applicationRoutes.routesApi = baseRoute;
       
@@ -81,10 +75,7 @@ class Application {
 
   
   
-  /**
-   * Set the foundation for view routes.
-   * @param {String} foundRoute Base route for the views.
-   */
+  // TODO: JSDoc.
   viewBase (baseRoute, baseHandler) {
     this.applicationRoutes.routesView = baseRoute;
 
@@ -105,7 +96,7 @@ class Application {
   }
   
 
-  
+  // TODO: JSDoc.
   cdnBase (baseRoute, baseHandler) {
     this.applicationRoutes.routesCdn = baseRoute;
     
@@ -116,6 +107,7 @@ class Application {
     });
   }
   
+  // TODO: JSdoc.
   cdnRoute (cdnRoute) {
     const cdnRoutes = require(Path.join(this.applicationDirectory, '/routes/', cdnRoute));
     this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${cdnRoute.toLowerCase()}`, cdnRoutes(Express.Router()));
@@ -158,7 +150,7 @@ class Application {
    */
   socket (socketHandler) {
     this.applicationSockets.on('connection', connectedSocket => {
-      Translation.socketRequest(connectedSocket).then(socketHandler);
+      socketHandler(new SocketRequest(connectedSocket));
     });
   }
 

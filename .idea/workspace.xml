@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/types/ApiRequest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/types/CdnRequest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/types/ViewRequest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Application.js" afterPath="$PROJECT_DIR$/components/Application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Translation.js" afterPath="$PROJECT_DIR$/components/Translation.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.js" afterPath="$PROJECT_DIR$/queue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/SocketRequest.js" afterPath="$PROJECT_DIR$/types/SocketRequest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/WebRequest.js" afterPath="$PROJECT_DIR$/types/WebRequest.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,36 +24,42 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <splitter split-orientation="horizontal" split-proportion="0.5">
-            <split-first>
-              <leaf>
-                <file leaf-file-name="ApiRequest.js" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/types/ApiRequest.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="368">
-                        <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf>
-                <file leaf-file-name="ViewRequest.js" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/types/ViewRequest.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="391">
-                        <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
+          <leaf>
+            <file leaf-file-name="Application.js" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/components/Application.js">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="376">
+                    <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+                    <folding>
+                      <element signature="n#!!doc;n#constructor#0;n#Application#0" expanded="false" />
+                      <element signature="e#1304#1431#0" expanded="false" />
+                      <element signature="n#!!doc;n#middle#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#apiRoute#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#viewRoute#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#viewRoute#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#cdnBase#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#cdnRoute#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#render#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#render#0;n#Application#0" expanded="false" />
+                      <element signature="e#4527#4861#0" expanded="false" />
+                      <element signature="e#4593#4854#0" expanded="false" />
+                      <element signature="e#4693#4845#0" expanded="false" />
+                      <element signature="e#4723#4777#0" expanded="false" />
+                      <element signature="e#4783#4835#0" expanded="false" />
+                      <element signature="n#!!doc;n#listen#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#listen#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#socket#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#handle#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#handle#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!doc;n#component#0;n#Application#0" expanded="false" />
+                      <element signature="n#!!block;n#component#0;n#Application#0" expanded="false" />
+                      <element signature="e#5725#6028#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
         </state>
       </content>
     </window>
@@ -80,70 +81,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Application.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/Application.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="120" column="67" lean-forward="false" selection-start-line="120" selection-start-column="67" selection-end-line="120" selection-end-column="67" />
-                  <folding>
-                    <element signature="n#!!doc;n#constructor#0;n#Application#0" expanded="false" />
-                    <element signature="e#1196#1323#0" expanded="false" />
-                    <element signature="n#!!doc;n#middle#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#middle#0;n#Application#0" expanded="false" />
-                    <element signature="e#1747#2040#0" expanded="false" />
-                    <element signature="e#1967#2032#0" expanded="false" />
-                    <element signature="n#!!doc;n#apiBase#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#apiRoute#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#viewBase#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#viewRoute#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#viewRoute#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#render#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#render#0;n#Application#0" expanded="false" />
-                    <element signature="e#4712#5046#0" expanded="false" />
-                    <element signature="e#4778#5039#0" expanded="false" />
-                    <element signature="e#4878#5030#0" expanded="false" />
-                    <element signature="e#4908#4962#0" expanded="false" />
-                    <element signature="e#4968#5020#0" expanded="false" />
-                    <element signature="n#!!doc;n#listen#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#listen#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#socket#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#socket#0;n#Application#0" expanded="false" />
-                    <element signature="e#5437#5514#0" expanded="false" />
-                    <element signature="n#!!doc;n#handle#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#handle#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!doc;n#component#0;n#Application#0" expanded="false" />
-                    <element signature="n#!!block;n#component#0;n#Application#0" expanded="false" />
-                    <element signature="e#5923#6226#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="CdnRequest.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/types/CdnRequest.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="259">
-                  <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="598">
-                  <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="WebRequest.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="WebRequest.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="29" column="2" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
+                <state relative-caret-position="118">
+                  <caret line="41" column="71" lean-forward="false" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
                   <folding />
                 </state>
               </provider>
@@ -152,12 +94,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="queue.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/queue.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="690">
-                  <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+                <state relative-caret-position="184">
+                  <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
                   <folding />
                 </state>
               </provider>
@@ -263,13 +205,13 @@
         <option value="$PROJECT_DIR$/types/apiRequest.js" />
         <option value="$PROJECT_DIR$/components/Translation.js" />
         <option value="$PROJECT_DIR$/components/Logger.js" />
-        <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/types/ApiRequest.js" />
         <option value="$PROJECT_DIR$/types/ViewRequest.js" />
-        <option value="$PROJECT_DIR$/types/WebRequest.js" />
         <option value="$PROJECT_DIR$/types/CdnRequest.js" />
-        <option value="$PROJECT_DIR$/queue.js" />
         <option value="$PROJECT_DIR$/types/SocketRequest.js" />
+        <option value="$PROJECT_DIR$/queue.js" />
+        <option value="$PROJECT_DIR$/components/Application.js" />
+        <option value="$PROJECT_DIR$/types/WebRequest.js" />
       </list>
     </option>
   </component>
@@ -627,7 +569,8 @@
       <workItem from="1500987209185" duration="7307000" />
       <workItem from="1501007257404" duration="2567000" />
       <workItem from="1501011024402" duration="2447000" />
-      <workItem from="1501051677343" duration="9055000" />
+      <workItem from="1501051677343" duration="9079000" />
+      <workItem from="1501061862601" duration="410000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -685,11 +628,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501055048197</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Better types for different routes. Route middleware.">
+      <created>1501061743187</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1501061743187</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308198000" />
+    <option name="totallyTimeSpent" value="308632000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -702,18 +652,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12223393" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329294" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="-213" y="188" width="1920" height="1017" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4180602" sideWeight="0.51896733" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11327714" sideWeight="0.38449112" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="115" y="301" width="1745" height="433" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="115" y="301" width="1745" height="433" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.48608536" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32173914" sideWeight="0.48524764" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.483835" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1920" height="1017" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.483835" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1920" height="1017" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -727,6 +677,7 @@
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Running Info" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Running Result" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
     </layout>
@@ -777,7 +728,8 @@
     <MESSAGE value="System bad guid." />
     <MESSAGE value="Moved default views folder." />
     <MESSAGE value="Finished rewriting Board.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished rewriting Board.js" />
+    <MESSAGE value="Better types for different routes. Route middleware." />
+    <option name="LAST_COMMIT_MESSAGE" value="Better types for different routes. Route middleware." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -968,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="932">
           <caret line="176" column="47" lean-forward="true" selection-start-line="176" selection-start-column="47" selection-end-line="176" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,7 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,7 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1048,23 +997,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Logger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Logger.js" />
     <entry file="file://$PROJECT_DIR$/routes/Scripts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1072,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,71 +1031,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
+    <entry file="file://$PROJECT_DIR$/types/CdnRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="29" column="2" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
+        <state relative-caret-position="306">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/types/CdnRequest.js">
+    <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="398">
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="120" column="67" lean-forward="false" selection-start-line="120" selection-start-column="67" selection-end-line="120" selection-end-column="67" />
+        <state relative-caret-position="376">
+          <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc;n#constructor#0;n#Application#0" expanded="false" />
-            <element signature="e#1196#1323#0" expanded="false" />
+            <element signature="e#1304#1431#0" expanded="false" />
             <element signature="n#!!doc;n#middle#0;n#Application#0" expanded="false" />
-            <element signature="n#!!block;n#middle#0;n#Application#0" expanded="false" />
-            <element signature="e#1747#2040#0" expanded="false" />
-            <element signature="e#1967#2032#0" expanded="false" />
-            <element signature="n#!!doc;n#apiBase#0;n#Application#0" expanded="false" />
             <element signature="n#!!doc;n#apiRoute#0;n#Application#0" expanded="false" />
-            <element signature="n#!!doc;n#viewBase#0;n#Application#0" expanded="false" />
             <element signature="n#!!doc;n#viewRoute#0;n#Application#0" expanded="false" />
             <element signature="n#!!block;n#viewRoute#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#cdnBase#0;n#Application#0" expanded="false" />
+            <element signature="n#!!block;n#cdnRoute#0;n#Application#0" expanded="false" />
             <element signature="n#!!doc;n#render#0;n#Application#0" expanded="false" />
             <element signature="n#!!block;n#render#0;n#Application#0" expanded="false" />
-            <element signature="e#4712#5046#0" expanded="false" />
-            <element signature="e#4778#5039#0" expanded="false" />
-            <element signature="e#4878#5030#0" expanded="false" />
-            <element signature="e#4908#4962#0" expanded="false" />
-            <element signature="e#4968#5020#0" expanded="false" />
+            <element signature="e#4527#4861#0" expanded="false" />
+            <element signature="e#4593#4854#0" expanded="false" />
+            <element signature="e#4693#4845#0" expanded="false" />
+            <element signature="e#4723#4777#0" expanded="false" />
+            <element signature="e#4783#4835#0" expanded="false" />
             <element signature="n#!!doc;n#listen#0;n#Application#0" expanded="false" />
             <element signature="n#!!block;n#listen#0;n#Application#0" expanded="false" />
             <element signature="n#!!doc;n#socket#0;n#Application#0" expanded="false" />
-            <element signature="n#!!block;n#socket#0;n#Application#0" expanded="false" />
-            <element signature="e#5437#5514#0" expanded="false" />
             <element signature="n#!!doc;n#handle#0;n#Application#0" expanded="false" />
             <element signature="n#!!block;n#handle#0;n#Application#0" expanded="false" />
             <element signature="n#!!doc;n#component#0;n#Application#0" expanded="false" />
             <element signature="n#!!block;n#component#0;n#Application#0" expanded="false" />
-            <element signature="e#5923#6226#0" expanded="false" />
+            <element signature="e#5725#6028#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="35" column="5" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/queue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="184">
+          <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="41" column="71" lean-forward="false" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
           <folding />
         </state>
       </provider>

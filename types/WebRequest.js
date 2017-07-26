@@ -35,6 +35,16 @@ class WebRequest {
   summary () {
     return `${this.webRequestMethod} -> ${this.webRequestPath} (${this.webRequestHeaders.size} headers)`;
   }
+  
+  
+  
+  allowOrigin (originType) {
+    this.webResponse.header("Access-Control-Allow-Origin", originType);
+  }
+  
+  allowHeaders (headersAllow) {
+    this.webResponse.header("Access-Control-Allow-Headers", headersAllow.join(', '));
+  }
 }
 
 module.exports = WebRequest;

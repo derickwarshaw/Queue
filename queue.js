@@ -22,9 +22,9 @@ const API = currentApplication.component('API');
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
-  // TODO: Consider detecting for /cdnRoute/ links and setting a mime type.
-
-  // console.log(`[Web Request] ${requestInstance.summary()}`);
+  
+  requestInstance.allowOrigin('*');
+  requestInstance.allowHeaders(['Origin', 'X-Requested-With', 'Content-Type', 'Accept']);
 });
 
 currentApplication.apiBase('/api', function (api) {
