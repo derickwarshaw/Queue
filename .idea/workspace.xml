@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="Moved default views folder.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/scripts/Selector.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/scripts/Board.js" afterPath="$PROJECT_DIR$/public/scripts/Board.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/RoomAvailable.hbs" afterPath="$PROJECT_DIR$/public/views/RoomAvailable.hbs" />
@@ -40,11 +40,9 @@
           <file leaf-file-name="queue.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/queue.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
+                <state relative-caret-position="644">
                   <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-                  <folding>
-                    <marker date="1501007245455" expanded="true" signature="886:904" ph="{...}" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -52,7 +50,7 @@
           <file leaf-file-name="Display.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/Display.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
+                <state relative-caret-position="184">
                   <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
                   <folding />
                 </state>
@@ -62,7 +60,7 @@
           <file leaf-file-name="Scripts.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/Scripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
+                <state relative-caret-position="253">
                   <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
                   <folding />
                 </state>
@@ -72,14 +70,19 @@
           <file leaf-file-name="Board.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/scripts/Board.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="66" column="45" lean-forward="true" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
-                  <folding>
-                    <element signature="n#!!block;n#join#0;n#Board#0" expanded="false" />
-                    <element signature="n#!!block;n#change#0;n#Board#0" expanded="false" />
-                    <element signature="n#!!block;n#leave#0;n#Board#0" expanded="false" />
-                    <element signature="n#!!block;n#constructor#0;n#Point#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="424">
+                  <caret line="84" column="59" lean-forward="false" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Register.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/events/Register.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="63">
+                  <caret line="24" column="41" lean-forward="false" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -87,12 +90,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="RoomAvailable.hbs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="638">
-                  <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
+                <state relative-caret-position="723">
+                  <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -101,8 +104,8 @@
           <file leaf-file-name="Selector.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/scripts/Selector.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="112">
-                  <caret line="253" column="30" lean-forward="true" selection-start-line="253" selection-start-column="30" selection-end-line="253" selection-end-column="30" />
+                <state relative-caret-position="5819">
+                  <caret line="253" column="30" lean-forward="false" selection-start-line="253" selection-start-column="30" selection-end-line="253" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -212,8 +215,8 @@
         <option value="$PROJECT_DIR$/public/scripts/a.js" />
         <option value="$PROJECT_DIR$/public/scripts/Selected.js" />
         <option value="$PROJECT_DIR$/public/scripts/Selector.js" />
-        <option value="$PROJECT_DIR$/public/views/RoomAvailable.hbs" />
         <option value="$PROJECT_DIR$/public/scripts/Board.js" />
+        <option value="$PROJECT_DIR$/public/views/RoomAvailable.hbs" />
       </list>
     </option>
   </component>
@@ -275,8 +278,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -571,6 +574,7 @@
       <workItem from="1500987209185" duration="7307000" />
       <workItem from="1501007257404" duration="2567000" />
       <workItem from="1501011024402" duration="2447000" />
+      <workItem from="1501051677343" duration="2408000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -625,7 +629,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299143000" />
+    <option name="totallyTimeSpent" value="301551000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -649,7 +653,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.48608536" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32173914" sideWeight="0.48524764" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50869566" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1920" height="1017" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14604236" sideWeight="0.48103267" order="3" side_tool="false" content_ui="tabs" x="0" y="23" width="1920" height="1017" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -717,13 +721,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/events/Register.js</url>
-          <line>24</line>
-          <option name="timeStamp" value="708" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog>
           <selected-grouping-rules>
@@ -937,7 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="932">
           <caret line="176" column="47" lean-forward="true" selection-start-line="176" selection-start-column="47" selection-end-line="176" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -953,14 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/events/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1096">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -981,11 +969,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/queue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="644">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1501007245455" expanded="true" signature="886:904" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,25 +991,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/Ajax.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/a.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/Ajax.js" />
+    <entry file="file://$PROJECT_DIR$/public/scripts/a.js" />
     <entry file="file://$PROJECT_DIR$/routes/Display.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="184">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
@@ -1031,7 +1003,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/Scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="253">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
           <folding />
         </state>
@@ -1041,36 +1013,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/Selector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="253" column="30" lean-forward="true" selection-start-line="253" selection-start-column="30" selection-end-line="253" selection-end-column="30" />
+        <state relative-caret-position="5819">
+          <caret line="253" column="30" lean-forward="false" selection-start-line="253" selection-start-column="30" selection-end-line="253" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs">
+    <entry file="file://$PROJECT_DIR$/events/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
+        <state relative-caret-position="63">
+          <caret line="24" column="41" lean-forward="false" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/Board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="66" column="45" lean-forward="true" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!block;n#join#0;n#Board#0" expanded="false" />
-            <element signature="n#!!block;n#change#0;n#Board#0" expanded="false" />
-            <element signature="n#!!block;n#leave#0;n#Board#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Point#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="424">
+          <caret line="84" column="59" lean-forward="false" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="723">
+          <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

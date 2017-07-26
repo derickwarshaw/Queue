@@ -44,7 +44,7 @@
 <script src="http://localhost:8080/cdn/scripts/Board.js"></script>
 
 <script type="text/javascript">
-    const currentBoard = new Board("127.0.0.1:8080");
+    const currentBoard = new Board("http://127.0.0.1:8080");
 
     currentBoard.bind(Selector.validate('#attended')).then(a => {
       
@@ -53,9 +53,11 @@
         });
         
         currentBoard.change(function (changeData, changePath) {
-            (new Ajax("GET", changePath)).open(false, {}).then(changeData => {
-                (currentBoard.readAttended(changeData.systemNumber)).update(joinData.clientStatus);
-            });
+          const changeAjax = new Ajax("GET", changePath);
+
+          changeAjax.open(false, {}).then(function (openData) {
+            currentBoard.readAttended(openData.systemNumber).update(changeData.clientStatus);
+          });
         });
 
         currentBoard.leave(function (leaveData) {
