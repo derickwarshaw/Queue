@@ -3,7 +3,6 @@ const Path = require('path');
 const Express = require('express');
 const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
-const Translation = require('../components/Translation');
 
 const WebRequest = require('../types/WebRequest');
 const ApiRequest = require('../types/ApiRequest');

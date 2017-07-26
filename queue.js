@@ -15,10 +15,6 @@ module.exports.currentDatabase = currentDatabase;
 
 
 
-const Present = currentApplication.component('Present');
-const Translation = currentApplication.component('Translation');
-const API = currentApplication.component('API');
-
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
