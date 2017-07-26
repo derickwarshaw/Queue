@@ -15,7 +15,6 @@ module.exports.currentDatabase = currentDatabase;
 
 
 
-// TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
   
@@ -23,37 +22,25 @@ currentApplication.middle(function (requestInstance) {
   requestInstance.allowHeaders(['Origin', 'X-Requested-With', 'Content-Type', 'Accept']);
 });
 
-currentApplication.apiBase('/api', function (api) {
+currentApplication.api('/api', ['user', 'client', 'system', 'room', 'tegrals'], function (api) {
   "use strict";
   
   console.log(`[${api.time()}] [API Request] ${api.summary()}`);
 });
-
-// TODO: Consider implementing these another way?
-currentApplication.apiRoute('User');
-currentApplication.apiRoute('Client');
-currentApplication.apiRoute('System');
-currentApplication.apiRoute('Room');
-currentApplication.apiRoute('Tegrals');
-
-
-
-currentApplication.viewBase('/v', function (view) {
+currentApplication.views('/v', ['board'], function (view) {
   "use strict";
   
   console.log(`[${view.time()}] [View Request] ${view.summary()}`);
 });
-currentApplication.viewRoute('Board');
-
-
-currentApplication.cdnBase('/cdn', function (cdn) {
+currentApplication.cdn('/cdn', ['scripts', 'stylesheets'], function (cdn) {
   "use strict";
   
   
   console.log(`[${cdn.time()}] [CDN Request] ${cdn.summary()}`);
 });
-currentApplication.cdnRoute('Scripts');
-currentApplication.cdnRoute('Stylesheets');
+
+
+
 
 currentDatabase.open()
    .then(openDatabase => {
@@ -91,7 +78,7 @@ currentDatabase.open()
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)
             .then(handleData => {
-              console.log(`[Web Request] Ended for ${socketRequest.socketHandshake}.`)
+              console.log(`[${socketRequest.time()}] [Socket Request] Ended for ${socketRequest.socketHandshake}.`)
               socketRequest.leave(handleData);
             })
             .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`));
