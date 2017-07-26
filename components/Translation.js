@@ -5,7 +5,7 @@
 const WebRequest = require('../types/WebRequest');
 const SocketRequest = require('../types/SocketRequest');
 
-
+// TODO: Does this need to be here?
 class Translation {
 
   /**

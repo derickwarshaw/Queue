@@ -22,25 +22,40 @@ const API = currentApplication.component('API');
 // TODO: Do something with this middleware function.
 currentApplication.middle(function (requestInstance) {
   "use strict";
-  // TODO: Consider detecting for /cdn/ links and setting a mime type.
+  // TODO: Consider detecting for /cdnRoute/ links and setting a mime type.
 
-  console.log(`[Web Request] ${requestInstance.summary()}`);
+  // console.log(`[Web Request] ${requestInstance.summary()}`);
 });
 
-currentApplication.base('/api');
-currentApplication.api('User');
-currentApplication.api('Client');
-currentApplication.api('System');
-currentApplication.api('Room');
-currentApplication.api('Tegrals');
+currentApplication.apiBase('/api', function (api) {
+  "use strict";
+  
+  console.log(`[${api.time()}] [API Request] ${api.summary()}`);
+});
+currentApplication.apiRoute('User');
+currentApplication.apiRoute('Client');
+currentApplication.apiRoute('System');
+currentApplication.apiRoute('Room');
+currentApplication.apiRoute('Tegrals');
 
-// TODO: Is it worth just setting the base routes in Application.js?
-currentApplication.display('/v');
-currentApplication.view('Board');
 
-currentApplication.resources('/cdn');
-currentApplication.cdn('Scripts');
-currentApplication.cdn('Stylesheets');
+
+currentApplication.viewBase('/v', function (view) {
+  "use strict";
+  
+  console.log(`[${view.time()}] [View Request] ${view.summary()}`);
+});
+currentApplication.viewRoute('Board');
+
+
+currentApplication.cdnBase('/cdn', function (cdn) {
+  "use strict";
+  
+  
+  console.log(`[${cdn.time()}] [CDN Request] ${cdn.summary()}`);
+});
+currentApplication.cdnRoute('Scripts');
+currentApplication.cdnRoute('Stylesheets');
 
 currentDatabase.open()
    .then(openDatabase => {
@@ -48,7 +63,7 @@ currentDatabase.open()
 
      currentApplication.listen();
      currentApplication.socket(socketRequest => {
-       console.log(`[Socket Request] ${socketRequest.summary()}`);
+       console.log(`[${socketRequest.time()}] [Socket Request] ${socketRequest.summary()}`);
 
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)

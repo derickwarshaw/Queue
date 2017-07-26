@@ -5,6 +5,10 @@ const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
 const Translation = require('../components/Translation');
 
+const ApiRequest = require('../types/ApiRequest');
+const ViewRequest = require('../types/ViewRequest');
+const CdnRequest = require('../types/CdnRequest');
+
 class Application {
 
   /**
@@ -16,12 +20,13 @@ class Application {
   constructor (applicationDirectory, applicationPort) {
     this.applicationDirectory = applicationDirectory;
     this.applicationPort = applicationPort;
-    this.applicationApi = '/api';
-    this.applicationSockets = new Map();
+    this.applicationRoutes = {};
   
     this.applicationExpress = Express();
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
+    
+    // Express Setup.
     this.applicationExpress.use(Express.static(Path.join(this.applicationDirectory, '/public')));
     this.applicationEngine = Handlebars.create({
       defaultLayout: 'main',
@@ -52,25 +57,26 @@ class Application {
   
   
   /**
-   * Set the base route.
+   * Set the apiBase route.
    * @param baseRoute
    */
-  base (baseRoute) {
-    // TODO: Turn this into a map of Routes?
-    this.applicationApi = baseRoute;
-    // TODO: Path.join this.
-    const routerRoutes = require(this.applicationDirectory + '/routes/Base');
-    this.applicationExpress.use(this.applicationApi, routerRoutes(Express.Router()));
+  apiBase (baseRoute, baseHandler) {
+      this.applicationRoutes.routesApi = baseRoute;
+      
+      const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/Base'));
+      this.applicationExpress.use(this.applicationRoutes.routesApi, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
+        baseHandler(new ApiRequest(baseReq, baseRes));
+        baseNext();
+      });
   }
 
   /**
    * Creates a route for the server.
    * @param {String} routeName Name of the route to establish.
    */
-  api (routeName) {
-    // TODO: Path.join this.
-    const routerRoutes = require(this.applicationDirectory + '/routes/' + routeName);
-    this.applicationExpress.use(`${this.applicationApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
+  apiRoute (routeName) {
+    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/', routeName));
+    this.applicationExpress.use(`${this.applicationRoutes.routesApi}/${routeName.toLowerCase()}/`, routerRoutes(Express.Router()));
   }
 
   
@@ -79,43 +85,40 @@ class Application {
    * Set the foundation for view routes.
    * @param {String} foundRoute Base route for the views.
    */
-  display (foundRoute) {
-    // TODO: Turn this into a map of Routes?
-    this.applicationFound = foundRoute;
-    // TODO: Path.join this.
-    const routerRoutes = require(this.applicationDirectory + '/routes/Display');
-    this.applicationExpress.use(this.applicationFound, routerRoutes(Express.Router()));
+  viewBase (baseRoute, baseHandler) {
+    this.applicationRoutes.routesView = baseRoute;
+
+    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/Display'));
+    this.applicationExpress.use(this.applicationRoutes.routesApi, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
+      baseHandler(new ViewRequest(baseReq, baseRes));
+      baseNext();
+    });
   }
 
   /**
    * Add a set of views routes.
    * @param {String} viewName Name to query.
    */
-  view (viewName) {
+  viewRoute (viewName) {
     const viewRoutes = require(Path.join(this.applicationDirectory, '/routes/', viewName));
-    this.applicationExpress.use(`${this.applicationFound}/${viewName.toLowerCase()}`, viewRoutes(Express.Router()));
+    this.applicationExpress.use(`${this.applicationRoutes.routesView}/${viewName.toLowerCase()}`, viewRoutes(Express.Router()));
   }
   
 
   
-  resources (resRoute) {
-    // TODO: Turn this into a map of Routes?
-    this.applicationResources = resRoute;
+  cdnBase (baseRoute, baseHandler) {
+    this.applicationRoutes.routesCdn = baseRoute;
+    
     const resRoutes = require(Path.join(this.applicationDirectory, '/routes/Resources'));
-    this.applicationExpress.use(this.applicationResources, resRoutes(Express.Router()), function (apiReq, apiRes, apiNext) {
-      if (apiReq.originalUrl.includes("scripts")) {
-        apiRes.contentType("text/javascript");
-      } else if (apiReq.originalUrl.includes("stylesheets")) {
-        apiRes.contentType("text/css");
-      }
-      
-      apiNext();
+    this.applicationExpress.use(this.applicationRoutes.routesCdn, resRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
+      baseHandler(new CdnRequest(baseReq, baseRes));
+      baseNext();
     });
   }
   
-  cdn (cdnRoute) {
+  cdnRoute (cdnRoute) {
     const cdnRoutes = require(Path.join(this.applicationDirectory, '/routes/', cdnRoute));
-    this.applicationExpress.use(`${this.applicationResources}/${cdnRoute.toLowerCase()}`, cdnRoutes(Express.Router()));
+    this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${cdnRoute.toLowerCase()}`, cdnRoutes(Express.Router()));
   }
 
   

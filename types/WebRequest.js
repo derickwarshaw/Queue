@@ -6,6 +6,11 @@ class WebRequest {
    * @param {Object} requestRes Resolve object.
    */
   constructor (requestReq, requestRes) {
+    this.webRequestDate = new Date();
+    
+    this.webRequest = requestReq;
+    this.webResponse = requestRes;
+    
     this.webRequestMethod = requestReq.method;
     this.webRequestPath = requestReq.originalUrl;
 
@@ -18,6 +23,11 @@ class WebRequest {
     }
   }
 
+  
+  time () {
+    return `${this.webRequestDate.toLocaleDateString()} @ ${this.webRequestDate.toLocaleTimeString()}`;
+  }
+  
   /**
    * Generate a summary of the request.
    * @returns {String} Summary of the request.

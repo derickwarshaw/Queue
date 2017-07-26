@@ -6,18 +6,27 @@ class SocketRequest {
    * @returns {Object} SocketRequest instance.
    */
   constructor (requestSocket) {
+    // TODO: for consistency, should this not be "socketRequestDate"?
+    this.socketDate = new Date();
     this.socketObject = requestSocket;
     this.socketRequestId = requestSocket.client.id;
     this.socketRequestPath = requestSocket.client.request.url;
     this.socketRequestMethod = requestSocket.client.request.method;
     this.socketHandshake = requestSocket.handshake.issued;
   }
-
+  
+  
+  time () {
+    return `${this.socketDate.toLocaleDateString()} @ ${this.socketDate.toLocaleTimeString()}`;
+  }
+  
   /**
    * Generate a summary about the request.
    * @returns {String} Summary about the request.
    */
   summary () {
+    // TODO: Do something better with this. Split the transport/polling IDs.
+    // this.socketRequestPath.split('&').map(a => a.split('='));
     return `${this.socketRequestMethod} -> ${this.socketRequestPath} (${this.socketRequestId})`;
   }
 
