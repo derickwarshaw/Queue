@@ -24,18 +24,20 @@ currentApplication.middle(function (requestInstance) {
 
 currentApplication.api('/api', ['user', 'client', 'system', 'room', 'tegrals'], function (api) {
   "use strict";
-  
+
+  // TODO: Implement logging to a file.
   console.log(`[${api.time()}] [API Request] ${api.summary()}`);
 });
 currentApplication.views('/v', ['board'], function (view) {
   "use strict";
-  
+
+  // TODO: Implement logging to a file.
   console.log(`[${view.time()}] [View Request] ${view.summary()}`);
 });
 currentApplication.cdn('/cdn', ['scripts', 'stylesheets'], function (cdn) {
   "use strict";
   
-  
+  // TODO: Implement logging to a file.
   console.log(`[${cdn.time()}] [CDN Request] ${cdn.summary()}`);
 });
 
@@ -48,6 +50,7 @@ currentDatabase.open()
 
      currentApplication.listen();
      currentApplication.socket(socketRequest => {
+       // TODO: Implement logging to a file.
        console.log(`[${socketRequest.time()}] [Socket Request] ${socketRequest.summary()}`);
 
        socketRequest.authenticate(function (authName, authData) {

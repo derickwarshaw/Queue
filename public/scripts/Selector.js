@@ -139,7 +139,7 @@ class Selected {
    * @returns {Selected} Selected with element of original index.
    */
   index (indexNumber) {
-    if (Array.isArray(this.selectedElements) && this.length >= indexNumber) {
+    if (this.length >= indexNumber) {
       return new Selected(this.selectedElements[indexNumber]);
     } else {
       throw Error(`Index cannot be accessed.`);
@@ -185,20 +185,12 @@ class Selected {
    * @returns {Selected} Current Selected.
    */
   removeClass (className, classDelay, classCallback) {
-    const classNameCheck = Boolean(typeof className === "string");
-    const classDelayCheck = Boolean(typeof classDelay === "number");
-    const classCallbackCheck = (classCallback instanceof function);
-
-    if (classNameCheck && classDelayCheck && classCallbackCheck) {
-      if (Array.isArray(className)) {
-        for (let i = 0; i < className.length; i++) {
-          this.selectedElements.classList.remove(className[i]);
-        }
-      } else {
-        this.selectedElements.classList.remove(className);
+    if (Array.isArray(className)) {
+      for (let i = 0; i < className.length; i++) {
+        this.selectedElements.classList.remove(className[i]);
       }
     } else {
-      throw Error(`Poor arguments for .removeClass()`);
+      this.selectedElements.classList.remove(className);
     }
 
     if (!classDelay && classCallback) {
@@ -207,7 +199,7 @@ class Selected {
       const classInstance = this;
 
       setTimeout(function () {
-         classCallbackCheck(className, classInstance);
+         classCallback(className, classInstance);
       }, classDelay);
     }
 
