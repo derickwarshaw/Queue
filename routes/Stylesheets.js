@@ -6,10 +6,15 @@ module.exports = routerInstance => {
   "use strict";
   
   return routerInstance
-      .get('/', function (roomReq, roomRes) {
+      .get('/', function (stylesheetReq, stylesheetRes) {
         "use strict";
-        
-        roomRes.send("You are on the base route for /cdn/stylesheets");
+
+        File.readDirectory('./public/stylesheets').then(scriptsFound => stylesheetRes.render('Root', {
+          rootHeader: 'Scripts Available',
+          rootItem: scriptsFound.map(scriptFound => {
+            return {itemName: scriptFound, itemRoot: '/cdn/stylesheets'};
+          })
+        }));
       })
       .get('/:stylesheetName', function (stylesheetReq, stylesheetRes) {
         

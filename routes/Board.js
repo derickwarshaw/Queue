@@ -7,8 +7,17 @@ module.exports = routerInstance => {
   "use strict";
   
   return routerInstance
-      .get('/', function (roomReq, roomRes) {
-        // TODO: Send them a, "You did not reqest... here's some options" page.
+      .get('/', function (boardReq, boardRes) {
+        API.getRooms().then(roomsFound => boardRes.render('Root', {
+          rootHeader: 'Rooms Available',
+          rootItem: roomsFound.map(roomFound => {
+            roomFound.itemRoot = '/v/board';
+            roomFound.itemName = roomFound.roomName;
+            delete roomFound.roomName;
+
+            return roomFound;
+          })
+        }));
       })
       .get('/:roomName', function (boardReq, boardRes) {
 
@@ -31,20 +40,6 @@ module.exports = routerInstance => {
                roomName: boardReq.params.roomName
              });
            });
-      })
-      
-      
-     .get('/Board.js', function (boardReq, boardRes) {
-
-       File.readFile(`./public/scripts/Board.js`)
-          .then(file => boardRes.send(file))
-          .catch(reason => boardRes.send(reason.message));
-     })
-      .get('/Board.css', function (boardReq, boardRes) {
-        
-        File.readFile('./public/stylesheets/Board.css')
-            .then(file => boardRes.send(file))
-            .catch(reason => boardRes.send(reason.message));
       });
   
 };

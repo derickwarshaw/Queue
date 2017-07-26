@@ -39,11 +39,7 @@ class Board {
   }
 
   leave(leaveHandler) {
-    // TODO: Put the path here.
-
-    this.boardSocket.on('notif:leave', leaveData => {
-      leaveHandler(leaveData);
-    });
+    this.boardSocket.on('notif:leave', leaveHandler);
   }
 }
 

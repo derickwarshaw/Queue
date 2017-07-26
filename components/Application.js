@@ -50,9 +50,12 @@ class Application {
     });
   }
 
-  
-  
-  // TODO: JSdoc.
+  /**
+   * Set up the API route handler.
+   * @param {String} baseRoute Route at the base of all requests.
+   * @param {Array} basePaths Routes to register.
+   * @param {Function} baseHandler Middleware for routes.
+   */
   api (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesApi = baseRoute;
 
@@ -68,9 +71,12 @@ class Application {
     }
   }
 
-  
-  
-  // TODO: JSDoc.
+  /**
+   * Set up the views route handler.
+   * @param {String} baseRoute Route at the base of all requests.
+   * @param {Array} basePaths Routes to register.
+   * @param {Function} baseHandler Middleware for routes.
+   */
   views (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesView = baseRoute;
 
@@ -85,9 +91,13 @@ class Application {
       this.applicationExpress.use(`${this.applicationRoutes.routesView}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
-  
 
-  // TODO: JSDoc.
+  /**
+   * Set up the CDN route handler.
+   * @param {String} baseRoute Route at the base of all requests.
+   * @param {Array} basePaths Routes to register.
+   * @param {Function} baseHandler Middleware for routes.
+   */
   cdn (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesCdn = baseRoute;
     
@@ -102,8 +112,6 @@ class Application {
       this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
-  
-  
   
   /**
    * Middleware for the render process.

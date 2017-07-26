@@ -7,7 +7,8 @@ module.exports = routerInstance => {
   return routerInstance
       .get('/', function (roomReq, roomRes) {
         "use strict";
-        
+
+        // TODO: Find a way to show all resources? Scripts/Text/etc.
         roomRes.send("You are on the base route for /r/");
       });
   

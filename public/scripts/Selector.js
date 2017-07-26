@@ -3,101 +3,152 @@ class Selected {
     this.selectedElements = selectedElements;
   }
 
-  get html () {
-    return this.selectedElements.innerHTML;
-  }
-
+  /**
+   * Set the inner HTML of the selected element.
+   * @param {*} htmlNow HTML/DOM to append.
+   */
   set html (htmlNow) {
     this.selectedElements.innerHTML = htmlNow;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Get the inner HTML of the selected element.
+   * @returns {String} Inner HTML as a string.
+   */
+  get html () {
+    return this.selectedElements.innerHTML;
+  }
+
+  /**
+   * Set the text of the selected element.
+   * @param {String|Number} textSet Text to change to.
+   */
   set text (textSet) {
     this.selectedElements.innerText = textSet;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Get the text of the selected element.
+   * @returns {string|*}
+   */
   get text () {
     return this.selectedElements.innerText;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Set the source of the selected element.
+   * @param {String} sourceOf Source for an image.
+   */
   set source (sourceOf) {
     this.selectedElements.src = sourceOf;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Get the source of the element.
+   * @returns {String} Source for an image.
+   */
   get source () {
     return this.selectedElements.src;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Get the length of the current selected elements.
+   * @returns {Number} Size of collection.
+   */
   get length () {
     return this.selectedElements.length;
   }
 
-
-
-
-
-
-
-
-
-  // TODO: Needs JSDoc.
+  /**
+   * Query child elements.
+   * @param {String} queryName Name to query.
+   * @returns {Selected} Selected instance with queried elements.
+   */
   query (queryName) {
-    // TODO: Needs validation. Types/etc,
-    if (queryName !== undefined) {
-      const queryQuery = this.selectedElements.querySelectorAll(queryName);
-      return new Selected(queryQuery);
+    if (typeof queryName === "string") {
+      if (queryName !== undefined) {
+        const queryQuery = this.selectedElements.querySelectorAll(queryName);
+        return new Selected(queryQuery);
+      } else {
+        return null;
+      }
     } else {
-      return null;
+      throw Error(`'${queryName}' is not a string.`);
     }
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Find a child element.
+   * @param {String} findName Name to look for.
+   * @returns {Selected} Selected with found element.
+   */
   find (findName) {
-    // TODO: Needs validation. Types/etc,
-    if (findName !== undefined) {
-      const findQuery = this.selectedElements.querySelectorAll(findName);
-      return new Selected(findQuery[0]);
+    if (typeof findName === "string") {
+      if (findName !== undefined) {
+        const findQuery = this.selectedElements.querySelectorAll(findName);
+        return new Selected(findQuery[0]);
+      } else {
+        return null;
+      }
     } else {
-      return null;
+      throw Error(`'${findName}' is not a string.`);
     }
   }
 
+  /**
+   * Find a child by element ID.
+   * @param {String} targetId ID of element.
+   * @returns {Selected} Selected with found element.
+   */
   target (targetId) {
     return new Selected(document.getElementById(targetId));
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Directly copy an element.
+   * @param {Element} copyValue Element to copy.
+   * @returns {Selected} With copied element.
+   */
   copy (copyValue) {
     return new Selected(copyValue);
   }
 
-
+  /**
+   * Prepend something to the DOM.
+   * @param {String|Element} prependThis Element or stringified DOM to prepend.
+   * @returns {String} Prepended elements.
+   */
   prepend (prependThis) {
     this.html = prependThis + this.html;
     return this.html;
   }
 
-
-  // TODO: Needs JSDoc.
+  /**
+   * Append something to the DOM.
+   * @param {String} appendThis Element or stringified DOM to append.
+   * @returns {String} Updated DOM.
+   */
   append (appendThis) {
     this.selectedElements.innerHTML += appendThis;
+    return this.selectedElements.innerHTML;
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Query an element in the selected element NodeList.
+   * @param {Number} indexNumber Index to access.
+   * @returns {Selected} Selected with element of original index.
+   */
   index (indexNumber) {
-    // TODO: Needs validation. Types/etc,
-    if ((this.selectedElements.length - 1) >= indexNumber) {
+    if (Array.isArray(this.selectedElements) && this.length >= indexNumber) {
       return new Selected(this.selectedElements[indexNumber]);
     } else {
-      return null;
+      throw Error(`Index cannot be accessed.`);
     }
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Remove the selected element from the DOM.
+   */
   remove () {
     try {
       this.selectedElements.parentElement.removeChild(this.selectedElements);
@@ -107,40 +158,66 @@ class Selected {
     }
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Check if the selected element has a class.
+   * @param {String} className Name of the class to query.
+   * @returns {Boolean} Result of check.
+   */
   hasClass (className) {
     return this.selectedElements.classList.contains(className);
   }
 
+  /**
+   * Add a class to the selected element.
+   * @param {String} className Class to add.
+   * @returns {Boolean} Whether the class was added.
+   */
   addClass (className) {
     this.selectedElements.classList.add(className);
     return this.hasClass(className);
   }
 
-  // TODO: Needs JSDoc.
+  /**
+   * Remove a class from the selected element.
+   * @param {String} className Class to remove.
+   * @param {Number} classDelay Delay before removing the clas.
+   * @param {Function} classCallback Function to call afterwards.
+   * @returns {Selected} Current Selected.
+   */
   removeClass (className, classDelay, classCallback) {
-    // TODO: Needs type checks
-    const selectedInstance = this;
+    const classNameCheck = Boolean(typeof className === "string");
+    const classDelayCheck = Boolean(typeof classDelay === "number");
+    const classCallbackCheck = (classCallback instanceof function);
 
-    if (Array.isArray(className)) {
-      for (let i = 0; i < className.length; i++) {
-        this.selectedElements.classList.remove(className[i]);
+    if (classNameCheck && classDelayCheck && classCallbackCheck) {
+      if (Array.isArray(className)) {
+        for (let i = 0; i < className.length; i++) {
+          this.selectedElements.classList.remove(className[i]);
+        }
+      } else {
+        this.selectedElements.classList.remove(className);
       }
     } else {
-      this.selectedElements.classList.remove(className);
+      throw Error(`Poor arguments for .removeClass()`);
     }
 
     if (!classDelay && classCallback) {
-      classCallback(className, selectedInstance);
+      classCallback(className, this);
     } else if (classDelay && classCallback) {
-      setTimeout(timeoutEvent => {
-        classCallback(className, selectedInstance)
+      const classInstance = this;
+
+      setTimeout(function () {
+         classCallbackCheck(className, classInstance);
       }, classDelay);
     }
 
     return this;
   }
 
+  /**
+   * Swap a class on the selected element.
+   * @param {String} className Class to swap.
+   */
   swapClass (className) {
     if (this.hasClass(className)) {
       this.removeClass(className);
@@ -149,14 +226,14 @@ class Selected {
     }
   }
 
-
-
-
-
-
+  /**
+   * Add a click handler.
+   * @param {Function} clickHandler Function to handle the click event.
+   */
   click (clickHandler) {
     this.selectedElements.onclick = clickHandler;
   }
+
 }
 
 
@@ -252,7 +329,6 @@ class Selector {
         return [numeratorValue];
       }
     } catch (numeratorError) {
-      // TODO: Why will this happen?
       return null;
     }
   }

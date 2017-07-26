@@ -1,0 +1,31 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 70px #000000;
+}
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+
+.root-header {
+    margin: 10em;
+    margin-bottom: 1em;
+}
+.root-header p {
+    font-size: 1.5em;
+    font-family: Vendetta, Arial;
+}
+.root-container {
+    margin: 10em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.root-container ul li {
+    font-family: 'Arial';
+}

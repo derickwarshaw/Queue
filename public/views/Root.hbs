@@ -1,0 +1,16 @@
+<main>
+    <div class="root-header">
+        <p>{{rootHeader}}</p>
+    </div>
+    <div class="root-container">
+        <ul>
+            {{#each rootItem}}
+                <li>
+                    <a href="{{itemRoot}}/{{itemName}}">{{itemName}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</main>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/cdn/stylesheets/Root.css" />

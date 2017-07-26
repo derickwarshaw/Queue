@@ -6,10 +6,15 @@ module.exports = routerInstance => {
   "use strict";
   
   return routerInstance
-      .get('/', function (roomReq, roomRes) {
+      .get('/', function (scriptsReq, scriptsRes) {
         "use strict";
         
-        roomRes.send("You are on the base route for /cdn/scripts/");
+        File.readDirectory('./public/scripts').then(scriptsFound => scriptsRes.render('Root', {
+          rootHeader: 'Scripts Available',
+          rootItem: scriptsFound.map(scriptFound => {
+            return {itemName: scriptFound, itemRoot: '/cdn/scripts'};
+          })
+        }));
       })
       .get('/:scriptName', function (scriptReq, scriptRes) {
         

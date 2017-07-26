@@ -6,7 +6,6 @@ class Sequence {
    * @returns Sequence instrance.
    */
   constructor (sequenceIdentifier) {
-    // TODO: Case sentivity. sequenceIdentifer should always be converted to uppercase.
     if (typeof sequenceIdentifier === "string") {
       this.sequenceSettings = {
         marker: "?",
@@ -226,7 +225,6 @@ class Sequence {
    * @returns {Sequence} Changed sequence instance.
    */
   join (joinType, joinWith) {
-    // TODO: Case sentivity on joinType. Convert it to uppercase always.
     if (this.sequenceSettings.joins.includes(joinType)) {
       this.alter(`memberJoinType_${joinWith}`, `${joinType} JOIN`);
       this.alter(`memberJoinWith_${joinWith}`, joinWith);

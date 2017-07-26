@@ -6,14 +6,17 @@ class CdnRequest extends WebRequest {
     
     this.cdnRequestParts = this.webRequest.originalUrl.replace('/cdn/', '').split('/');
     this.cdnRequestFile = this.cdnRequestParts[1];
-    this.cdnRequestFileType = this.cdnRequestFile.split('.')[1];
-    
-    switch (this.cdnRequestFileType) {
-      case "js": this.cdnRequestFileMime = "text/javascript"; break;
-      case "css": this.cdnRequestFileMime = "text/css"; break;
+
+    if (this.cdnRequestFile) {
+      this.cdnRequestFileType = this.cdnRequestFile.split('.')[1];
+
+      switch (this.cdnRequestFileType) {
+        case "js": this.cdnRequestFileMime = "text/javascript"; break;
+        case "css": this.cdnRequestFileMime = "text/css"; break;
+      }
+
+      this.webResponse.contentType(this.cdnRequestFileMime);
     }
-    
-    this.webResponse.contentType(this.cdnRequestFileMime);
   }
   
   summary () {
