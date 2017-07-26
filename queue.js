@@ -28,6 +28,8 @@ currentApplication.apiBase('/api', function (api) {
   
   console.log(`[${api.time()}] [API Request] ${api.summary()}`);
 });
+
+// TODO: Consider implementing these another way?
 currentApplication.apiRoute('User');
 currentApplication.apiRoute('Client');
 currentApplication.apiRoute('System');
