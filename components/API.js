@@ -315,6 +315,19 @@ class API {
       throw Error(`'${roomId}' is not a parseable number.`);
     }
   }
+
+  /**
+   * Patch a room by index.
+   * @param {Number} roomId Index of room.
+   * @param {Object} roomPatch Patch object.
+   * @returns {Promise.<void>}
+   */
+  static async patchRoomById (roomId, roomPatch) {
+    let roomFound = await currentDatabase.readRoom("Id", {roomId: roomId});
+    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+
+    await currentDatabase.alterRoom("Id", roomFound);
+  }
   
   /**
    * Delete a room by index.

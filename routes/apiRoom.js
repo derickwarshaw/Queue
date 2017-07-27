@@ -31,7 +31,11 @@ module.exports = roomRouter => {
         .then(rooms => roomRes.json(rooms))
         .catch(reason => roomRes.sendStatus(reason));
   });
-  // TODO: Implement .patch
+  roomRouter.patch(roomById, function (roomReq, roomRes) {
+    API.patchRoomById(roomReq.params.roomId, roomReq.body)
+       .then(rooms => roomRes.sendStatus(200))
+       .catch(reason => roomRes.sendStatus(reason));
+  });
   roomRouter.delete(roomById, function (roomReq, roomRes) {
     API.deleteRoomById(roomReq.params.roomId)
         .then(success => roomRes.sendStatus(200))
