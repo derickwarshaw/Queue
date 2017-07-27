@@ -345,7 +345,11 @@ class Database {
       ]);
     });
   }
-  
+
+
+
+
+
   /**
    * Read all systems from the database.
    * @returns {LocalPromise}
@@ -358,6 +362,17 @@ class Database {
     return currentQueue.add(function () {
       return databaseServer.all(databaseQuery.build(), []);
     });
+  }
+
+  // TODO: Jsdoc.
+  deleteSystems () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+       .from("System");
+
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), []);
+    })
   }
   
   /**
@@ -374,6 +389,53 @@ class Database {
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [
           systemObject[`system${systemBy}`]
+      ]);
+    });
+  }
+
+  // TODO: JSdoc.
+  alterSystem (systemBy, systemObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SET")
+       .update("System").set(["systemDistinctor", "systemNumber", "systemRoomDistinctor"])
+       .values("System")
+       .where(`system${systemBy}`).equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+         systemObject.systemDistinctor,
+         systemObject.systemNumber,
+         systemObject.systemRoomDistinctor
+      ]);
+    });
+  }
+
+  // TODO: JSdoc.
+  writeSystem (systemObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("INSERT")
+       .into("System", ["systemDistinctor", "systemNumber", "systemRoomDistinctor"])
+       .values("System");
+
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+         systemObject.systemDistinctor,
+         systemObject.systemNumber,
+         systemObject.systemRoomDistinctor
+      ]);
+    });
+  }
+
+
+  // TODO: JSdoc.
+  deleteSystem (systemBy, systemObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+       .from("System").where(`system${systemBy}`);
+
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+         systemObject[systemBy]
       ]);
     });
   }

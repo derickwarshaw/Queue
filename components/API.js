@@ -214,12 +214,22 @@ class API {
 
 
 
+  // TODO: JSdoc.
+  static async addSystem (systemObject) {
+    await currentDatabase.writeSystem(systemObject);
+  }
+
   /**
    * Get all systems.
    * @returns {Promise.<Array.<Object>>} Collection of systems.
    */
   static async getSystems () {
     return await currentDatabase.readSystems();
+  }
+
+  // TODO: jsodc.
+  static async deleteSystems () {
+    await currentDatabase.deleteSystems();
   }
   
   /**
@@ -235,6 +245,19 @@ class API {
     } else {
       throw Error(`'${systemId}' is not a system.`);
     }
+  }
+
+  // TODO: JSdoc.
+  static async patchSystemById (systemId, systemPatch) {
+    let foundSystem = currentDatabase.readSystem("Id", {systemId});
+    foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
+
+    await currentDatabase.alterSystem("Id", foundSystem);
+  }
+
+  // TODO: JSdoc.
+  static async deleteSystemById (systemId) {
+    await currentDatabase.deleteSystem("Id", {systemId});
   }
 
   /**
@@ -266,6 +289,19 @@ class API {
       throw Error(`'${systemNumber}' is not a system.`);
     }
   }
+
+  // TODO: JSdoc.
+  static async patchSystemByNumber (systemNumber, systemPatch) {
+    let foundSystem = await currentDatabase.readSystem("Number", {systemNumber});
+    foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
+
+    await currentDatabase.alterSystem("Number", foundSystem);
+  }
+
+  // TODO: Jsdoc.
+  static async deleteSystemByNumber (systemNumber) {
+    await currentDatabase.deleteSystem("Number", {systemNumber});
+  }
   
   /**
    * Get a systems by the room.
@@ -280,6 +316,24 @@ class API {
     } else {
       throw Error(`'${systemRoom}' is not a string.`);
     }
+  }
+
+  // TODO: Jsdoc.
+  static async patchSystemByRoom (systemRoom, systemPatch) {
+    let foundRoom = currentDatabase.readSystem("RoomDistinctor", {
+      systemRoomDistinctor: systemRoom
+    });
+
+    foundRoom[systemPatch.patchItem] = systemPatch.patchValue;
+
+    await currentDatabase.alterSystem("RoomDistinctor", foundRoom);
+  }
+
+  // TODO: Jsdoc.
+  static async deleteSystemByRoom (systemRoom) {
+    await currentDatabase.deleteSystem("RoomDistinctor", {
+      systemRoomDistinctor: systemRoom
+    });
   }
 
 
