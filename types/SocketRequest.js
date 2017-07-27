@@ -6,18 +6,21 @@ class SocketRequest {
    * @returns {Object} SocketRequest instance.
    */
   constructor (requestSocket) {
-    // TODO: for consistency, should this not be "socketRequestDate"?
-    this.socketDate = new Date();
-    this.socketObject = requestSocket;
+    this.socketRequestDate = new Date();
+    this.socketRequestAdapter = requestSocket;
     this.socketRequestId = requestSocket.client.id;
     this.socketRequestPath = requestSocket.client.request.url;
     this.socketRequestMethod = requestSocket.client.request.method;
+    this.socketRequestItems = this.socketRequestPath.substring(
+        this.socketRequestPath.lastIndexOf('/') + 2,
+        this.socketRequestPath.length
+    );
     this.socketHandshake = requestSocket.handshake.issued;
   }
   
   
   time () {
-    return `${this.socketDate.toLocaleDateString()} @ ${this.socketDate.toLocaleTimeString()}`;
+    return `${this.socketRequestDate.toLocaleDateString()} @ ${this.socketRequestDate.toLocaleTimeString()}`;
   }
   
   /**
@@ -25,9 +28,7 @@ class SocketRequest {
    * @returns {String} Summary about the request.
    */
   summary () {
-    // TODO: Do something better with this. Split the transport/polling IDs.
-    // this.socketRequestPath.split('&').map(a => a.split('='));
-    return `${this.socketRequestMethod} -> ${this.socketRequestPath} (${this.socketRequestId})`;
+    return `Started for ${this.socketHandshake}.`;
   }
 
   /**
@@ -35,7 +36,7 @@ class SocketRequest {
    * @param {Function} requestHandler Custom handler function.
    */
   authenticate (requestHandler) {
-    this.socketObject.on('user:send', requestData => requestHandler('Authenticate', requestData));
+    this.socketRequestAdapter.on('user:send', requestData => requestHandler('Authenticate', requestData));
   }
 
   /**
@@ -43,7 +44,7 @@ class SocketRequest {
    * @param {Object} establishedUser Signed user object.
    */
   authenticated (establishedUser) {
-    this.socketObject.emit('user:suc', establishedUser);
+    this.socketRequestAdapter.emit('user:suc', establishedUser);
   }
 
   /**
@@ -51,7 +52,7 @@ class SocketRequest {
    * @param {Error} unauthenticatedReason Reason for failure.
    */
   unauthenticated (unauthenticatedReason) {
-    this.socketObject.emit('user:fai', unauthenticatedReason);
+    this.socketRequestAdapter.emit('user:fai', unauthenticatedReason);
   }
 
   /**
@@ -59,7 +60,7 @@ class SocketRequest {
    * @param {Function} registerHandler Function to handle register requests.
    */
   register (registerHandler) {
-    this.socketObject.on('client:send', registerData => registerHandler('Register', registerData));
+    this.socketRequestAdapter.on('client:send', registerData => registerHandler('Register', registerData));
   }
 
   /**
@@ -67,7 +68,7 @@ class SocketRequest {
    * @param {Object} registeredObject Updated user/client combo.
    */
   registered (registeredObject) {
-    this.socketObject.emit('client:suc', registeredObject);
+    this.socketRequestAdapter.emit('client:suc', registeredObject);
   }
 
   /**
@@ -75,33 +76,33 @@ class SocketRequest {
    * @param {Error} unregisteredReason Error event.
    */
   unregistered (unregisteredReason) {
-    this.socketObject.emit('client:fai', unregisteredReason);
+    this.socketRequestAdapter.emit('client:fai', unregisteredReason);
   }
 
   update (updateHandler) {
-    this.socketObject.on('update:send', updateData => updateHandler('Update', updateData));
+    this.socketRequestAdapter.on('update:send', updateData => updateHandler('Update', updateData));
   }
 
   updated (updatedData) {
-    this.socketObject.emit('update:suc', updatedData);
+    this.socketRequestAdapter.emit('update:suc', updatedData);
   }
 
   stagnated (stagnatedReason) {
-    this.socketObject.emit('update:fai', stagnatedReason);
+    this.socketRequestAdapter.emit('update:fai', stagnatedReason);
   }
   
 
 
   join (joinClient) {
-    this.socketObject.broadcast.emit('notif:join', joinClient);
+    this.socketRequestAdapter.broadcast.emit('notif:join', joinClient);
   }
 
   change (changeClient) {
-    this.socketObject.broadcast.emit('notif:change', changeClient);
+    this.socketRequestAdapter.broadcast.emit('notif:change', changeClient);
   }
 
   leave (leaveClient) {
-    this.socketObject.broadcast.emit('notif:leave', leaveClient);
+    this.socketRequestAdapter.broadcast.emit('notif:leave', leaveClient);
   }
 
 
@@ -110,7 +111,7 @@ class SocketRequest {
    * @param {Function} avoidHandler Custom handler for the disconnect event.
    */
   avoid (avoidHandler) {
-    this.socketObject.on('disconnect', disconnectData => avoidHandler('Avoid', disconnectData));
+    this.socketRequestAdapter.on('disconnect', disconnectData => avoidHandler('Avoid', disconnectData));
   }
 }
 

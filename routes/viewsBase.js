@@ -7,9 +7,11 @@ module.exports = routerInstance => {
   return routerInstance
       .get('/', function (roomReq, roomRes) {
         "use strict";
-        // TODO: Figure a way to show all views by view routes available.
         
-        roomRes.send("You are on the base route for /v/");
+        roomRes.render('Root', {
+          rootHeader: 'Views',
+          rootItem: [{itemName: 'board', itemRoot: '/v'}]
+        });
       });
   
 };
