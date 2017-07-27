@@ -1,6 +1,7 @@
 const HTTP = require('http');
 const Path = require('path');
 const Express = require('express');
+const BodyParser = require('body-parser');
 const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
 
@@ -29,6 +30,7 @@ class Application {
     this.applicationSockets = Socket.listen(this.applicationHttp);
     
     // Express Setup.
+    this.applicationExpress.use(BodyParser.urlencoded({extended: false}));
     this.applicationExpress.use(Express.static(Path.join(this.applicationDirectory, '/public')));
     this.applicationEngine = Handlebars.create({
       defaultLayout: 'main',

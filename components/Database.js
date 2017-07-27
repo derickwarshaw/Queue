@@ -263,6 +263,20 @@ class Database {
   }
   
   /**
+   * Delete all rooms from the database.
+   * @returns {Promise}
+   */
+  deleteRooms () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+        .from("Room");
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), []);
+    });
+  }
+  
+  /**
    * Read a room from the database.
    * @param {String} roomBy Property to query the room with.
    * @param {Object} roomObject Object to query the room against.
@@ -280,6 +294,57 @@ class Database {
       })
   }
   
+  /**
+   * Alter a room.
+   * @param {String} roomBy Property to alter the user by.
+   * @param {Object} roomObject Room to query against.
+   */
+  alterRoom (roomBy, roomObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("UPDATE")
+        .update("Room").set(["roomDistinctor", "roomName"])
+        .values("Room")
+        .where(`room${roomBy}`).equals();
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+          roomObject.roomDistinctor,
+          roomObject.roomName,
+          roomObject[`room${roomBy}`]
+      ]);
+    });
+  }
+  
+  /**
+   * Write a room to the database.
+   * @param {String} roomName Name of the room.
+   * @returns {Promise}
+   */
+  writeRoom (roomName) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("INSERT")
+        .into("Room", ["roomDistinctor", "roomName"])
+        .values("Room");
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+          Identify(), roomName
+      ]);
+    });
+  }
+  
+  // TODO: JSdoc.
+  deleteRoom (roomBy, roomObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+        .from("Room").where(`room${roomBy}`).equals();
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), [
+          roomObject[`room${roomBy}`]
+      ]);
+    });
+  }
   
   /**
    * Read all systems from the database.

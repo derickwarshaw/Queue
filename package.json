@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Kioska/Queue#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "graceful-fs": "^4.1.11",

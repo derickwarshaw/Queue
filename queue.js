@@ -22,15 +22,16 @@ currentApplication.middle(function (requestInstance) {
   
   requestInstance.allowOrigin('*');
   requestInstance.allowHeaders(['Origin', 'X-Requested-With', 'Content-Type', 'Accept']);
+  requestInstance.allowMethods(['GET', 'PUT', 'POST', 'DELETE']);
 });
 
-currentApplication.api('/api', ['user', 'client', 'system', 'room', 'tegrals'], function (api) {
+currentApplication.api('/api', ['User', 'Client', 'System', 'Room', 'Tegrals'], function (api) {
   currentLogger.request('API', api).then(apiSummary => console.log(apiSummary));
 });
-currentApplication.views('/v', ['board'], function (view) {
+currentApplication.views('/v', ['Board'], function (view) {
   currentLogger.request('View', view).then(viewSummary => console.log(viewSummary));
 });
-currentApplication.cdn('/cdn', ['scripts', 'stylesheets'], function (cdn) {
+currentApplication.cdn('/cdn', ['Scripts', 'Stylesheets'], function (cdn) {
   currentLogger.request('CDN', cdn).then(cdnSummary => console.log(cdnSummary));
 });
 

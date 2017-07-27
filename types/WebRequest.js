@@ -64,6 +64,10 @@ class WebRequest {
   allowHeaders (headersAllow) {
     this.webResponse.header("Access-Control-Allow-Headers", headersAllow.join(', '));
   }
+  
+  allowMethods (methodsAllow) {
+    this.webResponse.header("Access-Control-Allow-Methods", methodsAllow.join(', '));
+  }
 }
 
 module.exports = WebRequest;

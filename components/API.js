@@ -81,7 +81,11 @@ class API {
   static async getClients () {
     return await currentDatabase.readClients();
   }
-
+  
+  /**
+   * Delete all clients from the database.
+   * @returns {Promise.<void>}
+   */
   static async deleteClients () {
     await currentDatabase.deleteClients();
   }
@@ -288,6 +292,14 @@ class API {
   static async getRooms () {
     return await currentDatabase.readRooms();
   }
+  
+  /**
+   * Delete all rooms.
+   * @returns {Promise.<void>}
+   */
+  static async deleteRooms () {
+    await currentDatabase.deleteRooms();
+  }
 
   /**
    * Get a room by index.
@@ -301,6 +313,19 @@ class API {
       });
     } else {
       throw Error(`'${roomId}' is not a parseable number.`);
+    }
+  }
+  
+  /**
+   * Delete a room by index.
+   * @param {Number} roomId Index of the room.
+   * @returns {Promise.<void>}
+   */
+  static async deleteRoomById(roomId) {
+    if (typeof roomId === "number" || !isNaN(parseInt(roomId, 10))) {
+      await currentDatabase.deleteRoom("Id", {roomId: roomId});
+    } else {
+      throw Error(`'${roomId}' is not a number.`);
     }
   }
 
@@ -332,6 +357,15 @@ class API {
     } else {
       throw Error(`'${roomName}' is not a string.`);
     }
+  }
+  
+  /**
+   * Add a room.
+   * @param {String} roomName Name of the room.
+   * @returns {Promise.<void>}
+   */
+  static async addRoom (roomName) {
+    await currentDatabase.writeRoom(roomName);
   }
 
 
