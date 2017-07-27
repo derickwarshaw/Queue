@@ -6,7 +6,7 @@ class Logger {
   }
   
   async request (requestName, requestData) {
-    const requstSummary = `[${requestData.time()}] [${requestName} Request] ${requestData.summary()}`;
+    const requstSummary = `[${requestData.timestamp()}] [${requestName} Request] ${requestData.summary()}`;
     const requestId = `${requestName} on ${requestData.date()}`;
     
     let requestFound = this.loggerStreams.get(requestName);

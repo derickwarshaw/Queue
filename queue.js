@@ -46,7 +46,7 @@ currentDatabase.open()
      currentApplication.listen();
      currentApplication.socket(socketRequest => {
        // TODO: Implement logging to a file.
-       console.log(`[${socketRequest.time()}] [Socket Request] ${socketRequest.summary()}`);
+       console.log(`[${socketRequest.timestamp()}] [Socket Request] ${socketRequest.summary()}`);
 
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)
@@ -76,7 +76,7 @@ currentDatabase.open()
        socketRequest.avoid(function (avName, avData) {
          currentApplication.handle(avName)(avData, socketRequest)
             .then(handleData => {
-              console.log(`[${socketRequest.time()}] [Socket Request] Ended for ${socketRequest.socketHandshake}.`)
+              console.log(`[${socketRequest.timestamp()}] [Socket Request] Ended for ${socketRequest.socketHandshake}.`)
               socketRequest.leave(handleData);
             })
             .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`));
