@@ -7,7 +7,7 @@ class CdnRequest extends WebRequest {
     this.cdnRequestParts = this.webRequest.originalUrl.replace('/cdn/', '').split('/');
     this.cdnRequestFile = this.cdnRequestParts[1];
 
-    if (this.cdnRequestFile) {
+    if (this.cdnRequestFile && this.cdnRequestFile.includes('.')) {
       this.cdnRequestFileType = this.cdnRequestFile.split('.')[1];
 
       switch (this.cdnRequestFileType) {

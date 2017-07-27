@@ -24,6 +24,7 @@
   "dependencies": {
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "graceful-fs": "^4.1.11",
     "promise-queue": "^2.2.3",
     "socket.io": "^2.0.1",
     "sqlite-async": "^1.0.10",

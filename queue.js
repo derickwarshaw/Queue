@@ -12,6 +12,10 @@ const Database = currentApplication.component('Database');
 const currentDatabase = new Database();
 module.exports.currentDatabase = currentDatabase;
 
+const Logger = currentApplication.component('Logger');
+const currentLogger = new Logger();
+module.exports.currentLogger = currentLogger;
+
 
 
 
@@ -23,22 +27,13 @@ currentApplication.middle(function (requestInstance) {
 });
 
 currentApplication.api('/api', ['user', 'client', 'system', 'room', 'tegrals'], function (api) {
-  "use strict";
-
-  // TODO: Implement logging to a file.
-  console.log(`[${api.time()}] [API Request] ${api.summary()}`);
+  currentLogger.request('API', api).then(apiSummary => console.log(apiSummary));
 });
 currentApplication.views('/v', ['board'], function (view) {
-  "use strict";
-
-  // TODO: Implement logging to a file.
-  console.log(`[${view.time()}] [View Request] ${view.summary()}`);
+  currentLogger.request('View', view).then(viewSummary => console.log(viewSummary));
 });
 currentApplication.cdn('/cdn', ['scripts', 'stylesheets'], function (cdn) {
-  "use strict";
-  
-  // TODO: Implement logging to a file.
-  console.log(`[${cdn.time()}] [CDN Request] ${cdn.summary()}`);
+  currentLogger.request('CDN', cdn).then(cdnSummary => console.log(cdnSummary));
 });
 
 

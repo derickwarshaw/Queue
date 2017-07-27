@@ -2,6 +2,8 @@ const currentQueue = require('../queue').currentQueue;
 
 const FileSystem = require('fs');
 
+const FileStreamer = require('../types/FileStreamer');
+
 class File {
 
   static readFile (readPath) {
@@ -40,8 +42,29 @@ class File {
     });
   }
 
-  // TODO: Is there any reason to implement FileStreams?
+  static readStream (streamFile) {
+    return new FileStreamer('read', streamFile);
+  }
+  
+  static async createFile (filePath) {
+    await this.writeFile(filePath, '');
+  }
+  
+  static writeFile (filePath, fileData) {
+    return currentQueue.add(function () {
+      return new Promise(function (writeResolve, writeReject) {
+        FileSystem.writeFile(filePath, fileData, function (fileErrror) {
+          if (fileError) writeReject(fileErrror);
+        
+          writeResolve();
+        })
+      })
+    })
+  }
+    
+  static writeStream (streamFile) {
+    return new FileStreamer('write', streamFile);
+  }
 }
 
-module.exports = File;
 module.exports = File;

@@ -22,8 +22,13 @@ class WebRequest {
       }
     }
   }
-
   
+  // TODO: JSDOC.
+  date () {
+    return this.webRequestDate.toLocaleDateString();
+  }
+  
+  // TODO: JSdoc
   time () {
     return `${this.webRequestDate.toLocaleDateString()} @ ${this.webRequestDate.toLocaleTimeString()}`;
   }

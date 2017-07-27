@@ -81,8 +81,9 @@ class Application {
   views (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesView = baseRoute;
 
+    // TODO: Fix naming of thse routes.
     const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/Display'));
-    this.applicationExpress.use(this.applicationRoutes.routesApi, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
+    this.applicationExpress.use(this.applicationRoutes.routesView, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
       baseHandler(new ViewRequest(baseReq, baseRes));
       baseNext();
     });

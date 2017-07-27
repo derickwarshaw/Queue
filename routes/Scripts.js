@@ -17,7 +17,7 @@ module.exports = routerInstance => {
         }));
       })
       .get('/:scriptName', function (scriptReq, scriptRes) {
-        
+
         File.readFile(`./public/scripts/${scriptReq.params.scriptName}`)
             .then(readFile => scriptRes.send(readFile))
             .catch(unreadReason => scriptRes.send(unreadReason.message));
