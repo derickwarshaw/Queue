@@ -54,20 +54,22 @@ class WebRequest {
   summary () {
     return `${this.webRequestMethod} -> ${this.webRequestPath} (${this.webRequestHeaders.size} headers)`;
   }
-  
-  
-  
+
+  // TODO: JSdoc.
   allowOrigin (originType) {
     this.webResponse.header("Access-Control-Allow-Origin", originType);
   }
-  
+
+  // TODO: JSdoc.
   allowHeaders (headersAllow) {
     this.webResponse.header("Access-Control-Allow-Headers", headersAllow.join(', '));
   }
-  
+
+  // TODO: JSdoc.
   allowMethods (methodsAllow) {
     this.webResponse.header("Access-Control-Allow-Methods", methodsAllow.join(', '));
   }
+
 }
 
 module.exports = WebRequest;

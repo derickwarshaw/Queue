@@ -1,6 +1,8 @@
 const FileSystem = require('graceful-fs');
 
 class FileStreamer {
+
+  // TODO: JSdoc.
   constructor (streamerType, streamerFile) {
     this.fileStreamerType = streamerType;
     this.fileStreamerFile = streamerFile;
@@ -11,7 +13,8 @@ class FileStreamer {
       this.fileStreamerStream = FileSystem.createWriteStream(this.fileStreamerFile);
     }
   }
-  
+
+  // TODO: JSdoc.
   read (readCallback) {
     if (this.fileStreamerType === 'read' && this.fileStreamerStream) {
       this.fileStreamerStream.on('data', readCallback);
@@ -19,7 +22,8 @@ class FileStreamer {
       throw Error("This is not a readable stream.");
     }
   }
-  
+
+  // TODO: JSdoc.
   write (writeData) {
     if (this.fileStreamerType === 'write' && this.fileStreamerStream) {
       this.fileStreamerStream.write(writeData);
@@ -27,7 +31,8 @@ class FileStreamer {
       throw Error("This is not a writeable stream.");
     }
   }
-  
+
+  // TODO: JSdoc.
   pipe (pipeData) {
     if (this.fileStreamerType === 'write' && this.fileStreamerStream) {
       this.fileStreamerStream.pipe(pipeData);
@@ -35,6 +40,7 @@ class FileStreamer {
       throw Error("This is not a writeable stream");
     }
   }
+
 }
 
 module.exports = FileStreamer;

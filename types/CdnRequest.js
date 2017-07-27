@@ -1,6 +1,8 @@
 const WebRequest = require('./WebRequest');
 
 class CdnRequest extends WebRequest {
+
+  // TODO: JSdoc.
   constructor (cdnReq, cdnRes) {
     super (cdnReq, cdnRes);
     
@@ -18,10 +20,12 @@ class CdnRequest extends WebRequest {
       this.webResponse.contentType(this.cdnRequestFileMime);
     }
   }
-  
+
+  // TODO: JSdoc.
   summary () {
     return `Serving ${this.cdnRequestFile} (${this.cdnRequestFileMime})`;
   }
+
 }
 
 module.exports = CdnRequest;

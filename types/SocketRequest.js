@@ -18,7 +18,6 @@ class SocketRequest {
     this.socketHandshake = requestSocket.handshake.issued;
   }
   
-  
   /**
    * Get the start date of the request.
    * @returns {String} Locale date string.
@@ -99,32 +98,35 @@ class SocketRequest {
     this.socketRequestAdapter.emit('client:fai', unregisteredReason);
   }
 
+  // TODO: JSdoc.
   update (updateHandler) {
     this.socketRequestAdapter.on('update:send', updateData => updateHandler('Update', updateData));
   }
 
+  // TODO: JSdoc.
   updated (updatedData) {
     this.socketRequestAdapter.emit('update:suc', updatedData);
   }
 
+  // TODO: JSdoc.
   stagnated (stagnatedReason) {
     this.socketRequestAdapter.emit('update:fai', stagnatedReason);
   }
-  
 
-
+  // TODO: JSdoc.
   join (joinClient) {
     this.socketRequestAdapter.broadcast.emit('notif:join', joinClient);
   }
 
+  // TODO: JSdoc.
   change (changeClient) {
     this.socketRequestAdapter.broadcast.emit('notif:change', changeClient);
   }
 
+  // TODO: JSdoc.
   leave (leaveClient) {
     this.socketRequestAdapter.broadcast.emit('notif:leave', leaveClient);
   }
-
 
   /**
    * Disconnect event listener.
@@ -133,6 +135,7 @@ class SocketRequest {
   avoid (avoidHandler) {
     this.socketRequestAdapter.on('disconnect', disconnectData => avoidHandler('Avoid', disconnectData));
   }
+
 }
 
 module.exports = SocketRequest;
