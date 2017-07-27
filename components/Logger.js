@@ -1,16 +1,19 @@
 const File = require('./File');
 
 class Logger {
+
+  // TODO: JSdoc.
   constructor () {
     this.loggerStreams = new Map();
   }
-  
+
+  // TODO: JSdoc.
   async request (requestName, requestData) {
     const requstSummary = `[${requestData.timestamp()}] [${requestName} Request] ${requestData.summary()}`;
     const requestId = `${requestName} on ${requestData.date()}`;
-    
+
     let requestFound = this.loggerStreams.get(requestName);
-    
+
     if (!requestFound) {
       try {
         this.loggerStreams.set(requestName, File.writeStream(`./logs/${requestId}.txt`));
@@ -25,6 +28,7 @@ class Logger {
     requestFound.write(`${requstSummary} \r\n`);
     return requstSummary;
   }
+
 }
 
 module.exports = Logger;

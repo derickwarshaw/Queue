@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/ApiRequest.js" afterPath="$PROJECT_DIR$/types/ApiRequest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/CdnRequest.js" afterPath="$PROJECT_DIR$/types/CdnRequest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/FileStreamer.js" afterPath="$PROJECT_DIR$/types/FileStreamer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/SocketRequest.js" afterPath="$PROJECT_DIR$/types/SocketRequest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/ViewRequest.js" afterPath="$PROJECT_DIR$/types/ViewRequest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/types/WebRequest.js" afterPath="$PROJECT_DIR$/types/WebRequest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/File.js" afterPath="$PROJECT_DIR$/components/File.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Logger.js" afterPath="$PROJECT_DIR$/components/Logger.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,7 +35,7 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -127,8 +122,6 @@
         <option value="$PROJECT_DIR$/routes/Scripts.js" />
         <option value="$PROJECT_DIR$/logs.js" />
         <option value="$PROJECT_DIR$/logs/requests/API.txt" />
-        <option value="$PROJECT_DIR$/components/File.js" />
-        <option value="$PROJECT_DIR$/components/Logger.js" />
         <option value="$PROJECT_DIR$/routes/cdnBase.js" />
         <option value="$PROJECT_DIR$/routes/cdnScripts.js" />
         <option value="$PROJECT_DIR$/routes/cdnStylesheets.js" />
@@ -147,6 +140,8 @@
         <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/types/ViewRequest.js" />
         <option value="$PROJECT_DIR$/types/WebRequest.js" />
+        <option value="$PROJECT_DIR$/components/File.js" />
+        <option value="$PROJECT_DIR$/components/Logger.js" />
       </list>
     </option>
   </component>
@@ -215,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,6 +241,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -507,6 +502,7 @@
       <workItem from="1501168761472" duration="1675000" />
       <workItem from="1501181359109" duration="5780000" />
       <workItem from="1501188356191" duration="106000" />
+      <workItem from="1501188649973" duration="158000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -673,7 +669,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="344653000" />
+    <option name="totallyTimeSpent" value="344811000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -794,10 +790,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/events/Authenticate.js" />
-    <entry file="file://$PROJECT_DIR$/events/Update.js" />
     <entry file="file://$PROJECT_DIR$/routes/apiTegrals.js" />
-    <entry file="file://$PROJECT_DIR$/events/Avoid.js" />
     <entry file="file://$PROJECT_DIR$/routes/apiUser.js" />
     <entry file="file://$PROJECT_DIR$/components/Resolve.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/Ajax.js" />
@@ -818,41 +811,21 @@
     <entry file="file://$PROJECT_DIR$/public/scripts/Board.js" />
     <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs" />
     <entry file="file://$PROJECT_DIR$/routes/viewsBoard.js" />
-    <entry file="file://$PROJECT_DIR$/components/Sequence.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/Selector.js" />
     <entry file="file://$PROJECT_DIR$/public/josh.txt" />
     <entry file="file://$PROJECT_DIR$/logs.js" />
     <entry file="file://$PROJECT_DIR$/logs/requests/API.txt" />
-    <entry file="file://$PROJECT_DIR$/components/File.js" />
     <entry file="file://$PROJECT_DIR$/logs/requests/CDN on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/logs/requests/API on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/logs/View on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/logs/CDN on 2017-7-27.txt" />
-    <entry file="file://$PROJECT_DIR$/components/Logger.js" />
     <entry file="file://$PROJECT_DIR$/routes/cdnBase.js" />
     <entry file="file://$PROJECT_DIR$/public/views/Root.hbs" />
     <entry file="file://$PROJECT_DIR$/routes/cdnStylesheets.js" />
     <entry file="file://$PROJECT_DIR$/routes/viewsBase.js" />
     <entry file="file://$PROJECT_DIR$/logs/Socket on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/routes/cdnScripts.js" />
-    <entry file="file://$PROJECT_DIR$/events/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/apiBase.js" />
-    <entry file="file://$PROJECT_DIR$/components/Application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding>
-            <marker date="1501168740901" expanded="true" signature="4706:4848" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/queue.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -894,103 +867,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Database.js">
+    <entry file="file://$PROJECT_DIR$/types/ApiRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="374" column="6" lean-forward="true" selection-start-line="374" selection-start-column="6" selection-end-line="374" selection-end-column="6" />
+        <state relative-caret-position="462">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/CdnRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/FileStreamer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/ViewRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="71" column="2" lean-forward="false" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
           <folding>
-            <element signature="e#0#49#0" expanded="false" />
-            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
-            <element signature="e#1254#1321#0" expanded="false" />
-            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
-            <element signature="e#1778#1904#0" expanded="false" />
-            <element signature="e#1839#1894#0" expanded="false" />
-            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
-            <element signature="e#2184#2355#0" expanded="false" />
-            <element signature="e#2445#2786#0" expanded="false" />
-            <element signature="e#2506#2776#0" expanded="false" />
-            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
-            <element signature="e#3174#3368#0" expanded="false" />
-            <element signature="e#3235#3358#0" expanded="false" />
-            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#readClients#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readClients#0;n#Database#0" expanded="false" />
-            <element signature="e#3903#3970#0" expanded="false" />
-            <element signature="n#!!doc;n#deleteClients#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#deleteClients#0;n#Database#0" expanded="false" />
-            <element signature="e#4247#4314#0" expanded="false" />
-            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
-            <element signature="e#4755#4887#0" expanded="false" />
-            <element signature="e#4816#4877#0" expanded="false" />
-            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
-            <element signature="e#5401#5717#0" expanded="false" />
-            <element signature="e#5462#5707#0" expanded="false" />
-            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
-            <element signature="e#6182#6449#0" expanded="false" />
-            <element signature="e#6243#6439#0" expanded="false" />
-            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
-            <element signature="e#6904#7035#0" expanded="false" />
-            <element signature="e#6965#7025#0" expanded="false" />
-            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
-            <element signature="e#7319#7386#0" expanded="false" />
-            <element signature="n#!!doc;n#deleteRooms#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#deleteRooms#0;n#Database#0" expanded="false" />
-            <element signature="e#7657#7724#0" expanded="false" />
-            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
-            <element signature="e#8179#8305#0" expanded="false" />
-            <element signature="e#8240#8295#0" expanded="false" />
-            <element signature="n#!!doc;n#alterRoom#0;n#Database#0" expanded="false" />
-            <element signature="e#8762#8942#0" expanded="false" />
-            <element signature="e#8819#8934#0" expanded="false" />
-            <element signature="n#!!doc;n#writeRoom#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#writeRoom#0;n#Database#0" expanded="false" />
-            <element signature="e#9317#9422#0" expanded="false" />
-            <element signature="e#9374#9414#0" expanded="false" />
-            <element signature="n#!!block;n#deleteRoom#0;n#Database#0" expanded="false" />
-            <element signature="e#9683#9795#0" expanded="false" />
-            <element signature="e#9740#9787#0" expanded="false" />
-            <element signature="n#!!doc;n#readSystems#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readSystems#0;n#Database#0" expanded="false" />
-            <element signature="e#10081#10148#0" expanded="false" />
-            <element signature="n#!!block;n#readSystem#0;n#Database#0" expanded="false" />
-            <element signature="e#10916#11034#0" expanded="false" />
-            <element signature="e#10973#11026#0" expanded="false" />
-            <element signature="n#!!block;n#readIntegrals#0;n#Database#0" expanded="false" />
-            <element signature="e#12662#12978#0" expanded="false" />
-            <element signature="e#13050#13145#0" expanded="false" />
-            <element signature="e#13206#13305#0" expanded="false" />
-            <element signature="e#13364#13457#0" expanded="false" />
-            <element signature="e#13551#13631#0" expanded="false" />
-            <element signature="n#!!block;n#readIntegral#0;n#Database#0" expanded="false" />
-            <element signature="e#14212#14293#0" expanded="false" />
-            <element signature="n#!!block;n#readUntegrals#0;n#Database#0" expanded="false" />
-            <element signature="e#14462#14745#0" expanded="false" />
-            <element signature="e#14812#14905#0" expanded="false" />
-            <element signature="e#15120#15199#0" expanded="false" />
+            <marker date="1501188461798" expanded="true" signature="1788:1811" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/API.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
+        <state relative-caret-position="1512">
           <caret line="255" column="3" lean-forward="false" selection-start-line="255" selection-start-column="3" selection-end-line="255" selection-end-column="3" />
           <folding>
             <element signature="n#!!doc;n#getUsers#0;n#API#0" expanded="false" />
@@ -1086,6 +1013,8 @@
             <element signature="e#8927#9051#0" expanded="false" />
             <element signature="e#8993#9043#0" expanded="false" />
             <element signature="e#9057#9119#0" expanded="false" />
+            <element signature="n#!!block;n#patchSystemByRoom#0;n#API#0" expanded="false" />
+            <element signature="n#!!block;n#deleteSystemByRoom#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#addRoom#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#addRoom#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getRooms#0;n#API#0" expanded="false" />
@@ -1129,53 +1058,163 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/types/ApiRequest.js">
+    <entry file="file://$PROJECT_DIR$/components/Application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/CdnRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/FileStreamer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/ViewRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/types/WebRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="71" column="2" lean-forward="false" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+        <state relative-caret-position="-2464">
+          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
           <folding>
-            <marker date="1501188461798" expanded="true" signature="1788:1811" ph="{...}" />
+            <marker date="1501168740901" expanded="true" signature="4706:4848" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-763">
+          <caret line="374" column="6" lean-forward="true" selection-start-line="374" selection-start-column="6" selection-end-line="374" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="e#1254#1321#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="e#1778#1904#0" expanded="false" />
+            <element signature="e#1839#1894#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="e#2184#2355#0" expanded="false" />
+            <element signature="e#2445#2786#0" expanded="false" />
+            <element signature="e#2506#2776#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="e#3174#3368#0" expanded="false" />
+            <element signature="e#3235#3358#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClients#0;n#Database#0" expanded="false" />
+            <element signature="e#3903#3970#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClients#0;n#Database#0" expanded="false" />
+            <element signature="e#4247#4314#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="e#4755#4887#0" expanded="false" />
+            <element signature="e#4816#4877#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="e#5401#5717#0" expanded="false" />
+            <element signature="e#5462#5707#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="e#6182#6449#0" expanded="false" />
+            <element signature="e#6243#6439#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="e#6904#7035#0" expanded="false" />
+            <element signature="e#6965#7025#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="e#7319#7386#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteRooms#0;n#Database#0" expanded="false" />
+            <element signature="e#7657#7724#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="e#8179#8305#0" expanded="false" />
+            <element signature="e#8240#8295#0" expanded="false" />
+            <element signature="n#!!doc;n#alterRoom#0;n#Database#0" expanded="false" />
+            <element signature="e#8762#8942#0" expanded="false" />
+            <element signature="e#8819#8934#0" expanded="false" />
+            <element signature="n#!!doc;n#writeRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeRoom#0;n#Database#0" expanded="false" />
+            <element signature="e#9317#9422#0" expanded="false" />
+            <element signature="e#9374#9414#0" expanded="false" />
+            <element signature="n#!!block;n#deleteRoom#0;n#Database#0" expanded="false" />
+            <element signature="e#9683#9795#0" expanded="false" />
+            <element signature="e#9740#9787#0" expanded="false" />
+            <element signature="n#!!doc;n#readSystems#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readSystems#0;n#Database#0" expanded="false" />
+            <element signature="e#10081#10148#0" expanded="false" />
+            <element signature="n#!!block;n#readSystem#0;n#Database#0" expanded="false" />
+            <element signature="e#10916#11034#0" expanded="false" />
+            <element signature="e#10973#11026#0" expanded="false" />
+            <element signature="n#!!block;n#readIntegrals#0;n#Database#0" expanded="false" />
+            <element signature="e#12662#12978#0" expanded="false" />
+            <element signature="e#13050#13145#0" expanded="false" />
+            <element signature="e#13206#13305#0" expanded="false" />
+            <element signature="e#13364#13457#0" expanded="false" />
+            <element signature="e#13551#13631#0" expanded="false" />
+            <element signature="n#!!block;n#readIntegral#0;n#Database#0" expanded="false" />
+            <element signature="e#14212#14293#0" expanded="false" />
+            <element signature="n#!!block;n#readUntegrals#0;n#Database#0" expanded="false" />
+            <element signature="e#14462#14745#0" expanded="false" />
+            <element signature="e#14812#14905#0" expanded="false" />
+            <element signature="e#15120#15199#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/File.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="707">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Logger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Sequence.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Authenticate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Avoid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/events/Update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

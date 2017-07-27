@@ -32,6 +32,7 @@ class File {
     return readFileCollection;
   }
 
+  // TODO: JSdoc.
   static readDirectory (directoryPath) {
     return currentQueue.add(function () {
       return new Promise(function (readResolve, readReject) {
@@ -42,14 +43,17 @@ class File {
     });
   }
 
+  // TODO: JSdoc.
   static readStream (streamFile) {
     return new FileStreamer('read', streamFile);
   }
-  
+
+  // TODO: JSdoc.
   static async createFile (filePath) {
     await this.writeFile(filePath, '');
   }
-  
+
+  // TODO: JSdoc.
   static writeFile (filePath, fileData) {
     return currentQueue.add(function () {
       return new Promise(function (writeResolve, writeReject) {
@@ -61,10 +65,12 @@ class File {
       })
     })
   }
-    
+
+  // TODO: JSdoc.
   static writeStream (streamFile) {
     return new FileStreamer('write', streamFile);
   }
+
 }
 
 module.exports = File;
