@@ -13,11 +13,11 @@ class Logger {
     
     if (!requestFound) {
       try {
-        this.loggerStreams.set(requestName, File.writeStream(`./logs/requests/${requestId}.txt`));
+        this.loggerStreams.set(requestName, File.writeStream(`./logs/${requestId}.txt`));
         requestFound = this.loggerStreams.get(requestName);
       } catch (e) {
-        await File.createFile(`./logs/requests/${requestId}.txt`);
-        this.loggerStreams.set(requestName, File.writeStream(`./logs/requests/${requestId}.txt`));
+        await File.createFile(`./logs/${requestId}.txt`);
+        this.loggerStreams.set(requestName, File.writeStream(`./logs/${requestId}.txt`));
         requestFound = this.loggerStreams.get(requestName);
       }
     }
