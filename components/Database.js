@@ -151,6 +151,20 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
+  
+  /**
+   * Delete all clients from the database.
+   * @returns {Promise}
+   */
+  deleteClients () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+        .from("Client");
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), []);
+    })
+  }
 
   /**
    * Read a client from the database.
@@ -299,7 +313,9 @@ class Database {
     });
   }
 
-
+  
+  
+  // TODO: JSdoc
   readIntegrals (integralsRoom) {
     const databaseServer = this.databaseServer;
     const databaseJoin = 'INNER';
@@ -339,6 +355,7 @@ class Database {
     });
   }
 
+  // TODO: JSdoc.
   readIntegral (integralsNumber) {
     const databaseServer = this.databaseServer;
     const databaseEmbed = new Sequence("SELECT")
@@ -358,6 +375,7 @@ class Database {
     });
   }
 
+  // TODO: JSdoc.
   readUntegrals (untegralRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")

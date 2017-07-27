@@ -11,6 +11,12 @@ module.exports = routerInstance => {
           .then(clients => clientRes.json(clients))
           .catch(reason => clientRes.send(reason.message));
      })
+      .delete('/', function (clientReq, clientRes) {
+        
+        API.deleteClients()
+            .then(success => clientRes.send(200))
+            .catch(failure => clientRes.send(failure.message));
+      })
       
      .get('/id/:clientId', function (clientReq, clientRes) {
 

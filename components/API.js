@@ -82,6 +82,10 @@ class API {
     return await currentDatabase.readClients();
   }
 
+  static async deleteClients () {
+    await currentDatabase.deleteClients();
+  }
+  
   /**
    * Get a client by index.
    * @param {Number} clientId Index of the client.

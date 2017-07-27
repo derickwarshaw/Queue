@@ -4,11 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/components/Application.js" line="55" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="Improved WebRequest time handling.">
+    <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/API.js" afterPath="$PROJECT_DIR$/components/API.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Database.js" afterPath="$PROJECT_DIR$/components/Database.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/apiClient.js" afterPath="$PROJECT_DIR$/routes/apiClient.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,8 +31,8 @@
             <file leaf-file-name="API.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/components/API.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="874">
-                    <caret line="189" column="2" lean-forward="false" selection-start-line="189" selection-start-column="2" selection-end-line="189" selection-end-column="2" />
+                  <state relative-caret-position="418">
+                    <caret line="85" column="42" lean-forward="true" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
                     <folding>
                       <element signature="n#!!doc;n#getUsers#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getUsers#0;n#API#0" expanded="false" />
@@ -61,21 +60,21 @@
                       <element signature="n#!!block;n#getClients#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getClientById#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getClientById#0;n#API#0" expanded="false" />
-                      <element signature="e#2597#2633#0" expanded="false" />
+                      <element signature="e#2681#2717#0" expanded="false" />
                       <element signature="n#!!doc;n#deleteClientById#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#deleteClientById#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getClientByDistinctor#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getClientByDistinctor#0;n#API#0" expanded="false" />
-                      <element signature="e#3417#3539#0" expanded="false" />
-                      <element signature="e#3479#3531#0" expanded="false" />
-                      <element signature="e#3545#3613#0" expanded="false" />
+                      <element signature="e#3501#3623#0" expanded="false" />
+                      <element signature="e#3563#3615#0" expanded="false" />
+                      <element signature="e#3629#3697#0" expanded="false" />
                       <element signature="n#!!doc;n#deleteClientByDistinctor#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#deleteClientByDistinctor#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getClientByHandshake#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getClientByHandshake#0;n#API#0" expanded="false" />
-                      <element signature="e#4364#4483#0" expanded="false" />
-                      <element signature="e#4425#4475#0" expanded="false" />
-                      <element signature="e#4489#4566#0" expanded="false" />
+                      <element signature="e#4448#4567#0" expanded="false" />
+                      <element signature="e#4509#4559#0" expanded="false" />
+                      <element signature="e#4573#4650#0" expanded="false" />
                       <element signature="n#!!doc;n#deleteClientByHandshake#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#deleteClientByHandshake#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getClientBySystem#0;n#API#0" expanded="false" />
@@ -86,41 +85,41 @@
                       <element signature="n#!!block;n#getSystems#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getSystemById#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getSystemById#0;n#API#0" expanded="false" />
-                      <element signature="e#6364#6462#0" expanded="false" />
-                      <element signature="e#6418#6454#0" expanded="false" />
-                      <element signature="e#6468#6528#0" expanded="false" />
+                      <element signature="e#6448#6546#0" expanded="false" />
+                      <element signature="e#6502#6538#0" expanded="false" />
+                      <element signature="e#6552#6612#0" expanded="false" />
                       <element signature="n#!!doc;n#getSystemByDistinctor#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getSystemByDistinctor#0;n#API#0" expanded="false" />
-                      <element signature="e#6803#6925#0" expanded="false" />
-                      <element signature="e#6865#6917#0" expanded="false" />
-                      <element signature="e#6931#6999#0" expanded="false" />
+                      <element signature="e#6887#7009#0" expanded="false" />
+                      <element signature="e#6949#7001#0" expanded="false" />
+                      <element signature="e#7015#7083#0" expanded="false" />
                       <element signature="n#!!doc;n#getSystemByNumber#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getSystemByNumber#0;n#API#0" expanded="false" />
-                      <element signature="e#7281#7391#0" expanded="false" />
-                      <element signature="e#7339#7383#0" expanded="false" />
-                      <element signature="e#7397#7461#0" expanded="false" />
+                      <element signature="e#7365#7475#0" expanded="false" />
+                      <element signature="e#7423#7467#0" expanded="false" />
+                      <element signature="e#7481#7545#0" expanded="false" />
                       <element signature="n#!!doc;n#getSystemByRoom#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getSystemByRoom#0;n#API#0" expanded="false" />
-                      <element signature="e#7699#7823#0" expanded="false" />
-                      <element signature="e#7765#7815#0" expanded="false" />
-                      <element signature="e#7829#7891#0" expanded="false" />
+                      <element signature="e#7783#7907#0" expanded="false" />
+                      <element signature="e#7849#7899#0" expanded="false" />
+                      <element signature="e#7913#7975#0" expanded="false" />
                       <element signature="n#!!doc;n#getRooms#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getRooms#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getRoomById#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getRoomById#0;n#API#0" expanded="false" />
-                      <element signature="e#8304#8396#0" expanded="false" />
-                      <element signature="e#8356#8388#0" expanded="false" />
-                      <element signature="e#8402#8470#0" expanded="false" />
+                      <element signature="e#8388#8480#0" expanded="false" />
+                      <element signature="e#8440#8472#0" expanded="false" />
+                      <element signature="e#8486#8554#0" expanded="false" />
                       <element signature="n#!!doc;n#getRoomByDistinctor#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getRoomByDistinctor#0;n#API#0" expanded="false" />
-                      <element signature="e#8722#8838#0" expanded="false" />
-                      <element signature="e#8782#8830#0" expanded="false" />
-                      <element signature="e#8844#8910#0" expanded="false" />
+                      <element signature="e#8806#8922#0" expanded="false" />
+                      <element signature="e#8866#8914#0" expanded="false" />
+                      <element signature="e#8928#8994#0" expanded="false" />
                       <element signature="n#!!doc;n#getRoomByName#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getRoomByName#0;n#API#0" expanded="false" />
-                      <element signature="e#9126#9224#0" expanded="false" />
-                      <element signature="e#9180#9216#0" expanded="false" />
-                      <element signature="e#9230#9290#0" expanded="false" />
+                      <element signature="e#9210#9308#0" expanded="false" />
+                      <element signature="e#9264#9300#0" expanded="false" />
+                      <element signature="e#9314#9374#0" expanded="false" />
                       <element signature="n#!!doc;n#getIntegrals#0;n#API#0" expanded="false" />
                       <element signature="n#!!block;n#getIntegrals#0;n#API#0" expanded="false" />
                       <element signature="n#!!doc;n#getUntegrals#0;n#API#0" expanded="false" />
@@ -155,8 +154,8 @@
           <file leaf-file-name="apiClient.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/apiClient.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="371">
-                  <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+                <state relative-caret-position="368">
+                  <caret line="16" column="49" lean-forward="true" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
                   <folding />
                 </state>
               </provider>
@@ -179,8 +178,8 @@
           <file leaf-file-name="Database.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/Database.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+                <state relative-caret-position="463">
+                  <caret line="316" column="2" lean-forward="true" selection-start-line="316" selection-start-column="2" selection-end-line="316" selection-end-column="2" />
                   <folding>
                     <element signature="e#0#49#0" expanded="false" />
                     <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
@@ -208,47 +207,48 @@
                     <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!doc;n#readClients#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readClients#0;n#Database#0" expanded="false" />
-                    <element signature="e#3903#3970#0" expanded="false" />
+                    <element signature="n#!!doc;n#deleteClients#0;n#Database#0" expanded="false" />
+                    <element signature="n#!!block;n#deleteClients#0;n#Database#0" expanded="false" />
                     <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
-                    <element signature="e#4412#4544#0" expanded="false" />
-                    <element signature="e#4473#4534#0" expanded="false" />
+                    <element signature="e#4755#4887#0" expanded="false" />
+                    <element signature="e#4816#4877#0" expanded="false" />
                     <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
-                    <element signature="e#5058#5374#0" expanded="false" />
-                    <element signature="e#5119#5364#0" expanded="false" />
+                    <element signature="e#5401#5717#0" expanded="false" />
+                    <element signature="e#5462#5707#0" expanded="false" />
                     <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
-                    <element signature="e#6561#6692#0" expanded="false" />
-                    <element signature="e#6622#6682#0" expanded="false" />
+                    <element signature="e#6904#7035#0" expanded="false" />
+                    <element signature="e#6965#7025#0" expanded="false" />
                     <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
-                    <element signature="e#6976#7043#0" expanded="false" />
+                    <element signature="e#7319#7386#0" expanded="false" />
                     <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
-                    <element signature="e#7498#7624#0" expanded="false" />
-                    <element signature="e#7559#7614#0" expanded="false" />
+                    <element signature="e#7841#7967#0" expanded="false" />
+                    <element signature="e#7902#7957#0" expanded="false" />
                     <element signature="n#!!doc;n#readSystems#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readSystems#0;n#Database#0" expanded="false" />
-                    <element signature="e#7910#7977#0" expanded="false" />
+                    <element signature="e#8253#8320#0" expanded="false" />
                     <element signature="n#!!doc;n#readSystem#0;n#Database#0" expanded="false" />
                     <element signature="n#!!block;n#readSystem#0;n#Database#0" expanded="false" />
-                    <element signature="e#8470#8588#0" expanded="false" />
-                    <element signature="e#8527#8580#0" expanded="false" />
+                    <element signature="e#8813#8931#0" expanded="false" />
+                    <element signature="e#8870#8923#0" expanded="false" />
                     <element signature="n#!!block;n#readIntegrals#0;n#Database#0" expanded="false" />
-                    <element signature="e#8775#9091#0" expanded="false" />
-                    <element signature="e#9163#9258#0" expanded="false" />
-                    <element signature="e#9319#9418#0" expanded="false" />
-                    <element signature="e#9477#9570#0" expanded="false" />
-                    <element signature="e#9664#9744#0" expanded="false" />
+                    <element signature="e#9140#9456#0" expanded="false" />
+                    <element signature="e#9528#9623#0" expanded="false" />
+                    <element signature="e#9684#9783#0" expanded="false" />
+                    <element signature="e#9842#9935#0" expanded="false" />
+                    <element signature="e#10029#10109#0" expanded="false" />
                     <element signature="n#!!block;n#readIntegral#0;n#Database#0" expanded="false" />
-                    <element signature="e#10307#10388#0" expanded="false" />
+                    <element signature="e#10690#10771#0" expanded="false" />
                     <element signature="n#!!block;n#readUntegrals#0;n#Database#0" expanded="false" />
-                    <element signature="e#10539#10822#0" expanded="false" />
-                    <element signature="e#10889#10982#0" expanded="false" />
-                    <element signature="e#11197#11276#0" expanded="false" />
+                    <element signature="e#10940#11223#0" expanded="false" />
+                    <element signature="e#11290#11383#0" expanded="false" />
+                    <element signature="e#11598#11677#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -350,7 +350,6 @@
         <option value="$PROJECT_DIR$/logs.js" />
         <option value="$PROJECT_DIR$/logs/requests/API.txt" />
         <option value="$PROJECT_DIR$/components/File.js" />
-        <option value="$PROJECT_DIR$/components/Database.js" />
         <option value="$PROJECT_DIR$/components/Logger.js" />
         <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/routes/cdnBase.js" />
@@ -362,6 +361,7 @@
         <option value="$PROJECT_DIR$/types/SocketRequest.js" />
         <option value="$PROJECT_DIR$/routes/apiClient.js" />
         <option value="$PROJECT_DIR$/components/API.js" />
+        <option value="$PROJECT_DIR$/components/Database.js" />
       </list>
     </option>
   </component>
@@ -729,7 +729,7 @@
       <workItem from="1501144236012" duration="11000" />
       <workItem from="1501145507679" duration="50000" />
       <workItem from="1501146830646" duration="2061000" />
-      <workItem from="1501149122650" duration="3898000" />
+      <workItem from="1501149122650" duration="5327000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -857,11 +857,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501148677895</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added delete routes to client.">
+      <created>1501155374910</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1501155374910</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328297000" />
+    <option name="totallyTimeSpent" value="329726000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -962,7 +969,8 @@
     <MESSAGE value="Gave CDN base route something to render." />
     <MESSAGE value="Improved SocketRequest summary." />
     <MESSAGE value="Improved WebRequest time handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved WebRequest time handling." />
+    <MESSAGE value="Added delete routes to client." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added delete routes to client." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -973,7 +981,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="752" />
+      <option name="time" value="753" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1134,86 +1142,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
-            <element signature="e#1254#1321#0" expanded="false" />
-            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
-            <element signature="e#1778#1904#0" expanded="false" />
-            <element signature="e#1839#1894#0" expanded="false" />
-            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
-            <element signature="e#2184#2355#0" expanded="false" />
-            <element signature="e#2445#2786#0" expanded="false" />
-            <element signature="e#2506#2776#0" expanded="false" />
-            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
-            <element signature="e#3174#3368#0" expanded="false" />
-            <element signature="e#3235#3358#0" expanded="false" />
-            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#readClients#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readClients#0;n#Database#0" expanded="false" />
-            <element signature="e#3903#3970#0" expanded="false" />
-            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
-            <element signature="e#4412#4544#0" expanded="false" />
-            <element signature="e#4473#4534#0" expanded="false" />
-            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
-            <element signature="e#5058#5374#0" expanded="false" />
-            <element signature="e#5119#5364#0" expanded="false" />
-            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
-            <element signature="e#6561#6692#0" expanded="false" />
-            <element signature="e#6622#6682#0" expanded="false" />
-            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
-            <element signature="e#6976#7043#0" expanded="false" />
-            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
-            <element signature="e#7498#7624#0" expanded="false" />
-            <element signature="e#7559#7614#0" expanded="false" />
-            <element signature="n#!!doc;n#readSystems#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readSystems#0;n#Database#0" expanded="false" />
-            <element signature="e#7910#7977#0" expanded="false" />
-            <element signature="n#!!doc;n#readSystem#0;n#Database#0" expanded="false" />
-            <element signature="n#!!block;n#readSystem#0;n#Database#0" expanded="false" />
-            <element signature="e#8470#8588#0" expanded="false" />
-            <element signature="e#8527#8580#0" expanded="false" />
-            <element signature="n#!!block;n#readIntegrals#0;n#Database#0" expanded="false" />
-            <element signature="e#8775#9091#0" expanded="false" />
-            <element signature="e#9163#9258#0" expanded="false" />
-            <element signature="e#9319#9418#0" expanded="false" />
-            <element signature="e#9477#9570#0" expanded="false" />
-            <element signature="e#9664#9744#0" expanded="false" />
-            <element signature="n#!!block;n#readIntegral#0;n#Database#0" expanded="false" />
-            <element signature="e#10307#10388#0" expanded="false" />
-            <element signature="n#!!block;n#readUntegrals#0;n#Database#0" expanded="false" />
-            <element signature="e#10539#10822#0" expanded="false" />
-            <element signature="e#10889#10982#0" expanded="false" />
-            <element signature="e#11197#11276#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/API.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="189" column="2" lean-forward="false" selection-start-line="189" selection-start-column="2" selection-end-line="189" selection-end-column="2" />
+        <state relative-caret-position="418">
+          <caret line="85" column="42" lean-forward="true" selection-start-line="85" selection-start-column="42" selection-end-line="85" selection-end-column="42" />
           <folding>
             <element signature="n#!!doc;n#getUsers#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getUsers#0;n#API#0" expanded="false" />
@@ -1241,21 +1173,21 @@
             <element signature="n#!!block;n#getClients#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getClientById#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getClientById#0;n#API#0" expanded="false" />
-            <element signature="e#2597#2633#0" expanded="false" />
+            <element signature="e#2681#2717#0" expanded="false" />
             <element signature="n#!!doc;n#deleteClientById#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#deleteClientById#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getClientByDistinctor#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getClientByDistinctor#0;n#API#0" expanded="false" />
-            <element signature="e#3417#3539#0" expanded="false" />
-            <element signature="e#3479#3531#0" expanded="false" />
-            <element signature="e#3545#3613#0" expanded="false" />
+            <element signature="e#3501#3623#0" expanded="false" />
+            <element signature="e#3563#3615#0" expanded="false" />
+            <element signature="e#3629#3697#0" expanded="false" />
             <element signature="n#!!doc;n#deleteClientByDistinctor#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#deleteClientByDistinctor#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getClientByHandshake#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getClientByHandshake#0;n#API#0" expanded="false" />
-            <element signature="e#4364#4483#0" expanded="false" />
-            <element signature="e#4425#4475#0" expanded="false" />
-            <element signature="e#4489#4566#0" expanded="false" />
+            <element signature="e#4448#4567#0" expanded="false" />
+            <element signature="e#4509#4559#0" expanded="false" />
+            <element signature="e#4573#4650#0" expanded="false" />
             <element signature="n#!!doc;n#deleteClientByHandshake#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#deleteClientByHandshake#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getClientBySystem#0;n#API#0" expanded="false" />
@@ -1266,41 +1198,41 @@
             <element signature="n#!!block;n#getSystems#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getSystemById#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getSystemById#0;n#API#0" expanded="false" />
-            <element signature="e#6364#6462#0" expanded="false" />
-            <element signature="e#6418#6454#0" expanded="false" />
-            <element signature="e#6468#6528#0" expanded="false" />
+            <element signature="e#6448#6546#0" expanded="false" />
+            <element signature="e#6502#6538#0" expanded="false" />
+            <element signature="e#6552#6612#0" expanded="false" />
             <element signature="n#!!doc;n#getSystemByDistinctor#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getSystemByDistinctor#0;n#API#0" expanded="false" />
-            <element signature="e#6803#6925#0" expanded="false" />
-            <element signature="e#6865#6917#0" expanded="false" />
-            <element signature="e#6931#6999#0" expanded="false" />
+            <element signature="e#6887#7009#0" expanded="false" />
+            <element signature="e#6949#7001#0" expanded="false" />
+            <element signature="e#7015#7083#0" expanded="false" />
             <element signature="n#!!doc;n#getSystemByNumber#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getSystemByNumber#0;n#API#0" expanded="false" />
-            <element signature="e#7281#7391#0" expanded="false" />
-            <element signature="e#7339#7383#0" expanded="false" />
-            <element signature="e#7397#7461#0" expanded="false" />
+            <element signature="e#7365#7475#0" expanded="false" />
+            <element signature="e#7423#7467#0" expanded="false" />
+            <element signature="e#7481#7545#0" expanded="false" />
             <element signature="n#!!doc;n#getSystemByRoom#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getSystemByRoom#0;n#API#0" expanded="false" />
-            <element signature="e#7699#7823#0" expanded="false" />
-            <element signature="e#7765#7815#0" expanded="false" />
-            <element signature="e#7829#7891#0" expanded="false" />
+            <element signature="e#7783#7907#0" expanded="false" />
+            <element signature="e#7849#7899#0" expanded="false" />
+            <element signature="e#7913#7975#0" expanded="false" />
             <element signature="n#!!doc;n#getRooms#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getRooms#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getRoomById#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getRoomById#0;n#API#0" expanded="false" />
-            <element signature="e#8304#8396#0" expanded="false" />
-            <element signature="e#8356#8388#0" expanded="false" />
-            <element signature="e#8402#8470#0" expanded="false" />
+            <element signature="e#8388#8480#0" expanded="false" />
+            <element signature="e#8440#8472#0" expanded="false" />
+            <element signature="e#8486#8554#0" expanded="false" />
             <element signature="n#!!doc;n#getRoomByDistinctor#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getRoomByDistinctor#0;n#API#0" expanded="false" />
-            <element signature="e#8722#8838#0" expanded="false" />
-            <element signature="e#8782#8830#0" expanded="false" />
-            <element signature="e#8844#8910#0" expanded="false" />
+            <element signature="e#8806#8922#0" expanded="false" />
+            <element signature="e#8866#8914#0" expanded="false" />
+            <element signature="e#8928#8994#0" expanded="false" />
             <element signature="n#!!doc;n#getRoomByName#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getRoomByName#0;n#API#0" expanded="false" />
-            <element signature="e#9126#9224#0" expanded="false" />
-            <element signature="e#9180#9216#0" expanded="false" />
-            <element signature="e#9230#9290#0" expanded="false" />
+            <element signature="e#9210#9308#0" expanded="false" />
+            <element signature="e#9264#9300#0" expanded="false" />
+            <element signature="e#9314#9374#0" expanded="false" />
             <element signature="n#!!doc;n#getIntegrals#0;n#API#0" expanded="false" />
             <element signature="n#!!block;n#getIntegrals#0;n#API#0" expanded="false" />
             <element signature="n#!!doc;n#getUntegrals#0;n#API#0" expanded="false" />
@@ -1309,10 +1241,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/Database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="316" column="2" lean-forward="true" selection-start-line="316" selection-start-column="2" selection-end-line="316" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
+            <element signature="n#!!doc;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#open#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#signUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUsers#0;n#Database#0" expanded="false" />
+            <element signature="e#1254#1321#0" expanded="false" />
+            <element signature="n#!!doc;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readUser#0;n#Database#0" expanded="false" />
+            <element signature="e#1778#1904#0" expanded="false" />
+            <element signature="e#1839#1894#0" expanded="false" />
+            <element signature="n#!!doc;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterUser#0;n#Database#0" expanded="false" />
+            <element signature="e#2184#2355#0" expanded="false" />
+            <element signature="e#2445#2786#0" expanded="false" />
+            <element signature="e#2506#2776#0" expanded="false" />
+            <element signature="n#!!doc;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeUser#0;n#Database#0" expanded="false" />
+            <element signature="e#3174#3368#0" expanded="false" />
+            <element signature="e#3235#3358#0" expanded="false" />
+            <element signature="n#!!doc;n#signClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClients#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readClient#0;n#Database#0" expanded="false" />
+            <element signature="e#4755#4887#0" expanded="false" />
+            <element signature="e#4816#4877#0" expanded="false" />
+            <element signature="n#!!doc;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#alterClient#0;n#Database#0" expanded="false" />
+            <element signature="e#5401#5717#0" expanded="false" />
+            <element signature="e#5462#5707#0" expanded="false" />
+            <element signature="n#!!doc;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#writeClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!doc;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#deleteClient#0;n#Database#0" expanded="false" />
+            <element signature="e#6904#7035#0" expanded="false" />
+            <element signature="e#6965#7025#0" expanded="false" />
+            <element signature="n#!!doc;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRooms#0;n#Database#0" expanded="false" />
+            <element signature="e#7319#7386#0" expanded="false" />
+            <element signature="n#!!doc;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readRoom#0;n#Database#0" expanded="false" />
+            <element signature="e#7841#7967#0" expanded="false" />
+            <element signature="e#7902#7957#0" expanded="false" />
+            <element signature="n#!!doc;n#readSystems#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readSystems#0;n#Database#0" expanded="false" />
+            <element signature="e#8253#8320#0" expanded="false" />
+            <element signature="n#!!doc;n#readSystem#0;n#Database#0" expanded="false" />
+            <element signature="n#!!block;n#readSystem#0;n#Database#0" expanded="false" />
+            <element signature="e#8813#8931#0" expanded="false" />
+            <element signature="e#8870#8923#0" expanded="false" />
+            <element signature="n#!!block;n#readIntegrals#0;n#Database#0" expanded="false" />
+            <element signature="e#9140#9456#0" expanded="false" />
+            <element signature="e#9528#9623#0" expanded="false" />
+            <element signature="e#9684#9783#0" expanded="false" />
+            <element signature="e#9842#9935#0" expanded="false" />
+            <element signature="e#10029#10109#0" expanded="false" />
+            <element signature="n#!!block;n#readIntegral#0;n#Database#0" expanded="false" />
+            <element signature="e#10690#10771#0" expanded="false" />
+            <element signature="n#!!block;n#readUntegrals#0;n#Database#0" expanded="false" />
+            <element signature="e#10940#11223#0" expanded="false" />
+            <element signature="e#11290#11383#0" expanded="false" />
+            <element signature="e#11598#11677#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/apiClient.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="53" column="8" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+        <state relative-caret-position="368">
+          <caret line="16" column="49" lean-forward="true" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
           <folding />
         </state>
       </provider>
