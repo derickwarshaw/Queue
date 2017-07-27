@@ -323,7 +323,7 @@ class API {
    * @returns {Promise.<void>}
    */
   static async patchRoomById (roomId, roomPatch) {
-    let roomFound = await currentDatabase.readRoom("Id", {roomId: roomId});
+    let roomFound = await currentDatabase.readRoom("Id", {roomId});
     roomFound[roomPatch.patchItem] = roomPatch.patchValue;
 
     await currentDatabase.alterRoom("Id", roomFound);
@@ -358,6 +358,28 @@ class API {
   }
 
   /**
+   * Patch a room by distinctor.
+   * @param {String|Number} roomDistinctor Distinctor of the user.
+   * @param {Object} roomPatch Patch object.
+   * @returns {Promise.<void>}
+   */
+  static async patchRoomByDistinctor (roomDistinctor, roomPatch) {
+    let roomFound = await currentDatabase.readRoom("Distinctor", {roomDistinctor});
+    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+
+    await currentDatabase.alterRoom("Distinctor", roomFound);
+  }
+
+  /**
+   * Delete a room by distinctor.
+   * @param roomDistinctor
+   * @returns {Promise.<void>}
+   */
+  static async deleteRoomByDistinctor (roomDistinctor) {
+    await currentDatabase.deleteRoom("Distinctor", {roomDistinctor})
+  }
+
+  /**
    * Get a room by name.
    * @param {String} roomName Name of the room.
    * @returns {Promise.<Object>} Found room.
@@ -370,6 +392,28 @@ class API {
     } else {
       throw Error(`'${roomName}' is not a string.`);
     }
+  }
+
+  /**
+   * Patch a room by name.
+   * @param {String} roomName Name of room.
+   * @param {Object} roomPatch Patch object.
+   * @returns {Promise.<void>}
+   */
+  static async patchRoomByName (roomName, roomPatch) {
+    let roomFound = currentDatabase.readRoom("Name", {roomName});
+    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+
+    await currentDatabase.alterRoom("Name", roomFound);
+  }
+
+  /**
+   * Delete a room by name.
+   * @param {String} roomName Name of room.
+   * @returns {Promise.<void>}
+   */
+  static async deleteRoomByName (roomName) {
+    await currentDatabase.deleteRoom("Name", {roomName});
   }
   
   /**

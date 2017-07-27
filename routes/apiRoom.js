@@ -48,8 +48,16 @@ module.exports = roomRouter => {
         .then(rooms => roomRes.json(rooms))
         .catch(reason => roomRes.sendStatus(reason));
   });
-  // TODO: Implement patch.
-  // TODO: Implement delete.
+  roomRouter.patch(roomByDistinctor, function (roomReq, roomRes) {
+    API.patchRoomByDistinctor(roomReq.params.roomId, roomReq.body)
+       .then(success => roomRes.sendStatus(200))
+       .catch(reason => roomRes.sendStatus(reason.message));
+  });
+  roomRouter.delete(roomByDistinctor, function (roomReq, roomRes) {
+    API.deleteRoomByDistinctor(roomReq.params.roomId)
+       .then(success => roomRes.sendStatus(200))
+       .catch(reason => roomRes.sendStatus(reason.message));
+  });
   
   
   roomRouter.get(roomByName, function (roomReq, roomRes) {
@@ -57,8 +65,16 @@ module.exports = roomRouter => {
         .then(rooms => roomRes.json(rooms))
         .catch(reason => roomRes.sendStatus(reason));
   });
-  // TODO: Implement patch.
-  // TODO: Implement delete.
+  roomRouter.patch(roomByName, function (roomReq, roomRes) {
+    API.patchRoomByName(roomRes.params.roomName, roomReq.body)
+       .then(success => roomRes.sendStatus(200))
+       .catch(reason => roomRes.sendStatus(reason.message));
+  });
+  roomRouter.delete(roomByName, function (roomReq, roomRes) {
+    API.deleteRoomByName(roomReq.param.roomName)
+       .then(success => roomRes.sendStatus(200))
+       .catch(reason => roomRes.sendStatus(reason.message));
+  });
 
   return roomRouter;
 
