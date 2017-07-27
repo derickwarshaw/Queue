@@ -60,14 +60,14 @@ class Application {
   api (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesApi = baseRoute;
 
-    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/Base'));
+    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/apiBase'));
     this.applicationExpress.use(this.applicationRoutes.routesApi, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
       baseHandler(new ApiRequest(baseReq, baseRes));
       baseNext();
     });
 
     for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', basePaths[i]));
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `api${basePaths[i]}`));
       this.applicationExpress.use(`${this.applicationRoutes.routesApi}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
@@ -82,14 +82,14 @@ class Application {
     this.applicationRoutes.routesView = baseRoute;
 
     // TODO: Fix naming of thse routes.
-    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/Display'));
+    const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/viewsBase'));
     this.applicationExpress.use(this.applicationRoutes.routesView, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
       baseHandler(new ViewRequest(baseReq, baseRes));
       baseNext();
     });
 
     for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', basePaths[i]));
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `views${basePaths[i]}`));
       this.applicationExpress.use(`${this.applicationRoutes.routesView}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
@@ -103,14 +103,14 @@ class Application {
   cdn (baseRoute, basePaths, baseHandler) {
     this.applicationRoutes.routesCdn = baseRoute;
     
-    const resRoutes = require(Path.join(this.applicationDirectory, '/routes/Resources'));
+    const resRoutes = require(Path.join(this.applicationDirectory, '/routes/cdnBase'));
     this.applicationExpress.use(this.applicationRoutes.routesCdn, resRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
       baseHandler(new CdnRequest(baseReq, baseRes));
       baseNext();
     });
 
     for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', basePaths[i]));
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `cdn${basePaths[i]}`));
       this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
