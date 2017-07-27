@@ -96,6 +96,21 @@ class API {
       throw Error(`'${clientId}' is not a parseable number.`);
     }
   }
+  
+  /**
+   * Delete a client by index.
+   * @param {Number} clientId Index of the client.
+   * @returns {Promise.<*>}
+   */
+  static async deleteClientById (clientId) {
+    if (typeof clientId === "number" || !isNaN(parseInt(clientId, 10))) {
+      return await currentDatabase.deleteClient("Id", {
+        clientId: parseInt(clientId, 10)
+      });
+    } else {
+      throw Error(`'${clientId}' is not a number.`);
+    }
+  }
 
   /**
    * Get a client by signed distinctor.
@@ -105,6 +120,21 @@ class API {
   static async getClientByDistinctor (clientDistinctor) {
     if (typeof clientDistinctor === "string") {
       return await currentDatabase.readClient("Distinctor", {
+        clientDistinctor: clientDistinctor
+      });
+    } else {
+      throw Error(`'${clientDistinctor}' is not a string.`);
+    }
+  }
+  
+  /**
+   * Delete a client by signed distinctor.
+   * @param {String} clientDistinctor Signed distinctor.
+   * @returns {Promise.<void>}
+   */
+  static async deleteClientByDistinctor (clientDistinctor) {
+    if (typeof clientDistinctor === "string") {
+      currentDatabase.deleteClient("Distinctor", {
         clientDistinctor: clientDistinctor
       });
     } else {
@@ -126,6 +156,21 @@ class API {
       throw Error(`'${clientHandshake}' is not a parseable number.`);
     }
   }
+  
+  /**
+   * Delete a client by socket handshake.
+   * @param {String} clientHandshake Socket handshake.
+   * @returns {Promise.<void>}
+   */
+  static async deleteClientByHandshake (clientHandshake) {
+    if (typeof clientHandshake === "string") {
+      currentDatabase.deleteClient("Handshake", {
+        clientHandshake: clientHandshake
+      });
+    } else {
+      throw Error(`'${clientHandshake}' is not a string.`);
+    }
+  }
 
   /**
    * Get a client by signed system distinctor.
@@ -138,9 +183,25 @@ class API {
         clientSystemDistinctor: systemClient
       });
     } else {
-      throw Error(`'${systemClient}' is not a system.`);
+      throw Error(`'${systemClient}' is not a string.`);
     }
   }
+  
+  /**
+   * Delete a client by signed system distinctor.
+   * @param {String} systemClient Signed system distinctor.
+   * @returns {Promise.<*>}
+   */
+  static async deleteClientBySystem (systemClient) {
+    if (typeof systemClient === "string") {
+      return await currentDatabase.deleteClient("SystemDistinctor", {
+        clientSystemDistinctor: systemClient
+      });
+    } else {
+      throw Error(`'${systemClient}' is not a string.`);
+    }
+  }
+  
   
 
 
