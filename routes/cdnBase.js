@@ -1,15 +1,19 @@
 const currentApplication = require('../queue').currentApplication;
-const API = currentApplication.component('API');
+const File = currentApplication.component('File');
 
 module.exports = routerInstance => {
   "use strict";
   
   return routerInstance
-      .get('/', function (roomReq, roomRes) {
+      .get('/', function (cdnReq, cdnRes) {
         "use strict";
 
-        // TODO: Find a way to show all resources? Scripts/Text/etc.
-        roomRes.send("You are on the base route for /r/");
+        File.readDirectory('./public').then(publicDirectory => cdnRes.render('Root', {
+          rootHeader: 'CDN',
+          rootItem: publicDirectory.map(publicItem => {
+            return {itemName: publicItem, itemRoot: '/cdn'};
+          })
+        }));
       });
   
 };

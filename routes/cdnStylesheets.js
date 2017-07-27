@@ -10,7 +10,7 @@ module.exports = routerInstance => {
         "use strict";
 
         File.readDirectory('./public/stylesheets').then(scriptsFound => stylesheetRes.render('Root', {
-          rootHeader: 'Scripts Available',
+          rootHeader: 'CDN - Stylesheets',
           rootItem: scriptsFound.map(scriptFound => {
             return {itemName: scriptFound, itemRoot: '/cdn/stylesheets'};
           })

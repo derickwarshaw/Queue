@@ -10,7 +10,7 @@ module.exports = routerInstance => {
         "use strict";
         
         File.readDirectory('./public/scripts').then(scriptsFound => scriptsRes.render('Root', {
-          rootHeader: 'Scripts Available',
+          rootHeader: 'CDN - Scripts',
           rootItem: scriptsFound.map(scriptFound => {
             return {itemName: scriptFound, itemRoot: '/cdn/scripts'};
           })
