@@ -4,9 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/components/Application.js" line="55" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
+    <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="Changed directory of logs.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/Logger.js" afterPath="$PROJECT_DIR$/components/Logger.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,7 +40,7 @@
       <file leaf-file-name="API.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/API.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="4048">
               <caret line="176" column="47" lean-forward="false" selection-start-line="176" selection-start-column="47" selection-end-line="176" selection-end-column="47" />
               <folding />
             </state>
@@ -59,8 +60,8 @@
       <file leaf-file-name="Logger.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Logger.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="48" />
+            <state relative-caret-position="207">
+              <caret line="9" column="64" lean-forward="false" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -242,7 +243,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -270,6 +270,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -521,7 +522,9 @@
       <workItem from="1501102507461" duration="40000" />
       <workItem from="1501105602282" duration="4000" />
       <workItem from="1501139794791" duration="3563000" />
-      <workItem from="1501143386614" duration="13000" />
+      <workItem from="1501143386614" duration="650000" />
+      <workItem from="1501144236012" duration="11000" />
+      <workItem from="1501145507679" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -607,11 +610,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501143155809</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Changed directory of logs.">
+      <created>1501143423294</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1501143423294</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="321640000" />
+    <option name="totallyTimeSpent" value="322292000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -706,7 +716,8 @@
     <MESSAGE value="Moved allow headers to main file." />
     <MESSAGE value="Cleared out some unneeded dependencies." />
     <MESSAGE value="Implemented logging to files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented logging to files." />
+    <MESSAGE value="Changed directory of logs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed directory of logs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -965,7 +976,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/API.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="4048">
           <caret line="176" column="47" lean-forward="false" selection-start-line="176" selection-start-column="47" selection-end-line="176" selection-end-column="47" />
           <folding />
         </state>
@@ -983,7 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -991,14 +1001,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Logger.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="48" />
+        <state relative-caret-position="207">
+          <caret line="9" column="64" lean-forward="false" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
           <folding />
         </state>
       </provider>
