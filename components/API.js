@@ -281,9 +281,19 @@ class API {
       throw Error(`'${systemRoom}' is not a string.`);
     }
   }
-  
 
 
+
+
+
+  /**
+   * Add a room.
+   * @param {String} roomName Name of the room.
+   * @returns {Promise.<void>}
+   */
+  static async addRoom (roomName) {
+    await currentDatabase.writeRoom(roomName);
+  }
 
   /**
    * Get all rooms.
@@ -414,15 +424,6 @@ class API {
    */
   static async deleteRoomByName (roomName) {
     await currentDatabase.deleteRoom("Name", {roomName});
-  }
-  
-  /**
-   * Add a room.
-   * @param {String} roomName Name of the room.
-   * @returns {Promise.<void>}
-   */
-  static async addRoom (roomName) {
-    await currentDatabase.writeRoom(roomName);
   }
 
 
