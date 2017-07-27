@@ -2,12 +2,10 @@ const Application = require('./components/Application');
 const currentApplication = new Application(__dirname, 8080);
 module.exports.currentApplication = currentApplication;
 
-// TODO: Consider merging thee queue with the Application component.
 const Queue = currentApplication.component('Queue');
 const currentQueue = new Queue();
 module.exports.currentQueue = currentQueue;
 
-// TODO: Consider merging the current database with the Application component.
 const Database = currentApplication.component('Database');
 const currentDatabase = new Database();
 module.exports.currentDatabase = currentDatabase;
@@ -45,8 +43,7 @@ currentDatabase.open()
 
      currentApplication.listen();
      currentApplication.socket(socketRequest => {
-       // TODO: Implement logging to a file.
-       console.log(`[${socketRequest.timestamp()}] [Socket Request] ${socketRequest.summary()}`);
+       currentLogger.request('Socket', socketRequest).then(socketSummary => console.log(socketSummary));
 
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)

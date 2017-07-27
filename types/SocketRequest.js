@@ -19,8 +19,28 @@ class SocketRequest {
   }
   
   
+  /**
+   * Get the start date of the request.
+   * @returns {String} Locale date string.
+   */
+  date () {
+    return this.socketRequestDate.toLocaleDateString();
+  }
+  
+  /**
+   * Get the start time of the request.
+   * @returns {String} Locale time string.
+   */
   time () {
-    return `${this.socketRequestDate.toLocaleDateString()} @ ${this.socketRequestDate.toLocaleTimeString()}`;
+    return this.socketRequestDate.toLocaleTimeString();
+  }
+  
+  /**
+   * Get the start date and timestamp.
+   * @returns {String} Time and date of request.
+   */
+  timestamp () {
+    return `${this.date()} @ ${this.time()}`;
   }
   
   /**
