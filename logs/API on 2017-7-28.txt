@@ -1,0 +1,17 @@
+[2017-7-28 @ 12:55:18] [API Request] GET -> user with client of f45cbcc5-5a0f-4056-b9d5-285efda4927f. 
+[2017-7-28 @ 12:55:18] [API Request] GET -> system with distinctor of 81ad8807-ebe9-423b-9715-be6739a260a7. 
+[2017-7-28 @ 12:55:19] [API Request] GET -> system with distinctor of 81ad8807-ebe9-423b-9715-be6739a260a7. 
+[2017-7-28 @ 12:55:23] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:55:27] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:59:17] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:59:18] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:59:18] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:59:19] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 12:59:23] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 13:00:45] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 13:00:48] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 13:01:08] [API Request] GET -> system with distinctor of 81ad8807-ebe9-423b-9715-be6739a260a7. 
+[2017-7-28 @ 13:18:05] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 13:20:09] [API Request] GET -> system with distinctor of a08f1cd5-f339-4b92-9165-5c0e71210040. 
+[2017-7-28 @ 13:20:17] [API Request] GET -> system with distinctor of 81ad8807-ebe9-423b-9715-be6739a260a7. 
+[2017-7-28 @ 13:20:17] [API Request] GET -> user with client of f45cbcc5-5a0f-4056-b9d5-285efda4927f. 
