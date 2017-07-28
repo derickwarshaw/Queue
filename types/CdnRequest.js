@@ -2,7 +2,11 @@ const WebRequest = require('./WebRequest');
 
 class CdnRequest extends WebRequest {
 
-  // TODO: JSdoc.
+  /**
+   * Manage a HTTP request to the API.
+   * @param {IncomingMessage} cdnReq Request object.
+   * @param {ServerResponse} cdnRes Response object.
+   */
   constructor (cdnReq, cdnRes) {
     super (cdnReq, cdnRes);
     
@@ -21,7 +25,10 @@ class CdnRequest extends WebRequest {
     }
   }
 
-  // TODO: JSdoc.
+  /**
+   * Summarise the request.
+   * @returns {String} Summary of the request.
+   */
   summary () {
     return `Serving ${this.cdnRequestFile} (${this.cdnRequestFileMime})`;
   }

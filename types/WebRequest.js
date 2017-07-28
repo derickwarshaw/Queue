@@ -55,17 +55,26 @@ class WebRequest {
     return `${this.webRequestMethod} -> ${this.webRequestPath} (${this.webRequestHeaders.size} headers)`;
   }
 
-  // TODO: JSdoc.
+  /**
+   * Set the origins to allow on the web request.
+   * @param {String} originType Origin header.
+   */
   allowOrigin (originType) {
     this.webResponse.header("Access-Control-Allow-Origin", originType);
   }
 
-  // TODO: JSdoc.
+  /**
+   * Set the headers to allow on the request.
+   * @param {String} headersAllow Headers to allow.
+   */
   allowHeaders (headersAllow) {
     this.webResponse.header("Access-Control-Allow-Headers", headersAllow.join(', '));
   }
 
-  // TODO: JSdoc.
+  /**
+   * Set the methods to allow on the request.
+   * @param {String} methodsAllow Methods to allow.
+   */
   allowMethods (methodsAllow) {
     this.webResponse.header("Access-Control-Allow-Methods", methodsAllow.join(', '));
   }

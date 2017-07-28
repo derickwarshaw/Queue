@@ -2,7 +2,12 @@ const FileSystem = require('graceful-fs');
 
 class FileStreamer {
 
-  // TODO: JSdoc.
+  /**
+   * Stream from or to a file.
+   * @param {String} streamerType Type of stream to establish.
+   * @param {String} streamerFile Path to the file.
+   * @returns {FileStreamer} FileStreamer instance.
+   */
   constructor (streamerType, streamerFile) {
     this.fileStreamerType = streamerType;
     this.fileStreamerFile = streamerFile;
@@ -14,7 +19,10 @@ class FileStreamer {
     }
   }
 
-  // TODO: JSdoc.
+  /**
+   * Read the file.
+   * @param readCallback
+   */
   read (readCallback) {
     if (this.fileStreamerType === 'read' && this.fileStreamerStream) {
       this.fileStreamerStream.on('data', readCallback);
@@ -23,7 +31,10 @@ class FileStreamer {
     }
   }
 
-  // TODO: JSdoc.
+  /**
+   * Write to the file.
+   * @param {String} writeData Data to write.
+   */
   write (writeData) {
     if (this.fileStreamerType === 'write' && this.fileStreamerStream) {
       this.fileStreamerStream.write(writeData);
@@ -32,7 +43,10 @@ class FileStreamer {
     }
   }
 
-  // TODO: JSdoc.
+  /**
+   * Pipe to the file.
+   * @param {Stream} pipeData Stream to pipe from.
+   */
   pipe (pipeData) {
     if (this.fileStreamerType === 'write' && this.fileStreamerStream) {
       this.fileStreamerStream.pipe(pipeData);
