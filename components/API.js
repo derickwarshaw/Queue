@@ -1,4 +1,4 @@
-const currentApplication = require('../queue').currentApplication;
+
 const currentDatabase = require('../queue').currentDatabase;
 
 class API {

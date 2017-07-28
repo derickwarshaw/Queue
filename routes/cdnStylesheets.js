@@ -1,4 +1,4 @@
-const API = require('../components/File');
+const File = require('../components/File');
 
 module.exports = stylesheetRouter => {
   "use strict";

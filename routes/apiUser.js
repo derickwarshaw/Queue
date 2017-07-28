@@ -16,7 +16,7 @@ module.exports = userRouter => {
   })
   userRouter.post(userBase, function (userReq, userRes) {
     API.addUser(userReq.body)
-        .then(users => userRes.sendStatus(200))
+        .then(user => userRes.json(user))
         .catch(error => userRes.send(error.message));
   });
   userRouter.delete(userBase, function (userReq, userRes) {
