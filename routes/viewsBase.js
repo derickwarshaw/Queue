@@ -1,17 +1,17 @@
 const currentApplication = require('../queue').currentApplication;
 const API = currentApplication.component('API');
 
-module.exports = routerInstance => {
+module.exports = viewsRouter => {
   "use strict";
   
-  return routerInstance
-      .get('/', function (roomReq, roomRes) {
-        "use strict";
-        
-        roomRes.render('Root', {
-          rootHeader: 'Views',
-          rootItem: [{itemName: 'board', itemRoot: '/v'}]
-        });
-      });
+  const viewsBase = '/';
+  
+  viewsRouter.get(viewsBase, function (viewsReq, viewsRes) {
+    viewsRes.render('Root', {rootHeader: 'Queue Views'}, {
+      rootItem: [{itemName: 'board', itemRoot: '/v'}]
+    });
+  });
+  
+  return viewsRouter;
   
 };

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/components/Application.js" line="59" />
   </component>
@@ -7,8 +10,10 @@
     <list default="true" id="58ba86bb-f776-454c-8da6-b1b4b0cfb16b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queue.db" afterPath="$PROJECT_DIR$/queue.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/RoomUnavailable.hbs" afterPath="$PROJECT_DIR$/public/views/RoomUnavailable.hbs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/apiUser.js" afterPath="$PROJECT_DIR$/routes/apiUser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/cdnStylesheets.js" afterPath="$PROJECT_DIR$/routes/cdnStylesheets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/viewsBase.js" afterPath="$PROJECT_DIR$/routes/viewsBase.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/viewsBoard.js" afterPath="$PROJECT_DIR$/routes/viewsBoard.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,8 +72,8 @@
                 <file leaf-file-name="cdnStylesheets.js" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/routes/cdnStylesheets.js">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="667">
-                        <caret line="29" column="2" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
+                      <state relative-caret-position="644">
+                        <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
                         <folding />
                       </state>
                     </provider>
@@ -98,11 +103,31 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="apiUser.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="apiUser.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/apiUser.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+                <state relative-caret-position="302">
+                  <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RoomUnavailable.hbs" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/views/RoomUnavailable.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="96" lean-forward="false" selection-start-line="0" selection-start-column="96" selection-end-line="0" selection-end-column="96" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RoomAvailable.hbs" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="96" />
                   <folding />
                 </state>
               </provider>
@@ -111,7 +136,7 @@
           <file leaf-file-name="API.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/API.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2963">
+                <state relative-caret-position="3818">
                   <caret line="524" column="3" lean-forward="false" selection-start-line="524" selection-start-column="3" selection-end-line="524" selection-end-column="3" />
                   <folding>
                     <element signature="n#!!block;n#addUser#0;n#API#0" expanded="false" />
@@ -277,7 +302,7 @@
           <file leaf-file-name="SocketRequest.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="353">
+                <state relative-caret-position="2231">
                   <caret line="97" column="4" lean-forward="false" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
                   <folding />
                 </state>
@@ -298,7 +323,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Database.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Database.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/Database.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="95">
@@ -412,6 +437,26 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="viewsBase.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/viewsBase.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="368">
+                  <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="viewsBoard.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/routes/viewsBoard.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="179">
+                  <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -470,7 +515,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/RoomUnavailable.hbs" />
         <option value="$PROJECT_DIR$/views/RoomAvailable.hbs" />
         <option value="$PROJECT_DIR$/routes/Client.js" />
         <option value="$PROJECT_DIR$/routes/Tegrals.js" />
@@ -487,7 +531,6 @@
         <option value="$PROJECT_DIR$/types/apiRequest.js" />
         <option value="$PROJECT_DIR$/components/Translation.js" />
         <option value="$PROJECT_DIR$/public/scripts/Board.js" />
-        <option value="$PROJECT_DIR$/public/views/RoomUnavailable.hbs" />
         <option value="$PROJECT_DIR$/public/stylesheets/Root.css" />
         <option value="$PROJECT_DIR$/public/views/RoomRoot.hbs" />
         <option value="$PROJECT_DIR$/routes/Display.js" />
@@ -500,7 +543,6 @@
         <option value="$PROJECT_DIR$/routes/Scripts.js" />
         <option value="$PROJECT_DIR$/logs.js" />
         <option value="$PROJECT_DIR$/logs/requests/API.txt" />
-        <option value="$PROJECT_DIR$/routes/viewsBase.js" />
         <option value="$PROJECT_DIR$/components/Application.js" />
         <option value="$PROJECT_DIR$/queue.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -520,7 +562,10 @@
         <option value="$PROJECT_DIR$/routes/cdnBase.js" />
         <option value="$PROJECT_DIR$/routes/cdnScripts.js" />
         <option value="$PROJECT_DIR$/routes/cdnStylesheets.js" />
+        <option value="$PROJECT_DIR$/routes/viewsBase.js" />
         <option value="$PROJECT_DIR$/routes/apiUser.js" />
+        <option value="$PROJECT_DIR$/public/views/RoomUnavailable.hbs" />
+        <option value="$PROJECT_DIR$/routes/viewsBoard.js" />
       </list>
     </option>
   </component>
@@ -590,7 +635,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -611,7 +655,13 @@
             <path>
               <item name="Queue" type="b2602c69:ProjectViewProjectNode" />
               <item name="Queue" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Queue" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Queue" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Queue" type="b2602c69:ProjectViewProjectNode" />
@@ -622,6 +672,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -886,7 +937,8 @@
       <workItem from="1501227992033" duration="248000" />
       <workItem from="1501228275999" duration="77000" />
       <workItem from="1501228573791" duration="11000" />
-      <workItem from="1501228654195" duration="120000" />
+      <workItem from="1501228654195" duration="154000" />
+      <workItem from="1501230106245" duration="902000" />
     </task>
     <task id="LOCAL-00001" summary="Now supports limited systems.">
       <created>1500627112067</created>
@@ -1063,11 +1115,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501227251072</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Bug fixes.">
+      <created>1501228787851</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1501228787851</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349291000" />
+    <option name="totallyTimeSpent" value="350227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1082,9 +1141,11 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12223393" sideWeight="0.6155089" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12223393" sideWeight="0.54738015" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329294" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="-213" y="188" width="1920" height="1017" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4180602" sideWeight="0.51896733" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.12223393" sideWeight="0.45261985" order="4" side_tool="true" content_ui="tabs" x="2368" y="205" width="851" height="399" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="115" y="301" width="925" height="433" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.48608536" order="1" side_tool="false" content_ui="tabs" />
@@ -1098,7 +1159,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="MaxCompute Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.4786642" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Job" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection Results" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="MaxCompute Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1106,7 +1166,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11327714" sideWeight="0.38449112" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Running Info" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Running Result" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
     </layout>
@@ -1150,7 +1209,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now supports limited systems." />
     <MESSAGE value="Made systems more queryable." />
     <MESSAGE value="Set up rendering boards." />
     <MESSAGE value="Figured out major SQLite misuse, fixed majority of the API calls." />
@@ -1175,7 +1233,8 @@
     <MESSAGE value="System router rewrite." />
     <MESSAGE value="User router rewrite." />
     <MESSAGE value="CDN router rewrite." />
-    <option name="LAST_COMMIT_MESSAGE" value="CDN router rewrite." />
+    <MESSAGE value="Bug fixes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1186,7 +1245,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="790" />
+      <option name="time" value="793" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1204,12 +1263,9 @@
     <entry file="file://$PROJECT_DIR$/components/Translation.js" />
     <entry file="file://$PROJECT_DIR$/components/Present.js" />
     <entry file="file://$PROJECT_DIR$/public/stylesheets/Board.css" />
-    <entry file="file://$PROJECT_DIR$/public/views/RoomUnavailable.hbs" />
     <entry file="file://$PROJECT_DIR$/public/stylesheets/Root.css" />
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/response.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/Board.js" />
-    <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs" />
-    <entry file="file://$PROJECT_DIR$/routes/viewsBoard.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/Selector.js" />
     <entry file="file://$PROJECT_DIR$/public/josh.txt" />
     <entry file="file://$PROJECT_DIR$/logs.js" />
@@ -1219,7 +1275,6 @@
     <entry file="file://$PROJECT_DIR$/logs/View on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/logs/CDN on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/public/views/Root.hbs" />
-    <entry file="file://$PROJECT_DIR$/routes/viewsBase.js" />
     <entry file="file://$PROJECT_DIR$/logs/Socket on 2017-7-27.txt" />
     <entry file="file://$PROJECT_DIR$/routes/apiBase.js" />
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -1349,14 +1404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
           <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/cdnStylesheets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="29" column="2" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -1499,7 +1546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/types/SocketRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
+        <state relative-caret-position="2231">
           <caret line="97" column="4" lean-forward="false" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
           <folding />
         </state>
@@ -1507,7 +1554,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/API.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2963">
+        <state relative-caret-position="3818">
           <caret line="524" column="3" lean-forward="false" selection-start-line="524" selection-start-column="3" selection-end-line="524" selection-end-column="3" />
           <folding>
             <element signature="n#!!block;n#addUser#0;n#API#0" expanded="false" />
@@ -1659,10 +1706,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/viewsBase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="2" lean-forward="false" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/apiUser.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        <state relative-caret-position="302">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/cdnStylesheets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="28" column="2" lean-forward="false" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/RoomAvailable.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/RoomUnavailable.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="96" lean-forward="false" selection-start-line="0" selection-start-column="96" selection-end-line="0" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/viewsBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
           <folding />
         </state>
       </provider>

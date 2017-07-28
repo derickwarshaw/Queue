@@ -90,12 +90,12 @@ module.exports = userRouter => {
     API.patchUserByClient(userReq.params.userClient)
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
-  })
+  });
   userRouter.delete(userByClient, function (userReq, userRes) {
     API.deleteUserByClient(userReq.params.userClient)
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
-  })
+  });
 
 
   return userRouter;
