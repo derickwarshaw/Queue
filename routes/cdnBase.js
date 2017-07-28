@@ -1,19 +1,22 @@
 const currentApplication = require('../queue').currentApplication;
 const File = currentApplication.component('File');
 
-module.exports = routerInstance => {
+module.exports = cdnRouter => {
   "use strict";
   
-  return routerInstance
-      .get('/', function (cdnReq, cdnRes) {
-        "use strict";
-
-        File.readDirectory('./public').then(publicDirectory => cdnRes.render('Root', {
-          rootHeader: 'CDN',
-          rootItem: publicDirectory.map(publicItem => {
-            return {itemName: publicItem, itemRoot: '/cdn'};
+  const cdnBase = '/';
+  
+  cdnRouter.get(cdnBase, function (cdnReq, cdnRes) {
+    File.readDirectory('./public')
+        .then(publicDirectory => cdnRes.render('Root', {
+          rootHeader: 'Queue CDN',
+          rootItem: publicDirectory.map(directoryItem => {
+            return {itemName: directoryItem, itemRoot: '/cdn'};
           })
-        }));
-      });
+        }))
+        .catch(error => cdnRes.send(error.message));
+  })
+  
+  return cdnRouter;
   
 };

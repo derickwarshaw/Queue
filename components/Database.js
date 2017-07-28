@@ -449,8 +449,7 @@ class Database {
       ]);
     });
   }
-
-
+  
   // TODO: JSdoc.
   deleteSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;

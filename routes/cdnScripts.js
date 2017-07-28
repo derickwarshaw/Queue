@@ -1,26 +1,30 @@
 const currentApplication = require('../queue').currentApplication;
-const API = currentApplication.component('API');
 const File = currentApplication.component('File');
 
-module.exports = routerInstance => {
+module.exports = scriptsRouter => {
   "use strict";
   
-  return routerInstance
-      .get('/', function (scriptsReq, scriptsRes) {
-        "use strict";
-        
-        File.readDirectory('./public/scripts').then(scriptsFound => scriptsRes.render('Root', {
-          rootHeader: 'CDN - Scripts',
-          rootItem: scriptsFound.map(scriptFound => {
-            return {itemName: scriptFound, itemRoot: '/cdn/scripts'};
+  const scriptsBase = '/';
+  const scriptsName = '/:scriptName';
+  
+  scriptsRouter.get(scriptsBase, function (scriptsReq, scriptsRes) {
+    File.readDirectory('./public/scripts')
+        .then(scriptsDirectory => scriptsRes.render('Root', {
+          rootHeader: 'Queue CDN: .js',
+          rootItem: scriptsDirectory.map(directoryItem => {
+            return {itemName: directoryItem, itemRoot: '/cdn/scripts'};
           })
-        }));
-      })
-      .get('/:scriptName', function (scriptReq, scriptRes) {
+        }))
+        .catch(error => scriptsRes.send(error.message));
+  });
+  
+  scriptsRouter.get(scriptsName, function (scriptsReq, scriptsRes) {
+    File.readFile(`./public/scripts/${scriptsReq.params.scriptName}`)
+        .then(readFile => scriptsRes.send(readFile))
+        .catch(error => scriptsRes.send(error.message));
+  });
 
-        File.readFile(`./public/scripts/${scriptReq.params.scriptName}`)
-            .then(readFile => scriptRes.send(readFile))
-            .catch(unreadReason => scriptRes.send(unreadReason.message));
-      });
+  
+  return scriptsRouter;
   
 };

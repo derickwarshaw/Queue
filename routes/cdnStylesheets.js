@@ -1,26 +1,30 @@
 const currentApplication = require('../queue').currentApplication;
-const API = currentApplication.component('API');
 const File = currentApplication.component('File');
 
-module.exports = routerInstance => {
+module.exports = stylesheetRouter => {
   "use strict";
   
-  return routerInstance
-      .get('/', function (stylesheetReq, stylesheetRes) {
-        "use strict";
-
-        File.readDirectory('./public/stylesheets').then(scriptsFound => stylesheetRes.render('Root', {
-          rootHeader: 'CDN - Stylesheets',
-          rootItem: scriptsFound.map(scriptFound => {
-            return {itemName: scriptFound, itemRoot: '/cdn/stylesheets'};
+  const stylesheetBase = '/';
+  const stylesheetName = '/:stylesheetName';
+  
+  stylesheetRouter.get(stylesheetBase, function (stylesheetReq, stylesheetRes) {
+    File.readDirectory('./public/stylesheets')
+        .then(stylesheetsDirectory => stylesheetRes.render('Root', {
+          rootHeader: 'Queue CDN: .css',
+          rootItem: stylesheetsDirectory.map(directoryItem => {
+            return {itemName: directoryItem, itemRoot: '/cdn/stylesheets'};
           })
-        }));
-      })
-      .get('/:stylesheetName', function (stylesheetReq, stylesheetRes) {
-        
-        File.readFile(`./public/stylesheets/${stylesheetReq.params.stylesheetName}`)
-            .then(readFile => stylesheetRes.send(readFile))
-            .catch(unreadReason => stylesheetRes.send(unreadReason.message));
-      });
+        }))
+        .catch(error => stylesheetRes.send(error.message));
+  });
+  
+  stylesheetRouter.get(stylesheetName, function (stylesheetReq, stylesheetRes) {
+    File.readFile(`./public/stylesheets/${stylesheetRes.params.stylesheetName}`)
+        .then(readFile => stylesheetRes.send(readFile))
+        .catch(unreadReason => stylesheetRes.send(unreadReason.message));
+  });
+  
+  
+  return stylesheetRouter;
   
 };
