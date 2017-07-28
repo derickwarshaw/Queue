@@ -1,5 +1,4 @@
-const currentApplication = require('../queue').currentApplication;
-const File = currentApplication.component('File');
+const API = require('../components/File');
 
 module.exports = scriptsRouter => {
   "use strict";

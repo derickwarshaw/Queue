@@ -2,12 +2,11 @@
  * Created by Joshua Crowe on 01/07/2017.
  */
 
-const currentApplication = require('../queue').currentApplication;
 const currentQueue = require('../queue').currentQueue;
 
-const Sequence = currentApplication.component('Sequence');
-const Identify = currentApplication.component('Identify');
-const Sql = currentApplication.component('Sql');
+const Sequence = require('./Sequence');
+const Identify = require('uuid');
+const Sql = require('sqlite-async');
 
 
 class Database {

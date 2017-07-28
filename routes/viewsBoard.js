@@ -1,7 +1,5 @@
-const currentApplication = require('../queue').currentApplication;
-
-const API = currentApplication.component('API');
-const File = currentApplication.component('File');
+const API = require('../components/API');
+const File = require('../components/File');
 
 module.exports = boardRouter => {
   "use strict";

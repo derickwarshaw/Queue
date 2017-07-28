@@ -1,5 +1,4 @@
-const currentApplication = require('../queue').currentApplication;
-const API = currentApplication.component('API');
+const API = require('../components/API');
 
 module.exports = viewsRouter => {
   "use strict";

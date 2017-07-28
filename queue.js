@@ -2,15 +2,15 @@ const Application = require('./components/Application');
 const currentApplication = new Application(__dirname, 8080);
 module.exports.currentApplication = currentApplication;
 
-const Queue = currentApplication.component('Queue');
+const Queue = require('promise-queue');
 const currentQueue = new Queue();
 module.exports.currentQueue = currentQueue;
 
-const Database = currentApplication.component('Database');
+const Database = require('./components/Database');
 const currentDatabase = new Database();
 module.exports.currentDatabase = currentDatabase;
 
-const Logger = currentApplication.component('Logger');
+const Logger = require('./components/Logger');
 const currentLogger = new Logger();
 module.exports.currentLogger = currentLogger;
 

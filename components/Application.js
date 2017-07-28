@@ -55,84 +55,64 @@ class Application {
 
   /**
    * Set up the API route handler.
-   * @param {String} baseRoute Route at the base of all requests.
-   * @param {Array} basePaths Routes to register.
-   * @param {Function} baseHandler Middleware for routes.
+   * @param {String} apiRoute Route at the base of all requests.
+   * @param {Array} apiPaths Routes to register.
+   * @param {Function} apiHandler Middleware for routes.
    */
-  api (baseRoute, basePaths, baseHandler) {
-    this.applicationRoutes.routesApi = baseRoute;
+  api (apiRoute, apiPaths, apiHandler) {
+    this.applicationRoutes.routesApi = apiRoute;
 
     const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/apiBase'));
     this.applicationExpress.use(this.applicationRoutes.routesApi, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
-      baseHandler(new ApiRequest(baseReq, baseRes));
+      apiHandler(new ApiRequest(baseReq, baseRes));
       baseNext();
     });
 
-    for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `api${basePaths[i]}`));
-      this.applicationExpress.use(`${this.applicationRoutes.routesApi}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
+    for (let i = 0; i < apiPaths.length; i++) {
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `api${apiPaths[i]}`));
+      this.applicationExpress.use(`${this.applicationRoutes.routesApi}/${apiPaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
 
   /**
    * Set up the views route handler.
-   * @param {String} baseRoute Route at the base of all requests.
-   * @param {Array} basePaths Routes to register.
-   * @param {Function} baseHandler Middleware for routes.
+   * @param {String} viewsRoute Route at the base of all requests.
+   * @param {Array.<String>} viewsPaths Routes to register.
+   * @param {Function} viewsHandler Middleware for routes.
    */
-  views (baseRoute, basePaths, baseHandler) {
-    this.applicationRoutes.routesView = baseRoute;
+  views (viewsRoute, viewsPaths, viewsHandler) {
+    this.applicationRoutes.routesView = viewsRoute;
     
     const routerRoutes = require(Path.join(this.applicationDirectory, '/routes/viewsBase'));
     this.applicationExpress.use(this.applicationRoutes.routesView, routerRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
-      baseHandler(new ViewRequest(baseReq, baseRes));
+      viewsHandler(new ViewRequest(baseReq, baseRes));
       baseNext();
     });
 
-    for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `views${basePaths[i]}`));
-      this.applicationExpress.use(`${this.applicationRoutes.routesView}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
+    for (let i = 0; i < viewsPaths.length; i++) {
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `views${viewsPaths[i]}`));
+      this.applicationExpress.use(`${this.applicationRoutes.routesView}/${viewsPaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
 
   /**
    * Set up the CDN route handler.
-   * @param {String} baseRoute Route at the base of all requests.
-   * @param {Array} basePaths Routes to register.
-   * @param {Function} baseHandler Middleware for routes.
+   * @param {String} cdnRoute Route at the base of all requests.
+   * @param {Array.<String>} cdnPaths Routes to register.
+   * @param {Function} cdnHandler Middleware for routes.
    */
-  cdn (baseRoute, basePaths, baseHandler) {
-    this.applicationRoutes.routesCdn = baseRoute;
+  cdn (cdnRoute, cdnPaths, cdnHandler) {
+    this.applicationRoutes.routesCdn = cdnRoute;
     
     const resRoutes = require(Path.join(this.applicationDirectory, '/routes/cdnBase'));
     this.applicationExpress.use(this.applicationRoutes.routesCdn, resRoutes(Express.Router()), function (baseReq, baseRes, baseNext) {
-      baseHandler(new CdnRequest(baseReq, baseRes));
+      cdnHandler(new CdnRequest(baseReq, baseRes));
       baseNext();
     });
 
-    for (let i = 0; i < basePaths.length; i++) {
-      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `cdn${basePaths[i]}`));
-      this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${basePaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
-    }
-  }
-  
-  /**
-   * Middleware for the render process.
-   * @param {Object} renderRequest Request object.
-   * @param {Object} renderResolute Resolve object.
-   * @returns {Function} Renderer.
-   */
-  render (renderRequest, renderResolute) {
-    return function (renderTemplate, renderContext) {
-      return new Promise(function (renderResolve, renderReject) {
-        renderResolute.render(renderTemplate, renderContext, function (renderError, renderResult) {
-          if (!renderError) {
-            renderResolve(renderResult);
-          } else {
-            renderReject(renderError);
-          }
-        })
-      })
+    for (let i = 0; i < cdnPaths.length; i++) {
+      const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `cdn${cdnPaths[i]}`));
+      this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${cdnPaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
   }
 
@@ -162,24 +142,6 @@ class Application {
    */
   handle (handleEvent) {
     return require(this.applicationDirectory + '/events/' + handleEvent);
-  }
-
-  /**
-   * Retreive a server custom component.
-   * @param {String} componentName Name of the custom component.
-   * @returns {*} ?
-   */
-  component (componentName) {
-    switch (componentName) {
-      case "Identify":
-        return require('uuid');
-      case "Sql":
-        return require('sqlite-async');
-      case "Queue":
-        return require('promise-queue');
-      default:
-        return require(this.applicationDirectory + '/components/' + componentName);
-    }
   }
 
 }

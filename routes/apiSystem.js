@@ -1,7 +1,4 @@
-const currentApplication = require('../queue').currentApplication;
-const currentQueue = require('../queue').currentQueue;
-
-const API = currentApplication.component('API');
+const API = require('../components/API');
 
 module.exports = systemRouter => {
   "use strict";
