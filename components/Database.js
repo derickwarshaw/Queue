@@ -28,8 +28,6 @@ class Database {
     this.databaseServer = await Sql.open('queue.db');
     return this.databaseServer;
   }
-
-  
   
   /**
    * Sign a user with a unique identifier.
@@ -46,7 +44,7 @@ class Database {
   }
   
   /**
-   * Read all users.
+   * Read all users from the database..
    */
   readUsers () {
     const databaseServer = this.databaseServer;
@@ -58,7 +56,9 @@ class Database {
     });
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete all users from the database.
+   */
   deleteUsers () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
@@ -136,7 +136,11 @@ class Database {
       });
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a user from the database.
+   * @param {String} userBy Property to query user with.
+   * @param {Object} userObject Object to query against.
+   */
   deleteUser (userBy, userObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
@@ -148,9 +152,6 @@ class Database {
       ]);
     });
   }
-
-  
-  
   
   /**
    * Sign a client with a distinctor.
@@ -270,8 +271,6 @@ class Database {
       });
   }
   
-  
-  
   /**
    * Read all rooms from the database.
    * @returns {*} All rooms.
@@ -319,7 +318,7 @@ class Database {
   }
   
   /**
-   * Alter a room.
+   * Alter a room in the database.
    * @param {String} roomBy Property to alter the user by.
    * @param {Object} roomObject Room to query against.
    */
@@ -357,7 +356,11 @@ class Database {
     });
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a room from the database.
+   * @param {String} roomBy Property to query user with.
+   * @param {Object} roomObject Object to query against.
+   */
   deleteRoom (roomBy, roomObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
@@ -369,10 +372,6 @@ class Database {
       ]);
     });
   }
-
-
-
-
 
   /**
    * Read all systems from the database.
@@ -387,8 +386,10 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Delete all systems from the database.
+   */
   deleteSystems () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
@@ -416,8 +417,12 @@ class Database {
       ]);
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Alter a system in the database.
+   * @param {String} systemBy Property to query user with.
+   * @param {Object} systemObject Object to query against.
+   */
   alterSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SET")
@@ -433,8 +438,11 @@ class Database {
       ]);
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Write a system to the database.
+   * @param {Object} systemObject Object to referenece.
+   */
   writeSystem (systemObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("INSERT")
@@ -450,7 +458,11 @@ class Database {
     });
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a system from the database.
+   * @param {String} systemBy Property to query user with.
+   * @param {Object} systemObject Object to query against.
+   */
   deleteSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
@@ -462,10 +474,12 @@ class Database {
       ]);
     });
   }
-
   
-  
-  // TODO: JSdoc
+  /**
+   * Read all systems registered against a client in a room.
+   * @param {String} integralsRoom Distinctor of the room.
+   * @returns {Promise.<Array.<Object>>} Collection of systems.
+   */
   readIntegrals (integralsRoom) {
     const databaseServer = this.databaseServer;
     const databaseJoin = 'INNER';
@@ -504,8 +518,12 @@ class Database {
       return databaseServer.all(databaseQuery.build(), [integralsRoom]);
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Read a system for availability in the database.
+   * @param {Number|String} integralsNumber Number of the system.
+   * @returns {Promise.<Object>} Available system.
+   */
   readIntegral (integralsNumber) {
     const databaseServer = this.databaseServer;
     const databaseEmbed = new Sequence("SELECT")
@@ -524,8 +542,12 @@ class Database {
       return databaseServer.get(databaseQuery.build(), [integralsNumber])
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Read all systems not registered against a client in a room.
+   * @param {String} untegralRoom Distinctor of the room.
+   * @returns {Promise.<Array.<Object>>} Collection of systems.
+   */
   readUntegrals (untegralRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")

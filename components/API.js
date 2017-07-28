@@ -2,21 +2,29 @@ const currentApplication = require('../queue').currentApplication;
 const currentDatabase = require('../queue').currentDatabase;
 
 class API {
-
-  // TODO: JSdoc.
+  
+  /**
+   * Add a user.
+   * @param {Object} userObject User object to reference.
+   * @returns {Promise.<void>}
+   */
   static async addUser (userObject) {
     await currentDatabase.writeUser(userObject);
+    return await currentDatabase.readUser("Name", userObject);
   }
   
   /**
-   * Get all users from the database.
+   * Get all users.
    * @returns {Promise.<Array.<Object>>} Collection of users.
 */
   static async getUsers () {
     return await currentDatabase.readUsers();
   }
   
-  // TODO: Jsodc.
+  /**
+   * Delete all users.
+   * @returns {Promise.<void>}
+   */
   static async deleteUsers () {
     await currentDatabase.deleteUsers();
   }
@@ -28,25 +36,41 @@ class API {
    */
   static async getUserById (userId) {
     if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
-      return await currentDatabase.readUser("Id", {
-        userId: userId
-      });
+      return await currentDatabase.readUser("Id", {userId});
     } else {
       throw Error(`User index '${userId}' is not a number.`);
     }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Patch a user by index.
+   * @param {Number|String} userId Index of the user.
+   * @param {Object} userPatch Patch object.
+   * @returns {Promise.<Object>} Patcheduser.
+   */
   static async patchUserById (userId, userPatch) {
-    let foundUser = await currentDatabase.readUser("Id", {userId});
-    foundUser[userPatch.patchItem] = userPatch.patchValue;
-    
-    await currentDatabase.alterUser(foundUser);
+    if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
+      let foundUser = await currentDatabase.readUser("Id", {userId});
+      foundUser[userPatch.patchItem] = userPatch.patchValue;
+  
+      await currentDatabase.alterUser(foundUser);
+      return await currentDatabase.readUser("Distinctor", foundUser);
+    } else {
+      throw Error(`'${userId}' is not a number.`);
+    }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a user by index.
+   * @param {Number|String} userId Index of the user.
+   * @returns {Promise.<void>}
+   */
   static async deleteUserById (userId) {
-    await currentDatabase.deleteUser("Id", {userId});
+    if (typeof userId === "number" || !isNaN(parseInt(userId, 10))) {
+      await currentDatabase.deleteUser("Id", {userId});
+    } else {
+      throw Error(`'${userId}' is not a number.`);
+    }
   }
 
   /**
@@ -56,25 +80,41 @@ class API {
    */
   static async getUserByDistinctor (userDistinctor) {
     if (typeof userDistinctor === "string") {
-      return await currentDatabase.readUser("Distinctor", {
-        userDistinctor: userDistinctor
-      });
+      return await currentDatabase.readUser("Distinctor", {userDistinctor});
     } else {
       throw Error(`'${userDistinctor}' is not a string.`);
     }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Patch a user by distinctor.
+   * @param {String} userDistinctor Distinctor of the user.
+   * @param {Object} userPatch Patch object.
+   * @returns {Promise.<Object>} Patched user.
+   */
   static async patchUserByDistinctor (userDistinctor, userPatch) {
-    let foundUser = await currentDatabase.readUser("Distinctor", {userDistinctor});
-    foundUser[userPatch.patchItem] = userPatch.patchValue;
-    
-    await currentDatabase.alterUser(foundUser);
+    if (typeof userDistinctor === "string") {
+      let foundUser = await currentDatabase.readUser("Distinctor", {userDistinctor});
+      foundUser[userPatch.patchItem] = userPatch.patchValue;
+  
+      await currentDatabase.alterUser(foundUser);
+      return await currentDatabase.readUser("Distinctor", foundUser);
+    } else {
+      throw Error(`'${userDistinctor}' is not a string.`);
+    }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a user by distinctor.
+   * @param {String} userDistinctor Distinctor of the user.
+   * @returns {Promise.<void>}
+   */
   static async deleteUserByDistinctor (userDistinctor) {
-    await currentDatabase.deleteUser("Distinctor", {userDistinctor});
+    if (typeof userDistinctor === "string") {
+      await currentDatabase.deleteUser("Distinctor", {userDistinctor});
+    } else {
+      throw Error(`'${userDistinctor}' is not a string.`);
+    }
   }
 
   /**
@@ -92,17 +132,35 @@ class API {
     }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Patch a user by name.
+   * @param {String} userName Name of the user.
+   * @param {Object} userPatch Patch object.
+   * @returns {Promise.<Object>} Patched user.
+   */
   static async patchUserByName (userName, userPatch) {
-    let foundUser = await currentDatabase.readUser("Name", {userName});
-    foundUser[userPatch.patchItem] = userPatch.patchValue;
-    
-    await currentDatabase.alterUser(foundUser);
+    if (typeof userName === "string") {
+      let foundUser = await currentDatabase.readUser("Name", {userName});
+      foundUser[userPatch.patchItem] = userPatch.patchValue;
+  
+      await currentDatabase.alterUser(foundUser);
+      return await currentDatabase.readUser("Distinctor", foundUser);
+    } else {
+      throw Error(`'${userName}' is not a string.`);
+    }
   }
   
-  // TODO: Jsod.c
+  /**
+   * Delete a user by name.
+   * @param {String} userName Name of the user.
+   * @returns {Promise.<void>}
+   */
   static async deleteUserByName (userName) {
-    await currentDatabase.deleteUser("Name", {userName});
+    if (typeof userName === "string") {
+      await currentDatabase.deleteUser("Name", {userName});
+    } else {
+      throw Error(`'${userName}' is not a string.`);
+    }
   }
 
   /**
@@ -120,26 +178,41 @@ class API {
     }
   }
   
-  // TODO: Jsodc.
+  /**
+   * Patch a user by client distinctor.
+   * @param {String} userClient Client distinctor.
+   * @param {Object} userPatch Patch object.
+   * @returns {Promise.<Object>} Patched user.
+   */
   static async patchUserByClient (userClient, userPatch) {
-    let foundUser = currentDatabase.readUser("ClientDistinctor", {
-      userClientDistinctor: userClient
-    });
-    foundUser[userPatch.patchItem] = userPatch.patchValue;
-    
-    await currentDatabase.alterUser(foundUser);
+    if (typeof userClient === "string") {
+      let foundUser = currentDatabase.readUser("ClientDistinctor", {
+        userClientDistinctor: userClient
+      });
+      foundUser[userPatch.patchItem] = userPatch.patchValue;
+  
+      await currentDatabase.alterUser(foundUser);
+      return await currentDatabase.readUser("ClientDistinctor", foundUser)
+    } else {
+      throw Error(`'${userClient}' is not a string.`);
+    }
   }
   
-  // TODO: JSdoc.
+  /**
+   * Delete a user by client distinctor.
+   * @param {String} userClient Client distinctor.
+   * @returns {Promise.<void>}
+   */
   static async deleteUserByClient (userClient) {
-    await currentDatabase.deleteUser("ClientDistinctor", {
-      userClientDistinctor: userClient
-    });
+    if (typeof userClient === "string") {
+      await currentDatabase.deleteUser("ClientDistinctor", {
+        userClientDistinctor: userClient
+      });
+    } else {
+      throw Error(`'${userClient}' is not a string.`);
+    }
   }
-
   
-
-
   /**
    * Get all clients from the database.
    * @returns {Promise.<Array.<Object>>} All clients.
@@ -276,13 +349,14 @@ class API {
     }
   }
   
-  
-
-
-
-  // TODO: JSdoc.
+  /**
+   * Add a system.
+   * @param {Object} systemObject Object to reference.
+   * @returns {Promise.<Object>} Added user.
+   */
   static async addSystem (systemObject) {
     await currentDatabase.writeSystem(systemObject);
+    return await currentDatabase.readSystem("Name", systemObject);
   }
 
   /**
@@ -292,8 +366,11 @@ class API {
   static async getSystems () {
     return await currentDatabase.readSystems();
   }
-
-  // TODO: jsodc.
+  
+  /**
+   * Delete all systems.
+   * @returns {Promise.<void>}
+   */
   static async deleteSystems () {
     await currentDatabase.deleteSystems();
   }
@@ -312,18 +389,36 @@ class API {
       throw Error(`'${systemId}' is not a system.`);
     }
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Patch a system by index.
+   * @param {Number|String} systemId Index of the system.
+   * @param {Object} systemPatch Patch object.
+   * @returns {Promise.<Object>} Patched system.
+   */
   static async patchSystemById (systemId, systemPatch) {
-    let foundSystem = currentDatabase.readSystem("Id", {systemId});
-    foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
-
-    await currentDatabase.alterSystem("Id", foundSystem);
+    if (typeof systemId === "number" || !isNaN(parseInt(systemId, 10))) {
+      let foundSystem = currentDatabase.readSystem("Id", {systemId});
+      foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
+  
+      await currentDatabase.alterSystem("Id", foundSystem);
+      return await currentDatabase.readSystem("Id", foundSystem);
+    } else {
+      throw Error(`'${systemId}' is not a number.`);
+    }
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Deelte a system by index.
+   * @param {Number|String} systemId Index of the system.
+   * @returns {Promise.<void>}
+   */
   static async deleteSystemById (systemId) {
-    await currentDatabase.deleteSystem("Id", {systemId});
+    if (typeof systemId === "number" || !isNaN(parseInt(systemId, 10))) {
+      await currentDatabase.deleteSystem("Id", {systemId});
+    } else {
+      throw Error(`'${systemId}' is not a number.`);
+    }
   }
 
   /**
@@ -352,21 +447,39 @@ class API {
         systemNumber: systemNumber
       });
     } else {
-      throw Error(`'${systemNumber}' is not a system.`);
+      throw Error(`'${systemNumber}' is not a number.`);
     }
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Patch a system by number.
+   * @param {Number|String} systemNumber Number of the system.
+   * @param {Object} systemPatch Patch object.
+   * @returns {Promise.<Object>} Patched system.
+   */
   static async patchSystemByNumber (systemNumber, systemPatch) {
-    let foundSystem = await currentDatabase.readSystem("Number", {systemNumber});
-    foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
-
-    await currentDatabase.alterSystem("Number", foundSystem);
+    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
+      let foundSystem = await currentDatabase.readSystem("Number", {systemNumber});
+      foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
+  
+      await currentDatabase.alterSystem("Number", foundSystem);
+      return await currentDatabase.readSystem("Number", foundSystem);
+    } else {
+      throw Error(`'${systemNumber}' is not a number.`);
+    }
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Delete a system by number.
+   * @param {Number|String} systemNumber Number of the system.
+   * @returns {Promise.<void>}
+   */
   static async deleteSystemByNumber (systemNumber) {
-    await currentDatabase.deleteSystem("Number", {systemNumber});
+    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
+      await currentDatabase.deleteSystem("Number", {systemNumber});
+    } else {
+      throw Error(`'${systemNumber}' is not a number.`);
+    }
   }
   
   /**
@@ -383,29 +496,43 @@ class API {
       throw Error(`'${systemRoom}' is not a string.`);
     }
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Patch a system by room distinctor.
+   * @param {String} systemRoom Room distinctor.
+   * @param {Object} systemPatch Patch object.
+   * @returns {Promise.<Object>} Patched system.
+   */
   static async patchSystemByRoom (systemRoom, systemPatch) {
-    let foundRoom = currentDatabase.readSystem("RoomDistinctor", {
-      systemRoomDistinctor: systemRoom
-    });
-
-    foundRoom[systemPatch.patchItem] = systemPatch.patchValue;
-
-    await currentDatabase.alterSystem("RoomDistinctor", foundRoom);
+    if (typeof systemRoom === "string") {
+      let foundRoom = currentDatabase.readSystem("RoomDistinctor", {
+        systemRoomDistinctor: systemRoom
+      });
+  
+      foundRoom[systemPatch.patchItem] = systemPatch.patchValue;
+  
+      await currentDatabase.alterSystem("RoomDistinctor", foundRoom);
+      return await currentDatabase.readSystem("RoomDistinctor", foundRoom);
+    } else {
+      throw Error(`'${systemRoom}' is not a string.`);
+    }
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Delete a system by room distinctor.
+   * @param {String} systemRoom Distinctor of the room.
+   * @returns {Promise.<void>}
+   */
   static async deleteSystemByRoom (systemRoom) {
-    await currentDatabase.deleteSystem("RoomDistinctor", {
-      systemRoomDistinctor: systemRoom
-    });
+    if (typeof systemRoom === "string") {
+      await currentDatabase.deleteSystem("RoomDistinctor", {
+        systemRoomDistinctor: systemRoom
+      });
+    } else {
+      throw Error(`'${systemRoom}' is not a string.`);
+    }
   }
-
-
-
-
-
+  
   /**
    * Add a room.
    * @param {String} roomName Name of the room.
@@ -450,13 +577,18 @@ class API {
    * Patch a room by index.
    * @param {Number} roomId Index of room.
    * @param {Object} roomPatch Patch object.
-   * @returns {Promise.<void>}
+   * @returns {Promise.<Object>} Patched room.
    */
   static async patchRoomById (roomId, roomPatch) {
-    let roomFound = await currentDatabase.readRoom("Id", {roomId});
-    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
-
-    await currentDatabase.alterRoom("Id", roomFound);
+    if (typeof roomId === "number" || !isNaN(parseInt(roomId, 10))) {
+      let roomFound = await currentDatabase.readRoom("Id", {roomId});
+      roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+  
+      await currentDatabase.alterRoom("Id", roomFound);
+      return await currentDatabase.readRoom("Id", roomFound);
+    } else {
+      throw Error(`'${roomId}' is not a number.`);
+    }
   }
   
   /**
@@ -494,10 +626,14 @@ class API {
    * @returns {Promise.<void>}
    */
   static async patchRoomByDistinctor (roomDistinctor, roomPatch) {
-    let roomFound = await currentDatabase.readRoom("Distinctor", {roomDistinctor});
-    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
-
-    await currentDatabase.alterRoom("Distinctor", roomFound);
+    if (typeof roomDistinctor === "string") {
+      let roomFound = await currentDatabase.readRoom("Distinctor", {roomDistinctor});
+      roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+  
+      await currentDatabase.alterRoom("Distinctor", roomFound);
+    } else {
+      throw Error(`'${roomDistinctor}' is not a string`);
+    }
   }
 
   /**
@@ -506,7 +642,11 @@ class API {
    * @returns {Promise.<void>}
    */
   static async deleteRoomByDistinctor (roomDistinctor) {
-    await currentDatabase.deleteRoom("Distinctor", {roomDistinctor})
+    if (typeof roomDistinctor === "string") {
+      await currentDatabase.deleteRoom("Distinctor", {roomDistinctor})
+    } else {
+      throw Error(`'${roomDistinctor}' is not a string.`);
+    }
   }
 
   /**
@@ -528,13 +668,18 @@ class API {
    * Patch a room by name.
    * @param {String} roomName Name of room.
    * @param {Object} roomPatch Patch object.
-   * @returns {Promise.<void>}
+   * @returns {Promise.<Object>} Patched room.
    */
   static async patchRoomByName (roomName, roomPatch) {
-    let roomFound = currentDatabase.readRoom("Name", {roomName});
-    roomFound[roomPatch.patchItem] = roomPatch.patchValue;
-
-    await currentDatabase.alterRoom("Name", roomFound);
+    if (typeof roomName === "string") {
+      let roomFound = currentDatabase.readRoom("Name", {roomName});
+      roomFound[roomPatch.patchItem] = roomPatch.patchValue;
+  
+      await currentDatabase.alterRoom("Name", roomFound);
+      return await currentDatabase.readRoom("Name", roomFound);
+    } else {
+      throw Error(`'${roomName}' is not a string.`);
+    }
   }
 
   /**
@@ -543,11 +688,12 @@ class API {
    * @returns {Promise.<void>}
    */
   static async deleteRoomByName (roomName) {
-    await currentDatabase.deleteRoom("Name", {roomName});
+    if (typeof roomName === "string") {
+      await currentDatabase.deleteRoom("Name", {roomName});
+    } else {
+      throw Error(`'${roomName}' is not a string.`);
+    }
   }
-
-
-
 
   /**
    * Get all clients in a room.

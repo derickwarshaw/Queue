@@ -59,7 +59,9 @@ currentDatabase.open()
                  socketRequest.registered(handleData);
                  socketRequest.join(handleData.registeredClient);
                })
-               .catch(handleReason => socketRequest.unregistered(handleReason));
+               .catch(handleReason => {
+                 socketRequest.unregistered(handleReason);
+               });
        });
 
        socketRequest.update(function (upName, upData) {

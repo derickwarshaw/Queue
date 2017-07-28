@@ -31,8 +31,12 @@ class File {
 
     return readFileCollection;
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Read all items in a directory.
+   * @param {String} directoryPath Path to directory.
+   * @returns {LocalPromise.<Array.<*>>} Items in the directory.
+   */
   static readDirectory (directoryPath) {
     return currentQueue.add(function () {
       return new Promise(function (readResolve, readReject) {
@@ -42,18 +46,30 @@ class File {
       });
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Create a read stream.
+   * @param {String} streamFile Path to file.
+   * @returns {FileStreamer} File stream.
+   */
   static readStream (streamFile) {
     return new FileStreamer('read', streamFile);
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Create  a blank file.
+   * @param {String} filePath Path of file.
+   * @returns {Promise.<void>}
+   */
   static async createFile (filePath) {
     await this.writeFile(filePath, '');
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Write to a file.
+   * @param {String} filePath Path to file.
+   * @param {String} fileData Data to write.
+   */
   static writeFile (filePath, fileData) {
     return currentQueue.add(function () {
       return new Promise(function (writeResolve, writeReject) {
@@ -65,8 +81,12 @@ class File {
       })
     })
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Create a write stream.
+   * @param {String} streamFile Path to file.
+   * @returns {FileStreamer}
+   */
   static writeStream (streamFile) {
     return new FileStreamer('write', streamFile);
   }
