@@ -46,7 +46,7 @@ async function Register (registerUser, registerSocket) {
               registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
             };
 
-          } else if (!resolvedClient) {
+          } else if (!resolvedClient || resolvedClient === undefined) {
 
             const signedClient = currentDatabase.signClient(registerUser.userClient);
             await currentDatabase.writeClient(signedClient);
