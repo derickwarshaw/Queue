@@ -1,43 +1,103 @@
 const currentApplication = require('../queue').currentApplication;
 const API = currentApplication.component('API');
 
-module.exports = routerInstance => {
+module.exports = userRouter => {
   "use strict";
+  
+  const userBase = '/';
+  const userById = '/id/:userId';
+  const userByDistinctor = '/distinctor/:userDistinctor';
+  const userByName = '/name/:userName';
+  const userByClient = '/client/:userClient';
+  
+  userRouter.get(userBase, function (userReq, userRes) {
+    API.getUsers()
+        .then(users => userRes.json(users))
+        .catch(error => userRes.send(error.message));
+  })
+  userRouter.post(userBase, function (userReq, userRes) {
+    API.addUser(userReq.body)
+        .then(users => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.delete(userBase, function (userReq, userRes) {
+    API.deleteUsers()
+        .then(users => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  
+  
+  
+  userRouter.get(userById, function (userReq, userRes) {
+    API.getUserById(userReq.params.userId)
+        .then(user => userRes.json(user))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.patch(userById, function (userReq, userRes) {
+    API.patchUserById(userReq.params.userId, userReq.body)
+        .then(succss => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.delete(userById, function (userReq, userRes) {
+    API.deleteUserById(userReq.params.userId)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  
+  
+  
+  userRouter.get(userByDistinctor, function (userReq, userRes) {
+    API.getUserByDistinctor(userReq.params.userDistinctor)
+        .then(user => userRes.json(user))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.patch(userByDistinctor, function (userReq, userRes) {
+    API.patchUserByDistinctor(userReq.params.userDistinctor, userReq.body)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.delete(userByDistinctor, function (userReq, userRes) {
+    API.deleteUserByDistinctor(userReq.params.userDistinctor)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  });
+  
+  
+  userRouter.get(userByName, function (userReq, userRes) {
+    API.getUserByName(userReq.params.userName)
+        .then(user => userRes.json(user))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.patch(userByName, function (userReq, userRes) {
+    API.patchUserByName(userReq.params.userName, userReq.body)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  })
+  userRouter.delete(userByName, function (userReq, userRes) {
+    API.deleteUserByName(userReq.params.userName)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  })
+  
+  
+  
+  userRouter.get(userByClient, function (userReq, userRes) {
+    API.getUserByClient(userReq.param.userClient)
+        .then(user => userRes.json(user))
+        .catch(error => userRes.send(error.message));
+  });
+  userRouter.patch(userByClient, function (userReq, userRes) {
+    API.patchUserByClient(userReq.param.userClient)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  })
+  userRouter.delete(userByClient, function (userReq, userRes) {
+    API.deleteUserByClient(userReq.params.userClient)
+        .then(success => userRes.sendStatus(200))
+        .catch(error => userRes.send(error.message));
+  })
 
-  return routerInstance
-     .get('/', function (roomReq, roomRes) {
-       "use strict";
 
-       API.getUsers()
-          .then(users => roomRes.json(users))
-          .catch(reason => roomRes.send(reason));
-     })
-     .get('/id/:userId', function (roomReq, roomRes) {
-       "use strict";
-
-       API.getUserById(roomReq.params.userId)
-          .then(users => roomRes.json(users))
-          .catch(reason => roomRes.send(reason));
-     })
-     .get('/distinctor/:userDistinctor', function (roomReq, roomRes) {
-       "use strict";
-
-       API.getUserByDistinctor(roomReq.params.userDistinctor)
-          .then(users => roomRes.json(users))
-          .catch(reason => roomRes.send(reason));
-     })
-     .get('/name/:userName', function (roomReq, roomRes) {
-       "use strict";
-
-       API.getUserByName(roomReq.params.userName)
-          .then(users => roomRes.json(users))
-          .catch(reason => roomRes.send(reason));
-     })
-     .get('/client/:userClient', function (userReq, userRes) {
-
-       API.getUserByClient(userReq.params.userClient)
-          .then(users => userRes.json(users))
-          .catch(reason => userRes.send(reason));
-     })
+  return userRouter;
 
 };

@@ -3,12 +3,22 @@ const currentDatabase = require('../queue').currentDatabase;
 
 class API {
 
+  // TODO: JSdoc.
+  static async addUser (userObject) {
+    await currentDatabase.writeUser(userObject);
+  }
+  
   /**
    * Get all users from the database.
    * @returns {Promise.<Array.<Object>>} Collection of users.
 */
   static async getUsers () {
     return await currentDatabase.readUsers();
+  }
+  
+  // TODO: Jsodc.
+  static async deleteUsers () {
+    await currentDatabase.deleteUsers();
   }
 
   /**
@@ -25,6 +35,19 @@ class API {
       throw Error(`User index '${userId}' is not a number.`);
     }
   }
+  
+  // TODO: JSdoc.
+  static async patchUserById (userId, userPatch) {
+    let foundUser = await currentDatabase.readUser("Id", {userId});
+    foundUser[userPatch.patchItem] = userPatch.patchValue;
+    
+    await currentDatabase.alterUser(foundUser);
+  }
+  
+  // TODO: JSdoc.
+  static async deleteUserById (userId) {
+    await currentDatabase.deleteUser("Id", {userId});
+  }
 
   /**
    * Get a user by signed distinctor.
@@ -39,6 +62,19 @@ class API {
     } else {
       throw Error(`'${userDistinctor}' is not a string.`);
     }
+  }
+  
+  // TODO: JSdoc.
+  static async patchUserByDistinctor (userDistinctor, userPatch) {
+    let foundUser = await currentDatabase.readUser("Distinctor", {userDistinctor});
+    foundUser[userPatch.patchItem] = userPatch.patchValue;
+    
+    await currentDatabase.alterUser(foundUser);
+  }
+  
+  // TODO: JSdoc.
+  static async deleteUserByDistinctor (userDistinctor) {
+    await currentDatabase.deleteUser("Distinctor", {userDistinctor});
   }
 
   /**
@@ -55,6 +91,19 @@ class API {
       throw Error(`'${userName}' is not a string.`);
     }
   }
+  
+  // TODO: JSdoc.
+  static async patchUserByName (userName, userPatch) {
+    let foundUser = await currentDatabase.readUser("Name", {userName});
+    foundUser[userPatch.patchItem] = userPatch.patchValue;
+    
+    await currentDatabase.alterUser(foundUser);
+  }
+  
+  // TODO: Jsod.c
+  static async deleteUserByName (userName) {
+    await currentDatabase.deleteUser("Name", {userName});
+  }
 
   /**
    * Get a user by signed client distinctor.
@@ -69,6 +118,23 @@ class API {
     } else {
       throw Error(`'${clientDistinctor}' is not a string.`);
     }
+  }
+  
+  // TODO: Jsodc.
+  static async patchUserByClient (userClient, userPatch) {
+    let foundUser = currentDatabase.readUser("ClientDistinctor", {
+      userClientDistinctor: userClient
+    });
+    foundUser[userPatch.patchItem] = userPatch.patchValue;
+    
+    await currentDatabase.alterUser(foundUser);
+  }
+  
+  // TODO: JSdoc.
+  static async deleteUserByClient (userClient) {
+    await currentDatabase.deleteUser("ClientDistinctor", {
+      userClientDistinctor: userClient
+    });
   }
 
   

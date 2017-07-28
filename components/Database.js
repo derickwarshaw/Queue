@@ -57,6 +57,17 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
+  
+  // TODO: JSdoc.
+  deleteUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+        .from("User");
+    
+    return currentQueue.add(function () {
+      return databaseServer.run(databaseQuery.build(), []);
+    });
+  }
 
   /**
    * Read a user from the database.
@@ -123,6 +134,19 @@ class Database {
               userObject.userDate
           ]);
       });
+  }
+  
+  // TODO: JSdoc.
+  deleteUser (userBy, userObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("DELETE")
+        .from("User").where(`user${userBy}`).equals();
+    
+    return currentQueue.add(function () {
+      databaseServer.run(databaseQuery.build(), [
+          userObject[`user${userBy}`]
+      ]);
+    });
   }
 
   
