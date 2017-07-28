@@ -82,12 +82,12 @@ module.exports = userRouter => {
   
   
   userRouter.get(userByClient, function (userReq, userRes) {
-    API.getUserByClient(userReq.param.userClient)
+    API.getUserByClient(userReq.params.userClient)
         .then(user => userRes.json(user))
         .catch(error => userRes.send(error.message));
   });
   userRouter.patch(userByClient, function (userReq, userRes) {
-    API.patchUserByClient(userReq.param.userClient)
+    API.patchUserByClient(userReq.params.userClient)
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
   })

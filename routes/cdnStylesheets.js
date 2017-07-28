@@ -19,7 +19,7 @@ module.exports = stylesheetRouter => {
   });
   
   stylesheetRouter.get(stylesheetName, function (stylesheetReq, stylesheetRes) {
-    File.readFile(`./public/stylesheets/${stylesheetRes.params.stylesheetName}`)
+    File.readFile(`./public/stylesheets/${stylesheetReq.params.stylesheetName}`)
         .then(readFile => stylesheetRes.send(readFile))
         .catch(unreadReason => stylesheetRes.send(unreadReason.message));
   });
