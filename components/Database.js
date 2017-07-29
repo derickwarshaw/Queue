@@ -104,14 +104,14 @@ class Database {
           .where("userDistinctor").equals();
 
       return currentQueue.add(function () {
-          return databaseServer.run(databaseQuery.build(), [
-              userObject.userDistinctor,
-              userObject.userName,
-              userObject.userDate,
-              userObject.userClient.clientDistinctor,
-              userObject.userAdmin.adminDistinctor,
-              userObject.userDistinctor
-          ]);
+        return databaseServer.run(databaseQuery.build(), [
+            userObject.userDistinctor,
+            userObject.userName,
+            userObject.userDate,
+            userObject.userClient.clientDistinctor,
+            userObject.userAdmin.adminDistinctor,
+            userObject.userDistinctor
+        ]);
       });
   }
 

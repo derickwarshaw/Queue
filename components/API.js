@@ -53,7 +53,14 @@ class API {
       let foundUser = await currentDatabase.readUser("Id", {userId});
       foundUser[userPatch.patchItem] = userPatch.patchValue;
   
-      await currentDatabase.alterUser(foundUser);
+      await currentDatabase.alterUser({
+        userId: foundUser.userId,
+        userDistinctor: foundUser.userDistinctor,
+        userName: foundUser.userName,
+        userDate: foundUser.userDate,
+        userClient: {clientDistinctor: foundUser.userClientDistinctor},
+        userAdmin: {adminDistinctor: null}
+      });
       return await currentDatabase.readUser("Distinctor", foundUser);
     } else {
       throw Error(`'${userId}' is not a number.`);
@@ -96,8 +103,15 @@ class API {
     if (typeof userDistinctor === "string") {
       let foundUser = await currentDatabase.readUser("Distinctor", {userDistinctor});
       foundUser[userPatch.patchItem] = userPatch.patchValue;
-  
-      await currentDatabase.alterUser(foundUser);
+
+      await currentDatabase.alterUser({
+        userId: foundUser.userId,
+        userDistinctor: foundUser.userDistinctor,
+        userName: foundUser.userName,
+        userDate: foundUser.userDate,
+        userClient: {clientDistinctor: foundUser.userClientDistinctor},
+        userAdmin: {adminDistinctor: null}
+      });
       return await currentDatabase.readUser("Distinctor", foundUser);
     } else {
       throw Error(`'${userDistinctor}' is not a string.`);
@@ -124,9 +138,7 @@ class API {
    */
   static async getUserByName (userName) {
     if (typeof userName === "string") {
-      return await currentDatabase.readUser("Name", {
-        userName: userName
-      });
+      return await currentDatabase.readUser("Name", {userName});
     } else {
       throw Error(`'${userName}' is not a string.`);
     }
@@ -142,8 +154,15 @@ class API {
     if (typeof userName === "string") {
       let foundUser = await currentDatabase.readUser("Name", {userName});
       foundUser[userPatch.patchItem] = userPatch.patchValue;
-  
-      await currentDatabase.alterUser(foundUser);
+
+      await currentDatabase.alterUser({
+        userId: foundUser.userId,
+        userDistinctor: foundUser.userDistinctor,
+        userName: foundUser.userName,
+        userDate: foundUser.userDate,
+        userClient: {clientDistinctor: foundUser.userClientDistinctor},
+        userAdmin: {adminDistinctor: null}
+      });
       return await currentDatabase.readUser("Distinctor", foundUser);
     } else {
       throw Error(`'${userName}' is not a string.`);
@@ -186,12 +205,19 @@ class API {
    */
   static async patchUserByClient (userClient, userPatch) {
     if (typeof userClient === "string") {
-      let foundUser = currentDatabase.readUser("ClientDistinctor", {
+      let foundUser = await currentDatabase.readUser("ClientDistinctor", {
         userClientDistinctor: userClient
       });
       foundUser[userPatch.patchItem] = userPatch.patchValue;
-  
-      await currentDatabase.alterUser(foundUser);
+
+      await currentDatabase.alterUser({
+        userId: foundUser.userId,
+        userDistinctor: foundUser.userDistinctor,
+        userName: foundUser.userName,
+        userDate: foundUser.userDate,
+        userClient: {clientDistinctor: foundUser.userClientDistinctor},
+        userAdmin: {adminDistinctor: null}
+      });
       return await currentDatabase.readUser("ClientDistinctor", foundUser)
     } else {
       throw Error(`'${userClient}' is not a string.`);

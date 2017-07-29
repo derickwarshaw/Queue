@@ -13,7 +13,7 @@ module.exports = userRouter => {
     API.getUsers()
         .then(users => userRes.json(users))
         .catch(error => userRes.send(error.message));
-  })
+  });
   userRouter.post(userBase, function (userReq, userRes) {
     API.addUser(userReq.body)
         .then(user => userRes.json(user))
@@ -24,9 +24,8 @@ module.exports = userRouter => {
         .then(users => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
   });
-  
-  
-  
+
+
   userRouter.get(userById, function (userReq, userRes) {
     API.getUserById(userReq.params.userId)
         .then(user => userRes.json(user))
@@ -34,7 +33,7 @@ module.exports = userRouter => {
   });
   userRouter.patch(userById, function (userReq, userRes) {
     API.patchUserById(userReq.params.userId, userReq.body)
-        .then(succss => userRes.sendStatus(200))
+        .then(patched => userRes.json(patched))
         .catch(error => userRes.send(error.message));
   });
   userRouter.delete(userById, function (userReq, userRes) {
@@ -42,9 +41,8 @@ module.exports = userRouter => {
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
   });
-  
-  
-  
+
+
   userRouter.get(userByDistinctor, function (userReq, userRes) {
     API.getUserByDistinctor(userReq.params.userDistinctor)
         .then(user => userRes.json(user))
@@ -52,7 +50,7 @@ module.exports = userRouter => {
   });
   userRouter.patch(userByDistinctor, function (userReq, userRes) {
     API.patchUserByDistinctor(userReq.params.userDistinctor, userReq.body)
-        .then(success => userRes.sendStatus(200))
+        .then(success => userRes.json(success))
         .catch(error => userRes.send(error.message));
   });
   userRouter.delete(userByDistinctor, function (userReq, userRes) {
@@ -60,8 +58,8 @@ module.exports = userRouter => {
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
   });
-  
-  
+
+
   userRouter.get(userByName, function (userReq, userRes) {
     API.getUserByName(userReq.params.userName)
         .then(user => userRes.json(user))
@@ -69,25 +67,24 @@ module.exports = userRouter => {
   });
   userRouter.patch(userByName, function (userReq, userRes) {
     API.patchUserByName(userReq.params.userName, userReq.body)
-        .then(success => userRes.sendStatus(200))
+        .then(user => userRes.json(user))
         .catch(error => userRes.send(error.message));
-  })
+  });
   userRouter.delete(userByName, function (userReq, userRes) {
     API.deleteUserByName(userReq.params.userName)
         .then(success => userRes.sendStatus(200))
         .catch(error => userRes.send(error.message));
-  })
-  
-  
-  
+  });
+
+
   userRouter.get(userByClient, function (userReq, userRes) {
     API.getUserByClient(userReq.params.userClient)
         .then(user => userRes.json(user))
         .catch(error => userRes.send(error.message));
   });
   userRouter.patch(userByClient, function (userReq, userRes) {
-    API.patchUserByClient(userReq.params.userClient)
-        .then(success => userRes.sendStatus(200))
+    API.patchUserByClient(userReq.params.userClient, userReq.body)
+        .then(user => userRes.json(user))
         .catch(error => userRes.send(error.message));
   });
   userRouter.delete(userByClient, function (userReq, userRes) {
