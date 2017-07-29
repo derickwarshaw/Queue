@@ -69,6 +69,11 @@ async function Register (registerUser, registerSocket) {
           registerUser.userClient = await currentDatabase.readClient("Distinctor", signedClient);
           await currentDatabase.alterUser(registerUser);
 
+          return {
+            registeredUser: await currentDatabase.readUser("Distinctor", registerUser),
+            registeredClient: await currentDatabase.readClient("Distinctor", registerUser.userClient)
+          };
+
         } else if (!readUser) {
 
           throw Error(`User '${registerUser.userName}' does not exist.`);

@@ -61,6 +61,7 @@ currentDatabase.open()
                })
                .catch(handleReason => {
                  socketRequest.unregistered(handleReason);
+                 currentLogger.problem(handleReason);
                });
        });
 
