@@ -1,11 +1,15 @@
 const currentQueue = require('../queue').currentQueue;
 
 const FileSystem = require('fs');
-
 const FileStreamer = require('../types/FileStreamer');
 
 class File {
 
+  /**
+   * Read a file.
+   * @param {String} readPath Path to the file.
+   * @returns {LocalPromise} Contents of the file.
+   */
   static readFile (readPath) {
     return currentQueue.add(function () {
       return new Promise(function (readResolve, readReject) {
@@ -14,22 +18,6 @@ class File {
         });
       });
     });
-  }
-
-  /**
-   * Read files from a directory.
-   * @param {String} readDirectoryPath Path to the directory to read from.
-   * @returns {Promise.<Map>} Resolves with a Map of files from the directory.
-   */
-  static async readFiles (readDirectoryPath) {
-    const filesToRead = await this.readDirectory(readDirectoryPath);
-
-    let readFileCollection = new Map();
-    for (let i = 0; i < filesToRead.length; i++) {
-      readFileCollection.set(filesToRead[i], await this.readFile(`${readDirectoryPath}/${filesToRead[i]}`));
-    }
-
-    return readFileCollection;
   }
   
   /**
@@ -45,15 +33,6 @@ class File {
         });
       });
     });
-  }
-  
-  /**
-   * Create a read stream.
-   * @param {String} streamFile Path to file.
-   * @returns {FileStreamer} File stream.
-   */
-  static readStream (streamFile) {
-    return new FileStreamer('read', streamFile);
   }
   
   /**
