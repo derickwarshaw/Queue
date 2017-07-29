@@ -25,7 +25,6 @@ class Application {
     this.applicationRoutes = {};
   
     this.applicationExpress = Express();
-    this.applicationExpressListener = null;
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
     
