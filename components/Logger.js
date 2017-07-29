@@ -43,6 +43,7 @@ class Logger {
    */
   async problem (problemError) {
     const problemDate = new Date();
+    const problemId = `Problems on ${problemDate.toLocaleDateString()}`;
     
     let problemFound = this.loggerStreams.get("Problem");
     
@@ -58,9 +59,8 @@ class Logger {
     }
     
     problemFound.write(`Problem on ${problemDate.toLocaleDateString()} @ ${problemDate.toLocaleTimeString()} \r\n`);
-    problemFound.write(problemError.message);
     problemFound.write(problemError.stack);
-    problemFound.write("\r\n \r\n");
+    problemFound.write("\r\n ----------------------------------------------------------------- \r\n");
   }
 
 }

@@ -65,7 +65,7 @@ class WebRequest {
 
   /**
    * Set the headers to allow on the request.
-   * @param {String} headersAllow Headers to allow.
+   * @param {Array.<String>} headersAllow Headers to allow.
    */
   allowHeaders (headersAllow) {
     this.webResponse.header("Access-Control-Allow-Headers", headersAllow.join(', '));
@@ -73,7 +73,7 @@ class WebRequest {
 
   /**
    * Set the methods to allow on the request.
-   * @param {String} methodsAllow Methods to allow.
+   * @param {Array.<String>} methodsAllow Methods to allow.
    */
   allowMethods (methodsAllow) {
     this.webResponse.header("Access-Control-Allow-Methods", methodsAllow.join(', '));

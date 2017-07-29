@@ -49,7 +49,10 @@ currentDatabase.open()
        socketRequest.authenticate(function (authName, authData) {
          currentApplication.handle(authName)(authData)
              .then(handleData => socketRequest.authenticated(handleData))
-             .catch(handleReason => socketRequest.unauthenticated(handleReason));
+             .catch(handleReason => {
+               socketRequest.unauthenticated(handleReason);
+               currentLogger.problem(handleReason);
+             });
 
        });
 
@@ -71,7 +74,10 @@ currentDatabase.open()
               socketRequest.updated(handleData);
               socketRequest.change(handleData);
             })
-            .catch(handleReason => socketRequest.stagnated(handleReason));
+            .catch(handleReason => {
+              socketRequest.stagnated(handleReason);
+              currentLogger.problem(handleReason);
+            });
        });
 
        socketRequest.avoid(function (avName, avData) {
@@ -80,7 +86,10 @@ currentDatabase.open()
               console.log(`[${socketRequest.timestamp()}] [Socket Request] Ended for ${socketRequest.socketHandshake}.`)
               socketRequest.leave(handleData);
             })
-            .catch(handleReason => console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`));
+            .catch(handleReason => {
+              console.log(`[Web Request] Failed to end for ${socketRequest.socketHandshake}.`)
+              currentLogger.problem(handleReason);
+            });
        })
      })
    });
