@@ -21,7 +21,6 @@ module.exports = clientRouter => {
   });
 
 
-
   clientRouter.get(clientById, function (clientReq, clientRes) {
     API.getClientById(clientReq.params.clientId)
        .then(client => clientRes.json(client))
