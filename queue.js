@@ -25,7 +25,7 @@ currentApplication.middle(function (requestInstance) {
   requestInstance.allowMethods(['GET', 'PUT', 'POST', 'DELETE']);
 });
 
-currentApplication.api('/api', ['User', 'Client', 'System', 'Room'], function (api) {
+currentApplication.api('/api', ['User', 'Client', 'System', 'Room', 'Integrity'], function (api) {
   currentLogger.request('API', api).then(apiSummary => console.log(apiSummary));
 });
 currentApplication.views('/v', ['Board'], function (view) {

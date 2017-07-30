@@ -54,6 +54,50 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
+
+  // TODO: Jsdoc.
+  readIntegralUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("IntegralUser");
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    })
+  }
+
+  // TODO: Jsdoc.
+  readIntegralUsersByRoom (integralRoom) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("IntegralUser").where(`userRoom`).equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), [integralRoom]);
+    });
+  }
+
+  // TODO: JSdoc.
+  readExtrinsicUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("ExtrinsicUser");
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
+  }
+
+  // TODO: JSdoc.
+  readExtrinsicUsersByRoom (extrinsicRoom) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("ExtrinsicUser").where("userRoom").equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), [extrinsicRoom]);
+    });
+  }
   
   /**
    * Delete all users from the database.
@@ -385,7 +429,18 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-  
+
+  // TODO: JSDoc.
+  readIntegralSystems () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("IntegralSystem");
+
+    return currentQueue.add(function () {
+      return databaseServer.alL(databaseQuery.build(), []);
+    })
+  }
+
   /**
    * Delete all systems from the database.
    */
@@ -413,6 +468,19 @@ class Database {
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [
           systemObject[`system${systemBy}`]
+      ]);
+    });
+  }
+
+  // TODO: Jsdoc.
+  readIntegralSystem (systemBy, systemObject) {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("IntegralSystem").where(`system${systemBy}`).equals();
+
+    return currentQueue.add(function () {
+      return databaseServer.get(databaseQuery.build(), [
+         systemObject[`system${systemBy}`]
       ]);
     });
   }

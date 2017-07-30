@@ -12,7 +12,7 @@ async function Register (registerUser, registerSocket) {
       currentDatabase.readUser("Distinctor", registerUser),
       currentDatabase.readRoom("Name", registerUser.userClient.clientSystem.systemRoom),
       currentDatabase.readSystem("Number", registerUser.userClient.clientSystem),
-      currentDatabase.readIntegral(registerUser.userClient.clientSystem.systemNumber)
+      currentDatabase.readIntegralSystem("Number", registerUser.userClient.clientSystem)
   ]);
 
   if (readContained) {

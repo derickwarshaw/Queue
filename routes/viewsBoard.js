@@ -24,8 +24,8 @@ module.exports = boardRouter => {
   
   boardRouter.get(boardRoom, function (boardReq, boardRes) {
     Promise.all([
-      API.getIntegralSystemsByRoom(boardReq.params.boardRoom),
-      API.getExtrinsicSystems(boardReq.params.boardRoom)
+      API.getIntegralUsersByRoom(boardReq.params.boardRoom),
+      API.getExtrinsicUsersByRoom(boardReq.params.boardRoom)
     ])
       .then(apiTegrals => boardRes.render('RoomAvailable', {
         roomName: boardReq.params.boardRoom,

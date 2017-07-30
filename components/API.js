@@ -20,6 +20,26 @@ class API {
   static async getUsers () {
     return await currentDatabase.readUsers();
   }
+
+  // TODO: Jsdoc.
+  static async getIntegralUsers () {
+    return await currentDatabase.readIntegralUsers();
+  }
+
+  // TODO: JSdoc.
+  static async getIntegralUsersByRoom (integralRoom) {
+    return await currentDatabase.readIntegralUsersByRoom(integralRoom);
+  }
+
+  // TODO: Jsdoc.
+  static async getExtrinsicUsers() {
+    return await currentDatabase.readExtrinsicUsers();
+  }
+
+  // TODO: Jsdoc.
+  static async getExtrinsicUsersByRoom (extrinsicRoom) {
+    return await currentDatabase.readExtrinsicUsersByRoom(extrinsicRoom);
+  }
   
   /**
    * Delete all users.
@@ -719,30 +739,6 @@ class API {
     } else {
       throw Error(`'${roomName}' is not a string.`);
     }
-  }
-
-
-  // TODO: JSdoc.
-  static async getIntegralSystems () {
-    return await currentDatabase.readIntegralSystems();
-  }
-
-  /**
-   * Get all clients in a room.
-   * @param {String} integralRoom Distinctor of the room.
-   * @returns {Promise.<Array.<Object>>} Clients in the room.
-   */
-  static async getIntegralSystemsByRoom (integralRoom) {
-    return await currentDatabase.readIntegralSystemsByRoom(integralRoom);
-  }
-
-  /**
-   * Get all clients not in a room.
-   * @param {String} systemsRoom Distinctor of the room.
-   * @returns {Promise.<Array.<Object>>} Clients not in the room.
-   */
-  static async getExtrinsicSystems (systemsRoom) {
-    return await currentDatabase.readExtrinsicSystems(systemsRoom);
   }
   
 }
