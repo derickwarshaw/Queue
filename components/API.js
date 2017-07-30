@@ -21,6 +21,11 @@ class API {
     return await currentDatabase.readUsers();
   }
 
+  // TOODO: JSdoc.
+  static async getGenericUsers () {
+    return await currentDatabase.readGenericUsers();
+  }
+
   // TODO: Jsdoc.
   static async getIntegralUsers () {
     return await currentDatabase.readIntegralUsers();

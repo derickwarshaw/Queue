@@ -56,6 +56,17 @@ class Database {
   }
 
   // TODO: Jsdoc.
+  readGenericUsers () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+       .all().from("GenericUser");
+
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build(), []);
+    });
+  }
+
+  // TODO: Jsdoc.
   readIntegralUsers () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")

@@ -3,11 +3,19 @@ const API = require('../components/API');
 module.exports = integrityRouter => {
 
   const integrityBase = '/';
+  const integrityGenericUsers = '/generic/user';
+
   const integrityIntegralUsers = '/integral/user';
   const integrityIntegralUsersByRoom = '/integral/user/room/:integralRoom';
 
   const integrityExtrinsicUsers = '/extrinsic/user';
   const integrityExtrinsicUsersByRoom = '/extrinsic/user/room/:extrinsicRoom';
+
+  integrityRouter.get(integrityGenericUsers, function (genericReq, genericRes) {
+    API.getGenericUsers()
+       .then(users => genericRes.json(users))
+       .catch(reason => genericRes.send(reason.message));
+  });
 
   integrityRouter.get(integrityIntegralUsers, function (integralReq, integralRes) {
     API.getIntegralUsers()
