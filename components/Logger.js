@@ -8,59 +8,80 @@ class Logger {
   constructor () {
     this.loggerStreams = new Map();
   }
-  
+
   /**
-   * Log a request.
-   * @param {String} requestName Category of request.
-   * @param {String} requestData Summary.
-   * @returns {Promise.<string>}
+   * Resolve all the appropriate files and directories.
+   * @param {String} beginDirectory Path to the logs folder.
+   * @returns {Promise.<void>}
+   */
+  async begin (beginDirectory) {
+    try {
+      await File.readDirectory(beginDirectory);
+    } catch (beginError) {
+      await File.createDirectory(beginDirectory);
+    }
+
+    try {
+      await File.readDirectory(`${beginDirectory}/${(new Date()).toLocaleDateString()}`);
+    } catch (beginError) {
+      await File.createDirectory(`${beginDirectory}/${(new Date()).toLocaleDateString()}`);
+    }
+  }
+
+  /**
+   * Log a request to the server.
+   * @param {String} requestName Name of the request.
+   * @param {WebRequest} requestData Request instance.
+   * @returns {Promise.<String>} Summary of the request.
    */
   async request (requestName, requestData) {
-    const requstSummary = `[${requestData.timestamp()}] [${requestName} Request] ${requestData.summary()}`;
-    const requestId = `${requestName} on ${requestData.date()}`;
+    const requestSummary = `[${requestData.timestamp()}] [${requestName} Request] ${requestData.summary()}`;
+    const requestDate = requestData.date();
+    const requestPath = `./logs/${requestDate}/${requestName} on ${requestDate}.txt`;
 
     let requestFound = this.loggerStreams.get(requestName);
 
     if (!requestFound) {
       try {
-        this.loggerStreams.set(requestName, File.writeStream(`./logs/${requestId}.txt`));
+        this.loggerStreams.set(requestName, File.writeStream(requestPath));
         requestFound = this.loggerStreams.get(requestName);
-      } catch (e) {
-        await File.createFile(`./logs/${requestId}.txt`);
-        this.loggerStreams.set(requestName, File.writeStream(`./logs/${requestId}.txt`));
+      } catch (requestError) {
+        await File.createFile(requestPath);
+        this.loggerStreams.set(requestName, File.writeStream(requestPath));
         requestFound = this.loggerStreams.get(requestName);
       }
     }
 
-    requestFound.write(`${requstSummary} \r\n`);
-    return requstSummary;
+    requestFound.write(`${requestSummary} \r\n`);
+    return requestSummary;
   }
-  
+
   /**
-   * Log a problem.
-   * @param {Error} problemError Error thrown.
-   * @returns {Promise.<void>}
+   * Log an error.
+   * @param {Error} problemError Thrown error.
+   * @returns {Promise.<String>} Summary of the error.
    */
   async problem (problemError) {
     const problemDate = new Date();
-    const problemId = `Problems on ${problemDate.toLocaleDateString()}`;
-    
-    let problemFound = this.loggerStreams.get("Problem");
-    
+    const problemDates = `[${problemDate.toLocaleDateString()} @ ${problemDate.toLocaleTimeString()}]`;
+    const problemSummary = `${problemDates} [${problemError.name}] [${problemError.lineNumber}] ${problemError.message}`;
+    const requestPath = `./logs/${problemDate.toLocaleDateString()}/Problems on ${problemDate.toLocaleDateString()}.txt`;
+
+    let problemFound = this.loggerStreams.get("Problems");
+
     if (!problemFound) {
       try {
-        this.loggerStreams.set("Problem", File.writeStream(`./logs/${problemId}.txt`));
-        problemFound = this.loggerStreams.get("Problem");
-      } catch (e) {
-        await File.createFile(`./logs/${problemId}.txt`);
-        this.loggerStreams.set("Problem", File.writeStream(`./logs/${problemId}.txt`));
-        problemFound = this.loggerStreams.get("Problem");
+        this.loggerStreams.set("Problems", File.writeStream(requestPath));
+        problemFound = this.loggerStreams.get("Problems");
+      } catch (problemError) {
+        await File.createFile(requestPath);
+        this.loggerStreams.set("Problems", File.writeStream(requestPath));
+        problemFound = this.loggerStreams.get("Problems");
       }
     }
-    
-    problemFound.write(`Problem on ${problemDate.toLocaleDateString()} @ ${problemDate.toLocaleTimeString()} \r\n`);
-    problemFound.write(problemError.stack);
-    problemFound.write("\r\n ----------------------------------------------------------------- \r\n");
+
+    problemFound.write(problemSummary);
+    return problemSummary;
   }
 
 }

@@ -38,7 +38,10 @@ currentApplication.cdn('/cdn', ['Scripts', 'Stylesheets'], function (cdn) {
 
 
 
-currentDatabase.open()
+Promise.all([
+  currentDatabase.open(),
+  currentLogger.begin('./logs')
+])
    .then(openDatabase => {
      "use strict";
 

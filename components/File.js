@@ -43,6 +43,20 @@ class File {
   static async createFile (filePath) {
     await this.writeFile(filePath, '');
   }
+
+  /**
+   * Create a directory.
+   * @param directoryPath Path to the location of the new directory.
+   */
+  static async createDirectory (directoryPath) {
+    return currentQueue.add(function () {
+      return new Promise(function (directoryResolve, directoryReject) {
+        FileSystem.mkdir(directoryPath, function (directoryError) {
+          if (directoryError) directoryReject(directoryError); directoryResolve();
+        });
+      })
+    })
+  }
   
   /**
    * Write to a file.
