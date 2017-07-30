@@ -15,7 +15,7 @@ class FileStreamer {
     if (this.fileStreamerType === "read") {
       this.fileStreamerStream = FileSystem.createReadStream(this.fileStreamerFile);
     } else if (this.fileStreamerType === "write") {
-      this.fileStreamerStream = FileSystem.createWriteStream(this.fileStreamerFile);
+      this.fileStreamerStream = FileSystem.createWriteStream(this.fileStreamerFile, {flags: 'a'});
     }
   }
 
