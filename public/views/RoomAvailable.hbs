@@ -9,12 +9,12 @@
         <h2>Attended</h2>
         <div id="attended" class="target">
             {{#each roomAttended}}
-                <div class="point {{pointStatus}}">
+                <div class="point {{systemStatus}}">
                     <div class="point-left">
-                        <p>{{pointNumber}}</p>
+                        <p>{{systemNumber}}</p>
                     </div>
                     <div class="point-right">
-                        <p>{{pointStatus}}</p>
+                        <p>{{systemStatus}}</p>
                     </div>
                 </div>
             {{/each}}
@@ -24,12 +24,12 @@
         <h2>Unattended</h2>
         <div id="unattended" class="target">
             {{#each roomUnattended}}
-                <div class="point {{pointStatus}}">
+                <div class="point {{systemStatus}}">
                     <div class="point-left">
-                        <p>{{pointNumber}}</p>
+                        <p>{{systemNumber}}</p>
                     </div>
                     <div class="point-right">
-                        <p>{{pointStatus}}</p>
+                        <p>{{systemStatus}}</p>
                     </div>
                 </div>
             {{/each}}

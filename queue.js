@@ -25,7 +25,7 @@ currentApplication.middle(function (requestInstance) {
   requestInstance.allowMethods(['GET', 'PUT', 'POST', 'DELETE']);
 });
 
-currentApplication.api('/api', ['User', 'Client', 'System', 'Room', 'Tegrals'], function (api) {
+currentApplication.api('/api', ['User', 'Client', 'System', 'Room'], function (api) {
   currentLogger.request('API', api).then(apiSummary => console.log(apiSummary));
 });
 currentApplication.views('/v', ['Board'], function (view) {
@@ -38,10 +38,7 @@ currentApplication.cdn('/cdn', ['Scripts', 'Stylesheets'], function (cdn) {
 
 
 
-Promise.all([
-  currentDatabase.open(),
-  currentLogger.begin('./logs')
-])
+Promise.all([currentDatabase.open(), currentLogger.begin('./logs')])
    .then(openDatabase => {
      "use strict";
 

@@ -721,22 +721,28 @@ class API {
     }
   }
 
+
+  // TODO: JSdoc.
+  static async getIntegralSystems () {
+    return await currentDatabase.readIntegralSystems();
+  }
+
   /**
    * Get all clients in a room.
    * @param {String} integralRoom Distinctor of the room.
    * @returns {Promise.<Array.<Object>>} Clients in the room.
    */
-  static async getIntegrals (integralRoom) {
-    return await currentDatabase.readIntegrals(integralRoom);
+  static async getIntegralSystemsByRoom (integralRoom) {
+    return await currentDatabase.readIntegralSystemsByRoom(integralRoom);
   }
 
   /**
    * Get all clients not in a room.
-   * @param {String} untegralRoom Distinctor of the room.
+   * @param {String} systemsRoom Distinctor of the room.
    * @returns {Promise.<Array.<Object>>} Clients not in the room.
    */
-  static async getUntegrals (untegralRoom) {
-    return await currentDatabase.readUntegrals(untegralRoom);
+  static async getExtrinsicSystems (systemsRoom) {
+    return await currentDatabase.readExtrinsicSystems(systemsRoom);
   }
   
 }
