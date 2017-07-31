@@ -14,6 +14,10 @@ const Logger = require('./components/Logger');
 const currentLogger = new Logger();
 module.exports.currentLogger = currentLogger;
 
+const Metrics = require('./components/Metrics');
+const currentMetrics = new Metrics(['SocketAuth', 'SocketReg', 'SocketUpd', 'API'], []);
+module.exports.currentMetrics = currentMetrics;
+
 
 
 
@@ -21,6 +25,8 @@ currentApplication.cluster(function (clusterApplication) {
   
   currentApplication.middle(function (requestInstance) {
     "use strict";
+    
+    currentMetrics.addCount('API', 1);
     
     requestInstance.allowOrigin('*');
     requestInstance.allowHeaders(['Origin', 'X-Requested-With', 'Content-Type', 'Accept']);
@@ -47,7 +53,10 @@ currentApplication.cluster(function (clusterApplication) {
           
           socketRequest.authenticate(function (authName, authData) {
             currentApplication.handle(authName)(authData)
-                .then(handleData => socketRequest.authenticated(handleData))
+                .then(handleData => {
+                  socketRequest.authenticated(handleData)
+                  currentMetrics.addCount('SocketAuth', 1);
+                })
                 .catch(handleReason => {
                   socketRequest.unauthenticated(handleReason);
                   currentLogger.problem(handleReason);
@@ -60,6 +69,7 @@ currentApplication.cluster(function (clusterApplication) {
                 .then(handleData => {
                   socketRequest.registered(handleData);
                   socketRequest.join(handleData.registeredClient);
+                  currentMetrics.addCount('SocketReg', 1);
                 })
                 .catch(handleReason => {
                   socketRequest.unregistered(handleReason);
@@ -72,6 +82,7 @@ currentApplication.cluster(function (clusterApplication) {
                 .then(handleData => {
                   socketRequest.updated(handleData);
                   socketRequest.change(handleData);
+                  currentMetrics.addCount('SocketUpd', 1);
                 })
                 .catch(handleReason => {
                   socketRequest.stagnated(handleReason);
@@ -97,4 +108,10 @@ currentApplication.cluster(function (clusterApplication) {
     currentLogger.worker(killedWorker, "Died")
         .then(log => console.log(log));
   });
+});
+
+
+process.once('SIGINT', function (sigInt) {
+  currentMetrics.summarise();
+  process.exit();
 });
