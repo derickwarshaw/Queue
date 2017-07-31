@@ -32,6 +32,6 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "uglify-js": "^3.0.26"
+    "uglify-js": "^3.0.27"
   }
 }
