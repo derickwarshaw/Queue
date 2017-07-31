@@ -12,6 +12,7 @@ const ApiRequest = require('../types/ApiRequest');
 const ViewRequest = require('../types/ViewRequest');
 const CdnRequest = require('../types/CdnRequest');
 const SocketRequest = require('../types/SocketRequest');
+const ApplicationWorker = require('../types/ApplicationWorker');
 
 class Application {
 
@@ -29,6 +30,7 @@ class Application {
     this.applicationExpress = Express();
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
+    this.applicationWorkers = new Map();
     
     // Express Setup.
     this.applicationExpress.use(BodyParser.urlencoded({extended: false}));
@@ -49,11 +51,10 @@ class Application {
    */
   cluster (clusterWorker) {
     if (Cluster.isMaster) {
-      console.log(`Master: ${process.pid}`);
       OS.cpus().forEach(cpu => Cluster.fork());
     } else {
-      console.log(`Child : ${process.pid}`);
-      clusterWorker();
+      this.applicationWorkers.set(process.pid, new ApplicationWorker(process.pid));
+      clusterWorker(this.applicationWorkers.get(process.pid));
     }
   }
   
@@ -134,9 +135,9 @@ class Application {
   /**
    * Starts the server request listener.
    */
-  listen () {
+  listen (listenHandler) {
     const listenInstance = this.applicationHttp.listen(process.env.PORT || this.applicationPort, function () {
-      console.log(`Server listening on ${listenInstance.address().port}.`);
+      listenHandler(listenInstance);
     });
   }
 
@@ -157,6 +158,19 @@ class Application {
    */
   handle (handleEvent) {
     return require(this.applicationDirectory + '/events/' + handleEvent);
+  }
+  
+  // TODO: Jsdoc.
+  death (killMiddleware) {
+    const applicationInstance = this;
+    
+    Cluster.on('exit', (clusterWorker, clusterCode, clusterSignal) => {
+      const killCluster = applicationInstance.applicationWorkers.get(clusterWorker.process.pid);
+      applicationInstance.applicationWorkers.delete(clusterWorker.process.pid);
+      
+      Cluster.fork();
+      killMiddleware(killCluster);
+    });
   }
 
 }

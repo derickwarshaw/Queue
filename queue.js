@@ -17,7 +17,7 @@ module.exports.currentLogger = currentLogger;
 
 
 
-currentApplication.cluster(function () {
+currentApplication.cluster(function (clusterApplication) {
   
   currentApplication.middle(function (requestInstance) {
     "use strict";
@@ -37,14 +37,16 @@ currentApplication.cluster(function () {
     currentLogger.request('CDN', cdn).then(cdnSummary => console.log(cdnSummary));
   });
   
-  
-  
-  
-  Promise.all([currentDatabase.open(), currentLogger.begin('./logs')])
-      .then(openDatabase => {
-        "use strict";
+  Promise.all([currentDatabase.open(), currentLogger.begin('./logs')]).then(openDatabase => {
+    
+        currentLogger.worker(clusterApplication, "Registered")
+            .then(log => console.log(log));
         
-        currentApplication.listen();
+        currentApplication.listen(listenInstance => {
+          currentLogger.worker(clusterApplication, `Listening on ${listenInstance.address().port}`)
+              .then(log => console.log(log));
+        });
+        
         currentApplication.socket(socketRequest => {
           currentLogger.request('Socket', socketRequest).then(socketSummary => console.log(socketSummary));
           
@@ -95,4 +97,9 @@ currentApplication.cluster(function () {
           })
         })
       });
+  
+  currentApplication.death(killedWorker => {
+    currentLogger.worker(killedWorker, "Died")
+        .then(log => console.log(log));
+  });
 });
