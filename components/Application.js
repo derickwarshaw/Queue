@@ -160,7 +160,10 @@ class Application {
     return require(this.applicationDirectory + '/events/' + handleEvent);
   }
   
-  // TODO: Jsdoc.
+  /**
+   * Handle the death of a cluster fork.
+   * @param {Function} killMiddleware Callback.
+   */
   death (killMiddleware) {
     const applicationInstance = this;
     
