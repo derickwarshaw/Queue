@@ -1,4 +1,6 @@
 const HTTP = require('http');
+const OS = require('os');
+const Cluster = require('cluster');
 const Path = require('path');
 const Express = require('express');
 const BodyParser = require('body-parser');
@@ -39,6 +41,20 @@ class Application {
     this.applicationExpress.engine('hbs', this.applicationEngine.engine);
     this.applicationExpress.set('view engine', 'hbs');
     this.applicationExpress.set('views', Path.join(__dirname, '/../public/views'));
+  }
+  
+  /**
+   * Clusters the process.
+   * @param {Function} clusterWorker Instructions to give to the worker.
+   */
+  cluster (clusterWorker) {
+    if (Cluster.isMaster) {
+      console.log(`Master: ${process.pid}`);
+      OS.cpus().forEach(cpu => Cluster.fork());
+    } else {
+      console.log(`Child : ${process.pid}`);
+      clusterWorker();
+    }
   }
   
   /**
