@@ -6,6 +6,7 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Socket = require('socket.io');
 const Handlebars = require('express-handlebars');
+const Sticky = require('sticky-session');
 
 const WebRequest = require('../types/WebRequest');
 const ApiRequest = require('../types/ApiRequest');
@@ -50,9 +51,9 @@ class Application {
    * @param {Function} clusterWorker Instructions to give to the worker.
    */
   cluster (clusterWorker) {
-    if (Cluster.isMaster) {
+    if (!Sticky.listen(this.applicationHttp, this.applicationPort)) {
       OS.cpus().forEach(cpu => Cluster.fork());
-    } else {
+    } else if (Cluster.isWorker) {
       this.applicationWorkers.set(process.pid, new ApplicationWorker(process.pid));
       clusterWorker(this.applicationWorkers.get(process.pid));
     }
@@ -130,15 +131,6 @@ class Application {
       const cdnCreate = require(Path.join(this.applicationDirectory, '/routes/', `cdn${cdnPaths[i]}`));
       this.applicationExpress.use(`${this.applicationRoutes.routesCdn}/${cdnPaths[i].toLowerCase()}`, cdnCreate(Express.Router()));
     }
-  }
-
-  /**
-   * Starts the server request listener.
-   */
-  listen (listenHandler) {
-    const listenInstance = this.applicationHttp.listen(process.env.PORT || this.applicationPort, function () {
-      listenHandler(listenInstance);
-    });
   }
 
   /**

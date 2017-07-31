@@ -42,11 +42,6 @@ currentApplication.cluster(function (clusterApplication) {
         currentLogger.worker(clusterApplication, "Registered")
             .then(log => console.log(log));
         
-        currentApplication.listen(listenInstance => {
-          currentLogger.worker(clusterApplication, `Listening on ${listenInstance.address().port}`)
-              .then(log => console.log(log));
-        });
-        
         currentApplication.socket(socketRequest => {
           currentLogger.request('Socket', socketRequest).then(socketSummary => console.log(socketSummary));
           
