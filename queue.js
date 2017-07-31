@@ -105,13 +105,22 @@ currentApplication.cluster(function (clusterApplication) {
       });
   
   currentApplication.death(killedWorker => {
+    console.log("Worker died!!!");
     currentLogger.worker(killedWorker, "Died")
         .then(log => console.log(log));
   });
 });
 
-
-process.once('SIGINT', function (sigInt) {
-  currentMetrics.summarise();
-  process.exit();
+currentApplication.exit(function () {
+  currentLogger.summary(currentMetrics.summarise())
+     .then(summary => {
+       console.log(summary);
+       process.exit();
+     });
 });
+
+
+
+global.die = function () {
+  process.emit('SIGINT');
+}

@@ -15,6 +15,10 @@ class Logger {
    * @returns {Promise.<void>}
    */
   async begin (beginDirectory) {
+
+    const beginInner = `${beginDirectory}/${(new Date).toLocaleDateString()}`;
+    const beginSummary = `${beginInner}/summary`;
+
     try {
       await File.readDirectory(beginDirectory);
     } catch (beginError) {
@@ -22,9 +26,15 @@ class Logger {
     }
 
     try {
-      await File.readDirectory(`${beginDirectory}/${(new Date()).toLocaleDateString()}`);
+      await File.readDirectory(beginInner);
     } catch (beginError) {
-      await File.createDirectory(`${beginDirectory}/${(new Date()).toLocaleDateString()}`);
+      await File.createDirectory(beginInner);
+    }
+
+    try {
+      await File.readDirectory(beginSummary);
+    } catch (beginError) {
+      await File.createDirectory(beginSummary);
     }
   }
 
@@ -111,6 +121,33 @@ class Logger {
     
     clusterFound.write(`${clusterSummary} \r\n`);
     return clusterSummary;
+  }
+
+  async summary (summaryData) {
+    const summaryDate =  new Date();
+    const summaryDates = `[${summaryDate.toLocaleDateString()} @ ${summaryDate.toLocaleTimeString()}`;
+    const summarySummary = `${summaryDates} [Summary] Saved.`;
+    const summaryPath = `./logs/${summaryDate.toLocaleDateString()}/summary/Summary at ${summaryDate.toLocaleTimeString()}.txt`;
+
+    await File.readDirectory(`./logs/${summaryDate.toLocaleDateString()}/summary`);
+
+    let summaryFound = this.loggerStreams.get("Summary");
+
+    if (!summaryFound) {
+      console.log("Trying to find " + summaryPath);
+      try {
+        await File.readFile(summaryPath);
+        this.loggerStreams.set("Summary", File.writeStream(summaryPath));
+        summaryFound = this.loggerStreams.get("Summary");
+      }  catch (summaryError) {
+        await File.createFile(summaryPath);
+        this.loggerStreams.set("Summary", File.writeStream(summaryPath));
+        summaryFound = this.loggerStreams.get("Summary");
+      }
+    }
+
+    summaryFound.write(`${summaryData} \r\n`);
+    return summarySummary;
   }
 
 }

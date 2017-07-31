@@ -168,6 +168,10 @@ class Application {
     });
   }
 
+  exit (exitHandler) {
+    process.on('SIGINT', exitHandler);
+  }
+
 }
 
 module.exports = Application;

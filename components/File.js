@@ -66,10 +66,8 @@ class File {
   static writeFile (filePath, fileData) {
     return currentQueue.add(function () {
       return new Promise(function (writeResolve, writeReject) {
-        FileSystem.writeFile(filePath, fileData, function (fileErrror) {
-          if (fileError) writeReject(fileErrror);
-        
-          writeResolve();
+        FileSystem.writeFile(filePath, fileData, function (fileError) {
+          if (fileError) writeReject(fileError); writeResolve();
         })
       })
     })
