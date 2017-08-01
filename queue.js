@@ -27,7 +27,7 @@ currentApplication.cluster(function (clusterApplication) {
     requestInstance.allowMethods(['GET', 'PUT', 'POST', 'DELETE']);
   });
   
-  currentApplication.api('/api', ['User', 'Client', 'System', 'Room', 'Integrity'], function (api) {
+  currentApplication.api('/api', ['Users', 'Clients', 'Systems', 'Rooms', 'Integrity'], function (api) {
     currentLogger.request('API', api).then(apiSummary => console.log(apiSummary));
   });
   currentApplication.views('/v', ['Board'], function (view) {
