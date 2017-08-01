@@ -14,10 +14,6 @@ const Logger = require('./components/Logger');
 const currentLogger = new Logger();
 module.exports.currentLogger = currentLogger;
 
-const Metrics = require('./components/Metrics');
-const currentMetrics = new Metrics(['SocketAuth', 'SocketReg', 'SocketUpd', 'API'], []);
-module.exports.currentMetrics = currentMetrics;
-
 
 
 
@@ -25,8 +21,6 @@ currentApplication.cluster(function (clusterApplication) {
   
   currentApplication.middle(function (requestInstance) {
     "use strict";
-    
-    currentMetrics.addCount('API', 1);
     
     requestInstance.allowOrigin('*');
     requestInstance.allowHeaders(['Origin', 'X-Requested-With', 'Content-Type', 'Accept']);
@@ -46,6 +40,7 @@ currentApplication.cluster(function (clusterApplication) {
   Promise.all([currentDatabase.open(), currentLogger.begin('./logs')]).then(openDatabase => {
     
         currentLogger.worker(clusterApplication, "Registered")
+            // TODO: This logs 8 times for 4 forks. Why?
             .then(log => console.log(log));
         
         currentApplication.socket(socketRequest => {
@@ -55,7 +50,6 @@ currentApplication.cluster(function (clusterApplication) {
             currentApplication.handle(authName)(authData)
                 .then(handleData => {
                   socketRequest.authenticated(handleData)
-                  currentMetrics.addCount('SocketAuth', 1);
                 })
                 .catch(handleReason => {
                   socketRequest.unauthenticated(handleReason);
@@ -69,7 +63,6 @@ currentApplication.cluster(function (clusterApplication) {
                 .then(handleData => {
                   socketRequest.registered(handleData);
                   socketRequest.join(handleData.registeredClient);
-                  currentMetrics.addCount('SocketReg', 1);
                 })
                 .catch(handleReason => {
                   socketRequest.unregistered(handleReason);
@@ -82,7 +75,6 @@ currentApplication.cluster(function (clusterApplication) {
                 .then(handleData => {
                   socketRequest.updated(handleData);
                   socketRequest.change(handleData);
-                  currentMetrics.addCount('SocketUpd', 1);
                 })
                 .catch(handleReason => {
                   socketRequest.stagnated(handleReason);
@@ -105,22 +97,7 @@ currentApplication.cluster(function (clusterApplication) {
       });
   
   currentApplication.death(killedWorker => {
-    console.log("Worker died!!!");
     currentLogger.worker(killedWorker, "Died")
         .then(log => console.log(log));
   });
 });
-
-currentApplication.exit(function () {
-  currentLogger.summary(currentMetrics.summarise())
-     .then(summary => {
-       console.log(summary);
-       process.exit();
-     });
-});
-
-
-
-global.die = function () {
-  process.emit('SIGINT');
-}

@@ -31,7 +31,6 @@ class Application {
     this.applicationExpress = Express();
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
-    this.applicationWorkers = new Map();
     
     // Express Setup.
     this.applicationExpress.use(BodyParser.urlencoded({extended: false}));
@@ -54,8 +53,7 @@ class Application {
     if (!Sticky.listen(this.applicationHttp, this.applicationPort)) {
       OS.cpus().forEach(cpu => Cluster.fork());
     } else if (Cluster.isWorker) {
-      this.applicationWorkers.set(process.pid, new ApplicationWorker(process.pid));
-      clusterWorker(this.applicationWorkers.get(process.pid));
+      clusterWorker(new ApplicationWorker(process.pid));
     }
   }
   
@@ -166,10 +164,6 @@ class Application {
       Cluster.fork();
       killMiddleware(killCluster);
     });
-  }
-
-  exit (exitHandler) {
-    process.on('SIGINT', exitHandler);
   }
 
 }
