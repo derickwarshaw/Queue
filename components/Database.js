@@ -568,7 +568,7 @@ class Database {
    */
   alterSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;
-    const databaseQuery = new Sequence("SET")
+    const databaseQuery = new Sequence("UPDATE")
        .update("System").set(["systemDistinctor", "systemNumber", "systemRoomDistinctor"])
        .values("System")
        .where(`system${systemBy}`).equals();
@@ -577,7 +577,8 @@ class Database {
       return databaseServer.run(databaseQuery.build(), [
          systemObject.systemDistinctor,
          systemObject.systemNumber,
-         systemObject.systemRoomDistinctor
+         systemObject.systemRoomDistinctor,
+         systemObject[`system${systemBy}`]
       ]);
     });
   }
@@ -609,11 +610,11 @@ class Database {
   deleteSystem (systemBy, systemObject) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("DELETE")
-       .from("System").where(`system${systemBy}`);
+       .from("System").where(`system${systemBy}`).equals();
 
     return currentQueue.add(function () {
       return databaseServer.run(databaseQuery.build(), [
-         systemObject[systemBy]
+         systemObject[`system${systemBy}`]
       ]);
     });
   }

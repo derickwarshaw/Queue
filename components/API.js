@@ -443,8 +443,20 @@ class API {
    * @returns {Promise.<Object>} Added user.
    */
   static async addSystem (systemObject) {
-    await currentDatabase.writeSystem(systemObject);
-    return await currentDatabase.readSystem("Name", systemObject);
+    const [systemRoomFound, systemSystemFound] = await Promise.all([
+        currentDatabase.readRoom("Name", {roomName: systemObject.systemRoom}),
+        currentDatabase.readIntegralSystem(systemObject.systemNumber, systemObject.systemRoom)
+    ]);
+    
+    if (systemRoomFound && !systemSystemFound) {
+      systemObject.systemRoomDistinctor = systemRoomFound.roomDistinctor;
+      delete systemObject.systemRoom;
+      
+      await currentDatabase.writeSystem(systemObject);
+      return await currentDatabase.readSystem("Distinctor", systemObject);
+    } else {
+      throw Error(`You cannot register '${systemObject.systemNumber}' in '${systemObject.systemRoom}'.`);
+    }
   }
 
   /**
@@ -489,7 +501,7 @@ class API {
    */
   static async patchSystemById (systemId, systemPatch) {
     if (typeof systemId === "number" || !isNaN(parseInt(systemId, 10))) {
-      let foundSystem = currentDatabase.readSystem("Id", {systemId});
+      let foundSystem = await currentDatabase.readSystem("Id", {systemId});
       foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
   
       await currentDatabase.alterSystem("Id", foundSystem);
@@ -500,7 +512,7 @@ class API {
   }
   
   /**
-   * Deelte a system by index.
+   * Delete a system by index.
    * @param {Number|String} systemId Index of the system.
    * @returns {Promise.<void>}
    */
@@ -524,6 +536,37 @@ class API {
       });
     } else {
       throw Error(`'${systemDistinctor}' is not a system.`);
+    }
+  }
+  
+  /**
+   * Patch a system by distinctor.
+   * @param systemDistinctor
+   * @param systemPatch
+   * @returns {Promise.<Object>}
+   */
+  static async patchSystemByDistinctor (systemDistinctor, systemPatch) {
+    if (typeof systemDistinctor === "string") {
+      let foundSystem = await currentDatabase.readSystem("Distinctor", {systemDistinctor});
+      foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
+      
+      await currentDatabase.alterSystem("Distinctor", foundSystem);
+      return await currentDatabase.readSystem("Distinctor", foundSystem);
+    } else {
+      throw Error(`'${systemDistinctor}' is not a string.`);
+    }
+  }
+  
+  /**
+   * Delete a system by distinctor.
+   * @param systemDistinctor
+   * @returns {Promise.<void>}
+   */
+  static async deleteSystemByDistinctor (systemDistinctor) {
+    if (typeof systemDistinctor === "string") {
+      await currentDatabase.deleteSystem("Distinctor", {systemDistinctor});
+    } else {
+      throw Error(`'${systemDistinctor}' is not a string.`);
     }
   }
   

@@ -1,14 +1,13 @@
 const API = require('../components/API');
 
 module.exports = systemRouter => {
-  "use strict";
-
+  
   const systemBase = '/';
   const systemById = '/id/:systemId';
   const systemByDistinctor = '/distinctor/:systemDistinctor';
   const systemByNumber = '/number/:systemNumber';
   const systemByRoom = '/room/:systemRoom';
-
+  
   systemRouter.get(systemBase, function (systemReq, systemRes) {
     API.getSystems()
        .then(systems => systemRes.json(systems))
@@ -16,7 +15,7 @@ module.exports = systemRouter => {
   })
   systemRouter.post(systemBase, function (systemReq, systemRes) {
     API.addSystem(systemReq.body)
-       .then(success => systemRes.sendStatus(200))
+       .then(system => systemRes.json(system))
        .catch(failure => systemRes.send(failure.message));
   });
   systemRouter.delete(systemBase, function (systemReq, systemRes) {
@@ -24,8 +23,8 @@ module.exports = systemRouter => {
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
-
-
+  
+  
   systemRouter.get(systemById, function (systemReq, systemRes) {
     API.getSystemById(systemReq.params.systemId)
        .then(system => systemRes.json(system))
@@ -33,7 +32,7 @@ module.exports = systemRouter => {
   });
   systemRouter.patch(systemById, function (systemReq, systemRes) {
     API.patchSystemById(systemReq.params.systemId, systemReq.body)
-       .then(success => systemRes.sendStatus(200))
+       .then(system => systemRes.json(system))
        .catch(failure => systemRes.send(failure => failure.message));
   });
   systemRouter.delete(systemById, function (systemReq, systemRes) {
@@ -41,26 +40,25 @@ module.exports = systemRouter => {
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
-
-
+  
+  
   systemRouter.get(systemByDistinctor, function (systemReq, systemRes) {
     API.getSystemByDistinctor(systemReq.params.systemDistinctor)
        .then(system => systemRes.json(system))
        .catch(failure => systemRes.send(failure.message));
   });
   systemRouter.patch(systemByDistinctor, function (systemReq, systemRes) {
-    API.patchSystemById(systemReq.params.systemDistinctor, systemReq.body)
-       .then(success => systemRes.sendStatus(200))
+    API.patchSystemByDistinctor(systemReq.params.systemDistinctor, systemReq.body)
+       .then(system => systemRes.json(system))
        .catch(failure => systemRes.send(failure.message));
   });
   systemRouter.delete(systemByDistinctor, function (systemReq, systemRes) {
-    API.deleteSystemById(systemReq.params.systemDistinctor)
+    API.deleteSystemByDistinctor(systemReq.params.systemDistinctor)
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
-
-
-
+  
+  
   systemRouter.get(systemByNumber, function (systemReq, systemRes) {
     API.getSystemByNumber(systemReq.params.systemNumber)
        .then(system => systemRes.json(system))
@@ -76,9 +74,8 @@ module.exports = systemRouter => {
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
-
-
-
+  
+  
   systemRouter.get(systemByRoom, function (systemReq, systemRes) {
     API.getSystemByRoom(systemReq.params.systemRoom)
        .then(system => systemRes.json(system))
@@ -94,10 +91,9 @@ module.exports = systemRouter => {
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
-
-
-
-
+  
+  
   return systemRouter;
-
+  
+  
 };
