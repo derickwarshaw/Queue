@@ -152,17 +152,12 @@ class Application {
   
   /**
    * Handle the death of a cluster fork.
-   * @param {Function} killMiddleware Callback.
+   * @param {Function} deathMiddleware Callback.
    */
-  death (killMiddleware) {
-    const applicationInstance = this;
-    
+  death (deathMiddleware) {
     Cluster.on('exit', (clusterWorker, clusterCode, clusterSignal) => {
-      const killCluster = applicationInstance.applicationWorkers.get(clusterWorker.process.pid);
-      applicationInstance.applicationWorkers.delete(clusterWorker.process.pid);
-      
+      deathMiddleware(clusterWorker, clusterCode, clusterSignal);
       Cluster.fork();
-      killMiddleware(killCluster);
     });
   }
 
