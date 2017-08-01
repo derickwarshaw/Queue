@@ -56,7 +56,11 @@
           const changeAjax = new Ajax("GET", changePath);
 
           changeAjax.open(false, {}).then(function (openData) {
-            currentBoard.readAttended(openData.systemNumber).update(changeData.clientStatus);
+            const currentChange = currentBoard.readAttended(openData.systemNumber);
+
+            if (currentChange) {
+                currentChange.update(changeData.clientStatus);
+            }
           });
         });
 

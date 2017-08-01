@@ -31,7 +31,7 @@ class Board {
   }
 
   change(changeHandler) {
-    const changePath = `${this.boardAddress}/api/system/distinctor/`;
+    const changePath = `${this.boardAddress}/api/systems/`;
 
     this.boardSocket.on('notif:change', changeData => {
       changeHandler(changeData, changePath + changeData.clientSystemDistinctor);
