@@ -484,14 +484,16 @@ class Database {
   }
 
   // TODO: Jsdoc.
-  readIntegralSystem (systemBy, systemObject) {
+  readIntegralSystem (systemNumber, systemRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
-       .all().from("IntegralSystem").where(`system${systemBy}`).equals();
+       .all().from("IntegralSystem")
+        .where(`systemNumber`).equals()
+        .where(`systemRoom`).equals();
 
     return currentQueue.add(function () {
       return databaseServer.get(databaseQuery.build(), [
-         systemObject[`system${systemBy}`]
+        systemNumber, systemRoom
       ]);
     });
   }

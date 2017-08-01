@@ -8,11 +8,14 @@ const currentDatabase = require('../queue').currentDatabase;
  * @returns {*} ?
  */
 async function Register (registerUser, registerSocket) {
+  const systemNumber = registerUser.userClient.clientSystem.systemNumber;
+  const systemRoom = registerUser.userClient.clientSystem.systemRoom.roomName;
+  
   const [readUser, readRoom, readSystem, readContained] = await Promise.all([
       currentDatabase.readUser("Distinctor", registerUser),
       currentDatabase.readRoom("Name", registerUser.userClient.clientSystem.systemRoom),
       currentDatabase.readSystem("Number", registerUser.userClient.clientSystem),
-      currentDatabase.readIntegralSystem("Number", registerUser.userClient.clientSystem)
+      currentDatabase.readIntegralSystem(systemNumber, systemRoom)
   ]);
 
   if (readContained) {
