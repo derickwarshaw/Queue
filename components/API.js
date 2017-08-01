@@ -571,52 +571,6 @@ class API {
   }
   
   /**
-   * Get a system by number.
-   * @param {Number} systemNumber Number of the system.
-   * @returns {Promise.<Object>} Found system.
-   */
-  static async getSystemByNumber (systemNumber) {
-    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
-      return await currentDatabase.readSystem("Number", {
-        systemNumber: systemNumber
-      });
-    } else {
-      throw Error(`'${systemNumber}' is not a number.`);
-    }
-  }
-  
-  /**
-   * Patch a system by number.
-   * @param {Number|String} systemNumber Number of the system.
-   * @param {Object} systemPatch Patch object.
-   * @returns {Promise.<Object>} Patched system.
-   */
-  static async patchSystemByNumber (systemNumber, systemPatch) {
-    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
-      let foundSystem = await currentDatabase.readSystem("Number", {systemNumber});
-      foundSystem[systemPatch.patchItem] = systemPatch.patchValue;
-  
-      await currentDatabase.alterSystem("Number", foundSystem);
-      return await currentDatabase.readSystem("Number", foundSystem);
-    } else {
-      throw Error(`'${systemNumber}' is not a number.`);
-    }
-  }
-  
-  /**
-   * Delete a system by number.
-   * @param {Number|String} systemNumber Number of the system.
-   * @returns {Promise.<void>}
-   */
-  static async deleteSystemByNumber (systemNumber) {
-    if (typeof systemNumber === "number" || !isNaN(parseInt(systemNumber, 10))) {
-      await currentDatabase.deleteSystem("Number", {systemNumber});
-    } else {
-      throw Error(`'${systemNumber}' is not a number.`);
-    }
-  }
-  
-  /**
    * Get a systems by the room.
    * @param {String} systemRoom Room of the system.
    * @returns {Promise.<Object>} Found systems.

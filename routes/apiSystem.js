@@ -5,7 +5,6 @@ module.exports = systemRouter => {
   const systemBase = '/';
   const systemById = '/id/:systemId';
   const systemByDistinctor = '/distinctor/:systemDistinctor';
-  const systemByNumber = '/number/:systemNumber';
   const systemByRoom = '/room/:systemRoom';
   
   systemRouter.get(systemBase, function (systemReq, systemRes) {
@@ -54,23 +53,6 @@ module.exports = systemRouter => {
   });
   systemRouter.delete(systemByDistinctor, function (systemReq, systemRes) {
     API.deleteSystemByDistinctor(systemReq.params.systemDistinctor)
-       .then(success => systemRes.sendStatus(200))
-       .catch(failure => systemRes.send(failure.message));
-  });
-  
-  
-  systemRouter.get(systemByNumber, function (systemReq, systemRes) {
-    API.getSystemByNumber(systemReq.params.systemNumber)
-       .then(system => systemRes.json(system))
-       .catch(failure => systemRes.send(failure.message));
-  });
-  systemRouter.patch(systemByNumber, function (systemRes, systemReq) {
-    API.patchSystemByNumber(systemReq.params.systemNumber, systemReq.body)
-       .then(success => systemRes.sendStatus(200))
-       .catch(failure => systemRes.send(failure.message));
-  });
-  systemRouter.delete(systemByNumber, function (systemRes, systemReq) {
-    API.deleteSystemByNumber(systemReq.params.systemNumber)
        .then(success => systemRes.sendStatus(200))
        .catch(failure => systemRes.send(failure.message));
   });
