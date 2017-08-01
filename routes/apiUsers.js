@@ -1,4 +1,5 @@
 const API = require('../components/API');
+const Patch = require('../types/Patch');
 
 module.exports = userRouter => {
   "use strict";
@@ -28,7 +29,7 @@ module.exports = userRouter => {
         .catch(error => userRes.send(error.message));
   });
   userRouter.patch(userByDistinctor, function (userReq, userRes) {
-    API.patchUserByDistinctor(userReq.params.userDistinctor, userReq.body)
+    API.patchUserByDistinctor(userReq.params.userDistinctor, new Patch(userReq.body))
         .then(success => userRes.json(success))
         .catch(error => userRes.send(error.message));
   });

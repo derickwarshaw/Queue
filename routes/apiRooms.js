@@ -1,4 +1,5 @@
 const API = require('../components/API');
+const Patch = require('../types/Patch');
 
 module.exports = roomRouter => {
   "use strict";
@@ -28,7 +29,7 @@ module.exports = roomRouter => {
         .catch(reason => roomRes.sendStatus(reason));
   });
   roomRouter.patch(roomByDistinctor, function (roomReq, roomRes) {
-    API.patchRoomByDistinctor(roomReq.params.roomId, roomReq.body)
+    API.patchRoomByDistinctor(roomReq.params.roomDistinctor, new Patch(roomReq.body))
        .then(success => roomRes.sendStatus(200))
        .catch(reason => roomRes.sendStatus(reason.message));
   });

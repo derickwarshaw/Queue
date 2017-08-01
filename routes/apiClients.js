@@ -1,4 +1,5 @@
 const API = require('../components/API');
+const Patch = require('../types/Patch');
 
 module.exports = clientRouter => {
   "use strict";

@@ -1,4 +1,5 @@
 const API = require('../components/API');
+const Patch = require('../types/Patch');
 
 module.exports = systemRouter => {
   
@@ -27,7 +28,7 @@ module.exports = systemRouter => {
        .catch(failure => systemRes.send(failure.message));
   });
   systemRouter.patch(systemByDistinctor, function (systemReq, systemRes) {
-    API.patchSystemByDistinctor(systemReq.params.systemDistinctor, systemReq.body)
+    API.patchSystemByDistinctor(systemReq.params.systemDistinctor, new Patch(systemReq.body))
        .then(system => systemRes.json(system))
        .catch(failure => systemRes.send(failure.message));
   });

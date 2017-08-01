@@ -87,7 +87,7 @@ class API {
   /**
    * Patch a user by distinctor.
    * @param {String} userDistinctor Distinctor of the user.
-   * @param {Object} userPatch Patch object.
+   * @param {Patch} userPatch Patch object.
    * @returns {Promise.<Object>} Patched user.
    */
   static async patchUserByDistinctor (userDistinctor, userPatch) {
@@ -238,7 +238,7 @@ class API {
   /**
    * Patch a system by distinctor.
    * @param systemDistinctor
-   * @param systemPatch
+   * @param {Patch} systemPatch
    * @returns {Promise.<Object>}
    */
   static async patchSystemByDistinctor (systemDistinctor, systemPatch) {
@@ -312,7 +312,7 @@ class API {
   /**
    * Patch a room by distinctor.
    * @param {String|Number} roomDistinctor Distinctor of the user.
-   * @param {Object} roomPatch Patch object.
+   * @param {Patch} roomPatch Patch object.
    * @returns {Promise.<void>}
    */
   static async patchRoomByDistinctor (roomDistinctor, roomPatch) {
