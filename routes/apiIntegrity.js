@@ -4,6 +4,7 @@ module.exports = integrityRouter => {
 
   const integrityBase = '/';
   const integrityGenericUsers = '/generic/user';
+  const integrityGenericClients = '/generic/client';
 
   const integrityIntegralUsers = '/integral/user';
   const integrityIntegralUsersByRoom = '/integral/user/room/:integralRoom';
@@ -16,6 +17,11 @@ module.exports = integrityRouter => {
        .then(users => genericRes.json(users))
        .catch(reason => genericRes.send(reason.message));
   });
+  integrityRouter.get(integrityGenericClients, function (genericReq, genericRes) {
+    API.getGenericClients()
+        .then(users => genericRes.json(users))
+        .catch(reason => genericRes.send(reason.message));
+  })
 
   integrityRouter.get(integrityIntegralUsers, function (integralReq, integralRes) {
     API.getIntegralUsers()

@@ -20,28 +20,45 @@ class API {
   static async getUsers () {
     return await currentDatabase.readUsers();
   }
-
-  // TOODO: JSdoc.
+  
+  /**
+   * Get all generic user records that ignore relationships.
+   * @returns {Promise.<Array.<Object>>} Generic user records.
+   */
   static async getGenericUsers () {
     return await currentDatabase.readGenericUsers();
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Get all integral user records that depend on relationships.
+   * @returns {Promise.<*>}
+   */
   static async getIntegralUsers () {
     return await currentDatabase.readIntegralUsers();
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Get all registered clients in a room.
+   * @param {String} integralRoom Room the users are in.
+   * @returns {Promise.<Array.<Object>>} Integral user records for that room.
+   */
   static async getIntegralUsersByRoom (integralRoom) {
     return await currentDatabase.readIntegralUsersByRoom(integralRoom);
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Get all unregistered clients .
+   * @returns {Promise.<Array.<Object>>} All unregistered clients
+   */
   static async getExtrinsicUsers() {
     return await currentDatabase.readExtrinsicUsers();
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Get all unregistered clients in a room.
+   * @param extrinsicRoom
+   * @returns {Promise.<*>}
+   */
   static async getExtrinsicUsersByRoom (extrinsicRoom) {
     return await currentDatabase.readExtrinsicUsersByRoom(extrinsicRoom);
   }
@@ -53,6 +70,9 @@ class API {
   static async deleteUsers () {
     await currentDatabase.deleteUsers();
   }
+  
+  
+  
 
   /**
    * Get a user by assigned index.
@@ -264,6 +284,9 @@ class API {
     }
   }
   
+  
+  
+  
   /**
    * Get all clients from the database.
    * @returns {Promise.<Array.<Object>>} All clients.
@@ -273,12 +296,23 @@ class API {
   }
   
   /**
+   * Get all generic clients.
+   * @returns {Promise.<Array.<Object>>} All generic clients.
+   */
+  static async getGenericClients () {
+    return await currentDatabase.readGenericClients();
+  }
+  
+  /**
    * Delete all clients from the database.
    * @returns {Promise.<void>}
    */
   static async deleteClients () {
     await currentDatabase.deleteClients();
   }
+  
+  
+  
   
   /**
    * Get a client by index.
@@ -400,6 +434,9 @@ class API {
     }
   }
   
+  
+  
+  
   /**
    * Add a system.
    * @param {Object} systemObject Object to reference.
@@ -425,6 +462,9 @@ class API {
   static async deleteSystems () {
     await currentDatabase.deleteSystems();
   }
+  
+  
+  
   
   /**
    * Get a system by index.
@@ -584,6 +624,9 @@ class API {
     }
   }
   
+  
+  
+  
   /**
    * Add a room.
    * @param {String} roomName Name of the room.
@@ -608,6 +651,9 @@ class API {
   static async deleteRooms () {
     await currentDatabase.deleteRooms();
   }
+  
+  
+  
 
   /**
    * Get a room by index.

@@ -28,19 +28,8 @@ class Database {
     return this.databaseServer;
   }
   
-  /**
-   * Sign a user with a unique identifier.
-   * @param {Object} userObject User to sign.
-   * @returns {Object} Signed user.
-   */
-  signUser (userObject) {
-      const userIdentification = Identify();
-
-      userObject.userDistinctor = userIdentification;
-      this.databaseSigned.set(userIdentification, userObject);
-
-      return userObject;
-  }
+  
+  
   
   /**
    * Read all users from the database..
@@ -54,8 +43,11 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Read all users as their display properties.
+   * @returns {LocalPromise.<Array.<Object>>} All users by display properties.
+   */
   readGenericUsers () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -65,8 +57,11 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Read all users by their registry relationships.
+   * @returns {LocalPromise}
+   */
   readIntegralUsers () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -76,8 +71,12 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     })
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Read all users by their registry relationships in a room.
+   * @param integralRoom
+   * @returns {LocalPromise}
+   */
   readIntegralUsersByRoom (integralRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -87,8 +86,11 @@ class Database {
       return databaseServer.all(databaseQuery.build(), [integralRoom]);
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Read all users by thier unregistered relationships.
+   * @returns {LocalPromise}
+   */
   readExtrinsicUsers () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -98,8 +100,11 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-
-  // TODO: JSdoc.
+  
+  /**
+   * Read all users by thier unregistered relationships in a room.
+   * @returns {LocalPromise}
+   */
   readExtrinsicUsersByRoom (extrinsicRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -121,6 +126,23 @@ class Database {
     return currentQueue.add(function () {
       return databaseServer.run(databaseQuery.build(), []);
     });
+  }
+  
+  
+  
+  
+  /**
+   * Sign a user with a unique identifier.
+   * @param {Object} userObject User to sign.
+   * @returns {Object} Signed user.
+   */
+  signUser (userObject) {
+    const userIdentification = Identify();
+    
+    userObject.userDistinctor = userIdentification;
+    this.databaseSigned.set(userIdentification, userObject);
+    
+    return userObject;
   }
 
   /**
@@ -207,15 +229,8 @@ class Database {
     });
   }
   
-  /**
-   * Sign a client with a distinctor.
-   * @param {Object} clientObect Client to be signed.
-   * @returns {Object} Signed client.
-   */
-  signClient (clientObect) {
-      clientObect.clientDistinctor = Identify();
-      return clientObect;
-  }
+  
+  
   
   /**
    * Read all clients.
@@ -232,6 +247,20 @@ class Database {
   }
   
   /**
+   * Read all clients as their display properties.
+   * @returns {LocalPromise}
+   */
+  readGenericClients () {
+    const databaseServer = this.databaseServer;
+    const databaseQuery = new Sequence("SELECT")
+        .all().from("GenericClient");
+    
+    return currentQueue.add(function () {
+      return databaseServer.all(databaseQuery.build());
+    });
+  }
+  
+  /**
    * Delete all clients from the database.
    * @returns {Promise}
    */
@@ -243,6 +272,19 @@ class Database {
     return currentQueue.add(function () {
       return databaseServer.run(databaseQuery.build(), []);
     })
+  }
+  
+  
+  
+  
+  /**
+   * Sign a client with a distinctor.
+   * @param {Object} clientObect Client to be signed.
+   * @returns {Object} Signed client.
+   */
+  signClient (clientObect) {
+    clientObect.clientDistinctor = Identify();
+    return clientObect;
   }
 
   /**
@@ -325,6 +367,9 @@ class Database {
       });
   }
   
+  
+  
+  
   /**
    * Read all rooms from the database.
    * @returns {*} All rooms.
@@ -352,6 +397,10 @@ class Database {
       return databaseServer.run(databaseQuery.build(), []);
     });
   }
+  
+  
+  
+  
   
   /**
    * Read a room from the database.
@@ -427,6 +476,9 @@ class Database {
     });
   }
 
+  
+  
+  
   /**
    * Read all systems from the database.
    * @returns {LocalPromise}
@@ -440,8 +492,11 @@ class Database {
       return databaseServer.all(databaseQuery.build(), []);
     });
   }
-
-  // TODO: JSDoc.
+  
+  /**
+   * Read all systems by their integral relationships.
+   * @returns {LocalPromise}
+   */
   readIntegralSystems () {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
@@ -465,6 +520,9 @@ class Database {
     })
   }
   
+  
+  
+  
   /**
    * Read a system from the database.
    * @param {String} systemBy Property to query the system with.
@@ -482,8 +540,13 @@ class Database {
       ]);
     });
   }
-
-  // TODO: Jsdoc.
+  
+  /**
+   * Read a system by integral relationship.
+   * @param systemNumber
+   * @param systemRoom
+   * @returns {LocalPromise}
+   */
   readIntegralSystem (systemNumber, systemRoom) {
     const databaseServer = this.databaseServer;
     const databaseQuery = new Sequence("SELECT")
