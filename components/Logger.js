@@ -85,35 +85,6 @@ class Logger {
     problemFound.write(`${problemSummary} \r\n`);
     return problemSummary;
   }
-  
-  /**
-   * Log a worker.
-   * @param {ApplicationWorker} clusterApplication Worker.
-   * @param {String} clusterMessage Message to log.
-   * @returns {Promise.<String>} Log.
-   */
-  async worker (clusterApplication, clusterMessage) {
-    const clusterDate = new Date();
-    const clusterDates = `[${clusterDate.toLocaleDateString()} @ ${clusterDate.toLocaleTimeString()}]`;
-    const clusterSummary = `${clusterDates} [Application Worker #${clusterApplication.id}] ${clusterMessage}.`;
-    const clusterPath = `./logs/${clusterDate.toLocaleDateString()}/Workers on ${clusterDate.toLocaleDateString()}.txt`;
-    
-    let clusterFound = this.loggerStreams.get("Worker");
-    
-    if (!clusterFound) {
-      try {
-        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
-        clusterFound = this.loggerStreams.get("Worker");
-      } catch (clusterError) {
-        await File.createFile(clusterPath);
-        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
-        clusterFound = this.loggerStreams.get("Worker");
-      }
-    }
-    
-    clusterFound.write(`${clusterSummary} \r\n`);
-    return clusterSummary;
-  }
 
 }
 
