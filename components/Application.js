@@ -50,7 +50,8 @@ class Application {
    * @param {Function} clusterWorker Instructions to give to the worker.
    */
   cluster (clusterWorker) {
-    if (!Sticky.listen(this.applicationHttp, this.applicationPort)) {
+    if (!Sticky.listen(this.applicationHttp, process.env.port || this.applicationPort)) {
+      console.log("Server listening on " + process.env.port || this.applicationPort);
       OS.cpus().forEach(cpu => Cluster.fork());
     } else if (Cluster.isWorker) {
       clusterWorker(new ApplicationWorker(process.pid));
