@@ -32,7 +32,6 @@ class Application {
     this.applicationHttp = HTTP.createServer(this.applicationExpress);
     this.applicationSockets = Socket.listen(this.applicationHttp);
     this.applicationSockets.set('origins', "*:*");
-    this.applicationSockets.set('match origin protocol', true);
     
     // Express Setup.
     this.applicationExpress.use(BodyParser.urlencoded({extended: false}));
