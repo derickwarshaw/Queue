@@ -4,7 +4,7 @@
 
 Queue is a cluster server that supports the Kioska eco-system by providing WebSockets for each Point client, a view agent for general observers, and a REST API and CDN for all applications under the Kioska namespace.
 
-![Console](https://i.imgur.com/W9btgwv.png)
+![Console](https://i.imgur.com/D9FW1hZ.png)
 
 ## Contributing
 If you wish to contribute, feel free to make a pull request for changes or report a bug in issues. They will be reviewed given they follow use strict guidelines and are indented with two spaces.
