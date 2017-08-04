@@ -44,7 +44,7 @@
 <script src="/cdn/scripts/Board.js"></script>
 
 <script type="text/javascript">
-    const currentBoard = new Board("http://127.0.0.1:8080");
+    const currentBoard = new Board("/");
 
     currentBoard.bind(Selector.validate('#attended')).then(a => {
       
