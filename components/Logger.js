@@ -1,7 +1,7 @@
 const File = require('./File');
 
 class Logger {
-  
+
   /**
    * Manage a log system.
    */
