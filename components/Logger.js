@@ -5,7 +5,7 @@ class Logger {
   /**
    * Manage a log system.
    */
-  constructor () {
+  constructor() {
     this.loggerStreams = new Map();
   }
 
@@ -14,7 +14,7 @@ class Logger {
    * @param {String} beginDirectory Path to the logs folder.
    * @returns {Promise.<void>}
    */
-  async begin (beginDirectory) {
+  async begin(beginDirectory) {
     const beginInner = `${beginDirectory}/${(new Date).toLocaleDateString()}`;
 
     try {
@@ -36,7 +36,7 @@ class Logger {
    * @param {WebRequest} requestData Request instance.
    * @returns {Promise.<String>} Summary of the request.
    */
-  async request (requestName, requestData) {
+  async request(requestName, requestData) {
     const requestSummary = `[${requestData.timestamp()}] [${requestName} Request] ${requestData.summary()}`;
     const requestDate = requestData.date();
     const requestPath = `./logs/${requestDate}/${requestName} on ${requestDate}.txt`;
@@ -63,7 +63,7 @@ class Logger {
    * @param {Error} problemError Thrown error.
    * @returns {Promise.<String>} Summary of the error.
    */
-  async problem (problemError) {
+  async problem(problemError) {
     const problemDate = new Date();
     const problemDates = `[${problemDate.toLocaleDateString()} @ ${problemDate.toLocaleTimeString()}]`;
     const problemSummary = `${problemDates} [${problemError.name}] [${problemError.lineNumber}] ${problemError.message}`;
@@ -85,6 +85,36 @@ class Logger {
     problemFound.write(`${problemSummary} \r\n`);
     return problemSummary;
   }
+
+  /**
+   * Log a worker.
+   * @param {ApplicationWorker} clusterApplication Worker.
+   * @param {String} clusterMessage Message to log.
+   * @returns {Promise.<String>} Log.
+   */
+  async worker(clusterApplication, clusterMessage) {
+    const clusterDate = new Date();
+    const clusterDates = `[${clusterDate.toLocaleDateString()} @ ${clusterDate.toLocaleTimeString()}]`;
+    const clusterSummary = `${clusterDates} [Application Worker #${clusterApplication.id}] ${clusterMessage}.`;
+    const clusterPath = `./logs/${clusterDate.toLocaleDateString()}/Workers on ${clusterDate.toLocaleDateString()}.txt`;
+
+    let clusterFound = this.loggerStreams.get("Worker");
+
+    if (!clusterFound) {
+      try {
+        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
+        clusterFound = this.loggerStreams.get("Worker");
+      } catch (clusterError) {
+        await File.createFile(clusterPath);
+        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
+        clusterFound = this.loggerStreams.get("Worker");
+      }
+    }
+
+    clusterFound.write(`${clusterSummary} \r\n`);
+    return clusterSummary;
+  }
+
 
 }
 
