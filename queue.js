@@ -1,5 +1,5 @@
 const Application = require('./components/Application');
-const currentApplication = new Application(__dirname, 8080);
+const currentApplication = new Application(__dirname, 8080, false);
 module.exports.currentApplication = currentApplication;
 
 const Queue = require('promise-queue');

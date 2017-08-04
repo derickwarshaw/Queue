@@ -21,11 +21,13 @@ class Application {
    * Acts as the root of all server properties.
    * @param {String} applicationDirectory Root directory of the server.
    * @param {Number} applicationPort Port the server should run on.
+   * @param {Boolean} applicationCluster Whether to cluster or not.
    * @returns Application instance.
    */
-  constructor (applicationDirectory, applicationPort) {
+  constructor (applicationDirectory, applicationPort, applicationCluster) {
     this.applicationDirectory = applicationDirectory;
     this.applicationPort = applicationPort;
+    this.applicationCluster = applicationCluster;
     this.applicationRoutes = {};
   
     this.applicationExpress = Express();
@@ -51,10 +53,15 @@ class Application {
    * @param {Function} clusterWorker Instructions to give to the worker.
    */
   cluster (clusterWorker) {
-    if (!Sticky.listen(this.applicationHttp, process.env.PORT || this.applicationPort)) {
-      console.log("Server listening on " + process.env.PORT || this.applicationPort);
-      OS.cpus().forEach(cpu => Cluster.fork());
-    } else if (Cluster.isWorker) {
+    if (this.applicationCluster) {
+      if (!Sticky.listen(this.applicationHttp, process.env.PORT || this.applicationPort)) {
+        console.log("Server listening on " + process.env.PORT || this.applicationPort);
+        OS.cpus().forEach(cpu => Cluster.fork());
+      } else if (Cluster.isWorker) {
+        clusterWorker(new ApplicationWorker(process.pid));
+      }
+    } else {
+      this.applicationHttp.listen(process.env.PORT || this.applicationPort);
       clusterWorker(new ApplicationWorker(process.pid));
     }
   }
