@@ -1,5 +1,3 @@
-const API = require('../components/File');
-
 module.exports = cdnRouter => {
   "use strict";
   

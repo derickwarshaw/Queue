@@ -1,4 +1,4 @@
-const File = require('../components/File');
+const {File} = require('wrappa-core');
 
 module.exports = scriptsRouter => {
   "use strict";

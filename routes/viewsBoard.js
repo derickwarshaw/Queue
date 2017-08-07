@@ -1,5 +1,4 @@
 const API = require('../components/API');
-const File = require('../components/File');
 
 module.exports = boardRouter => {
   "use strict";

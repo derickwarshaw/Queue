@@ -27,14 +27,15 @@
   "homepage": "https://github.com/Kioska/Queue#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.2",
+    "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
     "graceful-fs": "^4.1.11",
     "promise-queue": "^2.2.3",
     "socket.io": "^2.0.1",
     "sqlite-async": "^1.0.10",
     "sticky-session": "^1.1.2",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "wrappa-core": "^1.0.3"
   },
   "devDependencies": {
     "uglify-js": "^3.0.27"

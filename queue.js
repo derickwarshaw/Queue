@@ -101,3 +101,8 @@ currentApplication.cluster(function (clusterApplication) {
         .then(log => console.log(log));
   });
 });
+
+
+process.on('unhandledRejection', function (errro) {
+  console.log(errro.stack);
+});

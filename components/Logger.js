@@ -1,4 +1,4 @@
-const File = require('./File');
+const {File} = require('wrappa-core');
 
 class Logger {
 
@@ -45,11 +45,11 @@ class Logger {
 
     if (!requestFound) {
       try {
-        this.loggerStreams.set(requestName, File.writeStream(requestPath));
+        this.loggerStreams.set(requestName, File.streamFile(requestPath, 'write'));
         requestFound = this.loggerStreams.get(requestName);
       } catch (requestError) {
-        await File.createFile(requestPath);
-        this.loggerStreams.set(requestName, File.writeStream(requestPath));
+        await File.writeFile(requestPath, '');
+        this.loggerStreams.set(requestName, File.streamFile(requestPath, 'write'));
         requestFound = this.loggerStreams.get(requestName);
       }
     }
@@ -73,11 +73,11 @@ class Logger {
 
     if (!problemFound) {
       try {
-        this.loggerStreams.set("Problems", File.writeStream(requestPath));
+        this.loggerStreams.set("Problems", File.streamFile(requestPath, 'write'));
         problemFound = this.loggerStreams.get("Problems");
       } catch (problemError) {
-        await File.createFile(requestPath);
-        this.loggerStreams.set("Problems", File.writeStream(requestPath));
+        await File.writeFile(requestPath, '');
+        this.loggerStreams.set("Problems", File.streamFile(requestPath, 'write'));
         problemFound = this.loggerStreams.get("Problems");
       }
     }
@@ -102,11 +102,11 @@ class Logger {
 
     if (!clusterFound) {
       try {
-        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
+        this.loggerStreams.set("Worker", File.streamFile(clusterPath, 'write'));
         clusterFound = this.loggerStreams.get("Worker");
       } catch (clusterError) {
-        await File.createFile(clusterPath);
-        this.loggerStreams.set("Worker", File.writeStream(clusterPath));
+        await File.writeFile(clusterPath, '');
+        this.loggerStreams.set("Worker", File.streamFile(clusterPath, 'write'));
         clusterFound = this.loggerStreams.get("Worker");
       }
     }
